@@ -1,0 +1,1210 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Annie Lee's Southern Kitchen | Soul Food in Ambridge, PA</title>
+  <meta name="description" content="Annie Lee's Southern Kitchen serves soulful Southern favorites in Ambridge, PA, with ribs, wings, fish, classic sides, dine-in, takeout, delivery, catering, and food truck bookings." />
+  <meta name="theme-color" content="#0b4ea2" />
+  <meta property="og:title" content="Annie Lee's Southern Kitchen" />
+  <meta property="og:description" content="Authentic Southern comfort food in Ambridge, PA. Order online, call ahead, or book catering and the food truck." />
+  <meta property="og:type" content="website" />
+  <style>
+    :root {
+      --blue-950: #08254a;
+      --blue-900: #0b3b78;
+      --blue-800: #0d4ea2;
+      --blue-700: #1d67c2;
+      --blue-100: #eaf3ff;
+      --blue-50: #f7fbff;
+      --white: #ffffff;
+      --ink: #132238;
+      --muted: #55657d;
+      --line: rgba(11, 78, 162, 0.12);
+      --shadow: 0 20px 50px rgba(8, 37, 74, 0.12);
+      --shadow-soft: 0 12px 30px rgba(8, 37, 74, 0.08);
+      --radius-xl: 28px;
+      --radius-lg: 20px;
+      --radius-md: 16px;
+      --max: 1180px;
+      --nav-h: 76px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at top left, rgba(29, 103, 194, 0.16), transparent 28%),
+        radial-gradient(circle at right center, rgba(13, 78, 162, 0.12), transparent 26%),
+        linear-gradient(180deg, #ffffff 0%, #f7fbff 52%, #eef6ff 100%);
+      line-height: 1.5;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
+    button, input, textarea, select { font: inherit; }
+
+    .container {
+      width: min(calc(100% - 32px), var(--max));
+      margin: 0 auto;
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      backdrop-filter: blur(18px);
+      background: rgba(255,255,255,0.86);
+      border-bottom: 1px solid rgba(11, 78, 162, 0.08);
+    }
+
+    .nav {
+      min-height: var(--nav-h);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      min-width: 0;
+    }
+
+    .brand-badge {
+      width: 48px;
+      height: 48px;
+      border-radius: 14px;
+      background: linear-gradient(135deg, var(--blue-900), var(--blue-700));
+      color: white;
+      display: grid;
+      place-items: center;
+      font-weight: 800;
+      letter-spacing: 0.06em;
+      box-shadow: var(--shadow-soft);
+      flex-shrink: 0;
+    }
+
+    .brand-text {
+      min-width: 0;
+    }
+
+    .brand-kicker {
+      display: block;
+      font-size: 0.76rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--blue-700);
+      font-weight: 700;
+      margin-bottom: 2px;
+    }
+
+    .brand-name {
+      font-size: 1rem;
+      font-weight: 800;
+      color: var(--blue-950);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .nav-links a {
+      color: var(--muted);
+      font-weight: 600;
+      font-size: 0.96rem;
+      transition: color .2s ease, transform .2s ease;
+    }
+
+    .nav-links a:hover {
+      color: var(--blue-800);
+      transform: translateY(-1px);
+    }
+
+    .nav-cta {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      min-height: 48px;
+      padding: 0 20px;
+      border-radius: 999px;
+      border: 1px solid transparent;
+      font-weight: 700;
+      cursor: pointer;
+      transition: transform .2s ease, box-shadow .2s ease, background .2s ease, border-color .2s ease;
+      text-align: center;
+    }
+
+    .btn:hover { transform: translateY(-2px); }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--blue-900), var(--blue-700));
+      color: #fff;
+      box-shadow: 0 14px 28px rgba(13, 78, 162, 0.22);
+    }
+
+    .btn-secondary {
+      background: rgba(255,255,255,0.92);
+      color: var(--blue-900);
+      border-color: rgba(13, 78, 162, 0.18);
+    }
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+      padding: 64px 0 34px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.08fr 0.92fr;
+      gap: 34px;
+      align-items: center;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 14px;
+      border-radius: 999px;
+      background: rgba(13, 78, 162, 0.08);
+      color: var(--blue-800);
+      font-weight: 800;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      font-size: 0.74rem;
+      border: 1px solid rgba(13, 78, 162, 0.09);
+    }
+
+    h1 {
+      margin: 18px 0 16px;
+      font-size: clamp(2.4rem, 5vw, 4.8rem);
+      line-height: 0.98;
+      letter-spacing: -0.04em;
+      color: var(--blue-950);
+    }
+
+    .hero p {
+      margin: 0;
+      font-size: 1.05rem;
+      color: var(--muted);
+      max-width: 640px;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 26px;
+    }
+
+    .hero-meta {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 28px;
+    }
+
+    .meta-card {
+      background: rgba(255,255,255,0.9);
+      border: 1px solid rgba(13, 78, 162, 0.1);
+      border-radius: var(--radius-md);
+      padding: 16px;
+      box-shadow: var(--shadow-soft);
+    }
+
+    .meta-card strong {
+      display: block;
+      color: var(--blue-900);
+      font-size: 0.82rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 6px;
+    }
+
+    .meta-card span {
+      color: var(--ink);
+      font-weight: 700;
+      font-size: 0.98rem;
+    }
+
+    .hero-visual {
+      position: relative;
+    }
+
+    .visual-shell {
+      position: relative;
+      min-height: 620px;
+      border-radius: 34px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.98), rgba(234,243,255,0.95));
+      border: 1px solid rgba(13, 78, 162, 0.12);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      padding: 22px;
+    }
+
+    .hero-photo {
+      height: 360px;
+      border-radius: 24px;
+      background:
+        linear-gradient(180deg, rgba(8, 37, 74, 0.15), rgba(8, 37, 74, 0.35)),
+        url('https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1200&q=80') center/cover no-repeat;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-photo::after {
+      content: "Southern comfort. Fresh flavor. Community favorite.";
+      position: absolute;
+      left: 18px;
+      bottom: 18px;
+      right: 18px;
+      padding: 14px 16px;
+      border-radius: 16px;
+      background: rgba(255,255,255,0.18);
+      border: 1px solid rgba(255,255,255,0.24);
+      color: white;
+      backdrop-filter: blur(10px);
+      font-weight: 700;
+    }
+
+    .visual-cards {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-top: 16px;
+    }
+
+    .floating-card {
+      border-radius: 22px;
+      padding: 18px;
+      background: white;
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow-soft);
+    }
+
+    .floating-card h3 {
+      margin: 0 0 10px;
+      color: var(--blue-900);
+      font-size: 1rem;
+    }
+
+    .floating-card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.96rem;
+    }
+
+    .list {
+      display: grid;
+      gap: 10px;
+      margin-top: 12px;
+    }
+
+    .list span {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      color: var(--ink);
+      font-weight: 600;
+      padding-bottom: 10px;
+      border-bottom: 1px dashed rgba(13, 78, 162, 0.16);
+    }
+
+    .section {
+      padding: 42px 0;
+    }
+
+    .section-head {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 18px;
+      margin-bottom: 22px;
+      flex-wrap: wrap;
+    }
+
+    .section-kicker {
+      margin: 0 0 6px;
+      color: var(--blue-700);
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      font-size: 0.76rem;
+    }
+
+    .section h2 {
+      margin: 0;
+      font-size: clamp(1.8rem, 4vw, 3rem);
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+      color: var(--blue-950);
+    }
+
+    .section-copy {
+      color: var(--muted);
+      max-width: 680px;
+      margin: 0;
+      font-size: 1rem;
+    }
+
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .feature-card,
+    .menu-card,
+    .review-card,
+    .hours-card,
+    .contact-card,
+    .signup-card,
+    .booking-card {
+      background: rgba(255,255,255,0.95);
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      box-shadow: var(--shadow-soft);
+    }
+
+    .feature-card {
+      padding: 24px;
+    }
+
+    .feature-icon {
+      width: 52px;
+      height: 52px;
+      border-radius: 16px;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(135deg, rgba(13, 78, 162, 0.12), rgba(29, 103, 194, 0.18));
+      color: var(--blue-900);
+      font-size: 1.25rem;
+      margin-bottom: 14px;
+      font-weight: 900;
+    }
+
+    .feature-card h3,
+    .menu-card h3,
+    .booking-card h3,
+    .hours-card h3,
+    .contact-card h3,
+    .signup-card h3,
+    .review-card h3 {
+      margin: 0 0 10px;
+      color: var(--blue-950);
+      font-size: 1.12rem;
+    }
+
+    .feature-card p,
+    .menu-card p,
+    .booking-card p,
+    .hours-card p,
+    .contact-card p,
+    .signup-card p,
+    .review-card p {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .menu-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .menu-card {
+      overflow: hidden;
+    }
+
+    .menu-image {
+      height: 220px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .menu-image.one {
+      background:
+        linear-gradient(180deg, rgba(8, 37, 74, 0.15), rgba(8, 37, 74, 0.35)),
+        url('https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=1200&q=80') center/cover no-repeat;
+    }
+
+    .menu-image.two {
+      background:
+        linear-gradient(180deg, rgba(8, 37, 74, 0.15), rgba(8, 37, 74, 0.35)),
+        url('https://images.unsplash.com/photo-1525351484163-7529414344d8?auto=format&fit=crop&w=1200&q=80') center/cover no-repeat;
+    }
+
+    .menu-image.three {
+      background:
+        linear-gradient(180deg, rgba(8, 37, 74, 0.15), rgba(8, 37, 74, 0.35)),
+        url('https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=1200&q=80') center/cover no-repeat;
+    }
+
+    .menu-tag {
+      position: absolute;
+      top: 14px;
+      left: 14px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.92);
+      color: var(--blue-900);
+      font-weight: 800;
+      font-size: 0.8rem;
+      box-shadow: 0 10px 20px rgba(8,37,74,0.12);
+    }
+
+    .menu-body {
+      padding: 22px;
+    }
+
+    .menu-points {
+      display: grid;
+      gap: 10px;
+      margin-top: 14px;
+    }
+
+    .menu-points span {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--ink);
+      font-weight: 600;
+    }
+
+    .menu-points span::before {
+      content: "";
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--blue-700);
+      flex-shrink: 0;
+    }
+
+    .cta-band {
+      margin-top: 28px;
+      background: linear-gradient(135deg, var(--blue-950), var(--blue-700));
+      color: white;
+      border-radius: 30px;
+      padding: 28px;
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 22px;
+      align-items: center;
+      box-shadow: 0 24px 40px rgba(8, 37, 74, 0.18);
+    }
+
+    .cta-band h3 {
+      margin: 0 0 8px;
+      font-size: clamp(1.4rem, 3vw, 2.2rem);
+      line-height: 1.05;
+    }
+
+    .cta-band p {
+      margin: 0;
+      color: rgba(255,255,255,0.86);
+    }
+
+    .cta-actions {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    .cta-actions .btn-primary {
+      background: white;
+      color: var(--blue-950);
+      box-shadow: none;
+    }
+
+    .cta-actions .btn-secondary {
+      background: transparent;
+      border-color: rgba(255,255,255,0.28);
+      color: white;
+    }
+
+    .split-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      align-items: stretch;
+    }
+
+    .booking-card,
+    .hours-card,
+    .contact-card,
+    .signup-card,
+    .review-card {
+      padding: 24px;
+    }
+
+    .two-up {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+
+    .detail-list {
+      display: grid;
+      gap: 12px;
+      margin-top: 16px;
+    }
+
+    .detail-item {
+      display: flex;
+      justify-content: space-between;
+      gap: 14px;
+      padding-bottom: 12px;
+      border-bottom: 1px dashed rgba(13, 78, 162, 0.16);
+      color: var(--ink);
+      font-weight: 600;
+    }
+
+    .detail-item span:last-child {
+      color: var(--muted);
+      text-align: right;
+      font-weight: 700;
+    }
+
+    .booking-list {
+      display: grid;
+      gap: 10px;
+      margin: 16px 0 22px;
+    }
+
+    .booking-list div {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+      color: var(--ink);
+      font-weight: 600;
+    }
+
+    .booking-list div::before {
+      content: "✓";
+      color: var(--blue-700);
+      font-weight: 900;
+      flex-shrink: 0;
+    }
+
+    .reviews {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .stars {
+      color: var(--blue-700);
+      letter-spacing: 0.18em;
+      font-weight: 900;
+      margin-bottom: 12px;
+    }
+
+    .review-name {
+      margin-top: 16px;
+      font-weight: 800;
+      color: var(--blue-900);
+    }
+
+    .review-date {
+      color: var(--muted);
+      font-size: 0.9rem;
+      margin-top: 4px;
+    }
+
+    .signup-shell {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 20px;
+    }
+
+    .signup-card form {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    .field,
+    .field-full {
+      display: grid;
+      gap: 8px;
+    }
+
+    .field-full { grid-column: 1 / -1; }
+
+    label {
+      color: var(--blue-900);
+      font-size: 0.92rem;
+      font-weight: 700;
+    }
+
+    input,
+    textarea {
+      width: 100%;
+      border: 1px solid rgba(13, 78, 162, 0.16);
+      background: #fff;
+      border-radius: 16px;
+      padding: 14px 16px;
+      color: var(--ink);
+      outline: none;
+      transition: border-color .2s ease, box-shadow .2s ease;
+    }
+
+    input:focus,
+    textarea:focus {
+      border-color: var(--blue-700);
+      box-shadow: 0 0 0 4px rgba(29, 103, 194, 0.12);
+    }
+
+    textarea {
+      min-height: 120px;
+      resize: vertical;
+    }
+
+    .fineprint {
+      margin-top: 12px;
+      color: var(--muted);
+      font-size: 0.88rem;
+    }
+
+    .footer {
+      padding: 26px 0 46px;
+    }
+
+    .footer-shell {
+      background: linear-gradient(135deg, var(--blue-950), #0f437f 60%, #1d67c2 100%);
+      color: white;
+      border-radius: 30px;
+      padding: 28px;
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 24px;
+      box-shadow: 0 24px 44px rgba(8, 37, 74, 0.2);
+    }
+
+    .footer-brand {
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+    }
+
+    .footer-brand .brand-badge {
+      background: rgba(255,255,255,0.14);
+      border: 1px solid rgba(255,255,255,0.18);
+    }
+
+    .footer h3 {
+      margin: 0 0 10px;
+      font-size: 1.3rem;
+    }
+
+    .footer p {
+      margin: 0;
+      color: rgba(255,255,255,0.82);
+    }
+
+    .footer-links {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px 18px;
+      align-content: start;
+    }
+
+    .footer-links a {
+      color: rgba(255,255,255,0.92);
+      font-weight: 700;
+    }
+
+    .footer-bottom {
+      margin-top: 18px;
+      padding-top: 18px;
+      border-top: 1px solid rgba(255,255,255,0.14);
+      display: flex;
+      justify-content: space-between;
+      gap: 18px;
+      flex-wrap: wrap;
+      color: rgba(255,255,255,0.74);
+      font-size: 0.92rem;
+    }
+
+    .fade-up {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity .65s ease, transform .65s ease;
+    }
+
+    .fade-up.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (max-width: 1080px) {
+      .hero-grid,
+      .feature-grid,
+      .menu-grid,
+      .reviews,
+      .split-grid,
+      .signup-shell,
+      .footer-shell,
+      .cta-band {
+        grid-template-columns: 1fr;
+      }
+
+      .two-up,
+      .signup-card form,
+      .hero-meta,
+      .visual-cards {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .cta-actions {
+        justify-content: flex-start;
+      }
+    }
+
+    @media (max-width: 760px) {
+      .nav {
+        padding: 14px 0;
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .nav-links,
+      .nav-cta {
+        width: 100%;
+        justify-content: flex-start;
+      }
+
+      .hero {
+        padding-top: 34px;
+      }
+
+      .visual-shell {
+        min-height: unset;
+      }
+
+      .two-up,
+      .signup-card form,
+      .hero-meta,
+      .visual-cards,
+      .footer-links {
+        grid-template-columns: 1fr;
+      }
+
+      .section {
+        padding: 34px 0;
+      }
+
+      .footer-bottom {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="container nav">
+      <a class="brand" href="#top" aria-label="Annie Lee's Southern Kitchen home">
+        <div class="brand-badge">AL</div>
+        <div class="brand-text">
+          <span class="brand-kicker">Soul Food • Ambridge, PA</span>
+          <span class="brand-name">Annie Lee's Southern Kitchen</span>
+        </div>
+      </a>
+
+      <nav class="nav-links" aria-label="Primary">
+        <a href="#menu">Menu</a>
+        <a href="#order">Order</a>
+        <a href="#truck">Food Truck</a>
+        <a href="#reviews">Reviews</a>
+        <a href="#visit">Visit</a>
+      </nav>
+
+      <div class="nav-cta">
+        <a class="btn btn-secondary" href="tel:17243850522">Call Now</a>
+        <a class="btn btn-primary" href="https://www.doordash.com/store/annie-lee%E2%80%99s-southern-kitchen-duss-ave-ambridge-1181001/" target="_blank" rel="noreferrer">Order Online</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="container hero-grid">
+        <div class="fade-up visible">
+          <span class="eyebrow">Fresh Southern Comfort • Local Favorite</span>
+          <h1>Big flavor, warm hospitality, and soul food worth coming back for.</h1>
+          <p>
+            Annie Lee's Southern Kitchen serves up crowd favorites like ribs, wings, fish, mac and cheese, collard greens, cornbread, and more in the heart of Ambridge. Dine in, take out, order delivery, or book the food truck for your next event.
+          </p>
+
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="https://www.doordash.com/store/annie-lee%E2%80%99s-southern-kitchen-duss-ave-ambridge-1181001/" target="_blank" rel="noreferrer">Start Your Order</a>
+            <a class="btn btn-secondary" href="#truck">Book the Food Truck</a>
+          </div>
+
+          <div class="hero-meta">
+            <div class="meta-card">
+              <strong>Address</strong>
+              <span>1601 Duss Ave, Ambridge, PA</span>
+            </div>
+            <div class="meta-card">
+              <strong>Phone</strong>
+              <span>(724) 385-0522</span>
+            </div>
+            <div class="meta-card">
+              <strong>Highlights</strong>
+              <span>Dine-in • Takeout • Delivery • Catering</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-visual fade-up">
+          <div class="visual-shell">
+            <div class="hero-photo" role="img" aria-label="Welcoming restaurant dining atmosphere"></div>
+            <div class="visual-cards">
+              <div class="floating-card">
+                <h3>Customer favorites</h3>
+                <div class="list">
+                  <span><em>Ribs</em><strong>Meaty & tender</strong></span>
+                  <span><em>Whole wings</em><strong>Perfectly seasoned</strong></span>
+                  <span><em>Fish dinners</em><strong>Fresh & comforting</strong></span>
+                </div>
+              </div>
+              <div class="floating-card">
+                <h3>Visit or book</h3>
+                <p>Need lunch, dinner, catering, or a food truck event? This site is built to drive fast orders, clear contact, and simple booking.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="section-head fade-up">
+          <div>
+            <p class="section-kicker">Why people choose Annie Lee's</p>
+            <h2>A polished site built to turn visitors into orders.</h2>
+          </div>
+          <p class="section-copy">
+            This layout puts the most important decisions first: what to eat, how to order, where to go, and how to book the business for larger events.
+          </p>
+        </div>
+
+        <div class="feature-grid">
+          <article class="feature-card fade-up">
+            <div class="feature-icon">1</div>
+            <h3>Fast online ordering</h3>
+            <p>Primary calls to action send guests straight to online ordering or direct phone contact without digging through the page.</p>
+          </article>
+          <article class="feature-card fade-up">
+            <div class="feature-icon">2</div>
+            <h3>Menu-first design</h3>
+            <p>The site highlights signature dishes right away so hungry customers know what Annie Lee's is known for within seconds.</p>
+          </article>
+          <article class="feature-card fade-up">
+            <div class="feature-icon">3</div>
+            <h3>Food truck & catering</h3>
+            <p>A dedicated section turns event interest into actual leads with clear contact info and a simple booking path.</p>
+          </article>
+          <article class="feature-card fade-up">
+            <div class="feature-icon">4</div>
+            <h3>Mobile-first experience</h3>
+            <p>Everything is built to feel clean and easy on phones, where most local restaurant traffic and order clicks happen.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="menu">
+      <div class="container">
+        <div class="section-head fade-up">
+          <div>
+            <p class="section-kicker">Signature menu</p>
+            <h2>Soul food staples that deserve the spotlight.</h2>
+          </div>
+          <p class="section-copy">
+            Annie Lee's menu is known for ribs, wings, fish dinners, and classic Southern sides that keep people coming back.
+          </p>
+        </div>
+
+        <div class="menu-grid">
+          <article class="menu-card fade-up">
+            <div class="menu-image one">
+              <span class="menu-tag">Best-known plates</span>
+            </div>
+            <div class="menu-body">
+              <h3>Rib dinners</h3>
+              <p>Built to showcase the meaty, flavorful ribs that guests regularly mention when talking about the restaurant.</p>
+              <div class="menu-points">
+                <span>Pork rib dinners</span>
+                <span>Half slab options</span>
+                <span>Pairs well with mac and cheese or greens</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="menu-card fade-up">
+            <div class="menu-image two">
+              <span class="menu-tag">Crowd favorite</span>
+            </div>
+            <div class="menu-body">
+              <h3>Wings & chicken</h3>
+              <p>Whole wings and chicken combos are featured front and center for customers looking for a hearty, flavorful order.</p>
+              <div class="menu-points">
+                <span>Fried whole wings</span>
+                <span>Wing dinners with sides</span>
+                <span>Perfect for lunch or dinner</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="menu-card fade-up">
+            <div class="menu-image three">
+              <span class="menu-tag">Comfort sides</span>
+            </div>
+            <div class="menu-body">
+              <h3>Fish, sides & sweets</h3>
+              <p>Fish dinners and traditional Southern sides round out the menu with rich, comforting variety.</p>
+              <div class="menu-points">
+                <span>Fish dinners</span>
+                <span>Collard greens, mac and cheese, cornbread</span>
+                <span>Candied sweet potatoes and desserts</span>
+              </div>
+            </div>
+          </article>
+        </div>
+
+        <div class="cta-band fade-up" id="order">
+          <div>
+            <h3>Ready to eat?</h3>
+            <p>Make ordering easy with a direct link to delivery or call ahead for takeout and pickup.</p>
+          </div>
+          <div class="cta-actions">
+            <a class="btn btn-primary" href="https://www.doordash.com/store/annie-lee%E2%80%99s-southern-kitchen-duss-ave-ambridge-1181001/" target="_blank" rel="noreferrer">Order Delivery</a>
+            <a class="btn btn-secondary" href="tel:17243850522">Call for Pickup</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="truck">
+      <div class="container split-grid">
+        <article class="booking-card fade-up">
+          <p class="section-kicker">Food truck & catering</p>
+          <h3>Bring Annie Lee's to your event.</h3>
+          <p>
+            This section is built to help Annie Lee's win more catering and food truck bookings with a clear value proposition and simple contact flow.
+          </p>
+          <div class="booking-list">
+            <div>Great fit for community events, business lunches, school functions, and private celebrations.</div>
+            <div>Clear booking path by email or phone so customers can move fast.</div>
+            <div>Built-in lead capture form for event date, guest count, and service needs.</div>
+          </div>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="mailto:annieleessk@yahoo.com?subject=Food%20Truck%20Booking%20Request">Request Booking</a>
+            <a class="btn btn-secondary" href="tel:17243850522">Call to Book</a>
+          </div>
+        </article>
+
+        <div class="two-up">
+          <article class="hours-card fade-up">
+            <h3>Hours</h3>
+            <div class="detail-list">
+              <div class="detail-item"><span>Monday</span><span>Closed</span></div>
+              <div class="detail-item"><span>Tuesday</span><span>11:00 AM – 9:00 PM</span></div>
+              <div class="detail-item"><span>Wednesday</span><span>11:00 AM – 9:00 PM</span></div>
+              <div class="detail-item"><span>Thursday</span><span>11:00 AM – 9:00 PM</span></div>
+              <div class="detail-item"><span>Friday</span><span>11:00 AM – 10:00 PM</span></div>
+              <div class="detail-item"><span>Saturday</span><span>11:00 AM – 10:00 PM</span></div>
+              <div class="detail-item"><span>Sunday</span><span>12:00 PM – 7:00 PM</span></div>
+            </div>
+          </article>
+
+          <article class="contact-card fade-up" id="visit">
+            <h3>Visit Annie Lee's</h3>
+            <div class="detail-list">
+              <div class="detail-item"><span>Address</span><span>1601 Duss Ave<br>Ambridge, PA 15003</span></div>
+              <div class="detail-item"><span>Phone</span><span><a href="tel:17243850522">(724) 385-0522</a></span></div>
+              <div class="detail-item"><span>Email</span><span><a href="mailto:annieleessk@yahoo.com">annieleessk@yahoo.com</a></span></div>
+              <div class="detail-item"><span>Service</span><span>Dine-in, takeout, delivery, catering</span></div>
+            </div>
+            <div class="hero-actions" style="margin-top:18px;">
+              <a class="btn btn-primary" href="https://maps.apple.com/?address=1601%20Duss%20Ave,%20Ambridge,%20PA%2015003" target="_blank" rel="noreferrer">Get Directions</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="reviews">
+      <div class="container">
+        <div class="section-head fade-up">
+          <div>
+            <p class="section-kicker">Social proof</p>
+            <h2>Reviews that reinforce the brand.</h2>
+          </div>
+          <p class="section-copy">
+            This section gives visitors confidence fast by surfacing the same praise that shows up again and again: fresh food, flavorful wings, standout ribs, and warm service.
+          </p>
+        </div>
+
+        <div class="reviews">
+          <article class="review-card fade-up">
+            <div class="stars">★★★★★</div>
+            <p>"Perfect little spot for lunch or dinner. Outside tables also. Chicken and fish so fresh and meaty ribs. Tasty potato salad and good service."</p>
+            <div class="review-name">Stanley Burleigh</div>
+            <div class="review-date">Review surfaced July 2025</div>
+          </article>
+
+          <article class="review-card fade-up">
+            <div class="stars">★★★★★</div>
+            <p>"The whole family got the wings and they were seasoned perfectly. We also got collard greens, mac n cheese, cornbread, candied sweet potatoes, and french fries."</p>
+            <div class="review-name">Josh Yo</div>
+            <div class="review-date">Review surfaced July 2025</div>
+          </article>
+
+          <article class="review-card fade-up">
+            <div class="stars">★★★★★</div>
+            <p>"Outstanding and delicious food. We ordered the full rack of ribs and a dozen wings. Also mac n cheese, red beans and rice and candied yams and 3 pieces of cornbread."</p>
+            <div class="review-name">KD</div>
+            <div class="review-date">Customer testimonial</div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container signup-shell">
+        <article class="signup-card fade-up">
+          <p class="section-kicker">Stay connected</p>
+          <h3>Join for specials, updates, and truck news.</h3>
+          <p>
+            Use this form to collect email or SMS leads for weekly specials, holiday hours, catering updates, and future food truck stops.
+          </p>
+
+          <form id="signupForm">
+            <div class="field">
+              <label for="firstName">First name</label>
+              <input id="firstName" name="firstName" type="text" placeholder="Your first name" required />
+            </div>
+            <div class="field">
+              <label for="phone">Phone</label>
+              <input id="phone" name="phone" type="tel" placeholder="Your phone number" />
+            </div>
+            <div class="field-full">
+              <label for="email">Email</label>
+              <input id="email" name="email" type="email" placeholder="you@example.com" required />
+            </div>
+            <div class="field-full">
+              <label for="message">What are you interested in?</label>
+              <textarea id="message" name="message" placeholder="Weekly specials, catering, food truck updates, event inquiries..."></textarea>
+            </div>
+            <div class="field-full">
+              <button class="btn btn-primary" type="submit">Join the List</button>
+              <p class="fineprint" id="signupMessage">This demo form is front-end only and can be connected to Square, Mailchimp, Twilio, Google Sheets, or a custom backend.</p>
+            </div>
+          </form>
+        </article>
+
+        <article class="contact-card fade-up">
+          <p class="section-kicker">Quick links</p>
+          <h3>Everything important in one place.</h3>
+          <div class="detail-list">
+            <div class="detail-item"><span>Order delivery</span><span><a href="https://www.doordash.com/store/annie-lee%E2%80%99s-southern-kitchen-duss-ave-ambridge-1181001/" target="_blank" rel="noreferrer">Open DoorDash</a></span></div>
+            <div class="detail-item"><span>Facebook</span><span><a href="https://www.facebook.com/AnnieLeesSouthernKitchen/" target="_blank" rel="noreferrer">View page</a></span></div>
+            <div class="detail-item"><span>Instagram</span><span><a href="https://www.instagram.com/annie_lees_kitchen/" target="_blank" rel="noreferrer">Follow account</a></span></div>
+            <div class="detail-item"><span>Food truck info</span><span><a href="https://annie-lees-food-truck.ueniweb.com/" target="_blank" rel="noreferrer">Booking page</a></span></div>
+          </div>
+          <div class="hero-actions" style="margin-top:18px;">
+            <a class="btn btn-secondary" href="#top">Back to top</a>
+          </div>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-shell fade-up">
+        <div>
+          <div class="footer-brand">
+            <div class="brand-badge">AL</div>
+            <div>
+              <h3>Annie Lee's Southern Kitchen</h3>
+              <p>Southern comfort food in Ambridge, PA with dine-in, takeout, delivery, catering, and food truck booking support.</p>
+            </div>
+          </div>
+
+          <div class="footer-bottom">
+            <span>© <span id="year"></span> Annie Lee's Southern Kitchen. All rights reserved.</span>
+            <span>Built with a mobile-first, conversion-focused layout.</span>
+          </div>
+        </div>
+
+        <div>
+          <div class="footer-links">
+            <a href="#menu">Menu</a>
+            <a href="#order">Order Online</a>
+            <a href="#truck">Food Truck</a>
+            <a href="#reviews">Reviews</a>
+            <a href="tel:17243850522">Call</a>
+            <a href="mailto:annieleessk@yahoo.com">Email</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.12 });
+
+    document.querySelectorAll('.fade-up').forEach((el, index) => {
+      el.style.transitionDelay = `${Math.min(index * 45, 260)}ms`;
+      if (!el.classList.contains('visible')) observer.observe(el);
+    });
+
+    const signupForm = document.getElementById('signupForm');
+    const signupMessage = document.getElementById('signupMessage');
+
+    signupForm.addEventListener('submit', function (e) {
+      e.preventDefault();
+      const data = new FormData(signupForm);
+      const firstName = (data.get('firstName') || 'there').toString().trim();
+      signupMessage.textContent = `${firstName}, you're in. In a live version, this form would send your info to email/SMS marketing and event lead capture.`;
+      signupForm.reset();
+    });
+  </script>
+</body>
+</html>

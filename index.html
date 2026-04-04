@@ -4,7 +4,10 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Annie Lee's Southern Kitchen | Soul Food With Heat</title>
-  <meta name="description" content="Annie Lee's Southern Kitchen serves bold Southern comfort food in Ambridge, PA. Order online, call ahead, explore the menu, and find the location fast." />
+  <meta
+    name="description"
+    content="Annie Lee's Southern Kitchen serves bold Southern comfort food in Ambridge, PA. Explore the full menu, order online, call ahead, and find the location fast."
+  />
   <style>
     :root{
       --bg:#070707;
@@ -50,25 +53,12 @@
       position:fixed;
       inset:0;
       pointer-events:none;
-      background-image:
-        radial-gradient(rgba(255,255,255,.04) 1px, transparent 1px);
+      background-image: radial-gradient(rgba(255,255,255,.04) 1px, transparent 1px);
       background-size:4px 4px;
       mix-blend-mode:soft-light;
       opacity:.12;
       z-index:100;
     }
-
-    .glow{
-      position:absolute;
-      border-radius:999px;
-      filter:blur(70px);
-      opacity:.55;
-      pointer-events:none;
-      z-index:0;
-    }
-    .glow.one{width:380px;height:380px;background:rgba(217,48,24,.34);top:-90px;left:-70px}
-    .glow.two{width:260px;height:260px;background:rgba(255,255,255,.08);top:120px;right:0}
-    .glow.three{width:300px;height:300px;background:rgba(255,91,46,.16);bottom:0;right:15%}
 
     header.site-header{
       position:sticky;
@@ -91,13 +81,15 @@
       justify-content:space-between;
       gap:18px;
     }
-    .brand{
+    .brand,
+    .footer-brand{
       display:flex;
       align-items:center;
       gap:12px;
       min-width:0;
     }
-    .brand img{
+    .brand img,
+    .footer-brand img{
       width:54px;
       height:54px;
       object-fit:contain;
@@ -105,6 +97,12 @@
       background:rgba(255,255,255,.03);
       padding:6px;
       box-shadow:inset 0 0 0 1px rgba(255,255,255,.06);
+    }
+    .footer-brand img{
+      width:42px;
+      height:42px;
+      border-radius:12px;
+      padding:4px;
     }
     .brand-copy{min-width:0}
     .brand-kicker{
@@ -179,11 +177,10 @@
       position:absolute;
       inset:0;
       background:
-        linear-gradient(90deg, rgba(7,7,7,.84) 0%, rgba(7,7,7,.45) 42%, rgba(7,7,7,.72) 100%),
-        linear-gradient(180deg, rgba(7,7,7,.18) 0%, rgba(7,7,7,.45) 100%);
+        linear-gradient(90deg, rgba(7,7,7,.88) 0%, rgba(7,7,7,.46) 43%, rgba(7,7,7,.78) 100%),
+        linear-gradient(180deg, rgba(7,7,7,.14) 0%, rgba(7,7,7,.5) 100%);
       z-index:1;
     }
-    .hero-video,
     .hero-poster{
       position:absolute;
       inset:0;
@@ -267,13 +264,13 @@
       border-color:rgba(255,255,255,.08);
       color:var(--white-soft);
     }
+
     .hero-side{
       display:grid;
       gap:16px;
       align-self:center;
     }
     .card{
-      position:relative;
       background:linear-gradient(180deg, rgba(255,255,255,.055), rgba(255,255,255,.03));
       border:1px solid rgba(255,255,255,.08);
       border-radius:var(--radius);
@@ -315,10 +312,7 @@
       letter-spacing:-.03em;
     }
 
-    .section{
-      position:relative;
-      padding:92px 0;
-    }
+    .section{padding:92px 0}
     .section-head{
       display:flex;
       align-items:end;
@@ -368,32 +362,29 @@
     }
     .feature-media{
       aspect-ratio: .92 / 1;
-      background:
-        radial-gradient(circle at 22% 20%, rgba(255,91,46,.55), transparent 25%),
-        radial-gradient(circle at 80% 15%, rgba(255,255,255,.08), transparent 22%),
-        linear-gradient(180deg, #151515 0%, #0c0c0c 100%);
-      display:flex;
-      align-items:end;
-      justify-content:flex-start;
-      padding:18px;
       position:relative;
       overflow:hidden;
+      background:#111;
     }
-    .feature-media::before{
+    .feature-media img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+    }
+    .feature-media::after{
       content:"";
       position:absolute;
-      inset:auto -20% -40% -20%;
-      height:72%;
-      border-radius:50%;
-      background:radial-gradient(circle, rgba(217,48,24,.38) 0%, rgba(217,48,24,.05) 38%, transparent 72%);
-      filter:blur(34px);
+      inset:0;
+      background:linear-gradient(180deg, rgba(0,0,0,.08), rgba(0,0,0,.5));
     }
     .feature-badge{
-      position:relative;
+      position:absolute;
+      left:18px;
+      bottom:18px;
       z-index:1;
       padding:8px 12px;
       border-radius:999px;
-      background:rgba(7,7,7,.52);
+      background:rgba(7,7,7,.56);
       border:1px solid rgba(255,255,255,.08);
       font-size:.8rem;
       color:var(--white-soft);
@@ -443,16 +434,6 @@
         linear-gradient(140deg, rgba(255,255,255,.055), rgba(255,255,255,.02)),
         radial-gradient(circle at 20% 10%, rgba(255,91,46,.16), transparent 30%),
         linear-gradient(180deg, #0f0f0f 0%, #0a0a0a 100%);
-    }
-    .story-panel::after{
-      content:"";
-      position:absolute;
-      inset:auto -10% -25% 30%;
-      height:300px;
-      border-radius:50%;
-      background:radial-gradient(circle, rgba(217,48,24,.25), transparent 65%);
-      filter:blur(24px);
-      pointer-events:none;
     }
     .story-panel h3{
       margin:0 0 10px;
@@ -554,6 +535,12 @@
       color:var(--white-soft);
       font-weight:700;
     }
+    .review-meta{
+      color:var(--muted-2);
+      font-size:.9rem;
+      margin-bottom:12px;
+      line-height:1.65;
+    }
 
     .cta-band{
       position:relative;
@@ -600,16 +587,6 @@
       flex-wrap:wrap;
       padding-top:28px;
       border-top:1px solid rgba(255,255,255,.08);
-    }
-    .footer-brand{
-      display:flex;
-      align-items:center;
-      gap:12px;
-    }
-    .footer-brand img{
-      width:42px;
-      height:42px;
-      object-fit:contain;
     }
     .footer-links{
       display:flex;
@@ -696,22 +673,16 @@
       .hours-grid{
         grid-template-columns:1fr;
       }
-      .section{
-        padding:72px 0;
-      }
+      .section{padding:72px 0}
       .card,
       .story-panel,
-      .cta-band{
-        border-radius:26px;
-      }
+      .cta-band{border-radius:26px}
       .floating-order{
         left:14px;
         right:14px;
         bottom:14px;
       }
-      .floating-order a{
-        flex:1;
-      }
+      .floating-order a{flex:1}
     }
 
     @media (max-width: 560px){
@@ -744,11 +715,11 @@
       </a>
 
       <nav class="nav-links" aria-label="Main navigation">
-        <a href="#featured">Featured</a>
+        <a href="#featured">Favorites</a>
         <a href="menu.html">Menu</a>
         <a href="#location">Location</a>
         <a href="#reviews">Reviews</a>
-        <a class="nav-cta" href="https://buy.stripe.com/test_eVqdR81vva3h0R81gEbII00" target="_blank" rel="noopener">Order Online</a>
+        <a class="nav-cta" href="https://buy.stripe.com/REPLACE_WITH_YOUR_NEW_STRIPE_LINK" target="_blank" rel="noopener">Order Online</a>
       </nav>
     </div>
   </header>
@@ -756,23 +727,24 @@
   <main id="top">
     <section class="hero">
       <div class="hero-media">
-        <img class="hero-poster" src="assets/hero-poster.jpg" alt="Annie Lee's Southern Kitchen hero poster" />
-        <video class="hero-video" autoplay muted loop playsinline poster="assets/hero-poster.jpg" aria-label="Fried chicken cooking video background">
-          <source src="assets/annie-hero.mp4" type="video/mp4" />
-        </video>
+        <img
+          class="hero-poster"
+          src="https://images.unsplash.com/photo-1518492104633-130d0cc84637?auto=format&fit=crop&w=1600&q=80"
+          alt="Golden fried chicken on a platter"
+        />
       </div>
 
       <div class="container hero-inner">
         <div class="hero-copy reveal">
-          <div class="eyebrow"><span class="dot"></span> Family-friendly Southern flavor with fire</div>
+          <div class="eyebrow"><span class="dot"></span> Crispy wings, smoky ribs, catfish, and soul food classics</div>
           <h1>Soul food that hits hard and feels like home.</h1>
           <p>
-            Crispy wings, smoky ribs, catfish, mac and cheese, collard greens, and all the comfort that makes
-            people come back hungry. Order online, call ahead, or pull up in Ambridge.
+            Annie Lee's Southern Kitchen brings whole wing dinners, rib plates, fried fish, baked mac and cheese,
+            collard greens, and comfort food worth the trip. Order online, call ahead, or pull up in Ambridge.
           </p>
 
           <div class="hero-actions">
-            <a class="btn btn-primary" href="https://buy.stripe.com/test_eVqdR81vva3h0R81gEbII00" target="_blank" rel="noopener">Order Online</a>
+            <a class="btn btn-primary" href="https://buy.stripe.com/REPLACE_WITH_YOUR_NEW_STRIPE_LINK" target="_blank" rel="noopener">Order Online</a>
             <a class="btn btn-secondary" href="tel:+17243850522">Call 724-385-0522</a>
             <a class="btn btn-secondary" href="menu.html">See Full Menu</a>
           </div>
@@ -780,11 +752,10 @@
 
         <div class="hero-side">
           <div class="card reveal">
-            <div class="glow one"></div>
-            <h3>What makes the site convert</h3>
+            <h3>Fried whole wing dinners lead the brand</h3>
             <p>
-              Fast ordering paths, bold visuals, sticky mobile actions, and a clean menu flow built around hungry visitors
-              who want the number, the food, and the location right away.
+              The homepage now pushes the most craveable, easiest-to-order plates first: 4 wings with 2 small sides,
+              6 wings with 2 small sides, fish dinners, and baked mac and cheese.
             </p>
           </div>
 
@@ -807,9 +778,9 @@
         <div class="section-head reveal">
           <div>
             <span class="section-kicker">Featured favorites</span>
-            <h2>Built to look bold, feel clean, and make people crave the food.</h2>
+            <h2>Built to make people hungry fast.</h2>
             <p class="section-sub">
-              The homepage spotlights the highest-impact items first, then drives visitors straight to the menu and checkout.
+              These four feature cards spotlight the plates and side that deserve the most attention on the home page.
             </p>
           </div>
         </div>
@@ -817,45 +788,49 @@
         <div class="featured-grid">
           <article class="feature reveal">
             <div class="feature-media">
-              <span class="feature-badge">Crispy crowd favorite</span>
+              <img src="https://images.unsplash.com/photo-1562967914-608f82629710?auto=format&fit=crop&w=900&q=80" alt="Fried chicken wings and sides" />
+              <span class="feature-badge">Crowd favorite</span>
             </div>
             <div class="feature-copy">
               <h3>6 Wings w/ 2 Sides</h3>
-              <p>Seasoned whole wings with Southern comfort on the side. Big flavor, clean layout, easy decision.</p>
-              <div class="price-row"><span>$17.10</span><span class="line"></span><span>Best seller</span></div>
+              <p>Crispy whole wings with two small sides for a comfort-food plate that feels like the safe pick and the craveable pick.</p>
+              <div class="price-row"><span>$18.40</span><span class="line"></span><span>Best seller</span></div>
             </div>
           </article>
 
           <article class="feature reveal">
             <div class="feature-media">
+              <img src="https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=900&q=80" alt="Barbecue ribs plated with sides" />
               <span class="feature-badge">Smoky and rich</span>
             </div>
             <div class="feature-copy">
               <h3>Half Slab w/ 2 Sides</h3>
-              <p>Rib dinner energy for people who want a heartier plate. Great anchor item for the menu funnel.</p>
-              <div class="price-row"><span>$19.75</span><span class="line"></span><span>Rib dinner</span></div>
+              <p>A bigger plate for rib lovers, positioned as the hearty option for visitors ready to go all in.</p>
+              <div class="price-row"><span>$24.50</span><span class="line"></span><span>Rib dinner</span></div>
             </div>
           </article>
 
           <article class="feature reveal">
             <div class="feature-media">
+              <img src="https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?auto=format&fit=crop&w=900&q=80" alt="Fried fish dinner with sides" />
               <span class="feature-badge">Fresh made to order</span>
             </div>
             <div class="feature-copy">
-              <h3>Fish Dinner w/ 2 Sides</h3>
-              <p>Catfish or whiting, made to order, positioned as a premium comfort option right on the home page.</p>
-              <div class="price-row"><span>$14.50</span><span class="line"></span><span>Catfish or whiting</span></div>
+              <h3>Fish Dinner</h3>
+              <p>Catfish or whiting served as a premium comfort-food option with the kind of visual appeal that deserves home-page placement.</p>
+              <div class="price-row"><span>$16.50</span><span class="line"></span><span>#1 most liked</span></div>
             </div>
           </article>
 
           <article class="feature reveal">
             <div class="feature-media">
-              <span class="feature-badge">The comfort side</span>
+              <img src="https://images.unsplash.com/photo-1543332164-6e82f355badc?auto=format&fit=crop&w=900&q=80" alt="Creamy baked macaroni and cheese" />
+              <span class="feature-badge">Comfort classic</span>
             </div>
             <div class="feature-copy">
               <h3>Baked Mac &amp; Cheese</h3>
-              <p>One of the most visual menu items for the site. Perfect for making the menu feel warm and craveable.</p>
-              <div class="price-row"><span>Sm $3.00 · Lg $5.00</span><span class="line"></span><span>Classic side</span></div>
+              <p>One of the most visual, easiest-to-sell sides on the whole menu and a strong add-on in every ordering flow.</p>
+              <div class="price-row"><span>Sm $4.00 · Lg $7.00</span><span class="line"></span><span>Classic side</span></div>
             </div>
           </article>
         </div>
@@ -865,17 +840,16 @@
     <section class="section" id="story">
       <div class="container story-grid">
         <div class="story-panel reveal">
-          <span class="section-kicker">Brand direction</span>
-          <h3>Dark, spacy edge. Still warm. Still family-friendly.</h3>
+          <span class="section-kicker">Fried whole wing dinners</span>
+          <h3>Lead with the plates people understand fast.</h3>
           <p>
-            The palette pulls straight from the logo: deep black, hot ember reds, soft white highlights, and a little glow
-            to make the whole experience feel alive without getting messy. It is modern, simple, and built for mobile first.
+            The home page now emphasizes the dinner options that are easiest to scan and easiest to order: 4 Wings With 2 sm Sides and 6 Wings With 2 sm Sides.
           </p>
           <ul class="list">
-            <li><span>1</span> Strong logo-led color system for a clean visual identity.</li>
-            <li><span>2</span> Soft motion and scroll reveals instead of heavy effects.</li>
-            <li><span>3</span> Easy ordering actions visible across the whole site.</li>
-            <li><span>4</span> Space reserved for your fried chicken hero video once you drop it in.</li>
+            <li><span>1</span> Put whole wing dinners front and center.</li>
+            <li><span>2</span> Keep the logo anchored top left and bottom left.</li>
+            <li><span>3</span> Drive visitors to a dedicated full menu page.</li>
+            <li><span>4</span> Keep order, phone, and directions available everywhere.</li>
           </ul>
         </div>
 
@@ -883,14 +857,14 @@
           <span class="section-kicker">Menu flow</span>
           <h3>Designed to move hungry visitors fast.</h3>
           <p>
-            People land, get the vibe, see the featured plates, view the full menu, then either pay online or call ahead.
-            The structure keeps friction low and puts action buttons in all the right places.
+            People land, get the vibe, see the favorites, open the full menu, then either pay online or call ahead.
+            The structure keeps friction low and gives the food room to do the selling.
           </p>
           <div class="hours-grid">
-            <div class="hour-item"><strong>Top CTA</strong><span>Order Online</span></div>
-            <div class="hour-item"><strong>Backup CTA</strong><span>Call Ahead</span></div>
-            <div class="hour-item"><strong>Menu Page</strong><span>Card-based, mobile-ready</span></div>
-            <div class="hour-item"><strong>Map</strong><span>Embedded for quick directions</span></div>
+            <div class="hour-item"><strong>Focus Item</strong><span>4 Wings With 2 sm Sides</span></div>
+            <div class="hour-item"><strong>Focus Item</strong><span>6 Wings With 2 sm Sides</span></div>
+            <div class="hour-item"><strong>Menu Page</strong><span>Category-based and mobile-ready</span></div>
+            <div class="hour-item"><strong>Checkout</strong><span>Stripe link placeholder</span></div>
           </div>
         </div>
       </div>
@@ -903,7 +877,7 @@
             <span class="section-kicker">Find us today</span>
             <h2>Pull up in Ambridge.</h2>
             <p class="section-sub">
-              The location section keeps the address, hours, phone number, and route map together so nobody has to hunt for details.
+              The location section keeps the address, updated hours, phone number, and directions together so nobody has to hunt for details.
             </p>
           </div>
         </div>
@@ -922,16 +896,17 @@
             <span class="section-kicker">Visit details</span>
             <h3>1601 Duss Ave, Ambridge, PA 15003</h3>
             <p>
-              Order online for pickup, call ahead, or come through during open hours. This section is set up to be one of the strongest mobile conversion spots on the site.
+              Order online for pickup, call ahead, or come through during open hours.
             </p>
 
             <div class="hours-grid">
-              <div class="hour-item"><strong>Tue</strong><span>11 AM – 9 PM</span></div>
-              <div class="hour-item"><strong>Wed</strong><span>11 AM – 9 PM</span></div>
-              <div class="hour-item"><strong>Thu</strong><span>11 AM – 9 PM</span></div>
-              <div class="hour-item"><strong>Fri</strong><span>11 AM – 10 PM</span></div>
-              <div class="hour-item"><strong>Sat</strong><span>11 AM – 10 PM</span></div>
-              <div class="hour-item"><strong>Sun</strong><span>12 PM – 7 PM</span></div>
+              <div class="hour-item"><strong>Mon</strong><span>Closed</span></div>
+              <div class="hour-item"><strong>Tue</strong><span>Closed</span></div>
+              <div class="hour-item"><strong>Wed</strong><span>11 AM – 7 PM</span></div>
+              <div class="hour-item"><strong>Thu</strong><span>11 AM – 7 PM</span></div>
+              <div class="hour-item"><strong>Fri</strong><span>11 AM – 7 PM</span></div>
+              <div class="hour-item"><strong>Sat</strong><span>11 AM – 7 PM</span></div>
+              <div class="hour-item"><strong>Sun</strong><span>11 AM – 7 PM</span></div>
             </div>
 
             <div class="hero-actions" style="margin-top:20px">
@@ -947,10 +922,10 @@
       <div class="container">
         <div class="section-head reveal">
           <div>
-            <span class="section-kicker">Social proof</span>
-            <h2>The site leaves room for real reviews to do the selling.</h2>
+            <span class="section-kicker">Reviews</span>
+            <h2>What customers are saying.</h2>
             <p class="section-sub">
-              These cards are ready for owner-approved Google, Yelp, or Facebook reviews. For the prototype, they are written in a warm, believable tone to show layout and pacing.
+              Real five-star review copy, dropped into a cleaner layout.
             </p>
           </div>
         </div>
@@ -958,20 +933,23 @@
         <div class="review-grid">
           <article class="review reveal">
             <div class="stars">★★★★★</div>
-            <p>Perfect little spot for lunch or dinner. Fresh chicken, tasty potato salad, and good service. Exactly the kind of line that helps this brand feel trusted and local.</p>
-            <footer>Community favorite vibe</footer>
+            <div class="review-meta">Nurlan I. · Aliquippa, PA · 1330 · Feb 10, 2026</div>
+            <p>Exceptional dining experience with outstanding flavors fresh ingredients and beautiful presentation supported by attentive service and warm atmosphere making the meal memorable and worth returning for often with friends family.</p>
+            <footer>5/5 Yelp review</footer>
           </article>
 
           <article class="review reveal">
             <div class="stars">★★★★★</div>
-            <p>The wings, mac and cheese, candied yams, and collard greens deserve the spotlight. This layout is built to make those comfort-food wins pop on mobile.</p>
-            <footer>Comfort food energy</footer>
+            <div class="review-meta">Kelsey O. · Beaver, PA · 1975 · Aug 29, 2025 · 1 photo</div>
+            <p>They always great food, good ambiance, and friendly service. Sometimes they're closed because they use their food truck, but anytime you can get it is always worth it.</p>
+            <footer>5/5 Yelp review</footer>
           </article>
 
           <article class="review reveal">
             <div class="stars">★★★★★</div>
-            <p>Fast ordering path, clean menu, and bold visuals. Once owner-approved customer quotes are dropped in, this section becomes a serious trust booster.</p>
-            <footer>Prototype review slot</footer>
+            <div class="review-meta">Gary N. · Pittsburgh, PA · 0293 · Jun 1, 2024</div>
+            <p>First time visiting today, and it was awesome! I ordered the fried catfish with mac &amp; cheese and potato salad as sides. My wife had the 4 whole wings platter with collard greens and red beans &amp; rice. We will be back! The catfish and mac &amp; cheese ranked as some of the best I've ever eaten. My wife, who loves collard greens, said these were top tier. The potato salad was very good. Nice sized portions. Clean, casual environment.</p>
+            <footer>5/5 Yelp review</footer>
           </article>
         </div>
       </div>
@@ -983,12 +961,12 @@
           <div>
             <h3>Ready to turn hungry traffic into real orders?</h3>
             <p>
-              The prototype is already wired for online checkout, phone calls, and map directions. Drop in the fried chicken hero video and any final food photos, and this is ready for GitHub deployment.
+              The home page is now aligned to the menu, the hours are fixed, the reviews are real, and the next move is dropping in the live Stripe payment link and your final food photos.
             </p>
           </div>
 
           <div class="cta-actions">
-            <a class="btn btn-primary" href="https://buy.stripe.com/test_eVqdR81vva3h0R81gEbII00" target="_blank" rel="noopener">Order Online</a>
+            <a class="btn btn-primary" href="https://buy.stripe.com/REPLACE_WITH_YOUR_NEW_STRIPE_LINK" target="_blank" rel="noopener">Order Online</a>
             <a class="btn btn-secondary" href="menu.html">View Menu</a>
           </div>
         </div>
@@ -1010,13 +988,13 @@
         <a href="tel:+17243850522">724-385-0522</a>
         <a href="menu.html">Menu</a>
         <a href="https://maps.google.com/?q=1601%20Duss%20Ave%2C%20Ambridge%2C%20PA%2015003" target="_blank" rel="noopener">Directions</a>
-        <a href="https://buy.stripe.com/test_eVqdR81vva3h0R81gEbII00" target="_blank" rel="noopener">Order Online</a>
+        <a href="https://buy.stripe.com/REPLACE_WITH_YOUR_NEW_STRIPE_LINK" target="_blank" rel="noopener">Order Online</a>
       </div>
     </div>
   </footer>
 
   <div class="floating-order" aria-label="Quick actions">
-    <a class="order" href="https://buy.stripe.com/test_eVqdR81vva3h0R81gEbII00" target="_blank" rel="noopener">Order Online</a>
+    <a class="order" href="https://buy.stripe.com/REPLACE_WITH_YOUR_NEW_STRIPE_LINK" target="_blank" rel="noopener">Order Online</a>
     <a class="call" href="tel:+17243850522">Call Now</a>
   </div>
 

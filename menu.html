@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Menu | Annie Lee's Southern Kitchen</title>
+
+<style>
+body{
+  background:#070707;
+  color:#fff;
+  font-family:Inter,sans-serif;
+  margin:0;
+}
+
+.container{
+  width:95%;
+  max-width:1200px;
+  margin:auto;
+  padding:20px 0;
+}
+
+h1{
+  text-align:center;
+  margin-bottom:30px;
+}
+
+.menu-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:20px;
+}
+
+.item{
+  background:#111;
+  border-radius:20px;
+  overflow:hidden;
+  border:1px solid rgba(255,255,255,.08);
+  transition:.25s;
+}
+
+.item:hover{
+  transform:translateY(-5px);
+  box-shadow:0 0 20px rgba(217,48,24,.3);
+  border-color:#ff5b2e;
+}
+
+.item img{
+  width:100%;
+  height:200px;
+  object-fit:cover;
+}
+
+.item-content{
+  padding:15px;
+}
+
+.item h3{
+  margin:0 0 10px;
+}
+
+.item button{
+  width:100%;
+  padding:10px;
+  border:none;
+  border-radius:10px;
+  background:#d93018;
+  color:white;
+  font-weight:bold;
+  cursor:pointer;
+}
+
+.cart{
+  position:fixed;
+  right:20px;
+  top:100px;
+  width:300px;
+  background:#111;
+  border-radius:20px;
+  padding:15px;
+  border:1px solid rgba(255,255,255,.1);
+}
+
+.cart h2{
+  margin-top:0;
+}
+
+.checkout{
+  background:#ff5b2e;
+  margin-top:10px;
+  padding:10px;
+  width:100%;
+  border:none;
+  border-radius:10px;
+  font-weight:bold;
+  cursor:pointer;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+<h1>Full Menu</h1>
+
+<div class="menu-grid" id="menu"></div>
+</div>
+
+<div class="cart">
+<h2>Your Order</h2>
+<ul id="cart-items"></ul>
+<p>Total: $<span id="total">0</span></p>
+<button class="checkout" onclick="checkout()">Checkout</button>
+</div>
+
+<script>
+
+const menu = [
+{name:"Fish Dinner", price:16, img:"fish-dinner.jpg"},
+{name:"3 Rib Bones + 2 Sides", price:18, img:"3-rib-bones-2-sides.jpg"},
+{name:"Half Slab + 2 Sides", price:24, img:"half-slab-2-sides.jpg"},
+{name:"6 Wings", price:12, img:"6-wings.jpg"},
+{name:"12 Wings", price:18, img:"12-wings.jpg"},
+{name:"6 Wings + 2 Sides", price:18, img:"6-wings-2-sides.jpg"},
+{name:"12 Wings + 2 Sides", price:22, img:"12-wings-2-sides.jpg"},
+{name:"Wings + Rib Dinner", price:25, img:"wings-rib-dinner.jpg"},
+{name:"Mac & Cheese", price:4, img:"mac-and-cheese.jpg"},
+{name:"Collard Greens", price:4, img:"collard-greens.jpg"},
+{name:"Candied Yams", price:4, img:"candied-yams.jpg"},
+{name:"Red Beans & Rice", price:5, img:"red-beans-rice.jpg"},
+{name:"Large Red Beans & Rice", price:7, img:"lg-red-beans-rice.jpg"},
+{name:"Potato Salad", price:4, img:"potato-salad.jpg"},
+{name:"Fries", price:3, img:"french-fries.jpg"},
+{name:"Cornbread", price:2, img:"cornbread.jpg"},
+{name:"Soda", price:2, img:"soda.jpg"}
+];
+
+let cart = [];
+
+function renderMenu(){
+  const menuDiv = document.getElementById("menu");
+
+  menu.forEach((item,i)=>{
+    menuDiv.innerHTML += `
+      <div class="item">
+        <img src="assets/${item.img}">
+        <div class="item-content">
+          <h3>${item.name}</h3>
+          <p>$${item.price}</p>
+          <button onclick="addToCart(${i})">Add</button>
+        </div>
+      </div>
+    `;
+  });
+}
+
+function addToCart(i){
+  cart.push(menu[i]);
+  updateCart();
+
+  // 🔥 SMART UPSELL
+  if(menu[i].name.includes("Wings")){
+    alert("🔥 Add Mac & Cheese?");
+  }
+}
+
+function updateCart(){
+  const cartList = document.getElementById("cart-items");
+  const totalEl = document.getElementById("total");
+
+  cartList.innerHTML = "";
+  let total = 0;
+
+  cart.forEach(item=>{
+    total += item.price;
+    cartList.innerHTML += `<li>${item.name}</li>`;
+  });
+
+  totalEl.innerText = total;
+}
+
+function checkout(){
+  // 🔥 CONNECT STRIPE HERE
+  window.location.href = "https://buy.stripe.com/YOUR_LINK";
+}
+
+renderMenu();
+
+</script>
+
+</body>
+</html>

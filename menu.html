@@ -20,14 +20,11 @@ body{
   padding:20px 0;
 }
 
-h1{
-  text-align:center;
-  margin-bottom:30px;
-}
+h1{text-align:center;}
 
 .menu-grid{
   display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
   gap:20px;
 }
 
@@ -40,14 +37,14 @@ h1{
 }
 
 .item:hover{
-  transform:translateY(-5px);
-  box-shadow:0 0 20px rgba(217,48,24,.3);
+  transform:translateY(-6px);
+  box-shadow:0 0 25px rgba(217,48,24,.4);
   border-color:#ff5b2e;
 }
 
 .item img{
   width:100%;
-  height:200px;
+  height:180px;
   object-fit:cover;
 }
 
@@ -55,12 +52,9 @@ h1{
   padding:15px;
 }
 
-.item h3{
-  margin:0 0 10px;
-}
-
 .item button{
   width:100%;
+  margin-top:10px;
   padding:10px;
   border:none;
   border-radius:10px;
@@ -81,19 +75,43 @@ h1{
   border:1px solid rgba(255,255,255,.1);
 }
 
-.cart h2{
-  margin-top:0;
+.cart-item{
+  display:flex;
+  justify-content:space-between;
+  margin:5px 0;
+}
+
+.qty{
+  display:flex;
+  gap:5px;
+}
+
+.qty button{
+  background:#222;
+  color:#fff;
+  border:none;
+  padding:5px 10px;
+  cursor:pointer;
 }
 
 .checkout{
   background:#ff5b2e;
   margin-top:10px;
-  padding:10px;
+  padding:12px;
   width:100%;
   border:none;
   border-radius:10px;
   font-weight:bold;
   cursor:pointer;
+}
+
+.upsell{
+  background:#1a1a1a;
+  padding:10px;
+  margin-top:10px;
+  border-radius:10px;
+  font-size:0.9rem;
+  border:1px solid rgba(255,255,255,.08);
 }
 </style>
 </head>
@@ -102,14 +120,16 @@ h1{
 
 <div class="container">
 <h1>Full Menu</h1>
-
 <div class="menu-grid" id="menu"></div>
 </div>
 
 <div class="cart">
 <h2>Your Order</h2>
-<ul id="cart-items"></ul>
+<div id="cart-items"></div>
 <p>Total: $<span id="total">0</span></p>
+
+<div id="upsell-box"></div>
+
 <button class="checkout" onclick="checkout()">Checkout</button>
 </div>
 
@@ -117,8 +137,6 @@ h1{
 
 const menu = [
 {name:"Fish Dinner", price:16, img:"fish-dinner.jpg"},
-{name:"3 Rib Bones + 2 Sides", price:18, img:"3-rib-bones-2-sides.jpg"},
-{name:"Half Slab + 2 Sides", price:24, img:"half-slab-2-sides.jpg"},
 {name:"6 Wings", price:12, img:"6-wings.jpg"},
 {name:"12 Wings", price:18, img:"12-wings.jpg"},
 {name:"6 Wings + 2 Sides", price:18, img:"6-wings-2-sides.jpg"},
@@ -147,7 +165,7 @@ function renderMenu(){
         <div class="item-content">
           <h3>${item.name}</h3>
           <p>$${item.price}</p>
-          <button onclick="addToCart(${i})">Add</button>
+          <button onclick="addToCart(${i})">Add to Order</button>
         </div>
       </div>
     `;
@@ -155,33 +173,66 @@ function renderMenu(){
 }
 
 function addToCart(i){
-  cart.push(menu[i]);
-  updateCart();
+  const item = menu[i];
+  const existing = cart.find(c => c.name === item.name);
 
-  // 🔥 SMART UPSELL
-  if(menu[i].name.includes("Wings")){
-    alert("🔥 Add Mac & Cheese?");
+  if(existing){
+    existing.qty++;
+  } else {
+    cart.push({...item, qty:1});
   }
+
+  showUpsell(item.name);
+  updateCart();
 }
 
 function updateCart(){
-  const cartList = document.getElementById("cart-items");
+  const cartDiv = document.getElementById("cart-items");
   const totalEl = document.getElementById("total");
 
-  cartList.innerHTML = "";
+  cartDiv.innerHTML = "";
   let total = 0;
 
-  cart.forEach(item=>{
-    total += item.price;
-    cartList.innerHTML += `<li>${item.name}</li>`;
+  cart.forEach((item, i)=>{
+    total += item.price * item.qty;
+
+    cartDiv.innerHTML += `
+      <div class="cart-item">
+        <span>${item.name}</span>
+        <div class="qty">
+          <button onclick="changeQty(${i}, -1)">-</button>
+          <span>${item.qty}</span>
+          <button onclick="changeQty(${i}, 1)">+</button>
+        </div>
+      </div>
+    `;
   });
 
   totalEl.innerText = total;
 }
 
+function changeQty(i, change){
+  cart[i].qty += change;
+  if(cart[i].qty <= 0){
+    cart.splice(i,1);
+  }
+  updateCart();
+}
+
+function showUpsell(itemName){
+  const box = document.getElementById("upsell-box");
+
+  if(itemName.includes("Wings")){
+    box.innerHTML = `<div class="upsell">🔥 Add Mac & Cheese?</div>`;
+  } else if(itemName.includes("Dinner")){
+    box.innerHTML = `<div class="upsell">🥤 Add a Soda?</div>`;
+  } else {
+    box.innerHTML = "";
+  }
+}
+
 function checkout(){
-  // 🔥 CONNECT STRIPE HERE
-  window.location.href = "https://buy.stripe.com/YOUR_LINK";
+  alert("Stripe will be connected here.");
 }
 
 renderMenu();

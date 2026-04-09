@@ -6,7 +6,7 @@
   <title>Annie Lee's Southern Kitchen | Soul Food With Heat</title>
   <meta
     name="description"
-    content="Annie Lee's Southern Kitchen serves bold Southern comfort food in Ambridge, PA. Explore the full menu, order online, call ahead, and find the location fast."
+    content="Annie Lee's Southern Kitchen serves bold Southern comfort food in Ambridge, PA. Explore the menu, order online, call ahead, and find the location fast."
   />
   <style>
     :root{
@@ -70,17 +70,20 @@
       transition:background .28s ease, border-color .28s ease, box-shadow .28s ease;
     }
     header.site-header.scrolled{
-      background:rgba(7,7,7,.82);
+      background:rgba(7,7,7,.84);
       border-color:var(--line);
       box-shadow:0 12px 24px rgba(0,0,0,.24);
     }
+
     .nav{
       min-height:var(--nav-h);
       display:flex;
       align-items:center;
       justify-content:space-between;
       gap:18px;
+      position:relative;
     }
+
     .brand,
     .footer-brand{
       display:flex;
@@ -88,6 +91,7 @@
       gap:12px;
       min-width:0;
     }
+
     .brand img,
     .footer-brand img{
       width:54px;
@@ -97,13 +101,16 @@
       background:rgba(255,255,255,.03);
       padding:6px;
       box-shadow:inset 0 0 0 1px rgba(255,255,255,.06);
+      filter:drop-shadow(0 0 10px rgba(217,48,24,.35));
     }
+
     .footer-brand img{
       width:42px;
       height:42px;
       border-radius:12px;
       padding:4px;
     }
+
     .brand-copy{min-width:0}
     .brand-kicker{
       margin:0 0 4px;
@@ -122,6 +129,12 @@
       text-overflow:ellipsis;
     }
 
+    .nav-right{
+      display:flex;
+      align-items:center;
+      gap:12px;
+    }
+
     .nav-links{
       display:flex;
       align-items:center;
@@ -129,6 +142,7 @@
       flex-wrap:wrap;
       justify-content:flex-end;
     }
+
     .nav-links a{
       color:var(--muted);
       padding:12px 14px;
@@ -136,21 +150,48 @@
       transition:background .22s ease, color .22s ease, transform .22s ease;
       font-size:.96rem;
     }
+
     .nav-links a:hover{
       background:rgba(255,255,255,.05);
       color:var(--white-soft);
       transform:translateY(-1px);
     }
+
     .nav-cta{
       display:inline-flex;
       align-items:center;
       gap:10px;
       background:linear-gradient(135deg, var(--brand), var(--brand-2));
-      color:#fff;
+      color:#fff !important;
       padding:12px 18px;
       border-radius:999px;
       font-weight:700;
       box-shadow:0 14px 28px rgba(217,48,24,.24);
+    }
+
+    .menu-toggle{
+      display:none;
+      width:48px;
+      height:48px;
+      border:none;
+      border-radius:14px;
+      background:rgba(255,255,255,.05);
+      color:var(--white-soft);
+      cursor:pointer;
+      align-items:center;
+      justify-content:center;
+      padding:0;
+      transition:background .2s ease, transform .2s ease;
+    }
+
+    .menu-toggle:hover{
+      background:rgba(255,255,255,.09);
+      transform:translateY(-1px);
+    }
+
+    .menu-toggle svg{
+      width:24px;
+      height:24px;
     }
 
     .hero{
@@ -172,6 +213,7 @@
       border:1px solid rgba(255,255,255,.06);
       background:#090909;
     }
+
     .hero-media::after{
       content:"";
       position:absolute;
@@ -181,6 +223,7 @@
         linear-gradient(180deg, rgba(7,7,7,.14) 0%, rgba(7,7,7,.5) 100%);
       z-index:1;
     }
+
     .hero-poster{
       position:absolute;
       inset:0;
@@ -193,14 +236,16 @@
       position:relative;
       z-index:2;
       display:grid;
-      grid-template-columns: minmax(0, 1.18fr) minmax(320px, .82fr);
+      grid-template-columns:minmax(0, 1.18fr) minmax(320px, .82fr);
       gap:32px;
       align-items:end;
     }
+
     .hero-copy{
       max-width:720px;
       padding:40px 0 28px;
     }
+
     .eyebrow{
       display:inline-flex;
       align-items:center;
@@ -214,6 +259,7 @@
       letter-spacing:.04em;
       margin-bottom:18px;
     }
+
     .eyebrow .dot{
       width:9px;
       height:9px;
@@ -221,13 +267,15 @@
       background:linear-gradient(135deg, var(--brand-2), #fff1ea);
       box-shadow:0 0 0 5px rgba(255,91,46,.18);
     }
+
     h1{
       margin:0 0 18px;
       font-size:clamp(2.7rem, 7vw, 5.8rem);
       line-height:.95;
       letter-spacing:-.05em;
-      max-width:12ch;
+      max-width:11ch;
     }
+
     .hero-copy p{
       margin:0;
       max-width:56ch;
@@ -235,12 +283,14 @@
       font-size:1.05rem;
       line-height:1.72;
     }
+
     .hero-actions{
       display:flex;
       flex-wrap:wrap;
       gap:14px;
       margin-top:28px;
     }
+
     .btn{
       display:inline-flex;
       align-items:center;
@@ -253,12 +303,15 @@
       font-weight:800;
       transition:transform .22s ease, box-shadow .22s ease, border-color .22s ease, background .22s ease;
     }
+
     .btn:hover{transform:translateY(-2px)}
+
     .btn-primary{
       background:linear-gradient(135deg, var(--brand), var(--brand-2));
       color:#fff;
       box-shadow:0 16px 30px rgba(217,48,24,.26);
     }
+
     .btn-secondary{
       background:rgba(255,255,255,.04);
       border-color:rgba(255,255,255,.08);
@@ -270,6 +323,7 @@
       gap:16px;
       align-self:center;
     }
+
     .card{
       background:linear-gradient(180deg, rgba(255,255,255,.055), rgba(255,255,255,.03));
       border:1px solid rgba(255,255,255,.08);
@@ -278,27 +332,32 @@
       box-shadow:var(--shadow);
       overflow:hidden;
     }
+
     .card h3{
       margin:0 0 10px;
       font-size:1.1rem;
       letter-spacing:-.03em;
     }
+
     .card p{
       margin:0;
       color:var(--muted);
       line-height:1.7;
     }
+
     .mini-grid{
       display:grid;
       grid-template-columns:1fr 1fr;
       gap:14px;
     }
+
     .stat{
       background:rgba(255,255,255,.03);
       border:1px solid rgba(255,255,255,.06);
       border-radius:22px;
       padding:18px;
     }
+
     .stat-label{
       font-size:.8rem;
       color:var(--muted-2);
@@ -306,6 +365,7 @@
       letter-spacing:.12em;
       margin-bottom:8px;
     }
+
     .stat-value{
       font-weight:800;
       font-size:1.2rem;
@@ -313,6 +373,7 @@
     }
 
     .section{padding:92px 0}
+
     .section-head{
       display:flex;
       align-items:end;
@@ -321,6 +382,7 @@
       margin-bottom:28px;
       flex-wrap:wrap;
     }
+
     .section-kicker{
       display:block;
       margin-bottom:10px;
@@ -330,12 +392,14 @@
       font-size:.78rem;
       font-weight:800;
     }
+
     h2{
       margin:0;
       font-size:clamp(2rem, 4vw, 3.6rem);
       line-height:1.02;
       letter-spacing:-.05em;
     }
+
     .section-sub{
       margin:10px 0 0;
       max-width:62ch;
@@ -348,6 +412,7 @@
       grid-template-columns:repeat(4, 1fr);
       gap:18px;
     }
+
     .feature{
       background:linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.025));
       border:1px solid rgba(255,255,255,.08);
@@ -356,27 +421,32 @@
       box-shadow:var(--shadow);
       transition:transform .24s ease, border-color .24s ease;
     }
+
     .feature:hover{
       transform:translateY(-6px);
       border-color:rgba(255,91,46,.35);
     }
+
     .feature-media{
-      aspect-ratio: .92 / 1;
+      aspect-ratio:.92 / 1;
       position:relative;
       overflow:hidden;
       background:#111;
     }
+
     .feature-media img{
       width:100%;
       height:100%;
       object-fit:cover;
     }
+
     .feature-media::after{
       content:"";
       position:absolute;
       inset:0;
       background:linear-gradient(180deg, rgba(0,0,0,.08), rgba(0,0,0,.5));
     }
+
     .feature-badge{
       position:absolute;
       left:18px;
@@ -390,18 +460,22 @@
       color:var(--white-soft);
       font-weight:700;
     }
+
     .feature-copy{padding:18px 18px 22px}
+
     .feature-copy h3{
       margin:0 0 8px;
       font-size:1.18rem;
       letter-spacing:-.03em;
     }
+
     .feature-copy p{
       margin:0 0 14px;
       color:var(--muted);
       line-height:1.7;
       min-height:4.9em;
     }
+
     .price-row{
       display:flex;
       align-items:center;
@@ -410,6 +484,7 @@
       color:var(--white-soft);
       font-weight:800;
     }
+
     .price-row .line{
       flex:1;
       height:1px;
@@ -418,10 +493,11 @@
 
     .story-grid{
       display:grid;
-      grid-template-columns: minmax(0, 1.05fr) minmax(320px, .95fr);
+      grid-template-columns:minmax(0, 1.05fr) minmax(320px, .95fr);
       gap:20px;
       align-items:stretch;
     }
+
     .story-panel{
       min-height:460px;
       border-radius:36px;
@@ -435,18 +511,21 @@
         radial-gradient(circle at 20% 10%, rgba(255,91,46,.16), transparent 30%),
         linear-gradient(180deg, #0f0f0f 0%, #0a0a0a 100%);
     }
+
     .story-panel h3{
       margin:0 0 10px;
       font-size:1.8rem;
       letter-spacing:-.04em;
-      max-width:12ch;
+      max-width:14ch;
     }
+
     .story-panel p{
       margin:0;
       color:var(--muted);
       line-height:1.8;
       max-width:58ch;
     }
+
     .list{
       margin:22px 0 0;
       padding:0;
@@ -454,12 +533,14 @@
       display:grid;
       gap:12px;
     }
+
     .list li{
       display:flex;
       gap:12px;
       align-items:flex-start;
       color:var(--white-soft);
     }
+
     .list span{
       width:22px;
       height:22px;
@@ -474,28 +555,13 @@
       margin-top:2px;
     }
 
-    .map-wrap{
-      overflow:hidden;
-      border-radius:34px;
-      border:1px solid rgba(255,255,255,.08);
-      box-shadow:var(--shadow);
-      min-height:460px;
-      background:#111;
-    }
-    .map-wrap iframe{
-      width:100%;
-      height:100%;
-      min-height:460px;
-      border:0;
-      filter:grayscale(.2) saturate(.9) contrast(1.05);
-    }
-
     .hours-grid{
       display:grid;
       grid-template-columns:repeat(2, minmax(0,1fr));
       gap:12px;
       margin-top:18px;
     }
+
     .hour-item{
       display:flex;
       justify-content:space-between;
@@ -505,14 +571,24 @@
       border:1px solid rgba(255,255,255,.06);
       border-radius:20px;
       color:var(--muted);
+      transition:transform .2s ease, border-color .2s ease, background .2s ease;
     }
+
+    .hour-item:hover{
+      transform:translateY(-2px);
+      border-color:rgba(255,91,46,.3);
+      background:rgba(255,255,255,.05);
+    }
+
     .hour-item strong{color:var(--white-soft)}
 
     .review-grid{
       display:grid;
       grid-template-columns:repeat(3, minmax(0,1fr));
       gap:18px;
+      margin-top:24px;
     }
+
     .review{
       background:linear-gradient(180deg, rgba(255,255,255,.055), rgba(255,255,255,.025));
       border:1px solid rgba(255,255,255,.08);
@@ -520,21 +596,25 @@
       padding:22px;
       box-shadow:var(--shadow);
     }
+
     .stars{
       letter-spacing:.2em;
       color:#ffd39b;
       font-size:1rem;
       margin-bottom:14px;
     }
+
     .review p{
       margin:0 0 18px;
       color:var(--muted);
       line-height:1.78;
     }
+
     .review footer{
       color:var(--white-soft);
       font-weight:700;
     }
+
     .review-meta{
       color:var(--muted-2);
       font-size:.9rem;
@@ -558,17 +638,20 @@
       gap:20px;
       flex-wrap:wrap;
     }
+
     .cta-band h3{
       margin:0 0 8px;
       font-size:clamp(1.6rem, 3vw, 2.5rem);
       letter-spacing:-.04em;
     }
+
     .cta-band p{
       margin:0;
       color:var(--muted);
       line-height:1.7;
       max-width:56ch;
     }
+
     .cta-actions{
       display:flex;
       flex-wrap:wrap;
@@ -579,6 +662,7 @@
       padding:28px 0 48px;
       color:var(--muted);
     }
+
     .footer-grid{
       display:flex;
       align-items:center;
@@ -588,11 +672,13 @@
       padding-top:28px;
       border-top:1px solid rgba(255,255,255,.08);
     }
+
     .footer-links{
       display:flex;
       gap:16px;
       flex-wrap:wrap;
     }
+
     .footer-links a{color:var(--muted)}
     .footer-links a:hover{color:var(--white-soft)}
 
@@ -601,6 +687,7 @@
       transform:translateY(24px);
       transition:opacity .7s ease, transform .7s ease;
     }
+
     .reveal.in{
       opacity:1;
       transform:none;
@@ -616,6 +703,7 @@
       flex-wrap:wrap;
       justify-content:flex-end;
     }
+
     .floating-order a{
       min-height:54px;
       display:inline-flex;
@@ -627,9 +715,11 @@
       color:#fff;
       box-shadow:0 14px 28px rgba(0,0,0,.25);
     }
+
     .floating-order .call{
       background:linear-gradient(135deg, var(--brand), var(--brand-2));
     }
+
     .floating-order .order{
       background:rgba(255,255,255,.08);
       border:1px solid rgba(255,255,255,.08);
@@ -637,58 +727,101 @@
       backdrop-filter:blur(14px);
     }
 
-    @media (max-width: 1100px){
+    @media (max-width:1100px){
       .hero-inner,
       .story-grid,
       .featured-grid,
       .review-grid{
         grid-template-columns:1fr 1fr;
       }
+
       .hero-inner{align-items:start}
       .hero-copy{padding-top:16px}
       .hero-side{grid-column:1 / -1}
     }
 
-    @media (max-width: 820px){
+    @media (max-width:820px){
       .nav{
-        align-items:flex-start;
+        min-height:auto;
         padding:14px 0;
       }
-      .nav-links{
-        width:100%;
-        justify-content:flex-start;
+
+      .nav-right{
+        margin-left:auto;
       }
+
+      .menu-toggle{
+        display:inline-flex;
+      }
+
+      .nav-links{
+        position:absolute;
+        top:calc(100% + 8px);
+        left:0;
+        right:0;
+        width:100%;
+        background:rgba(10,10,10,.98);
+        border:1px solid rgba(255,255,255,.08);
+        border-radius:22px;
+        box-shadow:0 24px 50px rgba(0,0,0,.45);
+        padding:14px;
+        display:none;
+        flex-direction:column;
+        align-items:stretch;
+        gap:8px;
+      }
+
+      .nav-links.active{
+        display:flex;
+      }
+
+      .nav-links a{
+        width:100%;
+        padding:14px 16px;
+        background:rgba(255,255,255,.03);
+        border:1px solid rgba(255,255,255,.05);
+      }
+
+      .nav-links .nav-cta{
+        justify-content:center;
+      }
+
       .hero{
         min-height:auto;
         padding-top:16px;
       }
+
       .hero-media{inset:12px}
+
       .hero-inner,
       .featured-grid,
       .story-grid,
       .review-grid{
         grid-template-columns:1fr;
       }
+
       .mini-grid,
       .hours-grid{
         grid-template-columns:1fr;
       }
+
       .section{padding:72px 0}
       .card,
       .story-panel,
       .cta-band{border-radius:26px}
+
       .floating-order{
         left:14px;
         right:14px;
         bottom:14px;
       }
+
       .floating-order a{flex:1}
     }
 
-    @media (max-width: 560px){
+    @media (max-width:560px){
       .container{width:min(var(--max), calc(100% - 20px))}
       .brand img{width:48px;height:48px}
-      .nav-links a{padding:10px 12px;font-size:.92rem}
       .nav-cta{padding:11px 14px}
       h1{max-width:10ch}
       .hero-copy p,
@@ -700,6 +833,27 @@
       .hero-actions{display:grid;grid-template-columns:1fr}
       .cta-actions{width:100%}
       .cta-actions .btn{width:auto; flex:1}
+    }
+
+    @media (max-width:480px){
+      h1{
+        font-size:2.4rem;
+      }
+
+      .btn{
+        min-height:52px;
+        font-size:1rem;
+      }
+
+      .hero-copy{
+        padding:20px 0;
+      }
+
+      .story-panel,
+      .card,
+      .cta-band{
+        padding:24px;
+      }
     }
   </style>
 </head>
@@ -714,13 +868,24 @@
         </div>
       </a>
 
-      <nav class="nav-links" aria-label="Main navigation">
-        <a href="#featured">Favorites</a>
-        <a href="menu.html">Menu</a>
-        <a href="#location">Location</a>
-        <a href="#reviews">Reviews</a>
-        <a class="nav-cta" href="https://buy.stripe.com/REPLACE_WITH_YOUR_NEW_STRIPE_LINK" target="_blank" rel="noopener">Order Online</a>
-      </nav>
+      <div class="nav-right">
+        <button class="menu-toggle" id="menuToggle" aria-label="Open menu" aria-expanded="false" aria-controls="mainNav">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round">
+            <path d="M4 7h16"></path>
+            <path d="M4 12h16"></path>
+            <path d="M4 17h16"></path>
+          </svg>
+        </button>
+
+        <nav class="nav-links" id="mainNav" aria-label="Main navigation">
+          <a href="#featured">Favorites</a>
+          <a href="menu.html">Menu</a>
+          <a href="#story">Family Deals</a>
+          <a href="#reviews">Reviews</a>
+          <a href="tel:+17243850522">Call</a>
+          <a class="nav-cta" href="https://buy.stripe.com/REPLACE_WITH_YOUR_NEW_STRIPE_LINK" target="_blank" rel="noopener">Order Online</a>
+        </nav>
+      </div>
     </div>
   </header>
 
@@ -737,10 +902,10 @@
       <div class="container hero-inner">
         <div class="hero-copy reveal">
           <div class="eyebrow"><span class="dot"></span> Crispy wings, smoky ribs, catfish, and soul food classics</div>
-          <h1>Soul food that hits hard and feels like home.</h1>
+          <h1>Craving real soul food? Order in seconds.</h1>
           <p>
-            Annie Lee's Southern Kitchen brings whole wing dinners, rib plates, fried fish, baked mac and cheese,
-            collard greens, and comfort food worth the trip. Order online, call ahead, or pull up in Ambridge.
+            Hot, fresh, and made to hit every time. Annie Lee's Southern Kitchen serves up whole wing dinners, fried fish,
+            smoky ribs, mac and cheese, and comfort food worth pulling up for.
           </p>
 
           <div class="hero-actions">
@@ -752,10 +917,10 @@
 
         <div class="hero-side">
           <div class="card reveal">
-            <h3>Fried whole wing dinners lead the brand</h3>
+            <h3>Fast pickup. Big flavor. Easy decision.</h3>
             <p>
-              The homepage now pushes the most craveable, easiest-to-order plates first: 4 wings with 2 small sides,
-              6 wings with 2 small sides, fish dinners, and baked mac and cheese.
+              Lead with the plates people already want most: whole wing dinners, fish platters, rib dinners,
+              and baked mac and cheese that keeps customers coming back.
             </p>
           </div>
 
@@ -773,189 +938,189 @@
       </div>
     </section>
 
-<section class="section" id="featured">
-  <div class="container">
+    <section class="section" id="featured">
+      <div class="container">
+        <div class="section-head reveal">
+          <div>
+            <span class="section-kicker">Featured favorites</span>
+            <h2>Built to make people hungry fast.</h2>
+            <p class="section-sub">
+              These are the plates people can understand in seconds and want immediately.
+            </p>
+          </div>
+        </div>
 
-    <div class="section-head reveal">
-      <div>
-        <span class="section-kicker">Featured favorites</span>
-        <h2>Built to make people hungry fast.</h2>
-        <p class="section-sub">
-          These four feature cards spotlight the plates and sides that drive the most orders.
-        </p>
+        <div class="featured-grid">
+          <article class="feature reveal">
+            <div class="feature-media">
+              <img src="assets/6-wings-2-sides.jpg" alt="6 wings with sides" />
+              <span class="feature-badge">Best seller</span>
+            </div>
+            <div class="feature-copy">
+              <h3>6 Wings w/ 2 Sides</h3>
+              <p>Crispy whole wings with two small sides for a comfort-food plate that always satisfies.</p>
+              <div class="price-row"><span>$18.40</span><span class="line"></span><span>Top pick</span></div>
+            </div>
+          </article>
+
+          <article class="feature reveal">
+            <div class="feature-media">
+              <img src="assets/half-slab-2-sides.jpg" alt="Half slab ribs with sides" />
+              <span class="feature-badge">Hearty</span>
+            </div>
+            <div class="feature-copy">
+              <h3>Half Slab w/ 2 Sides</h3>
+              <p>Smoky, tender ribs with two sides built for a serious appetite and a full meal.</p>
+              <div class="price-row"><span>$24.50</span><span class="line"></span><span>Rib dinner</span></div>
+            </div>
+          </article>
+
+          <article class="feature reveal">
+            <div class="feature-media">
+              <img src="assets/fish-dinner.jpg" alt="Fried fish dinner" />
+              <span class="feature-badge">Fan favorite</span>
+            </div>
+            <div class="feature-copy">
+              <h3>Fish Dinner</h3>
+              <p>Golden fried fish served hot with classic Southern sides and real comfort-food flavor.</p>
+              <div class="price-row"><span>$16.50</span><span class="line"></span><span>Most liked</span></div>
+            </div>
+          </article>
+
+          <article class="feature reveal">
+            <div class="feature-media">
+              <img src="assets/mac-and-cheese.jpg" alt="Mac and cheese" />
+              <span class="feature-badge">Add-on king</span>
+            </div>
+            <div class="feature-copy">
+              <h3>Baked Mac &amp; Cheese</h3>
+              <p>Rich, creamy, baked to perfection, and the side almost everybody adds to their order.</p>
+              <div class="price-row"><span>Sm $4 · Lg $7</span><span class="line"></span><span>Classic</span></div>
+            </div>
+          </article>
+        </div>
+
+        <div style="text-align:center; margin-top:50px;">
+          <a class="btn btn-primary" href="menu.html" style="font-size:1.1rem; padding:16px 28px;">
+            View Full Menu &amp; Order →
+          </a>
+        </div>
       </div>
-    </div>
+    </section>
 
-    <div class="featured-grid">
+    <section class="section" id="story">
+      <div class="container story-grid">
+        <div class="story-panel reveal">
+          <span class="section-kicker">Family meals</span>
+          <h3>Feed the whole family without overpaying.</h3>
+          <p>
+            Big portions, better value, and built to share. These meals make it easy to feed more people and spend less per plate.
+          </p>
 
-      <!-- 6 Wings + 2 Sides -->
-      <article class="feature reveal">
-        <div class="feature-media">
-          <img src="assets/6-wings-2-sides.jpg" alt="6 wings with sides" />
-          <span class="feature-badge">Best seller</span>
+          <ul class="list">
+            <li><span>1</span> Big meals that stretch further</li>
+            <li><span>2</span> Better value for groups</li>
+            <li><span>3</span> Easy pick for families and gatherings</li>
+            <li><span>4</span> Comfort food that satisfies everybody</li>
+          </ul>
+
+          <div style="margin-top:20px;">
+            <a class="btn btn-primary" href="menu.html">
+              View Family Deals →
+            </a>
+          </div>
         </div>
-        <div class="feature-copy">
-          <h3>6 Wings w/ 2 Sides</h3>
-          <p>Crispy whole wings with two small sides for a comfort-food plate that always hits.</p>
-          <div class="price-row"><span>$18.40</span><span class="line"></span><span>Top pick</span></div>
+
+        <div class="story-panel reveal">
+          <span class="section-kicker">What people say</span>
+          <h3>Real reviews. Real flavor.</h3>
+          <p>
+            Customers come back because the food delivers. Tap a review below or jump straight to Yelp.
+          </p>
+
+          <div class="hours-grid">
+            <a href="https://www.yelp.com/biz/annie-lees-southern-kitchen-ambridge" target="_blank" rel="noopener" class="hour-item">
+              <div style="display:flex; align-items:center; gap:10px;">
+                <img src="assets/reviewer1.jpg" alt="Reviewer Celeta S." style="width:40px; height:40px; border-radius:50%; object-fit:cover;">
+                <div>
+                  <strong>Celeta S.</strong>
+                  <div>★★★★★</div>
+                </div>
+              </div>
+            </a>
+
+            <a href="https://www.yelp.com/biz/annie-lees-southern-kitchen-ambridge?hrid=s-2W7GYABmjopmZzrrUEUA" target="_blank" rel="noopener" class="hour-item">
+              <div style="display:flex; align-items:center; gap:10px;">
+                <img src="assets/reviewer2.jpg" alt="Reviewer Wascally W." style="width:40px; height:40px; border-radius:50%; object-fit:cover;">
+                <div>
+                  <strong>Wascally W.</strong>
+                  <div>★★★★★</div>
+                </div>
+              </div>
+            </a>
+
+            <a href="https://www.yelp.com/biz/annie-lees-southern-kitchen-ambridge?hrid=wE4P9Yg9CxCHS8s_vIBdsw&utm_campaign=www_review_share_popup&utm_medium=copy_link&utm_source=(direct)" target="_blank" rel="noopener" class="hour-item">
+              <div style="display:flex; align-items:center; gap:10px;">
+                <img src="assets/reviewer3.jpg" alt="Reviewer David B." style="width:40px; height:40px; border-radius:50%; object-fit:cover;">
+                <div>
+                  <strong>David B.</strong>
+                  <div>★★★★★</div>
+                </div>
+              </div>
+            </a>
+
+            <a href="https://www.yelp.com/biz/annie-lees-southern-kitchen-ambridge?start=10" target="_blank" rel="noopener" class="hour-item">
+              <div style="display:flex; align-items:center; gap:10px;">
+                <img src="assets/reviewer4.jpg" alt="Reviewer Lisa A." style="width:40px; height:40px; border-radius:50%; object-fit:cover;">
+                <div>
+                  <strong>Lisa A.</strong>
+                  <div>★★★★★</div>
+                </div>
+              </div>
+            </a>
+          </div>
+
+          <div class="hero-actions" style="margin-top:20px">
+            <a class="btn btn-primary" href="menu.html">Order Now</a>
+            <a class="btn btn-secondary" href="https://www.yelp.com/biz/annie-lees-southern-kitchen-ambridge" target="_blank" rel="noopener">
+              See Yelp Reviews
+            </a>
+          </div>
         </div>
-      </article>
-
-      <!-- Half Slab -->
-      <article class="feature reveal">
-        <div class="feature-media">
-          <img src="assets/half-slab-2-sides.jpg" alt="Half slab ribs with sides" />
-          <span class="feature-badge">Hearty</span>
-        </div>
-        <div class="feature-copy">
-          <h3>Half Slab w/ 2 Sides</h3>
-          <p>Smoky, tender ribs with two sides — built for serious appetite.</p>
-          <div class="price-row"><span>$24.50</span><span class="line"></span><span>Rib dinner</span></div>
-        </div>
-      </article>
-
-      <!-- Fish Dinner -->
-      <article class="feature reveal">
-        <div class="feature-media">
-          <img src="assets/fish-dinner.jpg" alt="Fried fish dinner" />
-          <span class="feature-badge">Fan favorite</span>
-        </div>
-        <div class="feature-copy">
-          <h3>Fish Dinner</h3>
-          <p>Golden fried fish served hot with classic southern sides.</p>
-          <div class="price-row"><span>$16.50</span><span class="line"></span><span>Most liked</span></div>
-        </div>
-      </article>
-
-      <!-- Mac & Cheese -->
-      <article class="feature reveal">
-        <div class="feature-media">
-          <img src="assets/mac-and-cheese.jpg" alt="Mac and cheese" />
-          <span class="feature-badge">Add-on king</span>
-        </div>
-        <div class="feature-copy">
-          <h3>Baked Mac &amp; Cheese</h3>
-          <p>Rich, creamy, baked to perfection — the side everyone adds.</p>
-          <div class="price-row"><span>Sm $4 · Lg $7</span><span class="line"></span><span>Classic</span></div>
-        </div>
-      </article>
-
-    </div>
-
-    <!-- 🔥 CTA BUTTON -->
-    <div style="text-align:center; margin-top:50px;">
-      <a class="btn btn-primary" href="menu.html" style="font-size:1.1rem; padding:16px 28px;">
-        View Full Menu & Order →
-      </a>
-    </div>
-
-  </div>
-</section>
-   <section class="section" id="story">
-  <div class="container story-grid">
-
-    <!-- LEFT -->
-    <div class="story-panel reveal">
-      <span class="section-kicker">Family meals</span>
-      <h3>Feed more people. Spend less per plate.</h3>
-      <p>
-        Built for families, groups, and big appetites. More food, better value, and perfect for sharing.
-      </p>
-
-      <ul class="list">
-        <li><span>1</span> Wings + sides combos</li>
-        <li><span>2</span> Rib + wing bundles</li>
-        <li><span>3</span> Built for groups</li>
-        <li><span>4</span> Best value meals</li>
-      </ul>
-
-      <div style="margin-top:20px;">
-        <a class="btn btn-primary" href="menu.html">
-          View Family Deals →
-        </a>
       </div>
-    </div>
+    </section>
 
-    <!-- RIGHT -->
-    <div class="story-panel reveal">
-      <span class="section-kicker">What people say</span>
-      <h3>Real reviews. Real flavor.</h3>
-      <p>
-        Customers come back for a reason. The food hits every time.
-      </p>
-
-     <div class="hours-grid">
-
-  <a href="https://www.yelp.com/biz/annie-lees-southern-kitchen-ambridge" target="_blank" class="hour-item" style="text-decoration:none;">
-    <div style="display:flex; align-items:center; gap:10px;">
-      <img src="assets/reviewer1.jpg" style="width:40px; height:40px; border-radius:50%;">
-      <div>
-        <strong>Celeta S.</strong>
-        <div>★★★★★</div>
-      </div>
-    </div>
-  </a>
-
-  <a href="https://www.yelp.com/biz/annie-lees-southern-kitchen-ambridge?hrid=s-2W7GYABmjopmZzrrUEUA" target="_blank" class="hour-item" style="text-decoration:none;">
-    <div style="display:flex; align-items:center; gap:10px;">
-      <img src="assets/reviewer2.jpg" style="width:40px; height:40px; border-radius:50%;">
-      <div>
-        <strong>Wascally W.</strong>
-        <div>★★★★★</div>
-      </div>
-    </div>
-  </a>
-
-  <a href="https://www.yelp.com/biz/annie-lees-southern-kitchen-ambridge?hrid=wE4P9Yg9CxCHS8s_vIBdsw&utm_campaign=www_review_share_popup&utm_medium=copy_link&utm_source=(direct)"_blank" class="hour-item" style="text-decoration:none;">
-    <div style="display:flex; align-items:center; gap:10px;">
-      <img src="assets/reviewer3.jpg" style="width:40px; height:40px; border-radius:50%;">
-      <div>
-        <strong>David B.</strong>
-        <div>★★★★★</div>
-      </div>
-    </div>
-  </a>
-
-  <a href="https://www.yelp.com/biz/annie-lees-southern-kitchen-ambridge?start=10" target="_blank" class="hour-item" style="text-decoration:none;">
-    <div style="display:flex; align-items:center; gap:10px;">
-      <img src="assets/reviewer4.jpg" style="width:40px; height:40px; border-radius:50%;">
-      <div>
-        <strong>Lisa A.</strong>
-        <div>★★★★★</div>
-      </div>
-    </div>
-  </a>
-
-</div>
-
-<div class="hero-actions" style="margin-top:20px">
-  <a class="btn btn-primary" href="menu.html">Order Now</a>
-  <a class="btn btn-secondary" 
-     href="https://www.yelp.com/biz/annie-lees-southern-kitchen-ambridge" 
-     target="_blank">
-    See Yelp Reviews
-  </a>
-</div>
+    <section class="section" id="reviews">
+      <div class="container">
+        <div class="section-head reveal">
+          <div>
+            <span class="section-kicker">Customer reviews</span>
+            <h2>People remember food like this.</h2>
+            <p class="section-sub">
+              Strong reviews help visitors trust the food faster and move toward ordering.
+            </p>
+          </div>
+        </div>
 
         <div class="review-grid">
           <article class="review reveal">
             <div class="stars">★★★★★</div>
-            <div class="review-meta">Nurlan I. · Aliquippa, PA · 1330 · Feb 10, 2026</div>
-            <p>Exceptional dining experience with outstanding flavors fresh ingredients and beautiful presentation supported by attentive service and warm atmosphere making the meal memorable and worth returning for often with friends family.</p>
+            <div class="review-meta">Nurlan I. · Aliquippa, PA · Feb 10, 2026</div>
+            <p>Exceptional dining experience with outstanding flavors, fresh ingredients, beautiful presentation, attentive service, and a warm atmosphere that made the meal memorable.</p>
             <footer>Yelp review</footer>
           </article>
 
           <article class="review reveal">
             <div class="stars">★★★★★</div>
-            <div class="review-meta">Kelsey O. · Beaver, PA · 1975 · Aug 29, 2025 · 1 photo</div>
-            <p>They always great food, good ambiance, and friendly service. Sometimes they're closed because they use their food truck, but anytime you can get it is always worth it.</p>
+            <div class="review-meta">Kelsey O. · Beaver, PA · Aug 29, 2025</div>
+            <p>They always have great food, good ambiance, and friendly service. Sometimes they are closed because they use their food truck, but anytime you can get it, it is worth it.</p>
             <footer>Yelp review</footer>
           </article>
 
           <article class="review reveal">
             <div class="stars">★★★★★</div>
-            <div class="review-meta">Gary N. · Pittsburgh, PA · 0293 · Jun 1, 2024</div>
-            <p>First time visiting today, and it was awesome! I ordered the fried catfish with mac &amp; cheese and potato salad as sides. My wife had the 4 whole wings platter with collard greens and red beans &amp; rice. We will be back! The catfish and mac &amp; cheese ranked as some of the best I've ever eaten. My wife, who loves collard greens, said these were top tier. The potato salad was very good. Nice sized portions. Clean, casual environment.</p>
+            <div class="review-meta">Gary N. · Pittsburgh, PA · Jun 1, 2024</div>
+            <p>First time visiting today, and it was awesome. The fried catfish, mac and cheese, collard greens, and whole wings were all top tier, with clean surroundings and generous portions.</p>
             <footer>Yelp review</footer>
           </article>
         </div>
@@ -966,9 +1131,10 @@
       <div class="container">
         <div class="cta-band reveal">
           <div>
-            <h3>Ready to turn hungry traffic into real orders?</h3>
+            <h3>Order now and pick up something worth craving.</h3>
             <p>
-              The home page is now aligned to the menu, the hours are fixed, the reviews are real, and the next move is dropping in the live Stripe payment link and your final food photos.
+              From crispy wings to smoky ribs and baked mac and cheese, this is the kind of comfort food people do not forget.
+              Place your order now and make pickup easy.
             </p>
           </div>
 
@@ -1026,8 +1192,29 @@
         }
       });
     }, { threshold: 0.15 });
-
     revealEls.forEach(el => observer.observe(el));
+
+    const toggle = document.getElementById('menuToggle');
+    const navLinks = document.getElementById('mainNav');
+
+    toggle.addEventListener('click', () => {
+      const isOpen = navLinks.classList.toggle('active');
+      toggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+    });
+
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        navLinks.classList.remove('active');
+        toggle.setAttribute('aria-expanded', 'false');
+      });
+    });
+
+    document.addEventListener('click', (e) => {
+      if (!navLinks.contains(e.target) && !toggle.contains(e.target)) {
+        navLinks.classList.remove('active');
+        toggle.setAttribute('aria-expanded', 'false');
+      }
+    });
   </script>
 </body>
 </html>

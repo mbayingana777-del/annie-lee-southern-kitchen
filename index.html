@@ -89,20 +89,22 @@
       gap:12px;
       min-width:0;
     }
-   .brand img,
-.footer-brand img{
-  width:54px;
-  height:54px;
-  object-fit:contain;
-  border-radius:14px;
-  filter: drop-shadow(0 6px 18px rgba(217,48,24,.35));
-}
-
-.footer-brand img{
-  width:42px;
-  height:42px;
-  border-radius:12px;
-}
+    .brand img,
+    .footer-brand img{
+      width:54px;
+      height:54px;
+      object-fit:contain;
+      border-radius:14px;
+      background:rgba(255,255,255,.03);
+      padding:6px;
+      box-shadow:inset 0 0 0 1px rgba(255,255,255,.06);
+    }
+    .footer-brand img{
+      width:42px;
+      height:42px;
+      border-radius:12px;
+      padding:4px;
+    }
     .brand-copy{min-width:0}
     .brand-kicker{
       margin:0 0 4px;
@@ -790,7 +792,7 @@
   <header class="site-header" id="siteHeader">
     <div class="container nav">
       <a class="brand" href="#top" aria-label="Annie Lee's Southern Kitchen home">
-       <img src="assets/logo.png" alt="Annie Lee's Southern Kitchen logo" />
+        <img src="assets/annie-logo.png" alt="Annie Lee's Southern Kitchen logo" />
         <div class="brand-copy">
           <p class="brand-kicker">Soul food · Ambridge</p>
           <p class="brand-title">Annie Lee's Southern Kitchen</p>
@@ -1067,7 +1069,7 @@
   <footer class="site-footer">
     <div class="container footer-grid">
       <div class="footer-brand">
-       <img src="assets/logo.png" alt="Annie Lee's Southern Kitchen logo" />
+        <img src="assets/annie-logo.png" alt="Annie Lee's Southern Kitchen logo" />
         <div>
           <strong>Annie Lee's Southern Kitchen</strong><br />
           <span>1601 Duss Ave · Ambridge, PA 15003</span>

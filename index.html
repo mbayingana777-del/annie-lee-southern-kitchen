@@ -80,6 +80,7 @@
       align-items:center;
       justify-content:space-between;
       gap:18px;
+      position:relative;
     }
     .brand,
     .footer-brand{
@@ -122,6 +123,12 @@
       text-overflow:ellipsis;
     }
 
+    .nav-right{
+      display:flex;
+      align-items:center;
+      gap:12px;
+    }
+
     .nav-links{
       display:flex;
       align-items:center;
@@ -151,6 +158,19 @@
       border-radius:999px;
       font-weight:700;
       box-shadow:0 14px 28px rgba(217,48,24,.24);
+    }
+
+    .menu-toggle{
+      display:none;
+      font-size:28px;
+      line-height:1;
+      cursor:pointer;
+      color:var(--white-soft);
+      padding:8px 10px;
+      border-radius:12px;
+      background:rgba(255,255,255,.04);
+      border:1px solid rgba(255,255,255,.06);
+      user-select:none;
     }
 
     .hero{
@@ -637,6 +657,10 @@
       backdrop-filter:blur(14px);
     }
 
+    .mobile-bar{
+      display:none;
+    }
+
     @media (max-width: 1100px){
       .hero-inner,
       .story-grid,
@@ -651,13 +675,50 @@
 
     @media (max-width: 820px){
       .nav{
-        align-items:flex-start;
+        align-items:center;
         padding:14px 0;
       }
+
+      .menu-toggle{
+        display:block;
+      }
+
       .nav-links{
+        position:absolute;
+        top:calc(100% + 8px);
+        right:0;
+        left:0;
         width:100%;
         justify-content:flex-start;
+        flex-direction:column;
+        align-items:stretch;
+        gap:10px;
+        padding:16px;
+        background:rgba(11,11,11,.98);
+        border:1px solid rgba(255,255,255,.08);
+        border-radius:18px;
+        box-shadow:0 18px 36px rgba(0,0,0,.35);
+        display:none;
+        z-index:120;
       }
+
+      .nav-links.active{
+        display:flex;
+      }
+
+      .nav-links a{
+        width:100%;
+        justify-content:flex-start;
+        padding:14px 16px;
+        font-size:1rem;
+        background:rgba(255,255,255,.03);
+        border:1px solid rgba(255,255,255,.05);
+      }
+
+      .nav-cta{
+        justify-content:center;
+      }
+
       .hero{
         min-height:auto;
         padding-top:16px;
@@ -678,17 +739,41 @@
       .story-panel,
       .cta-band{border-radius:26px}
       .floating-order{
-        left:14px;
-        right:14px;
-        bottom:14px;
+        display:none;
       }
-      .floating-order a{flex:1}
+
+      .mobile-bar{
+        position:fixed;
+        bottom:0;
+        left:0;
+        right:0;
+        display:flex;
+        background:#0b0b0b;
+        border-top:1px solid rgba(255,255,255,.1);
+        z-index:999;
+      }
+
+      .mobile-bar a{
+        flex:1;
+        padding:14px 10px;
+        text-align:center;
+        color:#fff;
+        font-weight:700;
+        font-size:.95rem;
+      }
+
+      .mobile-bar .order{
+        background:linear-gradient(135deg, var(--brand), var(--brand-2));
+      }
+
+      body{
+        padding-bottom:60px;
+      }
     }
 
     @media (max-width: 560px){
       .container{width:min(var(--max), calc(100% - 20px))}
       .brand img{width:48px;height:48px}
-      .nav-links a{padding:10px 12px;font-size:.92rem}
       .nav-cta{padding:11px 14px}
       h1{max-width:10ch}
       .hero-copy p,
@@ -712,23 +797,20 @@
           <p class="brand-kicker">Soul food · Ambridge</p>
           <p class="brand-title">Annie Lee's Southern Kitchen</p>
         </div>
-    </a>
+      </a>
 
-<div style="display:flex; align-items:center; gap:12px;">
-  
-  <div class="menu-toggle" id="menuToggle">☰</div>
+      <div class="nav-right">
+        <div class="menu-toggle" id="menuToggle" aria-label="Open menu" aria-expanded="false" aria-controls="mainNav">☰</div>
 
-  <nav class="nav-links" aria-label="Main navigation">
-    <a href="#featured">Favorites</a>
-    <a href="menu.html">Menu</a>
-    <a href="#location">Location</a>
-    <a href="#reviews">Reviews</a>
-    <a class="nav-cta" href="https://buy.stripe.com/REPLACE_WITH_YOUR_NEW_STRIPE_LINK" target="_blank" rel="noopener">
-      Order Online
-    </a>
-  </nav>
-
-</div>
+        <nav class="nav-links" id="mainNav" aria-label="Main navigation">
+          <a href="#featured">Favorites</a>
+          <a href="menu.html">Menu</a>
+          <a href="#location">Location</a>
+          <a href="#reviews">Reviews</a>
+          <a class="nav-cta" href="https://buy.stripe.com/REPLACE_WITH_YOUR_NEW_STRIPE_LINK" target="_blank" rel="noopener">Order Online</a>
+        </nav>
+      </div>
+    </div>
   </header>
 
   <main id="top">
@@ -795,7 +877,6 @@
 
     <div class="featured-grid">
 
-      <!-- 6 Wings + 2 Sides -->
       <article class="feature reveal">
         <div class="feature-media">
           <img src="assets/6-wings-2-sides.jpg" alt="6 wings with sides" />
@@ -808,7 +889,6 @@
         </div>
       </article>
 
-      <!-- Half Slab -->
       <article class="feature reveal">
         <div class="feature-media">
           <img src="assets/half-slab-2-sides.jpg" alt="Half slab ribs with sides" />
@@ -821,7 +901,6 @@
         </div>
       </article>
 
-      <!-- Fish Dinner -->
       <article class="feature reveal">
         <div class="feature-media">
           <img src="assets/fish-dinner.jpg" alt="Fried fish dinner" />
@@ -834,7 +913,6 @@
         </div>
       </article>
 
-      <!-- Mac & Cheese -->
       <article class="feature reveal">
         <div class="feature-media">
           <img src="assets/mac-and-cheese.jpg" alt="Mac and cheese" />
@@ -849,19 +927,18 @@
 
     </div>
 
-    <!-- 🔥 CTA BUTTON -->
     <div style="text-align:center; margin-top:50px;">
       <a class="btn btn-primary" href="menu.html" style="font-size:1.1rem; padding:16px 28px;">
-        View Full Menu & Order →
+        View Full Menu &amp; Order →
       </a>
     </div>
 
   </div>
 </section>
-   <section class="section" id="story">
+
+<section class="section" id="story">
   <div class="container story-grid">
 
-    <!-- LEFT -->
     <div class="story-panel reveal">
       <span class="section-kicker">Family meals</span>
       <h3>Feed more people. Spend less per plate.</h3>
@@ -883,7 +960,6 @@
       </div>
     </div>
 
-    <!-- RIGHT -->
     <div class="story-panel reveal">
       <span class="section-kicker">What people say</span>
       <h3>Real reviews. Real flavor.</h3>
@@ -891,85 +967,87 @@
         Customers come back for a reason. The food hits every time.
       </p>
 
-     <div class="hours-grid">
+      <div class="hours-grid">
 
-  <a href="https://www.yelp.com/biz/annie-lees-southern-kitchen-ambridge" target="_blank" class="hour-item" style="text-decoration:none;">
-    <div style="display:flex; align-items:center; gap:10px;">
-      <img src="assets/reviewer1.jpg" style="width:40px; height:40px; border-radius:50%;">
-      <div>
-        <strong>Celeta S.</strong>
-        <div>★★★★★</div>
+        <a href="https://www.yelp.com/biz/annie-lees-southern-kitchen-ambridge" target="_blank" rel="noopener" class="hour-item" style="text-decoration:none;">
+          <div style="display:flex; align-items:center; gap:10px;">
+            <img src="assets/reviewer1.jpg" style="width:40px; height:40px; border-radius:50%;" alt="Celeta S.">
+            <div>
+              <strong>Celeta S.</strong>
+              <div>★★★★★</div>
+            </div>
+          </div>
+        </a>
+
+        <a href="https://www.yelp.com/biz/annie-lees-southern-kitchen-ambridge?hrid=s-2W7GYABmjopmZzrrUEUA" target="_blank" rel="noopener" class="hour-item" style="text-decoration:none;">
+          <div style="display:flex; align-items:center; gap:10px;">
+            <img src="assets/reviewer2.jpg" style="width:40px; height:40px; border-radius:50%;" alt="Wascally W.">
+            <div>
+              <strong>Wascally W.</strong>
+              <div>★★★★★</div>
+            </div>
+          </div>
+        </a>
+
+        <a href="https://www.yelp.com/biz/annie-lees-southern-kitchen-ambridge?hrid=wE4P9Yg9CxCHS8s_vIBdsw&utm_campaign=www_review_share_popup&utm_medium=copy_link&utm_source=(direct)" target="_blank" rel="noopener" class="hour-item" style="text-decoration:none;">
+          <div style="display:flex; align-items:center; gap:10px;">
+            <img src="assets/reviewer3.jpg" style="width:40px; height:40px; border-radius:50%;" alt="David B.">
+            <div>
+              <strong>David B.</strong>
+              <div>★★★★★</div>
+            </div>
+          </div>
+        </a>
+
+        <a href="https://www.yelp.com/biz/annie-lees-southern-kitchen-ambridge?start=10" target="_blank" rel="noopener" class="hour-item" style="text-decoration:none;">
+          <div style="display:flex; align-items:center; gap:10px;">
+            <img src="assets/reviewer4.jpg" style="width:40px; height:40px; border-radius:50%;" alt="Lisa A.">
+            <div>
+              <strong>Lisa A.</strong>
+              <div>★★★★★</div>
+            </div>
+          </div>
+        </a>
+
+      </div>
+
+      <div class="hero-actions" style="margin-top:20px">
+        <a class="btn btn-primary" href="menu.html">Order Now</a>
+        <a class="btn btn-secondary"
+           href="https://www.yelp.com/biz/annie-lees-southern-kitchen-ambridge"
+           target="_blank"
+           rel="noopener">
+          See Yelp Reviews
+        </a>
+      </div>
+
+      <div class="review-grid" id="reviews" style="margin-top:24px;">
+        <article class="review reveal">
+          <div class="stars">★★★★★</div>
+          <div class="review-meta">Nurlan I. · Aliquippa, PA · 1330 · Feb 10, 2026</div>
+          <p>Exceptional dining experience with outstanding flavors fresh ingredients and beautiful presentation supported by attentive service and warm atmosphere making the meal memorable and worth returning for often with friends family.</p>
+          <footer>Yelp review</footer>
+        </article>
+
+        <article class="review reveal">
+          <div class="stars">★★★★★</div>
+          <div class="review-meta">Kelsey O. · Beaver, PA · 1975 · Aug 29, 2025 · 1 photo</div>
+          <p>They always great food, good ambiance, and friendly service. Sometimes they're closed because they use their food truck, but anytime you can get it is always worth it.</p>
+          <footer>Yelp review</footer>
+        </article>
+
+        <article class="review reveal">
+          <div class="stars">★★★★★</div>
+          <div class="review-meta">Gary N. · Pittsburgh, PA · 0293 · Jun 1, 2024</div>
+          <p>First time visiting today, and it was awesome! I ordered the fried catfish with mac &amp; cheese and potato salad as sides. My wife had the 4 whole wings platter with collard greens and red beans &amp; rice. We will be back! The catfish and mac &amp; cheese ranked as some of the best I've ever eaten. My wife, who loves collard greens, said these were top tier. The potato salad was very good. Nice sized portions. Clean, casual environment.</p>
+          <footer>Yelp review</footer>
+        </article>
       </div>
     </div>
-  </a>
+  </div>
+</section>
 
-  <a href="https://www.yelp.com/biz/annie-lees-southern-kitchen-ambridge?hrid=s-2W7GYABmjopmZzrrUEUA" target="_blank" class="hour-item" style="text-decoration:none;">
-    <div style="display:flex; align-items:center; gap:10px;">
-      <img src="assets/reviewer2.jpg" style="width:40px; height:40px; border-radius:50%;">
-      <div>
-        <strong>Wascally W.</strong>
-        <div>★★★★★</div>
-      </div>
-    </div>
-  </a>
-
-  <a href="https://www.yelp.com/biz/annie-lees-southern-kitchen-ambridge?hrid=wE4P9Yg9CxCHS8s_vIBdsw&utm_campaign=www_review_share_popup&utm_medium=copy_link&utm_source=(direct)"_blank" class="hour-item" style="text-decoration:none;">
-    <div style="display:flex; align-items:center; gap:10px;">
-      <img src="assets/reviewer3.jpg" style="width:40px; height:40px; border-radius:50%;">
-      <div>
-        <strong>David B.</strong>
-        <div>★★★★★</div>
-      </div>
-    </div>
-  </a>
-
-  <a href="https://www.yelp.com/biz/annie-lees-southern-kitchen-ambridge?start=10" target="_blank" class="hour-item" style="text-decoration:none;">
-    <div style="display:flex; align-items:center; gap:10px;">
-      <img src="assets/reviewer4.jpg" style="width:40px; height:40px; border-radius:50%;">
-      <div>
-        <strong>Lisa A.</strong>
-        <div>★★★★★</div>
-      </div>
-    </div>
-  </a>
-
-</div>
-
-<div class="hero-actions" style="margin-top:20px">
-  <a class="btn btn-primary" href="menu.html">Order Now</a>
-  <a class="btn btn-secondary" 
-     href="https://www.yelp.com/biz/annie-lees-southern-kitchen-ambridge" 
-     target="_blank">
-    See Yelp Reviews
-  </a>
-</div>
-
-        <div class="review-grid">
-          <article class="review reveal">
-            <div class="stars">★★★★★</div>
-            <div class="review-meta">Nurlan I. · Aliquippa, PA · 1330 · Feb 10, 2026</div>
-            <p>Exceptional dining experience with outstanding flavors fresh ingredients and beautiful presentation supported by attentive service and warm atmosphere making the meal memorable and worth returning for often with friends family.</p>
-            <footer>Yelp review</footer>
-          </article>
-
-          <article class="review reveal">
-            <div class="stars">★★★★★</div>
-            <div class="review-meta">Kelsey O. · Beaver, PA · 1975 · Aug 29, 2025 · 1 photo</div>
-            <p>They always great food, good ambiance, and friendly service. Sometimes they're closed because they use their food truck, but anytime you can get it is always worth it.</p>
-            <footer>Yelp review</footer>
-          </article>
-
-          <article class="review reveal">
-            <div class="stars">★★★★★</div>
-            <div class="review-meta">Gary N. · Pittsburgh, PA · 0293 · Jun 1, 2024</div>
-            <p>First time visiting today, and it was awesome! I ordered the fried catfish with mac &amp; cheese and potato salad as sides. My wife had the 4 whole wings platter with collard greens and red beans &amp; rice. We will be back! The catfish and mac &amp; cheese ranked as some of the best I've ever eaten. My wife, who loves collard greens, said these were top tier. The potato salad was very good. Nice sized portions. Clean, casual environment.</p>
-            <footer>Yelp review</footer>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section class="section">
+    <section class="section" id="location">
       <div class="container">
         <div class="cta-band reveal">
           <div>
@@ -1012,6 +1090,12 @@
     <a class="call" href="tel:+17243850522">Call Now</a>
   </div>
 
+  <div class="mobile-bar">
+    <a href="tel:+17243850522">Call</a>
+    <a href="menu.html">Menu</a>
+    <a href="https://buy.stripe.com/REPLACE_WITH_YOUR_NEW_STRIPE_LINK" target="_blank" rel="noopener" class="order">Order</a>
+  </div>
+
   <script>
     const header = document.getElementById('siteHeader');
     const onScroll = () => {
@@ -1035,6 +1119,23 @@
     }, { threshold: 0.15 });
 
     revealEls.forEach(el => observer.observe(el));
+
+    const toggle = document.getElementById('menuToggle');
+    const nav = document.querySelector('.nav-links');
+
+    if (toggle && nav) {
+      toggle.addEventListener('click', () => {
+        nav.classList.toggle('active');
+        toggle.setAttribute('aria-expanded', nav.classList.contains('active') ? 'true' : 'false');
+      });
+
+      nav.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+          nav.classList.remove('active');
+          toggle.setAttribute('aria-expanded', 'false');
+        });
+      });
+    }
   </script>
 </body>
 </html>

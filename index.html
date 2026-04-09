@@ -25,7 +25,7 @@
       --shadow:0 22px 60px rgba(0,0,0,.45);
       --radius:28px;
       --radius-sm:18px;
-      --max:1000px;
+      --max:1240px;
       --nav-h:86px;
     }
 
@@ -333,9 +333,7 @@
     }
 
     .section{padding:92px 0}
-   .section-head{
-  max-width:700px;
-}
+    .section-head{
       display:flex;
       align-items:end;
       justify-content:space-between;
@@ -359,8 +357,6 @@
       letter-spacing:-.05em;
     }
     .section-sub{
-  max-width:550px;
-}
       margin:10px 0 0;
       max-width:62ch;
       color:var(--muted);
@@ -369,7 +365,7 @@
 
     .featured-grid{
       display:grid;
-      grid-template-columns:repeat(3, 1fr);
+      grid-template-columns:repeat(4, 1fr);
       gap:18px;
     }
     .feature{
@@ -534,11 +530,8 @@
 
     .review-grid{
       display:grid;
-      grid-template-columns:repeat(2, 1fr);
-  max-width:900px;
-  margin:auto;
-}
-      gap:14px;
+      grid-template-columns:repeat(3, minmax(0,1fr));
+      gap:18px;
     }
     .review{
       background:linear-gradient(180deg, rgba(255,255,255,.055), rgba(255,255,255,.025));
@@ -799,7 +792,7 @@
   <header class="site-header" id="siteHeader">
     <div class="container nav">
       <a class="brand" href="#top" aria-label="Annie Lee's Southern Kitchen home">
-        <img src="assets/logo.png" alt="Annie Lee's Southern Kitchen logo" />
+        <img src="assets/annie-logo.png" alt="Annie Lee's Southern Kitchen logo" />
         <div class="brand-copy">
           <p class="brand-kicker">Soul food · Ambridge</p>
           <p class="brand-title">Annie Lee's Southern Kitchen</p>
@@ -1076,7 +1069,7 @@
   <footer class="site-footer">
     <div class="container footer-grid">
       <div class="footer-brand">
-       <img src="assets/logo.png" alt="Annie Lee's Southern Kitchen logo" />
+        <img src="assets/annie-logo.png" alt="Annie Lee's Southern Kitchen logo" />
         <div>
           <strong>Annie Lee's Southern Kitchen</strong><br />
           <span>1601 Duss Ave · Ambridge, PA 15003</span>

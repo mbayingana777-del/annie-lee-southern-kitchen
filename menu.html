@@ -1,243 +1,509 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Menu | Annie Lee's Southern Kitchen</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Menu | Annie Lee's Southern Kitchen</title>
+  <meta name="description" content="Full menu for Annie Lee's Southern Kitchen in Ambridge, PA. Wings, ribs, fish dinners, sides and more." />
+  <style>
+    :root{
+      --bg:#070707;--brand:#d93018;--brand-2:#ff5b2e;
+      --text:#f7f2ef;--muted:#cfc3bd;--muted-2:#a9958c;
+      --line:rgba(255,255,255,.09);--white-soft:#fffaf6;
+      --shadow:0 22px 60px rgba(0,0,0,.45);--nav-h:86px;--max:1240px;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      background:
+        radial-gradient(circle at 20% 10%,rgba(217,48,24,.18),transparent 28%),
+        linear-gradient(180deg,#070707 0%,#0b0b0b 100%);
+      color:var(--text);font-family:Inter,ui-sans-serif,system-ui,-apple-system,sans-serif;
+      margin:0;overflow-x:hidden;
+    }
+    img{max-width:100%;display:block}
+    a{text-decoration:none;color:inherit}
+    button{font:inherit;cursor:pointer}
+    .container{width:min(var(--max),calc(100% - 28px));margin-inline:auto}
 
-<style>
-body{
-  background:#070707;
-  color:#fff;
-  font-family:Inter,sans-serif;
-  margin:0;
-}
+    /* ── HEADER ── */
+    header.site-header{
+      position:sticky;top:0;z-index:60;
+      backdrop-filter:saturate(150%) blur(16px);
+      background:rgba(7,7,7,.72);border-bottom:1px solid var(--line);
+      box-shadow:0 4px 20px rgba(0,0,0,.3);
+    }
+    .nav{min-height:var(--nav-h);display:flex;align-items:center;justify-content:space-between;gap:18px;position:relative}
+    .brand{display:flex;align-items:center;gap:12px;min-width:0}
+    .brand img{width:54px;height:54px;object-fit:contain;border-radius:14px;background:rgba(255,255,255,.03);padding:6px;box-shadow:inset 0 0 0 1px rgba(255,255,255,.06)}
+    .brand-copy{min-width:0}
+    .brand-kicker{margin:0 0 4px;color:var(--muted-2);font-size:.72rem;text-transform:uppercase;letter-spacing:.18em}
+    .brand-title{margin:0;font-weight:800;font-size:1rem;letter-spacing:-.02em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+    .nav-right{display:flex;align-items:center;gap:12px}
+    .nav-links{display:flex;align-items:center;gap:8px;flex-wrap:wrap;justify-content:flex-end}
+    .nav-links a{color:var(--muted);padding:12px 14px;border-radius:999px;transition:background .22s,color .22s;font-size:.96rem}
+    .nav-links a:hover{background:rgba(255,255,255,.05);color:var(--white-soft)}
+    .nav-cta{
+      display:inline-flex;align-items:center;gap:10px;
+      background:linear-gradient(135deg,var(--brand),var(--brand-2));
+      color:#fff !important;padding:12px 18px;border-radius:999px;font-weight:700;
+      box-shadow:0 14px 28px rgba(217,48,24,.24);
+    }
+    .menu-toggle{
+      display:none;font-size:28px;line-height:1;cursor:pointer;color:var(--white-soft);
+      padding:8px 10px;border-radius:12px;background:rgba(255,255,255,.04);
+      border:1px solid rgba(255,255,255,.06);user-select:none;
+    }
 
-.container{
-  width:95%;
-  max-width:1200px;
-  margin:auto;
-  padding:20px 0;
-}
+    /* ── PAGE TITLE ── */
+    .page-hero{
+      padding:56px 0 36px;text-align:center;
+      border-bottom:1px solid rgba(255,255,255,.06);
+    }
+    .page-hero h1{
+      margin:0 0 10px;font-size:clamp(2rem,5vw,3.8rem);
+      letter-spacing:-.05em;line-height:1;
+    }
+    .page-hero p{margin:0 auto;max-width:52ch;color:var(--muted);font-size:1rem;line-height:1.7}
 
-h1{text-align:center;}
+    /* ── LAYOUT ── */
+    .layout{
+      display:grid;
+      grid-template-columns:1fr 340px;
+      gap:28px;
+      padding:40px 0 80px;
+      align-items:start;
+    }
 
-.menu-grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-  gap:20px;
-}
+    /* ── MENU SECTION LABELS ── */
+    .menu-section-label{
+      grid-column:1/-1;
+      display:flex;align-items:center;gap:14px;
+      margin:32px 0 4px;
+    }
+    .menu-section-label h2{
+      margin:0;font-size:1.05rem;text-transform:uppercase;
+      letter-spacing:.14em;color:var(--brand-2);font-weight:800;
+    }
+    .menu-section-label::after{content:"";flex:1;height:1px;background:rgba(255,255,255,.07)}
 
-.item{
-  background:#111;
-  border-radius:20px;
-  overflow:hidden;
-  border:1px solid rgba(255,255,255,.08);
-  transition:.25s;
-}
+    /* ── MENU GRID ── */
+    .menu-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fill,minmax(220px,1fr));
+      gap:18px;
+    }
+    .item{
+      background:linear-gradient(180deg,rgba(255,255,255,.055),rgba(255,255,255,.025));
+      border-radius:22px;overflow:hidden;
+      border:1px solid rgba(255,255,255,.08);
+      transition:transform .25s,border-color .25s,box-shadow .25s;
+    }
+    .item:hover{
+      transform:translateY(-6px);
+      box-shadow:0 0 28px rgba(217,48,24,.35);
+      border-color:rgba(255,91,46,.4);
+    }
+    .item img{width:100%;height:170px;object-fit:cover;display:block}
+    .item-content{padding:14px 14px 16px}
+    .item-content h3{margin:0 0 4px;font-size:1rem;letter-spacing:-.02em}
+    .item-content .price{margin:0 0 12px;color:var(--brand-2);font-weight:800;font-size:1.05rem}
+    .item-content .desc{margin:0 0 12px;color:var(--muted);font-size:.88rem;line-height:1.55;min-height:2.8em}
+    .add-btn{
+      width:100%;padding:10px;border:none;border-radius:12px;
+      background:linear-gradient(135deg,var(--brand),var(--brand-2));
+      color:#fff;font-weight:700;font-size:.95rem;
+      transition:opacity .2s,transform .2s;
+    }
+    .add-btn:hover{opacity:.88;transform:translateY(-1px)}
+    .add-btn:active{transform:scale(.97)}
 
-.item:hover{
-  transform:translateY(-6px);
-  box-shadow:0 0 25px rgba(217,48,24,.4);
-  border-color:#ff5b2e;
-}
+    /* ── CART ── */
+    .cart-wrap{
+      position:sticky;top:calc(var(--nav-h) + 16px);
+      background:linear-gradient(180deg,rgba(255,255,255,.055),rgba(255,255,255,.025));
+      border-radius:24px;padding:20px;
+      border:1px solid rgba(255,255,255,.1);
+      box-shadow:var(--shadow);
+    }
+    .cart-wrap h2{margin:0 0 14px;font-size:1.15rem;letter-spacing:-.03em}
+    .cart-empty{color:var(--muted);font-size:.92rem;padding:8px 0}
+    .cart-item{
+      display:flex;justify-content:space-between;align-items:center;
+      gap:10px;padding:8px 0;
+      border-bottom:1px solid rgba(255,255,255,.06);
+    }
+    .cart-item-name{font-size:.9rem;flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+    .cart-item-price{font-size:.88rem;color:var(--muted-2);white-space:nowrap}
+    .qty{display:flex;align-items:center;gap:6px}
+    .qty button{
+      background:rgba(255,255,255,.08);color:#fff;border:1px solid rgba(255,255,255,.1);
+      padding:4px 10px;border-radius:8px;font-size:.9rem;font-weight:700;
+      transition:background .2s;
+    }
+    .qty button:hover{background:rgba(255,255,255,.16)}
+    .qty .qty-num{min-width:18px;text-align:center;font-weight:700}
+    .cart-total{
+      display:flex;justify-content:space-between;align-items:center;
+      margin:14px 0 0;padding-top:12px;border-top:1px solid rgba(255,255,255,.1);
+      font-weight:800;font-size:1.05rem;
+    }
+    .checkout-btn{
+      width:100%;margin-top:14px;padding:14px;border:none;border-radius:14px;
+      background:linear-gradient(135deg,var(--brand),var(--brand-2));
+      color:#fff;font-weight:800;font-size:1rem;
+      box-shadow:0 10px 24px rgba(217,48,24,.28);
+      transition:opacity .2s,transform .2s;
+    }
+    .checkout-btn:hover{opacity:.9;transform:translateY(-1px)}
+    .checkout-btn:disabled{opacity:.4;cursor:not-allowed;transform:none}
+    .upsell{
+      background:rgba(255,255,255,.04);padding:10px 12px;margin-top:12px;
+      border-radius:12px;font-size:.88rem;border:1px solid rgba(255,255,255,.08);
+      color:var(--muted);
+    }
 
-.item img{
-  width:100%;
-  height:180px;
-  object-fit:cover;
-}
+    /* ── MOBILE CART TOGGLE ── */
+    .cart-toggle-bar{
+      display:none;
+      position:fixed;bottom:0;left:0;right:0;z-index:200;
+      background:#0b0b0b;border-top:1px solid rgba(255,255,255,.1);
+      padding:12px 16px;
+    }
+    .cart-toggle-btn{
+      width:100%;padding:14px;border:none;border-radius:14px;
+      background:linear-gradient(135deg,var(--brand),var(--brand-2));
+      color:#fff;font-weight:800;font-size:1rem;
+    }
+    .cart-drawer{
+      display:none;
+      position:fixed;bottom:0;left:0;right:0;z-index:300;
+      background:#111;border-top:2px solid rgba(255,91,46,.4);
+      border-radius:24px 24px 0 0;padding:20px 20px 32px;
+      max-height:80vh;overflow-y:auto;
+      box-shadow:0 -20px 60px rgba(0,0,0,.6);
+    }
+    .cart-drawer.open{display:block}
+    .drawer-close{
+      float:right;background:rgba(255,255,255,.08);border:none;
+      color:#fff;padding:6px 12px;border-radius:8px;font-size:.9rem;margin-bottom:12px;
+    }
 
-.item-content{
-  padding:15px;
-}
+    /* ── FOOTER ── */
+    footer.site-footer{
+      padding:24px 0 40px;color:var(--muted);
+      border-top:1px solid rgba(255,255,255,.07);
+    }
+    .footer-grid{
+      display:flex;align-items:center;justify-content:space-between;
+      gap:18px;flex-wrap:wrap;padding-top:20px;
+    }
+    .footer-links{display:flex;gap:16px;flex-wrap:wrap}
+    .footer-links a{color:var(--muted)}
+    .footer-links a:hover{color:var(--white-soft)}
+    .footer-brand{display:flex;align-items:center;gap:12px}
+    .footer-brand img{width:42px;height:42px;border-radius:12px;object-fit:contain;background:rgba(255,255,255,.03);padding:4px}
 
-.item button{
-  width:100%;
-  margin-top:10px;
-  padding:10px;
-  border:none;
-  border-radius:10px;
-  background:#d93018;
-  color:white;
-  font-weight:bold;
-  cursor:pointer;
-}
-
-.cart{
-  position:fixed;
-  right:20px;
-  top:100px;
-  width:300px;
-  background:#111;
-  border-radius:20px;
-  padding:15px;
-  border:1px solid rgba(255,255,255,.1);
-}
-
-.cart-item{
-  display:flex;
-  justify-content:space-between;
-  margin:5px 0;
-}
-
-.qty{
-  display:flex;
-  gap:5px;
-}
-
-.qty button{
-  background:#222;
-  color:#fff;
-  border:none;
-  padding:5px 10px;
-  cursor:pointer;
-}
-
-.checkout{
-  background:#ff5b2e;
-  margin-top:10px;
-  padding:12px;
-  width:100%;
-  border:none;
-  border-radius:10px;
-  font-weight:bold;
-  cursor:pointer;
-}
-
-.upsell{
-  background:#1a1a1a;
-  padding:10px;
-  margin-top:10px;
-  border-radius:10px;
-  font-size:0.9rem;
-  border:1px solid rgba(255,255,255,.08);
-}
-</style>
+    /* ── RESPONSIVE ── */
+    @media(max-width:900px){
+      .layout{grid-template-columns:1fr}
+      .cart-wrap{display:none}
+      .cart-toggle-bar{display:block}
+      body{padding-bottom:72px}
+      .menu-toggle{display:block}
+      .nav-links{
+        position:absolute;top:calc(100% + 8px);right:0;left:0;width:100%;
+        justify-content:flex-start;flex-direction:column;align-items:stretch;
+        gap:10px;padding:16px;background:rgba(11,11,11,.98);
+        border:1px solid rgba(255,255,255,.08);border-radius:18px;
+        box-shadow:0 18px 36px rgba(0,0,0,.35);display:none;z-index:120;
+      }
+      .nav-links.active{display:flex}
+      .nav-links a{width:100%;padding:14px 16px;font-size:1rem;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.05)}
+      .nav-cta{justify-content:center}
+    }
+    @media(max-width:560px){
+      .menu-grid{grid-template-columns:repeat(auto-fill,minmax(160px,1fr))}
+      .item img{height:140px}
+      .page-hero{padding:36px 0 24px}
+    }
+  </style>
 </head>
-
 <body>
 
-<div class="container">
-<h1>Full Menu</h1>
-<div class="menu-grid" id="menu"></div>
-</div>
+  <!-- HEADER -->
+  <header class="site-header" id="siteHeader">
+    <div class="container nav">
+      <a class="brand" href="index.html" aria-label="Annie Lee's Southern Kitchen home">
+        <img src="assets/logo.png" alt="Annie Lee's Southern Kitchen logo" />
+        <div class="brand-copy">
+          <p class="brand-kicker">Soul food &middot; Ambridge</p>
+          <p class="brand-title">Annie Lee's Southern Kitchen</p>
+        </div>
+      </a>
+      <div class="nav-right">
+        <div class="menu-toggle" id="menuToggle" aria-label="Open menu" aria-expanded="false">&#9776;</div>
+        <nav class="nav-links" id="mainNav" aria-label="Main navigation">
+          <a href="index.html">Home</a>
+          <a href="index.html#featured">Favorites</a>
+          <a href="index.html#location">Location</a>
+          <a href="index.html#reviews">Reviews</a>
+          <a class="nav-cta" href="tel:+17243850522">Call to Order</a>
+        </nav>
+      </div>
+    </div>
+  </header>
 
-<div class="cart">
-<h2>Your Order</h2>
-<div id="cart-items"></div>
-<p>Total: $<span id="total">0</span></p>
+  <!-- PAGE HERO -->
+  <div class="page-hero">
+    <div class="container">
+      <h1>Full Menu</h1>
+      <p>Wings, ribs, fish, sides &amp; more. Add items to your order and call us to confirm pickup.</p>
+    </div>
+  </div>
 
-<div id="upsell-box"></div>
+  <!-- MAIN LAYOUT -->
+  <div class="container layout">
 
-<button class="checkout" onclick="checkout()">Checkout</button>
-</div>
+    <!-- MENU ITEMS -->
+    <div>
 
-<script>
+      <div class="menu-section-label"><h2>Dinners</h2></div>
+      <div class="menu-grid" id="menu-dinners"></div>
 
-const menu = [
-{name:"Fish Dinner", price:16, img:"fish-dinner.jpg"},
-{name:"6 Wings", price:12, img:"6-wings.jpg"},
-{name:"12 Wings", price:18, img:"12-wings.jpg"},
-{name:"6 Wings + 2 Sides", price:18, img:"6-wings-2-sides.jpg"},
-{name:"12 Wings + 2 Sides", price:22, img:"12-wings-2-sides.jpg"},
-{name:"Wings + Rib Dinner", price:25, img:"wings-rib-dinner.jpg"},
-{name:"Mac & Cheese", price:4, img:"mac-and-cheese.jpg"},
-{name:"Collard Greens", price:4, img:"collard-greens.jpg"},
-{name:"Candied Yams", price:4, img:"candied-yams.jpg"},
-{name:"Red Beans & Rice", price:5, img:"red-beans-rice.jpg"},
-{name:"Large Red Beans & Rice", price:7, img:"lg-red-beans-rice.jpg"},
-{name:"Potato Salad", price:4, img:"potato-salad.jpg"},
-{name:"Fries", price:3, img:"french-fries.jpg"},
-{name:"Cornbread", price:2, img:"cornbread.jpg"},
-{name:"Soda", price:2, img:"soda.jpg"}
-];
+      <div class="menu-section-label"><h2>Wings</h2></div>
+      <div class="menu-grid" id="menu-wings"></div>
 
-let cart = [];
+      <div class="menu-section-label"><h2>Ribs</h2></div>
+      <div class="menu-grid" id="menu-ribs"></div>
 
-function renderMenu(){
-  const menuDiv = document.getElementById("menu");
+      <div class="menu-section-label"><h2>Sides</h2></div>
+      <div class="menu-grid" id="menu-sides"></div>
 
-  menu.forEach((item,i)=>{
-    menuDiv.innerHTML += `
-      <div class="item">
-        <img src="assets/${item.img}">
-        <div class="item-content">
-          <h3>${item.name}</h3>
-          <p>$${item.price}</p>
-          <button onclick="addToCart(${i})">Add to Order</button>
+      <div class="menu-section-label"><h2>Drinks</h2></div>
+      <div class="menu-grid" id="menu-drinks"></div>
+
+    </div>
+
+    <!-- DESKTOP CART -->
+    <aside class="cart-wrap" id="desktopCart">
+      <h2>Your Order</h2>
+      <div id="cart-items-desktop"><p class="cart-empty">No items yet &mdash; add something!</p></div>
+      <div class="cart-total" id="cart-total-desktop" style="display:none">
+        <span>Total</span><span id="total-desktop">$0</span>
+      </div>
+      <div id="upsell-box-desktop"></div>
+      <button class="checkout-btn" id="checkout-btn-desktop" onclick="checkout()" disabled>Checkout</button>
+    </aside>
+
+  </div>
+
+  <!-- MOBILE CART TOGGLE BAR -->
+  <div class="cart-toggle-bar" id="cartToggleBar">
+    <button class="cart-toggle-btn" onclick="openDrawer()">
+      View Order &mdash; $<span id="total-mobile-bar">0</span>
+    </button>
+  </div>
+
+  <!-- MOBILE CART DRAWER -->
+  <div class="cart-drawer" id="cartDrawer">
+    <button class="drawer-close" onclick="closeDrawer()">Close &#10005;</button>
+    <h2 style="margin:0 0 14px">Your Order</h2>
+    <div id="cart-items-mobile"><p class="cart-empty">No items yet &mdash; add something!</p></div>
+    <div class="cart-total" id="cart-total-mobile" style="display:none">
+      <span>Total</span><span id="total-mobile">$0</span>
+    </div>
+    <div id="upsell-box-mobile"></div>
+    <button class="checkout-btn" id="checkout-btn-mobile" onclick="checkout()" disabled>Checkout</button>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div class="footer-brand">
+        <img src="assets/logo.png" alt="Annie Lee's Southern Kitchen logo" />
+        <div>
+          <strong>Annie Lee's Southern Kitchen</strong><br />
+          <span>1601 Duss Ave &middot; Ambridge, PA 15003</span>
         </div>
       </div>
-    `;
-  });
-}
-
-function addToCart(i){
-  const item = menu[i];
-  const existing = cart.find(c => c.name === item.name);
-
-  if(existing){
-    existing.qty++;
-  } else {
-    cart.push({...item, qty:1});
-  }
-
-  showUpsell(item.name);
-  updateCart();
-}
-
-function updateCart(){
-  const cartDiv = document.getElementById("cart-items");
-  const totalEl = document.getElementById("total");
-
-  cartDiv.innerHTML = "";
-  let total = 0;
-
-  cart.forEach((item, i)=>{
-    total += item.price * item.qty;
-
-    cartDiv.innerHTML += `
-      <div class="cart-item">
-        <span>${item.name}</span>
-        <div class="qty">
-          <button onclick="changeQty(${i}, -1)">-</button>
-          <span>${item.qty}</span>
-          <button onclick="changeQty(${i}, 1)">+</button>
-        </div>
+      <div class="footer-links">
+        <a href="tel:+17243850522">724-385-0522</a>
+        <a href="index.html">Home</a>
+        <a href="https://maps.google.com/?q=1601+Duss+Ave,+Ambridge,+PA+15003" target="_blank" rel="noopener">Directions</a>
+        <a href="https://www.yelp.com/biz/annie-lees-southern-kitchen-ambridge" target="_blank" rel="noopener">Yelp</a>
       </div>
-    `;
-  });
+    </div>
+  </footer>
 
-  totalEl.innerText = total;
-}
+  <script>
+    // ── MENU DATA ──
+    // Images mapped to actual filenames in /assets/
+    const sections = {
+      dinners: [
+        {name:"Fish Dinner",            price:16, img:"fish-dinner.png",           desc:"Golden fried fish with your choice of 2 sides."},
+        {name:"Fish Sandwich",          price:10, img:"fish-sandwich.png",          desc:"Crispy fried fish on a toasted bun."},
+      ],
+      wings: [
+        {name:"6 Wings",                price:12, img:"wings-6-2-sides.png",        desc:"Six crispy whole wings, no sides."},
+        {name:"12 Wings",               price:18, img:"wings-12-piece.png",         desc:"Twelve crispy whole wings, no sides."},
+        {name:"6 Wings + 2 Sides",      price:18, img:"wings-6-2-sides.png",        desc:"Six wings with two small sides."},
+        {name:"12 Wings + 2 Sides",     price:22, img:"wings-12-piece.png",         desc:"Twelve wings with two small sides."},
+      ],
+      ribs: [
+        {name:"3 Bones + 2 Sides",      price:18, img:"ribs-3-bones-2-sides.png",   desc:"Three rib bones with two small sides."},
+        {name:"4 Bones + 2 Sides",      price:22, img:"ribs-4-bones-2-sides.png",   desc:"Four rib bones with two small sides."},
+        {name:"Half Slab + 2 Sides",    price:25, img:"ribs-half-slab-2-sides.png", desc:"Half slab of smoky ribs with two small sides."},
+      ],
+      sides: [
+        {name:"Mac & Cheese (Sm)",      price:4,  img:"mac-cheese-sm.png",          desc:"Creamy baked mac and cheese, small."},
+        {name:"Mac & Cheese (Lg)",      price:7,  img:"mac-cheese-lg.png",          desc:"Creamy baked mac and cheese, large."},
+        {name:"Collard Greens (Sm)",    price:4,  img:"collard-greens-sm.png",       desc:"Slow-cooked southern collard greens, small."},
+        {name:"Collard Greens (Lg)",    price:7,  img:"collard-greens-lg.png",       desc:"Slow-cooked southern collard greens, large."},
+        {name:"Candied Yams (Sm)",      price:4,  img:"candied-yams-sm.png",         desc:"Sweet candied yams, small."},
+        {name:"Candied Yams (Lg)",      price:7,  img:"candied-yams-lg.png",         desc:"Sweet candied yams, large."},
+        {name:"Red Beans & Rice",       price:5,  img:"red-beans-rice-sm.png",       desc:"Classic red beans and rice."},
+        {name:"Potato Salad (Sm)",      price:4,  img:"potato-salad-sm.png",         desc:"Southern-style potato salad, small."},
+        {name:"Potato Salad (Lg)",      price:7,  img:"potato-salad-lg.png",         desc:"Southern-style potato salad, large."},
+        {name:"Cornbread",              price:2,  img:"cornbread.png",               desc:"Golden homestyle cornbread."},
+      ],
+      drinks: [
+        {name:"Soda Can",               price:2,  img:"soda-can.png",               desc:"Assorted canned sodas."},
+        {name:"Bottled Water",          price:1,  img:"bottled-water.png",           desc:"Cold bottled water."},
+      ]
+    };
 
-function changeQty(i, change){
-  cart[i].qty += change;
-  if(cart[i].qty <= 0){
-    cart.splice(i,1);
-  }
-  updateCart();
-}
+    // Build a flat index for cart lookups
+    const allItems = [];
+    Object.values(sections).forEach(arr => arr.forEach(item => allItems.push(item)));
 
-function showUpsell(itemName){
-  const box = document.getElementById("upsell-box");
+    let cart = [];
 
-  if(itemName.includes("Wings")){
-    box.innerHTML = `<div class="upsell">🔥 Add Mac & Cheese?</div>`;
-  } else if(itemName.includes("Dinner")){
-    box.innerHTML = `<div class="upsell">🥤 Add a Soda?</div>`;
-  } else {
-    box.innerHTML = "";
-  }
-}
+    function renderMenuSection(sectionKey, containerId){
+      const container = document.getElementById(containerId);
+      sections[sectionKey].forEach((item) => {
+        const globalIdx = allItems.indexOf(item);
+        const card = document.createElement('div');
+        card.className = 'item';
+        card.innerHTML = `
+          <img src="assets/${item.img}" alt="${item.name}" loading="lazy" onerror="this.style.display='none'">
+          <div class="item-content">
+            <h3>${item.name}</h3>
+            <p class="price">$${item.price}</p>
+            <p class="desc">${item.desc}</p>
+            <button class="add-btn" onclick="addToCart(${globalIdx})">Add to Order</button>
+          </div>
+        `;
+        container.appendChild(card);
+      });
+    }
 
-function checkout(){
-  alert("Stripe will be connected here.");
-}
+    function renderAll(){
+      renderMenuSection('dinners','menu-dinners');
+      renderMenuSection('wings','menu-wings');
+      renderMenuSection('ribs','menu-ribs');
+      renderMenuSection('sides','menu-sides');
+      renderMenuSection('drinks','menu-drinks');
+    }
 
-renderMenu();
+    function addToCart(i){
+      const item = allItems[i];
+      const existing = cart.find(c => c.name === item.name);
+      if(existing){ existing.qty++; }
+      else { cart.push({...item, qty:1}); }
+      showUpsell(item.name);
+      updateCart();
+    }
 
-</script>
+    function changeQty(i, delta){
+      cart[i].qty += delta;
+      if(cart[i].qty <= 0) cart.splice(i,1);
+      updateCart();
+    }
 
+    function updateCart(){
+      let total = 0;
+      cart.forEach(item => total += item.price * item.qty);
+
+      // Build cart HTML
+      let html = '';
+      if(cart.length === 0){
+        html = '<p class="cart-empty">No items yet &mdash; add something!</p>';
+      } else {
+        cart.forEach((item,i) => {
+          html += `
+            <div class="cart-item">
+              <span class="cart-item-name">${item.name}</span>
+              <span class="cart-item-price">$${(item.price * item.qty).toFixed(0)}</span>
+              <div class="qty">
+                <button onclick="changeQty(${i},-1)">&#8722;</button>
+                <span class="qty-num">${item.qty}</span>
+                <button onclick="changeQty(${i},1)">+</button>
+              </div>
+            </div>
+          `;
+        });
+      }
+
+      // Desktop
+      document.getElementById('cart-items-desktop').innerHTML = html;
+      const dtTotal = document.getElementById('cart-total-desktop');
+      const dtBtn   = document.getElementById('checkout-btn-desktop');
+      document.getElementById('total-desktop').textContent = '$' + total;
+      dtTotal.style.display = cart.length ? 'flex' : 'none';
+      dtBtn.disabled = cart.length === 0;
+
+      // Mobile bar
+      document.getElementById('total-mobile-bar').textContent = total;
+
+      // Mobile drawer
+      document.getElementById('cart-items-mobile').innerHTML = html;
+      const mbTotal = document.getElementById('cart-total-mobile');
+      const mbBtn   = document.getElementById('checkout-btn-mobile');
+      document.getElementById('total-mobile').textContent = '$' + total;
+      mbTotal.style.display = cart.length ? 'flex' : 'none';
+      mbBtn.disabled = cart.length === 0;
+    }
+
+    function showUpsell(name){
+      let msg = '';
+      if(name.toLowerCase().includes('wing'))  msg = '&#128293; Add Mac &amp; Cheese for $4?';
+      else if(name.toLowerCase().includes('rib')) msg = '&#127830; Add Cornbread for $2?';
+      else if(name.toLowerCase().includes('fish')) msg = '&#127814; Add a Soda for $2?';
+      document.getElementById('upsell-box-desktop').innerHTML = msg ? `<div class="upsell">${msg}</div>` : '';
+      document.getElementById('upsell-box-mobile').innerHTML  = msg ? `<div class="upsell">${msg}</div>` : '';
+    }
+
+    function checkout(){
+      const lines = cart.map(c => `${c.qty}x ${c.name} ($${c.price * c.qty})`).join('\n');
+      const total = cart.reduce((s,c) => s + c.price * c.qty, 0);
+      alert(`Your order:\n\n${lines}\n\nTotal: $${total}\n\nCall us at 724-385-0522 to place your order!`);
+    }
+
+    function openDrawer(){
+      document.getElementById('cartDrawer').classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeDrawer(){
+      document.getElementById('cartDrawer').classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    // Mobile nav toggle
+    const toggle = document.getElementById('menuToggle');
+    const nav    = document.getElementById('mainNav');
+    if(toggle && nav){
+      toggle.addEventListener('click', () => {
+        nav.classList.toggle('active');
+        toggle.setAttribute('aria-expanded', nav.classList.contains('active'));
+      });
+      nav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+        nav.classList.remove('active');
+        toggle.setAttribute('aria-expanded','false');
+      }));
+    }
+
+    renderAll();
+  </script>
 </body>
 </html>

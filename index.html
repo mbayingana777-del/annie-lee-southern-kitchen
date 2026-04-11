@@ -3,692 +3,1001 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Annie Lee's Southern Kitchen | Soul Food With Heat</title>
-  <meta name="description" content="Annie Lee's Southern Kitchen serves bold Southern comfort food in Ambridge, PA. Explore the full menu, order online, call ahead, and find the location fast." />
+  <title>Annie Lee's Southern Kitchen | Soul Food Made Right</title>
+  <meta name="description" content="Annie Lee's Southern Kitchen — hot, fresh soul food in Ambridge, PA. Crispy wings, tender ribs, fried fish, baked mac & cheese. Order by phone or walk in." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <style>
-    :root{
-      --bg:#070707;--bg-soft:#111111;--panel:#121212;--panel-2:#171717;
-      --text:#f7f2ef;--muted:#cfc3bd;--muted-2:#a9958c;
-      --line:rgba(255,255,255,.09);--brand:#d93018;--brand-2:#ff5b2e;
-      --brand-soft:rgba(217,48,24,.12);--white-soft:#fffaf6;
-      --shadow:0 22px 60px rgba(0,0,0,.45);--radius:28px;--radius-sm:18px;
-      --max:1240px;--nav-h:86px;
+    /* ─── RESET & BASE ─────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; font-size: 16px; }
+    body {
+      font-family: 'Inter', ui-sans-serif, system-ui, sans-serif;
+      background: #0f0f0f;
+      color: #f0ebe6;
+      overflow-x: hidden;
     }
-    *{box-sizing:border-box}
-    html{scroll-behavior:smooth}
-    body{
-      margin:0;
-      font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
-      background:
-        radial-gradient(circle at 20% 10%,rgba(217,48,24,.22),transparent 28%),
-        radial-gradient(circle at 80% 20%,rgba(255,255,255,.05),transparent 24%),
-        radial-gradient(circle at 70% 75%,rgba(217,48,24,.12),transparent 30%),
-        linear-gradient(180deg,#070707 0%,#0b0b0b 52%,#090909 100%);
-      color:var(--text);overflow-x:hidden;
-    }
-    img{max-width:100%;display:block}
-    a{text-decoration:none;color:inherit}
-    button{font:inherit}
-    .container{width:min(var(--max),calc(100% - 28px));margin-inline:auto}
+    img { max-width: 100%; display: block; }
+    a { text-decoration: none; color: inherit; }
+    button { font: inherit; cursor: pointer; border: none; background: none; }
 
-    /* grain overlay */
-    .grain::before{
-      content:"";position:fixed;inset:0;pointer-events:none;
-      background-image:radial-gradient(rgba(255,255,255,.04) 1px,transparent 1px);
-      background-size:4px 4px;mix-blend-mode:soft-light;opacity:.12;z-index:100;
-    }
-
-    /* ── HEADER ── */
-    header.site-header{
-      position:sticky;top:0;z-index:60;
-      backdrop-filter:saturate(150%) blur(16px);
-      background:rgba(7,7,7,.66);border-bottom:1px solid transparent;
-      transition:background .28s,border-color .28s,box-shadow .28s;
-    }
-    header.site-header.scrolled{
-      background:rgba(7,7,7,.82);border-color:var(--line);
-      box-shadow:0 12px 24px rgba(0,0,0,.24);
-    }
-    .nav{min-height:var(--nav-h);display:flex;align-items:center;justify-content:space-between;gap:18px;position:relative}
-    .brand,.footer-brand{display:flex;align-items:center;gap:12px;min-width:0}
-    .brand img,.footer-brand img{
-      width:54px;height:54px;object-fit:contain;border-radius:14px;
-      background:rgba(255,255,255,.03);padding:6px;
-      box-shadow:inset 0 0 0 1px rgba(255,255,255,.06);
-    }
-    .footer-brand img{width:42px;height:42px;border-radius:12px;padding:4px}
-    .brand-copy{min-width:0}
-    .brand-kicker{margin:0 0 4px;color:var(--muted-2);font-size:.72rem;text-transform:uppercase;letter-spacing:.18em}
-    .brand-title{margin:0;font-weight:800;font-size:1rem;letter-spacing:-.02em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-    .nav-right{display:flex;align-items:center;gap:12px}
-    .nav-links{display:flex;align-items:center;gap:8px;flex-wrap:wrap;justify-content:flex-end}
-    .nav-links a{color:var(--muted);padding:12px 14px;border-radius:999px;transition:background .22s,color .22s,transform .22s;font-size:.96rem}
-    .nav-links a:hover{background:rgba(255,255,255,.05);color:var(--white-soft);transform:translateY(-1px)}
-    .nav-cta{
-      display:inline-flex;align-items:center;gap:10px;
-      background:linear-gradient(135deg,var(--brand),var(--brand-2));
-      color:#fff !important;padding:12px 18px;border-radius:999px;font-weight:700;
-      box-shadow:0 14px 28px rgba(217,48,24,.24);
-    }
-    .menu-toggle{
-      display:none;font-size:28px;line-height:1;cursor:pointer;color:var(--white-soft);
-      padding:8px 10px;border-radius:12px;background:rgba(255,255,255,.04);
-      border:1px solid rgba(255,255,255,.06);user-select:none;
+    /* ─── CSS VARIABLES ────────────────────────────────────────── */
+    :root {
+      --green: #c8321a;
+      --green-dark: #a02514;
+      --green-light: #2a1410;
+      --red: #c8321a;
+      --cream: #0f0f0f;
+      --cream-2: #1a1414;
+      --dark: #0a0a0a;
+      --dark-2: #141414;
+      --text: #f0ebe6;
+      --muted: #a89890;
+      --muted-2: #6e5e58;
+      --border: #2a2020;
+      --white: #f5f0ec;
+      --shadow-sm: 0 2px 8px rgba(0,0,0,.4);
+      --shadow: 0 8px 32px rgba(0,0,0,.5);
+      --shadow-lg: 0 24px 64px rgba(0,0,0,.6);
+      --radius: 16px;
+      --radius-sm: 10px;
+      --max: 1280px;
+      --nav-h: 72px;
     }
 
-    /* ── HERO ── */
-    .hero{position:relative;min-height:calc(100vh - var(--nav-h));isolation:isolate;display:grid;align-items:center;padding:42px 0 28px}
-    .hero-media{position:absolute;inset:18px;border-radius:34px;overflow:hidden;z-index:-2;box-shadow:var(--shadow);border:1px solid rgba(255,255,255,.06);background:#090909}
-    .hero-media::after{
-      content:"";position:absolute;inset:0;
-      background:linear-gradient(90deg,rgba(7,7,7,.88) 0%,rgba(7,7,7,.46) 43%,rgba(7,7,7,.78) 100%),
-        linear-gradient(180deg,rgba(7,7,7,.14) 0%,rgba(7,7,7,.5) 100%);
-      z-index:1;
-    }
-    .hero-poster{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
-    .hero-inner{position:relative;z-index:2;display:grid;grid-template-columns:minmax(0,1.18fr) minmax(320px,.82fr);gap:32px;align-items:end}
-    .hero-copy{max-width:720px;padding:40px 0 28px}
-    .eyebrow{
-      display:inline-flex;align-items:center;gap:10px;padding:10px 14px;
-      border:1px solid rgba(255,255,255,.11);border-radius:999px;
-      background:rgba(11,11,11,.34);color:var(--muted);font-size:.86rem;letter-spacing:.04em;margin-bottom:18px;
-    }
-    .eyebrow .dot{
-      width:9px;height:9px;border-radius:50%;
-      background:linear-gradient(135deg,var(--brand-2),#fff1ea);
-      box-shadow:0 0 0 5px rgba(255,91,46,.18);
-    }
-    h1{margin:0 0 18px;font-size:clamp(2.7rem,7vw,5.8rem);line-height:.95;letter-spacing:-.05em;max-width:12ch}
-    .hero-copy p{margin:0;max-width:56ch;color:var(--muted);font-size:1.05rem;line-height:1.72}
-    .hero-actions{display:flex;flex-wrap:wrap;gap:14px;margin-top:28px}
-    .btn{
-      display:inline-flex;align-items:center;justify-content:center;gap:10px;
-      min-height:56px;padding:0 22px;border-radius:999px;border:1px solid transparent;font-weight:800;
-      transition:transform .22s,box-shadow .22s,border-color .22s,background .22s;
-    }
-    .btn:hover{transform:translateY(-2px)}
-    .btn-primary{background:linear-gradient(135deg,var(--brand),var(--brand-2));color:#fff;box-shadow:0 16px 30px rgba(217,48,24,.26)}
-    .btn-secondary{background:rgba(255,255,255,.04);border-color:rgba(255,255,255,.08);color:var(--white-soft)}
-    .hero-side{display:grid;gap:16px;align-self:center}
-    .card{background:linear-gradient(180deg,rgba(255,255,255,.055),rgba(255,255,255,.03));border:1px solid rgba(255,255,255,.08);border-radius:var(--radius);padding:22px;box-shadow:var(--shadow);overflow:hidden}
-    .card h3{margin:0 0 10px;font-size:1.1rem;letter-spacing:-.03em}
-    .card p{margin:0;color:var(--muted);line-height:1.7}
-    .mini-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
-    .stat{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);border-radius:22px;padding:18px}
-    .stat-label{font-size:.8rem;color:var(--muted-2);text-transform:uppercase;letter-spacing:.12em;margin-bottom:8px}
-    .stat-value{font-weight:800;font-size:1.2rem;letter-spacing:-.03em}
+    /* ─── TYPOGRAPHY ───────────────────────────────────────────── */
+    .display { font-family: 'Barlow Condensed', sans-serif; font-weight: 900; letter-spacing: -.02em; line-height: .95; text-transform: uppercase; }
+    .headline { font-family: 'Barlow Condensed', sans-serif; font-weight: 800; letter-spacing: -.02em; line-height: 1.05; text-transform: uppercase; }
+    .kicker { font-size: .72rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: #e05040; }
 
-    /* ── SECTIONS ── */
-    .section{padding:92px 0}
-    .section-head{display:flex;align-items:end;justify-content:space-between;gap:20px;margin-bottom:28px;flex-wrap:wrap}
-    .section-kicker{display:block;margin-bottom:10px;color:var(--brand-2);text-transform:uppercase;letter-spacing:.16em;font-size:.78rem;font-weight:800}
-    h2{margin:0;font-size:clamp(2rem,4vw,3.6rem);line-height:1.02;letter-spacing:-.05em}
-    .section-sub{margin:10px 0 0;max-width:62ch;color:var(--muted);line-height:1.72}
+    /* ─── LAYOUT ───────────────────────────────────────────────── */
+    .container { width: min(var(--max), calc(100% - 40px)); margin-inline: auto; }
+    .section { padding: 96px 0; }
+    .section-sm { padding: 64px 0; }
 
-    /* ── FEATURED ── */
-    .featured-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
-    .feature{
-      background:linear-gradient(180deg,rgba(255,255,255,.05),rgba(255,255,255,.025));
-      border:1px solid rgba(255,255,255,.08);border-radius:30px;overflow:hidden;
-      box-shadow:var(--shadow);transition:transform .24s,border-color .24s;
+    /* ─── BUTTONS ──────────────────────────────────────────────── */
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+      padding: 14px 28px; border-radius: 999px; font-weight: 700; font-size: .95rem;
+      transition: transform .18s, box-shadow .18s, background .18s;
+      white-space: nowrap; cursor: pointer;
     }
-    .feature:hover{transform:translateY(-6px);border-color:rgba(255,91,46,.35)}
-    .feature-media{aspect-ratio:.92/1;position:relative;overflow:hidden;background:#111}
-    .feature-media img{width:100%;height:100%;object-fit:cover;object-position:center;display:block}
-    .feature-media::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.08),rgba(0,0,0,.5))}
-    .feature-badge{
-      position:absolute;left:18px;bottom:18px;z-index:1;padding:8px 12px;border-radius:999px;
-      background:rgba(7,7,7,.56);border:1px solid rgba(255,255,255,.08);font-size:.8rem;color:var(--white-soft);font-weight:700;
+    .btn:hover { transform: translateY(-2px); }
+    .btn-green {
+      background: var(--green); color: #fff;
+      box-shadow: 0 4px 16px rgba(200,50,26,.4);
     }
-    .feature-copy{padding:18px 18px 22px}
-    .feature-copy h3{margin:0 0 8px;font-size:1.18rem;letter-spacing:-.03em}
-    .feature-copy p{margin:0 0 14px;color:var(--muted);line-height:1.7;min-height:4.9em}
-    .price-row{display:flex;align-items:center;justify-content:space-between;gap:16px;color:var(--white-soft);font-weight:800}
-    .price-row .line{flex:1;height:1px;background:linear-gradient(90deg,rgba(255,255,255,.04),rgba(255,255,255,.12),rgba(255,255,255,.04))}
+    .btn-green:hover { background: var(--green-dark); box-shadow: 0 8px 24px rgba(200,50,26,.55); }
+    .btn-dark {
+      background: #1e1e1e; color: #f0ebe6;
+      box-shadow: 0 4px 16px rgba(0,0,0,.4);
+      border: 1px solid #2e2e2e;
+    }
+    .btn-dark:hover { background: #2a2a2a; box-shadow: 0 8px 24px rgba(0,0,0,.5); }
+    .btn-outline {
+      background: transparent; color: #f0ebe6;
+      border: 2px solid rgba(240,235,230,.35);
+    }
+    .btn-outline:hover { background: rgba(240,235,230,.08); border-color: #f0ebe6; }
+    .btn-outline-white {
+      background: transparent; color: #fff;
+      border: 2px solid rgba(255,255,255,.5);
+    }
+    .btn-outline-white:hover { background: rgba(255,255,255,.12); border-color: #fff; }
+    .btn-lg { padding: 18px 36px; font-size: 1.05rem; }
 
-    /* ── STORY PANELS ── */
-    .story-grid{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:stretch}
-    .story-panel{
-      min-height:460px;border-radius:36px;padding:34px;overflow:hidden;position:relative;
-      border:1px solid rgba(255,255,255,.08);box-shadow:var(--shadow);
-      background:linear-gradient(140deg,rgba(255,255,255,.055),rgba(255,255,255,.02)),
-        radial-gradient(circle at 20% 10%,rgba(255,91,46,.16),transparent 30%),
-        linear-gradient(180deg,#0f0f0f 0%,#0a0a0a 100%);
-      width:100%;height:100%;display:flex;flex-direction:column;
+    /* ─── ANNOUNCEMENT BAR ─────────────────────────────────────── */
+    .announce-bar {
+      background: #c8321a;
+      color: #fff;
+      text-align: center;
+      padding: 10px 20px;
+      font-size: .85rem;
+      font-weight: 600;
+      letter-spacing: .02em;
     }
-    .story-panel h3{margin:0 0 10px;font-size:1.8rem;letter-spacing:-.04em;max-width:12ch}
-    .story-panel p{margin:0;color:var(--muted);line-height:1.8;max-width:58ch}
-    .list{margin:22px 0 0;padding:0;list-style:none;display:grid;gap:12px}
-    .list li{display:flex;gap:12px;align-items:flex-start;color:var(--white-soft)}
-    .list span{
-      width:22px;height:22px;border-radius:50%;display:inline-grid;place-items:center;
-      background:var(--brand-soft);color:#ffd6cb;font-size:.84rem;
-      box-shadow:inset 0 0 0 1px rgba(255,91,46,.25);flex:none;margin-top:2px;
+    .announce-bar a { color: #fff; text-decoration: underline; text-underline-offset: 3px; }
+
+    /* ─── NAV ──────────────────────────────────────────────────── */
+    .site-nav {
+      position: sticky; top: 0; z-index: 100;
+      background: #0a0a0a;
+      height: var(--nav-h);
+      display: flex; align-items: center;
+      transition: box-shadow .3s;
+    }
+    .site-nav.scrolled { box-shadow: 0 4px 20px rgba(0,0,0,.7); border-bottom: 1px solid #2a1a16; }
+    .nav-inner {
+      width: min(var(--max), calc(100% - 40px));
+      margin-inline: auto;
+      display: flex; align-items: center; justify-content: space-between; gap: 32px;
+    }
+    .nav-logo { display: flex; align-items: center; gap: 10px; flex-shrink: 0; }
+    .nav-logo img { height: 42px; width: auto; }
+    .nav-logo-text {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 900; font-size: 1.3rem; letter-spacing: .04em;
+      text-transform: uppercase; color: #fff; line-height: 1.1;
+    }
+    .nav-links {
+      display: flex; align-items: center; gap: 4px;
+      list-style: none;
+    }
+    .nav-links a {
+      color: rgba(240,235,230,.65); font-size: .9rem; font-weight: 600;
+      padding: 8px 14px; border-radius: 8px;
+      transition: color .18s, background .18s;
+      letter-spacing: .02em;
+    }
+    .nav-links a:hover { color: #f0ebe6; background: rgba(200,50,26,.15); }
+    .nav-links a.active { color: #e05040; }
+    .nav-cta { display: flex; align-items: center; gap: 12px; flex-shrink: 0; }
+    .nav-phone { color: rgba(255,255,255,.7); font-size: .85rem; font-weight: 600; }
+    .nav-phone:hover { color: #fff; }
+    .nav-hamburger { display: none; flex-direction: column; gap: 5px; padding: 8px; cursor: pointer; }
+    .nav-hamburger span { display: block; width: 24px; height: 2px; background: #fff; border-radius: 2px; transition: .3s; }
+
+    /* Mobile nav overlay */
+    .mobile-nav {
+      display: none; position: fixed; inset: 0; z-index: 200;
+      background: #0a0a0a; flex-direction: column;
+      padding: 24px;
+    }
+    .mobile-nav.open { display: flex; }
+    .mobile-nav-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 40px; }
+    .mobile-nav-close { color: #fff; font-size: 1.5rem; cursor: pointer; padding: 8px; }
+    .mobile-nav-links { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+    .mobile-nav-links a {
+      display: block; color: #fff; font-size: 1.6rem;
+      font-family: 'Barlow Condensed', sans-serif; font-weight: 800;
+      text-transform: uppercase; letter-spacing: .04em;
+      padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,.08);
+    }
+    .mobile-nav-bottom { margin-top: auto; display: flex; flex-direction: column; gap: 12px; }
+
+    /* ─── HERO ─────────────────────────────────────────────────── */
+    .hero {
+      background: #0a0a0a;
+      min-height: calc(100vh - var(--nav-h) - 40px);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      overflow: hidden;
+      position: relative;
+    }
+    .hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse at 30% 50%, rgba(200,50,26,.18), transparent 60%);
+      pointer-events: none;
+    }
+    .hero-copy {
+      padding: 80px 64px 80px 80px;
+      position: relative; z-index: 2;
+    }
+    .hero-eyebrow {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(200,50,26,.18); border: 1px solid rgba(200,50,26,.4);
+      color: #e05040; font-size: .8rem; font-weight: 700;
+      letter-spacing: .1em; text-transform: uppercase;
+      padding: 6px 14px; border-radius: 999px; margin-bottom: 28px;
+    }
+    .hero-eyebrow::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: #e05040; }
+    .hero h1 {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 900; font-size: clamp(3.2rem, 6vw, 5.5rem);
+      line-height: .92; letter-spacing: -.02em;
+      text-transform: uppercase; color: #fff;
+      margin-bottom: 24px;
+    }
+    .hero h1 em { font-style: normal; color: #e05040; }
+    .hero-sub {
+      color: rgba(255,255,255,.65); font-size: 1.05rem;
+      line-height: 1.7; max-width: 42ch; margin-bottom: 36px;
+    }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 16px; }
+    .hero-trust {
+      color: rgba(255,255,255,.4); font-size: .85rem;
+      display: flex; align-items: center; gap: 6px; margin-top: 8px;
+    }
+    .hero-trust::before { content: '⏱'; font-size: .9rem; }
+    .hero-image {
+      position: relative; height: 100%; min-height: 600px;
+      display: flex; align-items: center; justify-content: center;
+      overflow: hidden;
+    }
+    .hero-image img {
+      width: 100%; height: 100%;
+      object-fit: cover; object-position: center;
+      transform: scale(1.02);
+      transition: transform 8s ease;
+    }
+    .hero-image::after {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(90deg, #0a0a0a 0%, transparent 30%);
+    }
+    .hero-badge {
+      position: absolute; bottom: 40px; right: 40px; z-index: 3;
+      background: #c8321a; color: #fff;
+      padding: 16px 22px; border-radius: var(--radius);
+      box-shadow: var(--shadow-lg);
+    }
+    .hero-badge .price { font-family: 'Barlow Condensed', sans-serif; font-size: 2rem; font-weight: 900; line-height: 1; }
+    .hero-badge .label { font-size: .75rem; font-weight: 600; opacity: .85; margin-top: 2px; }
+
+    /* ─── MARQUEE STRIP ────────────────────────────────────────── */
+    .marquee-wrap {
+      background: #c8321a;
+      overflow: hidden; padding: 14px 0;
+    }
+    .marquee-track {
+      display: flex; gap: 0;
+      animation: marquee 28s linear infinite;
+      width: max-content;
+    }
+    .marquee-track:hover { animation-play-state: paused; }
+    .marquee-item {
+      display: flex; align-items: center; gap: 12px;
+      padding: 0 32px;
+      color: #fff; font-weight: 700; font-size: .9rem;
+      letter-spacing: .04em; text-transform: uppercase;
+      white-space: nowrap;
+    }
+    .marquee-dot { width: 5px; height: 5px; border-radius: 50%; background: rgba(255,255,255,.5); }
+    @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+    /* ─── FEATURED SECTION ─────────────────────────────────────── */
+    .featured-section { background: #0f0f0f; }
+    .section-header { margin-bottom: 56px; }
+    .section-header h2 {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 900; font-size: clamp(2.4rem, 4vw, 3.6rem);
+      letter-spacing: -.02em; text-transform: uppercase;
+      line-height: 1; margin-top: 10px; color: #f0ebe6;
+    }
+    .section-header p { color: #a89890; font-size: 1.05rem; line-height: 1.7; max-width: 52ch; margin-top: 14px; }
+    .section-header-row { display: flex; align-items: flex-end; justify-content: space-between; gap: 24px; flex-wrap: wrap; }
+
+    .featured-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+    }
+    .food-card {
+      background: #1a1414;
+      border: 1px solid #2a2020;
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+      transition: transform .22s, box-shadow .22s;
+      cursor: pointer;
+    }
+    .food-card:hover { transform: translateY(-6px); box-shadow: 0 8px 32px rgba(200,50,26,.25); border-color: rgba(200,50,26,.4); }
+    .food-card-img {
+      aspect-ratio: 4/3;
+      overflow: hidden;
+      position: relative;
+      background: #1a1414;
+    }
+    .food-card-img img {
+      width: 100%; height: 100%;
+      object-fit: cover; object-position: center;
+      transition: transform .4s ease;
+    }
+    .food-card:hover .food-card-img img { transform: scale(1.06); }
+    .food-card-badge {
+      position: absolute; top: 12px; left: 12px;
+      background: var(--green); color: #fff;
+      font-size: .7rem; font-weight: 700; letter-spacing: .06em;
+      text-transform: uppercase; padding: 4px 10px; border-radius: 999px;
+    }
+    .food-card-body { padding: 18px 20px 20px; }
+    .food-card-body h3 { font-size: 1.05rem; font-weight: 700; margin-bottom: 6px; color: #f0ebe6; }
+    .food-card-body p { font-size: .875rem; color: #a89890; line-height: 1.5; margin-bottom: 14px; }
+    .food-card-footer { display: flex; align-items: center; justify-content: space-between; }
+    .food-card-price { font-weight: 800; font-size: 1.1rem; color: #f0ebe6; }
+    .food-card-add {
+      width: 36px; height: 36px; border-radius: 50%;
+      background: var(--green); color: #fff;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.3rem; font-weight: 300;
+      transition: transform .18s, background .18s;
+      cursor: pointer; border: none;
+    }
+    .food-card-add:hover { background: var(--green-dark); transform: scale(1.1) rotate(90deg); }
+
+    /* ─── FAMILY DEAL SECTION ──────────────────────────────────── */
+    .family-section { background: var(--dark); overflow: hidden; }
+    .family-inner {
+      display: grid; grid-template-columns: 1fr 1fr;
+      align-items: center; gap: 0; min-height: 560px;
+    }
+    .family-copy { padding: 80px 64px 80px 0; }
+    .family-copy .kicker { color: #e05040; }
+    .family-copy h2 {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 900; font-size: clamp(2.8rem, 4.5vw, 4.2rem);
+      text-transform: uppercase; letter-spacing: -.02em; line-height: .95;
+      color: #fff; margin: 12px 0 20px;
+    }
+    .family-copy h2 em { font-style: normal; color: #e05040; }
+    .family-copy p { color: rgba(255,255,255,.6); font-size: 1.05rem; line-height: 1.7; max-width: 44ch; margin-bottom: 32px; }
+    .family-checklist { list-style: none; display: flex; flex-direction: column; gap: 14px; margin-bottom: 36px; }
+    .family-checklist li {
+      display: flex; align-items: flex-start; gap: 14px;
+      color: rgba(255,255,255,.85); font-size: .95rem; line-height: 1.5;
+    }
+    .family-checklist li::before {
+      content: '✓';
+      flex-shrink: 0; width: 24px; height: 24px;
+      background: var(--green); color: #fff;
+      border-radius: 50%; display: flex; align-items: center; justify-content: center;
+      font-size: .75rem; font-weight: 900; margin-top: 1px;
+    }
+    .family-checklist strong { color: #fff; }
+    .family-price-tag {
+      display: inline-flex; align-items: baseline; gap: 6px;
+      margin-bottom: 28px;
+    }
+    .family-price-tag .amount {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 3.5rem; font-weight: 900; color: var(--green); line-height: 1;
+    }
+    .family-price-tag .label { color: rgba(255,255,255,.5); font-size: .9rem; }
+    .family-image {
+      position: relative; height: 100%; min-height: 560px;
+      overflow: hidden;
+    }
+    .family-image img { width: 100%; height: 100%; object-fit: cover; object-position: center; }
+    .family-image::before {
+      content: '';
+      position: absolute; inset: 0; z-index: 1;
+      background: linear-gradient(270deg, transparent 50%, #0a0a0a 100%);
     }
 
-    /* ── LOCATION ── */
-    .location-grid{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:start}
-    .map-wrap{overflow:hidden;border-radius:34px;border:1px solid rgba(255,255,255,.08);box-shadow:var(--shadow);min-height:460px;background:#111}
-    .map-wrap iframe{width:100%;height:100%;min-height:460px;border:0;filter:grayscale(.2) saturate(.9) contrast(1.05)}
-    .hours-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-    .hour-item{
-      display:flex;justify-content:space-between;gap:16px;padding:14px 16px;
-      background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);
-      border-radius:20px;color:var(--muted);
+    /* ─── REVIEWS SECTION ──────────────────────────────────────── */
+    .reviews-section { background: #141010; }
+    .reviews-header { text-align: center; margin-bottom: 56px; }
+    .reviews-header h2 {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 900; font-size: clamp(2.4rem, 4vw, 3.4rem);
+      text-transform: uppercase; letter-spacing: -.02em; line-height: 1;
+      margin: 10px 0 14px;
     }
-    .hour-item strong{color:var(--white-soft)}
+    .reviews-header p { color: var(--muted); font-size: 1rem; max-width: 48ch; margin-inline: auto; }
 
-    /* ── REVIEWS ── */
-    .review-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
-    .review{
-      background:linear-gradient(180deg,rgba(255,255,255,.055),rgba(255,255,255,.025));
-      border:1px solid rgba(255,255,255,.08);border-radius:28px;padding:22px;box-shadow:var(--shadow);
+    /* Reviewer avatars row */
+    .reviewer-row {
+      display: flex; justify-content: center; gap: 20px;
+      flex-wrap: wrap; margin-bottom: 48px;
     }
-    .stars{letter-spacing:.2em;color:#ffd39b;font-size:1rem;margin-bottom:14px}
-    .review p{margin:0 0 18px;color:var(--muted);line-height:1.78;max-height:130px;overflow:hidden}
-    .review footer{color:var(--white-soft);font-weight:700}
-    .review-meta{color:var(--muted-2);font-size:.9rem;margin-bottom:12px;line-height:1.65}
+    .reviewer-card {
+      display: flex; align-items: center; gap: 14px;
+      background: #1a1414; border-radius: var(--radius);
+      padding: 16px 20px;
+      box-shadow: var(--shadow-sm);
+      border: 1px solid #2a2020;
+      transition: transform .2s, box-shadow .2s;
+      cursor: pointer; text-decoration: none; color: #f0ebe6;
+      min-width: 200px;
+    }
+    .reviewer-card:hover { transform: translateY(-4px); box-shadow: var(--shadow); }
+    .reviewer-avatar {
+      position: relative; flex-shrink: 0;
+    }
+    .reviewer-avatar-ring {
+      width: 56px; height: 56px; border-radius: 50%; padding: 3px;
+      background: linear-gradient(135deg, #c8321a, #e05040, #f5c518);
+      box-shadow: 0 4px 14px rgba(200,50,26,.35);
+    }
+    .reviewer-avatar-ring img {
+      width: 100%; height: 100%;
+      border-radius: 50%; object-fit: cover; object-position: top;
+      border: 2px solid #1a1414;
+      display: block;
+    }
+    .reviewer-badge {
+      position: absolute; bottom: -3px; right: -3px;
+      background: var(--green); color: #fff;
+      font-size: .6rem; font-weight: 900;
+      padding: 2px 5px; border-radius: 999px;
+      border: 2px solid #fff; line-height: 1.2;
+    }
+    .reviewer-info strong { display: block; font-size: .95rem; font-weight: 700; }
+    .reviewer-stars { color: #f5c518; font-size: .85rem; letter-spacing: .05em; }
+    .reviewer-source { color: var(--muted-2); font-size: .75rem; margin-top: 2px; }
 
-    /* ── CTA BAND ── */
-    .cta-band{
-      position:relative;overflow:hidden;border-radius:36px;padding:34px;
-      border:1px solid rgba(255,255,255,.08);
-      background:linear-gradient(120deg,rgba(217,48,24,.17),rgba(255,91,46,.08)),
-        linear-gradient(180deg,rgba(255,255,255,.04),rgba(255,255,255,.02));
-      box-shadow:var(--shadow);display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;
+    /* Review cards grid */
+    .reviews-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
     }
-    .cta-band h3{margin:0 0 8px;font-size:clamp(1.6rem,3vw,2.5rem);letter-spacing:-.04em}
-    .cta-band p{margin:0;color:var(--muted);line-height:1.7;max-width:56ch}
-    .cta-actions{display:flex;flex-wrap:wrap;gap:12px}
+    .review-card {
+      background: #1a1414; border-radius: var(--radius);
+      padding: 28px; box-shadow: var(--shadow-sm);
+      border: 1px solid #2a2020;
+      display: flex; flex-direction: column; gap: 14px;
+    }
+    .review-stars { color: #f5c518; font-size: 1rem; letter-spacing: .05em; }
+    .review-text { color: #c8b8b0; font-size: .95rem; line-height: 1.7; flex: 1; }
+    .review-author { display: flex; align-items: center; gap: 10px; padding-top: 14px; border-top: 1px solid #2a2020; }
+    .review-author-avatar {
+      width: 36px; height: 36px; border-radius: 50%;
+      background: rgba(200,50,26,.2); color: #e05040;
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 800; font-size: .85rem; flex-shrink: 0;
+    }
+    .review-author-name { font-weight: 700; font-size: .875rem; color: #f0ebe6; }
+    .review-author-meta { color: var(--muted-2); font-size: .78rem; }
+    .reviews-cta { text-align: center; margin-top: 40px; }
 
-    /* ── FOOTER ── */
-    footer.site-footer{padding:28px 0 48px;color:var(--muted)}
-    .footer-grid{
-      display:flex;align-items:center;justify-content:space-between;gap:18px;flex-wrap:wrap;
-      padding-top:28px;border-top:1px solid rgba(255,255,255,.08);
+    /* ─── LOCATION SECTION ─────────────────────────────────────── */
+    .location-section { background: #0f0f0f; }
+    .location-inner {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 64px; align-items: center;
     }
-    .footer-links{display:flex;gap:16px;flex-wrap:wrap}
-    .footer-links a{color:var(--muted)}
-    .footer-links a:hover{color:var(--white-soft)}
+    .location-copy .kicker { margin-bottom: 12px; display: block; }
+    .location-copy h2 {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 900; font-size: clamp(2.4rem, 3.5vw, 3.2rem);
+      text-transform: uppercase; letter-spacing: -.02em; line-height: 1;
+      margin-bottom: 20px; color: #f0ebe6;
+    }
+    .location-copy p { color: #a89890; font-size: 1rem; line-height: 1.7; margin-bottom: 32px; }
+    .hours-table { width: 100%; border-collapse: collapse; margin-bottom: 32px; }
+    .hours-table tr { border-bottom: 1px solid #2a2020; }
+    .hours-table tr:last-child { border-bottom: none; }
+    .hours-table td { padding: 10px 0; font-size: .9rem; }
+    .hours-table td:first-child { font-weight: 600; color: #f0ebe6; }
+    .hours-table td:last-child { text-align: right; color: #a89890; }
+    .hours-table tr.today td { color: #e05040; font-weight: 700; }
+    .location-actions { display: flex; flex-wrap: wrap; gap: 12px; }
+    .location-map {
+      border-radius: var(--radius); overflow: hidden;
+      box-shadow: var(--shadow); aspect-ratio: 4/3;
+    }
+    .location-map iframe { width: 100%; height: 100%; border: none; display: block; }
 
-    /* ── REVEAL ── */
-    .reveal{opacity:0;transform:translateY(24px);transition:opacity .7s,transform .7s}
-    .reveal.in{opacity:1;transform:none}
+    /* ─── CTA BAND ─────────────────────────────────────────────── */
+    .cta-band {
+      background: #c8321a;
+      padding: 80px 0;
+      text-align: center;
+    }
+    .cta-band h2 {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 900; font-size: clamp(2.8rem, 5vw, 4.5rem);
+      text-transform: uppercase; letter-spacing: -.02em; line-height: .95;
+      color: #fff; margin-bottom: 16px;
+    }
+    .cta-band p { color: rgba(255,255,255,.75); font-size: 1.1rem; max-width: 44ch; margin-inline: auto; margin-bottom: 36px; }
+    .cta-band-actions { display: flex; justify-content: center; flex-wrap: wrap; gap: 14px; }
 
-    /* ── FLOATING ── */
-    .floating-order{position:fixed;right:18px;bottom:18px;z-index:70;display:flex;gap:10px;flex-wrap:wrap;justify-content:flex-end}
-    .floating-order a{
-      min-height:54px;display:inline-flex;align-items:center;justify-content:center;
-      padding:0 18px;border-radius:999px;font-weight:800;color:#fff;box-shadow:0 14px 28px rgba(0,0,0,.25);
+    /* ─── FOOTER ───────────────────────────────────────────────── */
+    footer {
+      background: #0a0a0a;
+      color: rgba(240,235,230,.45);
+      padding: 56px 0 32px;
+      border-top: 1px solid #2a1a16;
     }
-    .floating-order .call{background:linear-gradient(135deg,var(--brand),var(--brand-2))}
-    .floating-order .order{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.08);color:var(--white-soft);backdrop-filter:blur(14px)}
-    .mobile-bar{display:none}
+    .footer-inner {
+      display: grid; grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 48px; margin-bottom: 48px;
+    }
+    .footer-brand .nav-logo-text { color: #fff; font-size: 1.4rem; margin-bottom: 14px; display: block; }
+    .footer-brand p { font-size: .875rem; line-height: 1.7; max-width: 30ch; }
+    .footer-col h4 { color: #fff; font-size: .8rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; margin-bottom: 16px; }
+    .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .footer-col ul a { font-size: .875rem; transition: color .18s; }
+    .footer-col ul a:hover { color: #fff; }
+    .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,.08);
+      padding-top: 28px;
+      display: flex; justify-content: space-between; align-items: center;
+      flex-wrap: wrap; gap: 12px;
+    }
+    .footer-bottom p { font-size: .8rem; }
+    .footer-social { display: flex; gap: 12px; }
+    .footer-social a {
+      width: 36px; height: 36px; border-radius: 50%;
+      background: rgba(255,255,255,.08);
+      display: flex; align-items: center; justify-content: center;
+      color: rgba(255,255,255,.6); font-size: .85rem;
+      transition: background .18s, color .18s;
+    }
+    .footer-social a:hover { background: var(--green); color: #fff; }
 
-    /* ── RESPONSIVE ── */
-    @media(max-width:1100px){
-      .hero-inner,.story-grid,.featured-grid,.review-grid,.location-grid{grid-template-columns:1fr 1fr}
-      .hero-inner{align-items:start}
-      .hero-copy{padding-top:16px}
-      .hero-side{grid-column:1/-1}
+    /* ─── MOBILE BOTTOM BAR ────────────────────────────────────── */
+    .mobile-bar {
+      display: none;
+      position: fixed; bottom: 0; left: 0; right: 0; z-index: 90;
+      background: #0a0a0a; border-top: 1px solid #2a1a16;
+      padding: 12px 20px; gap: 10px;
     }
-    @media(max-width:820px){
-      .nav{align-items:center;padding:14px 0}
-      .menu-toggle{display:block}
-      .nav-links{
-        position:absolute;top:calc(100% + 8px);right:0;left:0;width:100%;
-        justify-content:flex-start;flex-direction:column;align-items:stretch;
-        gap:10px;padding:16px;background:rgba(11,11,11,.98);
-        border:1px solid rgba(255,255,255,.08);border-radius:18px;
-        box-shadow:0 18px 36px rgba(0,0,0,.35);display:none;z-index:120;
-      }
-      .nav-links.active{display:flex}
-      .nav-links a{width:100%;justify-content:flex-start;padding:14px 16px;font-size:1rem;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.05)}
-      .nav-cta{justify-content:center}
-      .hero{min-height:auto;padding-top:16px}
-      .hero-media{inset:12px}
-      .hero-inner,.featured-grid,.story-grid,.review-grid,.location-grid{grid-template-columns:1fr}
-      .mini-grid,.hours-grid{grid-template-columns:1fr}
-      .section{padding:72px 0}
-      .card,.story-panel,.cta-band{border-radius:26px}
-      .floating-order{display:none}
-      .mobile-bar{
-        position:fixed;bottom:0;left:0;right:0;display:flex;
-        background:#0b0b0b;border-top:1px solid rgba(255,255,255,.1);z-index:999;
-      }
-      .mobile-bar a{flex:1;padding:14px 10px;text-align:center;color:#fff;font-weight:700;font-size:.95rem}
-      .mobile-bar .order{background:linear-gradient(135deg,var(--brand),var(--brand-2))}
-      body{padding-bottom:60px}
+    .mobile-bar .btn { flex: 1; padding: 14px 16px; font-size: .9rem; }
+
+    /* ─── SCROLL REVEAL ────────────────────────────────────────── */
+    .reveal { opacity: 0; transform: translateY(28px); transition: opacity .6s ease, transform .6s ease; }
+    .reveal.visible { opacity: 1; transform: none; }
+
+    /* ─── RESPONSIVE ───────────────────────────────────────────── */
+    @media (max-width: 1024px) {
+      .featured-grid { grid-template-columns: repeat(2, 1fr); }
+      .footer-inner { grid-template-columns: 1fr 1fr; }
     }
-    @media(max-width:560px){
-      .container{width:min(var(--max),calc(100% - 20px))}
-      .brand img{width:48px;height:48px}
-      .nav-cta{padding:11px 14px}
-      h1{max-width:10ch}
-      .hero-copy p,.section-sub,.card p,.review p,.cta-band p{font-size:.98rem}
-      .btn{width:100%}
-      .hero-actions{display:grid;grid-template-columns:1fr}
-      .cta-actions{width:100%}
-      .cta-actions .btn{width:auto;flex:1}
+    @media (max-width: 768px) {
+      :root { --nav-h: 64px; }
+      .hero { grid-template-columns: 1fr; min-height: auto; }
+      .hero-copy { padding: 56px 24px 40px; }
+      .hero h1 { font-size: 3rem; }
+      .hero-image { min-height: 300px; }
+      .hero-image::after { background: linear-gradient(180deg, var(--dark) 0%, transparent 30%); }
+      .family-inner { grid-template-columns: 1fr; }
+      .family-copy { padding: 56px 0 40px; }
+      .family-image { min-height: 300px; }
+      .family-image::before { background: linear-gradient(180deg, var(--dark) 0%, transparent 40%); }
+      .location-inner { grid-template-columns: 1fr; }
+      .reviews-grid { grid-template-columns: 1fr; }
+      .featured-grid { grid-template-columns: 1fr 1fr; gap: 14px; }
+      .nav-links, .nav-cta { display: none; }
+      .nav-hamburger { display: flex; }
+      .mobile-bar { display: flex; }
+      body { padding-bottom: 72px; }
+      .section { padding: 64px 0; }
+      .footer-inner { grid-template-columns: 1fr; gap: 32px; }
+      .reviewer-card { min-width: 160px; }
+    }
+    @media (max-width: 480px) {
+      .featured-grid { grid-template-columns: 1fr; }
+      .hero h1 { font-size: 2.6rem; }
     }
   </style>
 </head>
-<body class="grain">
+<body>
 
-  <!-- HEADER -->
-  <header class="site-header" id="siteHeader">
-    <div class="container nav">
-      <a class="brand" href="#top" aria-label="Annie Lee's Southern Kitchen home">
-        <img src="assets/logo.png" alt="Annie Lee's Southern Kitchen logo" />
-        <div class="brand-copy">
-          <p class="brand-kicker">Soul food · Ambridge</p>
-          <p class="brand-title">Annie Lee's Southern Kitchen</p>
-        </div>
+  <!-- ANNOUNCEMENT BAR -->
+  <div class="announce-bar">
+    🔥 Now serving Ambridge, PA &mdash; Call ahead for faster pickup: <a href="tel:+17243850522">724-385-0522</a>
+  </div>
+
+  <!-- NAV -->
+  <nav class="site-nav" id="site-nav">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">
+        <img src="assets/logo.png" alt="Annie Lee's Southern Kitchen logo" onerror="this.style.display='none'" />
+        <span class="nav-logo-text">Annie Lee's<br>Southern Kitchen</span>
       </a>
-      <div class="nav-right">
-        <div class="menu-toggle" id="menuToggle" aria-label="Open menu" aria-expanded="false" aria-controls="mainNav">&#9776;</div>
-        <nav class="nav-links" id="mainNav" aria-label="Main navigation">
-          <a href="#featured">Favorites</a>
-          <a href="menu.html">Menu</a>
-          <a href="#location">Location</a>
-          <a href="#reviews">Reviews</a>
-          <a class="nav-cta" href="tel:+17243850522">Call to Order</a>
-        </nav>
+      <ul class="nav-links">
+        <li><a href="index.html" class="active">Home</a></li>
+        <li><a href="menu.html">Menu</a></li>
+        <li><a href="#featured">Favorites</a></li>
+        <li><a href="#family">Family Deal</a></li>
+        <li><a href="#location">Location</a></li>
+      </ul>
+      <div class="nav-cta">
+        <a href="tel:+17243850522" class="nav-phone">📞 724-385-0522</a>
+        <a href="menu.html" class="btn btn-green" style="padding:10px 20px;font-size:.875rem;">Order Now</a>
+      </div>
+      <button class="nav-hamburger" id="hamburger" aria-label="Open menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- MOBILE NAV -->
+  <div class="mobile-nav" id="mobile-nav">
+    <div class="mobile-nav-header">
+      <span class="nav-logo-text" style="color:#fff">Annie Lee's Southern Kitchen</span>
+      <button class="mobile-nav-close" id="nav-close">✕</button>
+    </div>
+    <ul class="mobile-nav-links">
+      <li><a href="index.html" onclick="closeMobileNav()">Home</a></li>
+      <li><a href="menu.html" onclick="closeMobileNav()">Menu</a></li>
+      <li><a href="#featured" onclick="closeMobileNav()">Favorites</a></li>
+      <li><a href="#family" onclick="closeMobileNav()">Family Deal</a></li>
+      <li><a href="#location" onclick="closeMobileNav()">Location</a></li>
+    </ul>
+    <div class="mobile-nav-bottom">
+      <a href="menu.html" class="btn btn-green btn-lg">Order Now</a>
+      <a href="tel:+17243850522" class="btn btn-outline-white btn-lg">Call 724-385-0522</a>
+    </div>
+  </div>
+
+  <!-- HERO -->
+  <section class="hero" id="home">
+    <div class="hero-copy">
+      <div class="hero-eyebrow">Now Open in Ambridge, PA</div>
+      <h1>Soul food made right,<br><em>just like home.</em></h1>
+      <p class="hero-sub">Hot, fresh, and made to order&mdash;crispy whole wings, tender ribs, fried fish, baked mac &amp; cheese, and collard greens that don't miss. If you're hungry for real food, this is where you go.</p>
+      <div class="hero-actions">
+        <a href="menu.html" class="btn btn-green btn-lg">Order Now</a>
+        <a href="tel:+17243850522" class="btn btn-outline-white btn-lg">Call to Order</a>
+        <a href="#featured" class="btn btn-outline-white btn-lg">See Menu</a>
+      </div>
+      <p class="hero-trust">Most orders ready in 15&ndash;20 minutes</p>
+    </div>
+    <div class="hero-image">
+      <img src="assets/food-gallery-1.jpg" alt="Annie Lee's Southern Kitchen food spread" />
+      <div class="hero-badge">
+        <div class="price">$18</div>
+        <div class="label">6 Wings w/ 2 Sides</div>
       </div>
     </div>
-  </header>
+  </section>
 
-  <main id="top">
+  <!-- MARQUEE -->
+  <div class="marquee-wrap">
+    <div class="marquee-track">
+      <!-- duplicated for seamless loop -->
+      <span class="marquee-item">Crispy Whole Wings <span class="marquee-dot"></span></span>
+      <span class="marquee-item">Slow-Smoked Ribs <span class="marquee-dot"></span></span>
+      <span class="marquee-item">Fried Fish Dinners <span class="marquee-dot"></span></span>
+      <span class="marquee-item">Baked Mac &amp; Cheese <span class="marquee-dot"></span></span>
+      <span class="marquee-item">Collard Greens <span class="marquee-dot"></span></span>
+      <span class="marquee-item">Candied Yams <span class="marquee-dot"></span></span>
+      <span class="marquee-item">Potato Salad <span class="marquee-dot"></span></span>
+      <span class="marquee-item">Cornbread <span class="marquee-dot"></span></span>
+      <span class="marquee-item">Crispy Whole Wings <span class="marquee-dot"></span></span>
+      <span class="marquee-item">Slow-Smoked Ribs <span class="marquee-dot"></span></span>
+      <span class="marquee-item">Fried Fish Dinners <span class="marquee-dot"></span></span>
+      <span class="marquee-item">Baked Mac &amp; Cheese <span class="marquee-dot"></span></span>
+      <span class="marquee-item">Collard Greens <span class="marquee-dot"></span></span>
+      <span class="marquee-item">Candied Yams <span class="marquee-dot"></span></span>
+      <span class="marquee-item">Potato Salad <span class="marquee-dot"></span></span>
+      <span class="marquee-item">Cornbread <span class="marquee-dot"></span></span>
+    </div>
+  </div>
 
-    <!-- HERO -->
-    <section class="hero">
-      <div class="hero-media">
-        <img class="hero-poster" src="assets/food-gallery-5.jpg" alt="Southern comfort food spread" />
+  <!-- FEATURED -->
+  <section class="section featured-section" id="featured">
+    <div class="container">
+      <div class="section-header-row section-header reveal">
+        <div>
+          <span class="kicker">Featured favorites</span>
+          <h2>Customer favorites that never miss.</h2>
+          <p>If you're not sure what to get, start here. These are the plates people order again and again.</p>
+        </div>
+        <a href="menu.html" class="btn btn-dark">Full Menu &rarr;</a>
       </div>
-      <div class="container hero-inner">
-        <div class="hero-copy reveal">
-          <div class="eyebrow"><span class="dot"></span>Now serving Ambridge, PA</div>
-          <h1>Soul food made right, just like home.</h1>
-          <p>Hot, fresh, and made to order&mdash;crispy whole wings, tender ribs, fried fish, baked mac &amp; cheese, and collard greens that don't miss. If you're hungry for real food, this is where you go.</p>
-          <div class="hero-actions">
-            <a class="btn btn-primary" href="menu.html">Order Now</a>
-            <a class="btn btn-secondary" href="tel:+17243850522">Call 724-385-0522</a>
-            <a class="btn btn-secondary" href="menu.html">See Full Menu</a>
+      <div class="featured-grid">
+        <div class="food-card reveal">
+          <div class="food-card-img">
+            <img src="assets/wings-6-2-sides.png" alt="6 Wings with 2 Sides" loading="lazy" />
+            <span class="food-card-badge">Best Seller</span>
           </div>
-          <p style="margin-top:10px;color:#a9958c;font-size:.9rem;">Most orders are ready in 15&ndash;20 minutes.</p>
-        </div>
-        <div class="hero-side">
-          <div class="card reveal">
-            <h3>Our wing dinners keep people coming back</h3>
-            <p>Crispy whole wings, two sides, and a full plate that actually fills you up. It's the go-to order for a reason.</p>
-          </div>
-          <div class="mini-grid">
-            <div class="stat reveal">
-              <div class="stat-label">Top Comfort Picks</div>
-              <div class="stat-value">Wings · Ribs · Fish</div>
-            </div>
-            <div class="stat reveal">
-              <div class="stat-label">Order Flow</div>
-              <div class="stat-value">Menu &rarr; Pay &rarr; Pickup</div>
+          <div class="food-card-body">
+            <h3>6 Wings w/ 2 Sides</h3>
+            <p>Crispy whole wings with two sides&mdash;hot, fresh, and made to satisfy every time.</p>
+            <div class="food-card-footer">
+              <span class="food-card-price">$18</span>
+              <button class="food-card-add" onclick="window.location='menu.html'" aria-label="Add to order">+</button>
             </div>
           </div>
         </div>
-      </div>
-    </section>
-
-    <!-- FEATURED -->
-    <section class="section" id="featured">
-      <div class="container">
-        <div class="section-head reveal">
-          <div>
-            <span class="section-kicker">Featured favorites</span>
-            <h2>Customer favorites that never miss.</h2>
-            <p class="section-sub">If you're not sure what to get, start here. These are the plates people order again and again.</p>
+        <div class="food-card reveal">
+          <div class="food-card-img">
+            <img src="assets/ribs-half-slab-2-sides.png" alt="Half Slab Ribs with 2 Sides" loading="lazy" />
+            <span class="food-card-badge">Hearty</span>
+          </div>
+          <div class="food-card-body">
+            <h3>Half Slab w/ 2 Sides</h3>
+            <p>Slow-cooked, tender ribs with two sides&mdash;full of flavor and built to fill you up.</p>
+            <div class="food-card-footer">
+              <span class="food-card-price">$25</span>
+              <button class="food-card-add" onclick="window.location='menu.html'" aria-label="Add to order">+</button>
+            </div>
           </div>
         </div>
-        <div class="featured-grid">
-          <article class="feature reveal">
-            <div class="feature-media">
-              <img src="assets/wings-6-2-sides.png" alt="6 wings with 2 sides" />
-              <span class="feature-badge">Best seller</span>
+        <div class="food-card reveal">
+          <div class="food-card-img">
+            <img src="assets/fish-dinner.png" alt="Fish Dinner" loading="lazy" />
+            <span class="food-card-badge">Fan Favorite</span>
+          </div>
+          <div class="food-card-body">
+            <h3>Fish Dinner</h3>
+            <p>Golden fried fish served hot with classic sides&mdash;simple, fresh, and done right.</p>
+            <div class="food-card-footer">
+              <span class="food-card-price">$16</span>
+              <button class="food-card-add" onclick="window.location='menu.html'" aria-label="Add to order">+</button>
             </div>
-            <div class="feature-copy">
-              <h3>6 Wings w/ 2 Sides</h3>
-              <p>Crispy whole wings with two sides&mdash;hot, fresh, and made to satisfy every time.</p>
-              <div class="price-row"><span>$18</span><span class="line"></span><span>Top pick</span></div>
-            </div>
-          </article>
-          <article class="feature reveal">
-            <div class="feature-media">
-              <img src="assets/ribs-half-slab-2-sides.png" alt="Half slab ribs with 2 sides" />
-              <span class="feature-badge">Hearty</span>
-            </div>
-            <div class="feature-copy">
-              <h3>Half Slab w/ 2 Sides</h3>
-              <p>Slow-cooked, tender ribs with two sides&mdash;full of flavor and built to fill you up.</p>
-              <div class="price-row"><span>$25</span><span class="line"></span><span>Rib dinner</span></div>
-            </div>
-          </article>
-          <article class="feature reveal">
-            <div class="feature-media">
-              <img src="assets/fish-dinner.png" alt="Fried fish dinner" />
-              <span class="feature-badge">Fan favorite</span>
-            </div>
-            <div class="feature-copy">
-              <h3>Fish Dinner</h3>
-              <p>Golden fried fish served hot with classic sides&mdash;simple, fresh, and done right.</p>
-              <div class="price-row"><span>$16</span><span class="line"></span><span>Most liked</span></div>
-            </div>
-          </article>
-          <article class="feature reveal">
-            <div class="feature-media">
-              <img src="assets/mac-cheese-sm.png" alt="Baked mac and cheese" />
-              <span class="feature-badge">Add-on king</span>
-            </div>
-            <div class="feature-copy">
-              <h3>Baked Mac &amp; Cheese</h3>
-              <p>Rich, creamy, baked mac &amp; cheese&mdash;the side everyone ends up ordering.</p>
-              <div class="price-row"><span>Sm $4 &middot; Lg $7</span><span class="line"></span><span>Classic</span></div>
-            </div>
-          </article>
+          </div>
         </div>
-        <div style="text-align:center;margin-top:50px">
-          <a class="btn btn-primary" href="menu.html" style="font-size:1.1rem;padding:16px 28px">View Full Menu &amp; Order &rarr;</a>
+        <div class="food-card reveal">
+          <div class="food-card-img">
+            <img src="assets/mac-cheese-lg.png" alt="Large Baked Mac and Cheese" loading="lazy" />
+            <span class="food-card-badge">Add-On King</span>
+          </div>
+          <div class="food-card-body">
+            <h3>Baked Mac &amp; Cheese</h3>
+            <p>Rich, creamy, baked mac &amp; cheese&mdash;the side everyone ends up ordering.</p>
+            <div class="food-card-footer">
+              <span class="food-card-price">Sm $4 &middot; Lg $7</span>
+              <button class="food-card-add" onclick="window.location='menu.html'" aria-label="Add to order">+</button>
+            </div>
+          </div>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- STORY + REVIEWS -->
-    <section class="section" id="story">
-      <div class="container story-grid">
-
-        <div class="story-panel reveal" style="padding:0;overflow:hidden;">
-          <!-- Family Feast photo -->
-          <div style="position:relative;width:100%;aspect-ratio:16/9;overflow:hidden;flex-shrink:0;">
-            <img src="assets/family-feast-wings-ribs-mac.png" alt="Family Feast: wings, ribs, and large mac and cheese" style="width:100%;height:100%;object-fit:cover;display:block;" />
-            <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.08) 0%,rgba(0,0,0,.55) 100%);"></div>
-            <div style="position:absolute;bottom:16px;left:20px;right:20px;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;">
-              <span style="background:linear-gradient(135deg,#d93018,#ff5b2e);color:#fff;font-weight:900;font-size:1.45rem;padding:8px 18px;border-radius:999px;letter-spacing:-.02em;box-shadow:0 8px 20px rgba(217,48,24,.4);">$49.97</span>
-              <span style="background:rgba(7,7,7,.6);border:1px solid rgba(255,255,255,.12);color:#fffaf6;font-size:.82rem;font-weight:700;padding:7px 13px;border-radius:999px;letter-spacing:.06em;text-transform:uppercase;">Family Feast Deal</span>
-            </div>
+  <!-- FAMILY DEAL -->
+  <section class="family-section" id="family">
+    <div class="container">
+      <div class="family-inner">
+        <div class="family-copy reveal">
+          <span class="kicker">Family meals</span>
+          <h2>Feed everyone<br>for <em>under $50.</em></h2>
+          <p>Plenty of food for the table&mdash;perfect for family, friends, or when you're really hungry.</p>
+          <div class="family-price-tag">
+            <span class="amount">$49.97</span>
+            <span class="label">family feast deal</span>
           </div>
-          <!-- Copy -->
-          <div style="padding:26px 28px 28px;display:flex;flex-direction:column;flex:1;">
-            <span class="section-kicker">Family meals</span>
-            <h3 style="margin:6px 0 10px;">Feed everyone for under $50.</h3>
-            <p>Plenty of food for the table&mdash;perfect for family, friends, or when you're really hungry.</p>
-            <ul class="list" style="margin-top:16px;">
-              <li><span>&#10003;</span><strong>6 Wings w/ 2 Sides</strong> &mdash; crispy whole wings, your choice of 2 small sides</li>
-              <li><span>&#10003;</span><strong>Half Slab w/ 2 Sides</strong> &mdash; smoky tender ribs with 2 small sides</li>
-              <li><span>&#10003;</span><strong>Large Baked Mac &amp; Cheese</strong> &mdash; rich, creamy, baked to perfection</li>
-            </ul>
-            <div style="margin-top:auto;padding-top:22px;display:flex;flex-wrap:wrap;gap:12px;">
-              <a class="btn btn-primary" href="tel:+17243850522" style="flex:1;min-width:160px;">Call to Order &rarr;</a>
-              <a class="btn btn-secondary" href="menu.html" style="flex:1;min-width:140px;">Full Menu</a>
-            </div>
+          <ul class="family-checklist">
+            <li><span><strong>6 Wings w/ 2 Sides</strong> &mdash; crispy whole wings, your choice of 2 small sides</span></li>
+            <li><span><strong>Half Slab w/ 2 Sides</strong> &mdash; smoky tender ribs with 2 small sides</span></li>
+            <li><span><strong>Large Baked Mac &amp; Cheese</strong> &mdash; rich, creamy, baked to perfection</span></li>
+          </ul>
+          <div style="display:flex;flex-wrap:wrap;gap:12px;">
+            <a href="tel:+17243850522" class="btn btn-green btn-lg">Call to Order &rarr;</a>
+            <a href="menu.html" class="btn btn-outline-white">Full Menu</a>
           </div>
         </div>
-
-        <div class="story-panel reveal">
-          <span class="section-kicker">What people say</span>
-          <h3>People don't just try it&mdash;they come back.</h3>
-          <p>Real customers. Real meals. Real reasons this spot stays busy.</p>
-
-          <!-- Reviewer avatars grid -->
-          <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:22px">
-
-            <a href="https://www.yelp.com/biz/annie-lees-southern-kitchen-ambridge" target="_blank" rel="noopener"
-               style="text-decoration:none;display:flex;align-items:center;gap:14px;padding:14px 16px;
-                      background:linear-gradient(135deg,rgba(255,255,255,.06),rgba(255,255,255,.02));
-                      border:1px solid rgba(255,255,255,.1);border-radius:20px;
-                      transition:transform .22s,border-color .22s,box-shadow .22s;"
-               onmouseover="this.style.transform='translateY(-3px)';this.style.borderColor='rgba(255,91,46,.45)';this.style.boxShadow='0 12px 28px rgba(217,48,24,.22)'"
-               onmouseout="this.style.transform='';this.style.borderColor='rgba(255,255,255,.1)';this.style.boxShadow=''">
-              <div style="position:relative;flex-shrink:0">
-                <div style="width:58px;height:58px;border-radius:50%;padding:3px;
-                            background:linear-gradient(135deg,#d93018,#ff5b2e,#ffd39b);
-                            box-shadow:0 0 0 3px rgba(217,48,24,.18),0 6px 18px rgba(0,0,0,.4);">
-                  <img src="assets/reviewer1.jpg" alt="Celeta S."
-                       style="width:100%;height:100%;border-radius:50%;object-fit:cover;object-position:top;display:block;border:2px solid #0a0a0a;">
-                </div>
-                <span style="position:absolute;bottom:-4px;right:-4px;background:linear-gradient(135deg,#d93018,#ff5b2e);
-                             color:#fff;font-size:.65rem;font-weight:900;padding:3px 6px;
-                             border-radius:999px;border:2px solid #0a0a0a;line-height:1;">&#9733;5</span>
-              </div>
-              <div><strong style="color:#fffaf6;font-size:.95rem">Celeta S.</strong>
-                <div style="color:#ffd39b;font-size:.85rem;letter-spacing:.08em">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-                <div style="color:#a9958c;font-size:.78rem;margin-top:2px">Yelp reviewer</div></div>
-            </a>
-
-            <a href="https://www.yelp.com/biz/annie-lees-southern-kitchen-ambridge" target="_blank" rel="noopener"
-               style="text-decoration:none;display:flex;align-items:center;gap:14px;padding:14px 16px;
-                      background:linear-gradient(135deg,rgba(255,255,255,.06),rgba(255,255,255,.02));
-                      border:1px solid rgba(255,255,255,.1);border-radius:20px;
-                      transition:transform .22s,border-color .22s,box-shadow .22s;"
-               onmouseover="this.style.transform='translateY(-3px)';this.style.borderColor='rgba(255,91,46,.45)';this.style.boxShadow='0 12px 28px rgba(217,48,24,.22)'"
-               onmouseout="this.style.transform='';this.style.borderColor='rgba(255,255,255,.1)';this.style.boxShadow=''">
-              <div style="position:relative;flex-shrink:0">
-                <div style="width:58px;height:58px;border-radius:50%;padding:3px;
-                            background:linear-gradient(135deg,#d93018,#ff5b2e,#ffd39b);
-                            box-shadow:0 0 0 3px rgba(217,48,24,.18),0 6px 18px rgba(0,0,0,.4);">
-                  <img src="assets/reviewer2.jpg" alt="Wascally W."
-                       style="width:100%;height:100%;border-radius:50%;object-fit:cover;object-position:top;display:block;border:2px solid #0a0a0a;">
-                </div>
-                <span style="position:absolute;bottom:-4px;right:-4px;background:linear-gradient(135deg,#d93018,#ff5b2e);
-                             color:#fff;font-size:.65rem;font-weight:900;padding:3px 6px;
-                             border-radius:999px;border:2px solid #0a0a0a;line-height:1;">&#9733;5</span>
-              </div>
-              <div><strong style="color:#fffaf6;font-size:.95rem">Wascally W.</strong>
-                <div style="color:#ffd39b;font-size:.85rem;letter-spacing:.08em">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-                <div style="color:#a9958c;font-size:.78rem;margin-top:2px">Yelp reviewer</div></div>
-            </a>
-
-            <a href="https://www.yelp.com/biz/annie-lees-southern-kitchen-ambridge" target="_blank" rel="noopener"
-               style="text-decoration:none;display:flex;align-items:center;gap:14px;padding:14px 16px;
-                      background:linear-gradient(135deg,rgba(255,255,255,.06),rgba(255,255,255,.02));
-                      border:1px solid rgba(255,255,255,.1);border-radius:20px;
-                      transition:transform .22s,border-color .22s,box-shadow .22s;"
-               onmouseover="this.style.transform='translateY(-3px)';this.style.borderColor='rgba(255,91,46,.45)';this.style.boxShadow='0 12px 28px rgba(217,48,24,.22)'"
-               onmouseout="this.style.transform='';this.style.borderColor='rgba(255,255,255,.1)';this.style.boxShadow=''">
-              <div style="position:relative;flex-shrink:0">
-                <div style="width:58px;height:58px;border-radius:50%;padding:3px;
-                            background:linear-gradient(135deg,#d93018,#ff5b2e,#ffd39b);
-                            box-shadow:0 0 0 3px rgba(217,48,24,.18),0 6px 18px rgba(0,0,0,.4);">
-                  <img src="assets/reviewer3.jpg" alt="David B."
-                       style="width:100%;height:100%;border-radius:50%;object-fit:cover;object-position:top;display:block;border:2px solid #0a0a0a;">
-                </div>
-                <span style="position:absolute;bottom:-4px;right:-4px;background:linear-gradient(135deg,#d93018,#ff5b2e);
-                             color:#fff;font-size:.65rem;font-weight:900;padding:3px 6px;
-                             border-radius:999px;border:2px solid #0a0a0a;line-height:1;">&#9733;5</span>
-              </div>
-              <div><strong style="color:#fffaf6;font-size:.95rem">David B.</strong>
-                <div style="color:#ffd39b;font-size:.85rem;letter-spacing:.08em">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-                <div style="color:#a9958c;font-size:.78rem;margin-top:2px">Yelp reviewer</div></div>
-            </a>
-
-            <a href="https://www.yelp.com/biz/annie-lees-southern-kitchen-ambridge" target="_blank" rel="noopener"
-               style="text-decoration:none;display:flex;align-items:center;gap:14px;padding:14px 16px;
-                      background:linear-gradient(135deg,rgba(255,255,255,.06),rgba(255,255,255,.02));
-                      border:1px solid rgba(255,255,255,.1);border-radius:20px;
-                      transition:transform .22s,border-color .22s,box-shadow .22s;"
-               onmouseover="this.style.transform='translateY(-3px)';this.style.borderColor='rgba(255,91,46,.45)';this.style.boxShadow='0 12px 28px rgba(217,48,24,.22)'"
-               onmouseout="this.style.transform='';this.style.borderColor='rgba(255,255,255,.1)';this.style.boxShadow=''">
-              <div style="position:relative;flex-shrink:0">
-                <div style="width:58px;height:58px;border-radius:50%;padding:3px;
-                            background:linear-gradient(135deg,#d93018,#ff5b2e,#ffd39b);
-                            box-shadow:0 0 0 3px rgba(217,48,24,.18),0 6px 18px rgba(0,0,0,.4);">
-                  <img src="assets/reviewer4.jpg" alt="Lisa A."
-                       style="width:100%;height:100%;border-radius:50%;object-fit:cover;object-position:top;display:block;border:2px solid #0a0a0a;">
-                </div>
-                <span style="position:absolute;bottom:-4px;right:-4px;background:linear-gradient(135deg,#d93018,#ff5b2e);
-                             color:#fff;font-size:.65rem;font-weight:900;padding:3px 6px;
-                             border-radius:999px;border:2px solid #0a0a0a;line-height:1;">&#9733;5</span>
-              </div>
-              <div><strong style="color:#fffaf6;font-size:.95rem">Lisa A.</strong>
-                <div style="color:#ffd39b;font-size:.85rem;letter-spacing:.08em">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-                <div style="color:#a9958c;font-size:.78rem;margin-top:2px">Yelp reviewer</div></div>
-            </a>
-
-          </div>
-
-          <div class="hero-actions" style="margin-top:20px">
-            <a class="btn btn-primary" href="menu.html">Order Now</a>
-            <a class="btn btn-secondary" href="https://www.yelp.com/biz/annie-lees-southern-kitchen-ambridge" target="_blank" rel="noopener">See Yelp Reviews</a>
-          </div>
-
-          <div class="review-grid" id="reviews" style="margin-top:24px">
-            <article class="review reveal">
-              <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-              <div class="review-meta">Nurlan I. &middot; Aliquippa, PA &middot; Feb 10, 2026</div>
-              <p>Exceptional dining experience with outstanding flavors, fresh ingredients and beautiful presentation supported by attentive service and warm atmosphere making the meal memorable and worth returning for often.</p>
-              <footer>Yelp review</footer>
-            </article>
-            <article class="review reveal">
-              <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-              <div class="review-meta">Kelsey O. &middot; Beaver, PA &middot; Aug 29, 2025</div>
-              <p>They always great food, good ambiance, and friendly service. Anytime you can get it is always worth it.</p>
-              <footer>Yelp review</footer>
-            </article>
-            <article class="review reveal">
-              <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-              <div class="review-meta">Gary N. &middot; Pittsburgh, PA &middot; Jun 1, 2024</div>
-              <p>First time visiting today, and it was awesome! I ordered the fried catfish with mac &amp; cheese and potato salad. The catfish and mac &amp; cheese ranked as some of the best I've ever eaten. Nice sized portions. Clean, casual environment.</p>
-              <footer>Yelp review</footer>
-            </article>
-            <article class="review reveal">
-              <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-              <div class="review-meta">Lisa A. &middot; Ambridge, PA</div>
-              <p>The wings are incredible &mdash; crispy outside, juicy inside. The collard greens are top tier. This is my go-to spot every week without fail.</p>
-              <footer>Yelp review</footer>
-            </article>
-          </div>
+        <div class="family-image">
+          <img src="assets/family-feast-wings-ribs-mac.png" alt="Family Feast: wings, ribs, and large mac and cheese" loading="lazy" />
         </div>
-
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- LOCATION -->
-    <section class="section" id="location">
-      <div class="container">
-        <div class="section-head reveal">
-          <div>
-            <span class="section-kicker">Find us</span>
-            <h2>Right here in Ambridge.</h2>
-            <p class="section-sub">1601 Duss Ave. Easy to find, easy to order, and always worth the stop.</p>
-          </div>
-          <a class="btn btn-secondary" href="https://maps.google.com/?q=1601+Duss+Ave,+Ambridge,+PA+15003" target="_blank" rel="noopener">Get Directions</a>
-        </div>
-
-        <div class="location-grid">
-          <div class="map-wrap reveal">
-            <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3031.5!2d-80.2274!3d40.5897!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8834f3e1b1b1b1b1%3A0x1!2s1601+Duss+Ave%2C+Ambridge%2C+PA+15003!5e0!3m2!1sen!2sus!4v1"
-              allowfullscreen=""
-              loading="lazy"
-              referrerpolicy="no-referrer-when-downgrade"
-              title="Annie Lee's Southern Kitchen map"
-            ></iframe>
-          </div>
-
-          <div class="reveal" style="display:flex;flex-direction:column;gap:20px">
-            <div class="card">
-              <h3>Hours</h3>
-              <div class="hours-grid" style="margin-top:12px">
-                <div class="hour-item"><strong>Mon</strong><span>Closed</span></div>
-                <div class="hour-item"><strong>Tue</strong><span>11am &ndash; 7pm</span></div>
-                <div class="hour-item"><strong>Wed</strong><span>11am &ndash; 7pm</span></div>
-                <div class="hour-item"><strong>Thu</strong><span>11am &ndash; 7pm</span></div>
-                <div class="hour-item"><strong>Fri</strong><span>11am &ndash; 8pm</span></div>
-                <div class="hour-item"><strong>Sat</strong><span>11am &ndash; 8pm</span></div>
-                <div class="hour-item"><strong>Sun</strong><span>12pm &ndash; 6pm</span></div>
-              </div>
-              <p style="margin-top:14px;font-size:.88rem;color:var(--muted-2)">Hours may vary &mdash; call ahead to confirm.</p>
-            </div>
-            <div class="card">
-              <h3>Contact &amp; Address</h3>
-              <p style="margin-top:8px"><strong style="color:var(--white-soft)">1601 Duss Ave</strong><br>Ambridge, PA 15003</p>
-              <div style="display:flex;flex-direction:column;gap:10px;margin-top:16px">
-                <a href="tel:+17243850522" class="btn btn-primary" style="min-height:48px">Call 724-385-0522</a>
-                <a href="menu.html" class="btn btn-secondary" style="min-height:48px">View Menu &amp; Order</a>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="cta-band reveal" style="margin-top:56px">
-          <div>
-          <h3>Hungry? Let's fix that.</h3>
-          <p>Pick your plate, call it in, and we'll have it ready when you get here.</p>
-          </div>
-          <div class="cta-actions">
-            <a class="btn btn-primary" href="menu.html">View Full Menu</a>
-            <a class="btn btn-secondary" href="tel:+17243850522">Call Now</a>
-          </div>
-        </div>
-
+  <!-- REVIEWS -->
+  <section class="section reviews-section" id="reviews">
+    <div class="container">
+      <div class="reviews-header reveal">
+        <span class="kicker">What people say</span>
+        <h2>People don't just try it&mdash;they come back.</h2>
+        <p>Real customers. Real meals. Real reasons this spot stays busy.</p>
       </div>
-    </section>
 
-  </main>
+      <div class="reviewer-row reveal">
+        <a href="https://www.yelp.com/biz/annie-lees-southern-kitchen-ambridge" target="_blank" rel="noopener" class="reviewer-card">
+          <div class="reviewer-avatar">
+            <div class="reviewer-avatar-ring">
+              <img src="assets/reviewer1.jpg" alt="Celeta S." />
+            </div>
+            <span class="reviewer-badge">★5</span>
+          </div>
+          <div class="reviewer-info">
+            <strong>Celeta S.</strong>
+            <div class="reviewer-stars">★★★★★</div>
+            <div class="reviewer-source">Yelp reviewer</div>
+          </div>
+        </a>
+        <a href="https://www.yelp.com/biz/annie-lees-southern-kitchen-ambridge" target="_blank" rel="noopener" class="reviewer-card">
+          <div class="reviewer-avatar">
+            <div class="reviewer-avatar-ring">
+              <img src="assets/reviewer2.jpg" alt="Wascally W." />
+            </div>
+            <span class="reviewer-badge">★5</span>
+          </div>
+          <div class="reviewer-info">
+            <strong>Wascally W.</strong>
+            <div class="reviewer-stars">★★★★★</div>
+            <div class="reviewer-source">Yelp reviewer</div>
+          </div>
+        </a>
+        <a href="https://www.yelp.com/biz/annie-lees-southern-kitchen-ambridge" target="_blank" rel="noopener" class="reviewer-card">
+          <div class="reviewer-avatar">
+            <div class="reviewer-avatar-ring">
+              <img src="assets/reviewer3.jpg" alt="David B." />
+            </div>
+            <span class="reviewer-badge">★5</span>
+          </div>
+          <div class="reviewer-info">
+            <strong>David B.</strong>
+            <div class="reviewer-stars">★★★★★</div>
+            <div class="reviewer-source">Yelp reviewer</div>
+          </div>
+        </a>
+        <a href="https://www.yelp.com/biz/annie-lees-southern-kitchen-ambridge" target="_blank" rel="noopener" class="reviewer-card">
+          <div class="reviewer-avatar">
+            <div class="reviewer-avatar-ring">
+              <img src="assets/reviewer4.jpg" alt="Lisa A." />
+            </div>
+            <span class="reviewer-badge">★5</span>
+          </div>
+          <div class="reviewer-info">
+            <strong>Lisa A.</strong>
+            <div class="reviewer-stars">★★★★★</div>
+            <div class="reviewer-source">Yelp reviewer</div>
+          </div>
+        </a>
+      </div>
+
+      <div class="reviews-grid">
+        <div class="review-card reveal">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text">"Exceptional dining experience with outstanding flavors, fresh ingredients and beautiful presentation supported by attentive service and warm atmosphere making the meal memorable and worth returning for often."</p>
+          <div class="review-author">
+            <div class="review-author-avatar">N</div>
+            <div>
+              <div class="review-author-name">Nurlan I.</div>
+              <div class="review-author-meta">Aliquippa, PA &middot; Feb 2026 &middot; Yelp</div>
+            </div>
+          </div>
+        </div>
+        <div class="review-card reveal">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text">"They always great food, good ambiance, and friendly service. Anytime you can get it is always worth it."</p>
+          <div class="review-author">
+            <div class="review-author-avatar">K</div>
+            <div>
+              <div class="review-author-name">Kelsey O.</div>
+              <div class="review-author-meta">Beaver, PA &middot; Aug 2025 &middot; Yelp</div>
+            </div>
+          </div>
+        </div>
+        <div class="review-card reveal">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text">"First time visiting today, and it was awesome! I ordered the fried catfish with mac &amp; cheese and potato salad. The catfish and mac &amp; cheese ranked as some of the best I've ever eaten. Nice sized portions."</p>
+          <div class="review-author">
+            <div class="review-author-avatar">G</div>
+            <div>
+              <div class="review-author-name">Gary N.</div>
+              <div class="review-author-meta">Pittsburgh, PA &middot; Jun 2024 &middot; Yelp</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="reviews-cta reveal">
+        <a href="https://www.yelp.com/biz/annie-lees-southern-kitchen-ambridge" target="_blank" rel="noopener" class="btn btn-outline">See All Reviews on Yelp &rarr;</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- LOCATION -->
+  <section class="section location-section" id="location">
+    <div class="container">
+      <div class="location-inner">
+        <div class="location-copy reveal">
+          <span class="kicker">Find us</span>
+          <h2>Right here in Ambridge.</h2>
+          <p>1601 Duss Ave. Easy to find, easy to order, and always worth the stop.</p>
+          <table class="hours-table">
+            <tr><td>Monday</td><td>11:00 AM – 8:00 PM</td></tr>
+            <tr><td>Tuesday</td><td>11:00 AM – 8:00 PM</td></tr>
+            <tr><td>Wednesday</td><td>11:00 AM – 8:00 PM</td></tr>
+            <tr><td>Thursday</td><td>11:00 AM – 8:00 PM</td></tr>
+            <tr><td>Friday</td><td>11:00 AM – 9:00 PM</td></tr>
+            <tr><td>Saturday</td><td>11:00 AM – 9:00 PM</td></tr>
+            <tr><td>Sunday</td><td>12:00 PM – 7:00 PM</td></tr>
+          </table>
+          <div class="location-actions">
+            <a href="tel:+17243850522" class="btn btn-green">Call 724-385-0522</a>
+            <a href="https://maps.google.com/?q=1601+Duss+Ave,+Ambridge,+PA+15003" target="_blank" rel="noopener" class="btn btn-dark">Get Directions &rarr;</a>
+          </div>
+        </div>
+        <div class="location-map reveal">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3033.5!2d-80.2290!3d40.5940!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8834f3b1e3c0e1a1%3A0x1!2s1601+Duss+Ave%2C+Ambridge%2C+PA+15003!5e0!3m2!1sen!2sus!4v1"
+            allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+            title="Annie Lee's Southern Kitchen location map">
+          </iframe>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA BAND -->
+  <section class="cta-band">
+    <div class="container">
+      <h2>Hungry? Let's fix that.</h2>
+      <p>Pick your plate, call it in, and we'll have it ready when you get here.</p>
+      <div class="cta-band-actions">
+        <a href="menu.html" class="btn btn-dark btn-lg">Browse the Menu</a>
+        <a href="tel:+17243850522" class="btn btn-outline-white btn-lg">Call 724-385-0522</a>
+      </div>
+    </div>
+  </section>
 
   <!-- FOOTER -->
-  <footer class="site-footer">
-    <div class="container footer-grid">
-      <div class="footer-brand">
-        <img src="assets/logo.png" alt="Annie Lee's Southern Kitchen logo" />
-        <div>
-          <strong>Annie Lee's Southern Kitchen</strong><br />
-          <span>1601 Duss Ave &middot; Ambridge, PA 15003</span>
+  <footer>
+    <div class="container">
+      <div class="footer-inner">
+        <div class="footer-brand">
+          <span class="nav-logo-text">Annie Lee's Southern Kitchen</span>
+          <p>Soul food made right, just like home. Serving Ambridge, PA since day one.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Menu</h4>
+          <ul>
+            <li><a href="menu.html">Wing Dinners</a></li>
+            <li><a href="menu.html">Rib Plates</a></li>
+            <li><a href="menu.html">Fish Dinners</a></li>
+            <li><a href="menu.html">Sides</a></li>
+            <li><a href="menu.html">Drinks</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Visit</h4>
+          <ul>
+            <li><a href="#location">Hours</a></li>
+            <li><a href="https://maps.google.com/?q=1601+Duss+Ave,+Ambridge,+PA+15003" target="_blank" rel="noopener">Directions</a></li>
+            <li><a href="tel:+17243850522">Call Us</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Connect</h4>
+          <ul>
+            <li><a href="https://www.yelp.com/biz/annie-lees-southern-kitchen-ambridge" target="_blank" rel="noopener">Yelp</a></li>
+            <li><a href="https://www.facebook.com" target="_blank" rel="noopener">Facebook</a></li>
+            <li><a href="https://www.instagram.com" target="_blank" rel="noopener">Instagram</a></li>
+          </ul>
         </div>
       </div>
-      <div class="footer-links">
-        <a href="tel:+17243850522">724-385-0522</a>
-        <a href="menu.html">Menu</a>
-        <a href="https://maps.google.com/?q=1601+Duss+Ave,+Ambridge,+PA+15003" target="_blank" rel="noopener">Directions</a>
-        <a href="https://www.yelp.com/biz/annie-lees-southern-kitchen-ambridge" target="_blank" rel="noopener">Yelp</a>
+      <div class="footer-bottom">
+        <p>&copy; 2026 Annie Lee's Southern Kitchen. All rights reserved. &middot; Ambridge, PA 15003</p>
+        <div class="footer-social">
+          <a href="https://www.yelp.com/biz/annie-lees-southern-kitchen-ambridge" target="_blank" rel="noopener" aria-label="Yelp">Y</a>
+          <a href="https://www.facebook.com" target="_blank" rel="noopener" aria-label="Facebook">f</a>
+          <a href="https://www.instagram.com" target="_blank" rel="noopener" aria-label="Instagram">in</a>
+        </div>
       </div>
     </div>
   </footer>
 
-  <!-- FLOATING BUTTONS (desktop) -->
-  <div class="floating-order" aria-label="Quick actions">
-    <a class="order" href="menu.html">View Menu</a>
-    <a class="call" href="tel:+17243850522">Call Now</a>
-  </div>
-
   <!-- MOBILE BOTTOM BAR -->
   <div class="mobile-bar">
-    <a href="tel:+17243850522">Call</a>
-    <a href="menu.html">Menu</a>
-    <a href="menu.html" class="order">Order</a>
+    <a href="menu.html" class="btn btn-green">Order Now</a>
+    <a href="tel:+17243850522" class="btn btn-dark">Call Us</a>
   </div>
 
   <script>
-    // Sticky header
-    const header = document.getElementById('siteHeader');
+    // ── Sticky nav shadow on scroll
+    const nav = document.getElementById('site-nav');
     window.addEventListener('scroll', () => {
-      header.classList.toggle('scrolled', window.scrollY > 12);
-    }, {passive:true});
-    header.classList.toggle('scrolled', window.scrollY > 12);
+      nav.classList.toggle('scrolled', window.scrollY > 20);
+    }, { passive: true });
 
-    // Reveal on scroll
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('in'); observer.unobserve(e.target); } });
-    }, {threshold:0.12});
-    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    // ── Mobile nav
+    const hamburger = document.getElementById('hamburger');
+    const mobileNav = document.getElementById('mobile-nav');
+    const navClose = document.getElementById('nav-close');
+    hamburger.addEventListener('click', () => mobileNav.classList.add('open'));
+    navClose.addEventListener('click', () => mobileNav.classList.remove('open'));
+    function closeMobileNav() { mobileNav.classList.remove('open'); }
 
-    // Mobile nav toggle
-    const toggle = document.getElementById('menuToggle');
-    const nav = document.getElementById('mainNav');
-    if(toggle && nav){
-      toggle.addEventListener('click', () => {
-        nav.classList.toggle('active');
-        toggle.setAttribute('aria-expanded', nav.classList.contains('active'));
+    // ── Scroll reveal
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+          observer.unobserve(e.target);
+        }
       });
-      nav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
-        nav.classList.remove('active');
-        toggle.setAttribute('aria-expanded','false');
-      }));
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+    reveals.forEach(el => observer.observe(el));
+
+    // ── Highlight today's hours
+    const days = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+    const today = days[new Date().getDay()];
+    document.querySelectorAll('.hours-table tr').forEach(row => {
+      if (row.cells[0] && row.cells[0].textContent.trim() === today) {
+        row.classList.add('today');
+      }
+    });
+
+    // ── Hero image parallax (subtle)
+    const heroImg = document.querySelector('.hero-image img');
+    if (heroImg) {
+      window.addEventListener('scroll', () => {
+        const offset = window.scrollY * 0.15;
+        heroImg.style.transform = `scale(1.02) translateY(${offset}px)`;
+      }, { passive: true });
     }
   </script>
 </body>

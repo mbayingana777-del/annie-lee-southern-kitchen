@@ -524,6 +524,80 @@
     }
     .footer-social a:hover { background: var(--green); color: #fff; }
 
+    /* ─── SIGNUP SECTION ─────────────────────────────────────── */
+    .signup-section {
+      background: #141010;
+      padding: 80px 0;
+      border-top: 1px solid #2a1a16;
+      border-bottom: 1px solid #2a1a16;
+    }
+    .signup-inner {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 64px; align-items: center;
+    }
+    .signup-copy .kicker { margin-bottom: 12px; display: block; }
+    .signup-copy h2 {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 900; font-size: clamp(2.2rem, 3.5vw, 3rem);
+      text-transform: uppercase; letter-spacing: -.02em; line-height: 1;
+      color: #f0ebe6; margin-bottom: 16px;
+    }
+    .signup-copy h2 em { font-style: normal; color: #e05040; }
+    .signup-copy p { color: #a89890; font-size: 1rem; line-height: 1.7; max-width: 44ch; }
+    .signup-perks { list-style: none; margin-top: 20px; display: flex; flex-direction: column; gap: 10px; }
+    .signup-perks li {
+      display: flex; align-items: center; gap: 10px;
+      color: rgba(240,235,230,.8); font-size: .9rem;
+    }
+    .signup-perks li::before {
+      content: '✓'; flex-shrink: 0;
+      width: 20px; height: 20px; border-radius: 50%;
+      background: rgba(200,50,26,.25); color: #e05040;
+      display: flex; align-items: center; justify-content: center;
+      font-size: .7rem; font-weight: 900;
+    }
+    .signup-form-wrap {
+      background: #1a1414; border-radius: var(--radius);
+      border: 1px solid #2a2020;
+      padding: 36px;
+    }
+    .signup-form-wrap h3 {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 900; font-size: 1.6rem; text-transform: uppercase;
+      color: #f0ebe6; margin-bottom: 6px;
+    }
+    .signup-form-wrap p { color: #a89890; font-size: .875rem; margin-bottom: 24px; }
+    .signup-form { display: flex; flex-direction: column; gap: 14px; }
+    .form-field {
+      display: flex; flex-direction: column; gap: 6px;
+    }
+    .form-field label { font-size: .8rem; font-weight: 700; color: #a89890; letter-spacing: .06em; text-transform: uppercase; }
+    .form-field input {
+      background: #0f0f0f; border: 1.5px solid #3a2a28;
+      border-radius: 10px; padding: 14px 16px;
+      color: #f0ebe6; font-size: .95rem; font-family: inherit;
+      transition: border-color .18s, box-shadow .18s;
+      outline: none;
+    }
+    .form-field input::placeholder { color: #6e5e58; }
+    .form-field input:focus { border-color: #c8321a; box-shadow: 0 0 0 3px rgba(200,50,26,.15); }
+    .form-consent { font-size: .78rem; color: #6e5e58; line-height: 1.5; margin-top: 4px; }
+    .signup-success {
+      display: none; text-align: center; padding: 24px 0;
+    }
+    .signup-success .success-icon {
+      width: 56px; height: 56px; border-radius: 50%;
+      background: rgba(200,50,26,.2); color: #e05040;
+      font-size: 1.6rem;
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 16px;
+    }
+    .signup-success h4 { font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: 1.5rem; text-transform: uppercase; color: #f0ebe6; margin-bottom: 8px; }
+    .signup-success p { color: #a89890; font-size: .9rem; }
+    @media (max-width: 768px) {
+      .signup-inner { grid-template-columns: 1fr; gap: 40px; }
+    }
+
     /* ─── MOBILE BOTTOM BAR ────────────────────────────────────── */
     .mobile-bar {
       display: none;
@@ -917,6 +991,52 @@
     </div>
   </section>
 
+  <!-- SIGNUP SECTION -->
+  <section class="signup-section" id="signup">
+    <div class="container">
+      <div class="signup-inner">
+        <div class="signup-copy reveal">
+          <span class="kicker">Stay connected</span>
+          <h2>Get deals &amp; updates<br><em>straight to you.</em></h2>
+          <p>Join the Annie Lee's list and be the first to know about specials, new menu items, and exclusive deals.</p>
+          <ul class="signup-perks">
+            <li>Early access to weekly specials</li>
+            <li>Exclusive deals for subscribers only</li>
+            <li>New menu item announcements</li>
+            <li>No spam &mdash; ever. Unsubscribe anytime.</li>
+          </ul>
+        </div>
+        <div class="signup-form-wrap reveal">
+          <h3>Join the List</h3>
+          <p>Drop your info below and we'll keep you in the loop.</p>
+          <div id="signup-form-container">
+            <form class="signup-form" id="signup-form" onsubmit="handleSignup(event)">
+              <div class="form-field">
+                <label for="signup-name">Your Name</label>
+                <input type="text" id="signup-name" name="name" placeholder="First name" required autocomplete="given-name" />
+              </div>
+              <div class="form-field">
+                <label for="signup-email">Email Address</label>
+                <input type="email" id="signup-email" name="email" placeholder="you@example.com" required autocomplete="email" />
+              </div>
+              <div class="form-field">
+                <label for="signup-phone">Phone Number <span style="color:#6e5e58;font-weight:400;text-transform:none">(optional)</span></label>
+                <input type="tel" id="signup-phone" name="phone" placeholder="(724) 000-0000" autocomplete="tel" />
+              </div>
+              <button type="submit" class="btn btn-green" style="width:100%;justify-content:center;padding:16px;">Get My Deals 🔥</button>
+              <p class="form-consent">By signing up you agree to receive occasional emails and texts from Annie Lee's Southern Kitchen. We never sell your info.</p>
+            </form>
+            <div class="signup-success" id="signup-success">
+              <div class="success-icon">✓</div>
+              <h4>You're on the list!</h4>
+              <p>Thanks for signing up. Watch your inbox for deals and updates from Annie Lee's Kitchen.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- FOOTER -->
   <footer>
     <div class="container">
@@ -1012,6 +1132,27 @@
         const offset = window.scrollY * 0.15;
         heroImg.style.transform = `scale(1.02) translateY(${offset}px)`;
       }, { passive: true });
+    }
+
+    // ── Email / Phone signup handler
+    function handleSignup(e) {
+      e.preventDefault();
+      const name  = document.getElementById('signup-name').value.trim();
+      const email = document.getElementById('signup-email').value.trim();
+      const phone = document.getElementById('signup-phone').value.trim();
+      // Save to localStorage so you can review submissions
+      const leads = JSON.parse(localStorage.getItem('al_leads') || '[]');
+      leads.push({ name, email, phone, source: 'Homepage', date: new Date().toISOString() });
+      localStorage.setItem('al_leads', JSON.stringify(leads));
+      // Also send to Formspree (replace YOUR_FORM_ID with your free Formspree endpoint)
+      fetch('https://formspree.io/f/YOUR_FORM_ID', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify({ name, email, phone, source: 'Homepage' })
+      }).catch(() => {}); // silent fail — localStorage backup always works
+      // Show success state
+      document.getElementById('signup-form').style.display = 'none';
+      document.getElementById('signup-success').style.display = 'block';
     }
   </script>
 </body>

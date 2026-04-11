@@ -869,6 +869,95 @@
     document.getElementById('nav-close').addEventListener('click', () => document.getElementById('mobile-nav').classList.remove('open'));
 
     renderCart();
+
+    // ── Slide-in signup popup (appears after 30s or 50% scroll, once per session)
+    function showSignupPopup() {
+      if (sessionStorage.getItem('al_popup_shown')) return;
+      sessionStorage.setItem('al_popup_shown', '1');
+      document.getElementById('signup-popup').classList.add('open');
+    }
+    function closeSignupPopup() {
+      document.getElementById('signup-popup').classList.remove('open');
+      document.getElementById('signup-popup-overlay').classList.remove('open');
+    }
+    // Trigger on 50% scroll
+    window.addEventListener('scroll', function onScrollPopup() {
+      if ((window.scrollY / (document.body.scrollHeight - window.innerHeight)) >= 0.5) {
+        showSignupPopup();
+        document.getElementById('signup-popup-overlay').classList.add('open');
+        window.removeEventListener('scroll', onScrollPopup);
+      }
+    }, { passive: true });
+    // Fallback: trigger after 30 seconds
+    setTimeout(() => {
+      showSignupPopup();
+      document.getElementById('signup-popup-overlay').classList.add('open');
+    }, 30000);
+
+    function handleMenuSignup(e) {
+      e.preventDefault();
+      const name  = document.getElementById('popup-name').value.trim();
+      const email = document.getElementById('popup-email').value.trim();
+      const phone = document.getElementById('popup-phone').value.trim();
+      const leads = JSON.parse(localStorage.getItem('al_leads') || '[]');
+      leads.push({ name, email, phone, source: 'Menu', date: new Date().toISOString() });
+      localStorage.setItem('al_leads', JSON.stringify(leads));
+      fetch('https://formspree.io/f/YOUR_FORM_ID', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify({ name, email, phone, source: 'Menu' })
+      }).catch(() => {});
+      document.getElementById('popup-form').style.display = 'none';
+      document.getElementById('popup-success').style.display = 'block';
+      setTimeout(closeSignupPopup, 2500);
+    }
+  </script>
+
+  <!-- SIGNUP POPUP OVERLAY -->
+  <div id="signup-popup-overlay" onclick="closeSignupPopup()" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:1100;transition:opacity .3s;"></div>
+  <div id="signup-popup" style="display:none;position:fixed;bottom:24px;right:24px;z-index:1200;width:340px;max-width:calc(100vw - 32px);background:#1a1414;border:1px solid #3a2020;border-radius:16px;padding:28px;box-shadow:0 24px 64px rgba(0,0,0,.7);transform:translateY(20px);opacity:0;transition:transform .35s cubic-bezier(.22,1,.36,1),opacity .35s;">
+    <button onclick="closeSignupPopup()" style="position:absolute;top:12px;right:14px;background:none;border:none;color:#6e5e58;font-size:1.3rem;cursor:pointer;line-height:1;">&times;</button>
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px;">
+      <div style="width:40px;height:40px;border-radius:50%;background:rgba(200,50,26,.2);display:flex;align-items:center;justify-content:center;font-size:1.2rem;flex-shrink:0;">🔥</div>
+      <div>
+        <div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1.1rem;text-transform:uppercase;color:#f0ebe6;">Get Exclusive Deals</div>
+        <div style="font-size:.78rem;color:#a89890;">Join the Annie Lee's list</div>
+      </div>
+    </div>
+    <div id="popup-form">
+      <form onsubmit="handleMenuSignup(event)" style="display:flex;flex-direction:column;gap:10px;">
+        <input id="popup-name" type="text" placeholder="Your name" required
+          style="background:#0f0f0f;border:1.5px solid #3a2a28;border-radius:8px;padding:11px 14px;color:#f0ebe6;font-size:.9rem;font-family:inherit;outline:none;" />
+        <input id="popup-email" type="email" placeholder="Email address" required
+          style="background:#0f0f0f;border:1.5px solid #3a2a28;border-radius:8px;padding:11px 14px;color:#f0ebe6;font-size:.9rem;font-family:inherit;outline:none;" />
+        <input id="popup-phone" type="tel" placeholder="Phone (optional)"
+          style="background:#0f0f0f;border:1.5px solid #3a2a28;border-radius:8px;padding:11px 14px;color:#f0ebe6;font-size:.9rem;font-family:inherit;outline:none;" />
+        <button type="submit" style="background:#c8321a;color:#fff;border:none;border-radius:8px;padding:13px;font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1rem;text-transform:uppercase;letter-spacing:.05em;cursor:pointer;">Count Me In 🔥</button>
+        <p style="font-size:.72rem;color:#6e5e58;line-height:1.5;margin-top:2px;">No spam, ever. Unsubscribe anytime.</p>
+      </form>
+    </div>
+    <div id="popup-success" style="display:none;text-align:center;padding:12px 0;">
+      <div style="font-size:2rem;margin-bottom:10px;">✅</div>
+      <div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1.3rem;text-transform:uppercase;color:#f0ebe6;margin-bottom:6px;">You're on the list!</div>
+      <div style="font-size:.85rem;color:#a89890;">Watch for deals from Annie Lee's Kitchen.</div>
+    </div>
+  </div>
+
+  <script>
+    // Make popup visible once open class is added
+    const popup = document.getElementById('signup-popup');
+    const overlay = document.getElementById('signup-popup-overlay');
+    const popupObserver = new MutationObserver(() => {
+      if (popup.classList.contains('open')) {
+        popup.style.display = 'block'; overlay.style.display = 'block';
+        requestAnimationFrame(() => { popup.style.transform = 'translateY(0)'; popup.style.opacity = '1'; overlay.style.opacity = '1'; });
+      } else {
+        popup.style.transform = 'translateY(20px)'; popup.style.opacity = '0'; overlay.style.opacity = '0';
+        setTimeout(() => { if (!popup.classList.contains('open')) { popup.style.display = 'none'; overlay.style.display = 'none'; } }, 350);
+      }
+    });
+    popupObserver.observe(popup, { attributes: true, attributeFilter: ['class'] });
+    popupObserver.observe(overlay, { attributes: true, attributeFilter: ['class'] });
   </script>
 </body>
 </html>

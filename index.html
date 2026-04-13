@@ -423,9 +423,37 @@
     .location-actions { display: flex; gap: 12px; flex-wrap: wrap; }
     .location-map {
       border-radius: 24px; overflow: hidden; border: 1px solid #2a2020;
-      aspect-ratio: 1; box-shadow: var(--shadow);
+      aspect-ratio: 1; box-shadow: var(--shadow); position: relative;
     }
-    .location-map iframe { width: 100%; height: 100%; border: none; }
+    .map-inner { width: 100%; height: 100%; position: relative; }
+    .map-inner iframe { width: 100%; height: 100%; border: none; display: block; }
+    .map-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(160deg, rgba(10,10,10,.85) 0%, rgba(10,10,10,.4) 60%, transparent 100%);
+      display: flex; flex-direction: column; justify-content: flex-end;
+      padding: 24px; gap: 12px;
+      transition: opacity .3s;
+    }
+    .map-overlay.hidden { opacity: 0; pointer-events: none; }
+    .map-pin-card {
+      display: flex; align-items: center; gap: 12px;
+      background: rgba(20,16,16,.9); border: 1px solid #2a2020;
+      border-radius: 14px; padding: 14px 18px;
+      backdrop-filter: blur(8px);
+    }
+    .map-pin-icon { font-size: 1.4rem; }
+    .map-pin-info { display: flex; flex-direction: column; gap: 2px; }
+    .map-pin-info strong { font-size: .9rem; color: #f0ebe6; font-weight: 700; }
+    .map-pin-info span { font-size: .78rem; color: #a89890; }
+    .map-open-btn {
+      background: var(--green); color: #fff;
+      border: none; border-radius: 999px;
+      padding: 12px 24px; font-weight: 700; font-size: .9rem;
+      cursor: pointer;
+      transition: background .18s, transform .18s;
+      align-self: flex-start;
+    }
+    .map-open-btn:hover { background: var(--green-dark); transform: translateY(-2px); }
 
     /* ─── CTA BAND ─────────────────────────────────────────────── */
     .cta-band {
@@ -627,7 +655,7 @@
       <div class="featured-grid">
         <div class="food-card reveal" onclick="window.location='menu.html?add=6_wings'">
           <div class="food-card-img">
-            <img src="assets/wings-6-2-sides.png" alt="6 Wings with 2 Sides" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1527477396000-e27163b481c2?auto=format&fit=crop&w=600&q=80'" />
+            <img src="assets/wings-6-2-sides.png" alt="6 Wings with 2 Sides" loading="lazy" />
             <span class="food-card-badge">Best Seller</span>
           </div>
           <div class="food-card-body">
@@ -641,7 +669,7 @@
         </div>
         <div class="food-card reveal" onclick="window.location='menu.html?add=half_slab'">
           <div class="food-card-img">
-            <img src="assets/ribs-half-slab-2-sides.png" alt="Half Slab Ribs with 2 Sides" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=600&q=80'" />
+            <img src="assets/ribs-half-slab-2-sides.png" alt="Half Slab Ribs with 2 Sides" loading="lazy" />
             <span class="food-card-badge">Hearty</span>
           </div>
           <div class="food-card-body">
@@ -723,7 +751,7 @@
         <a href="https://www.yelp.com/biz/annie-lees-southern-kitchen-ambridge" target="_blank" rel="noopener" class="reviewer-card">
           <div class="reviewer-avatar">
             <div class="reviewer-avatar-ring">
-              <img src="https://images.unsplash.com/photo-1531123897727-8f129e1bf98c?auto=format&fit=crop&w=100&q=80" alt="Celeta S." />
+              <img src="assets/celeta-s.jpg" alt="Celeta S." />
             </div>
             <span class="reviewer-badge">★5</span>
           </div>
@@ -844,12 +872,25 @@
             <a href="https://maps.google.com/?q=1601+Duss+Ave,+Ambridge,+PA+15003" target="_blank" rel="noopener" class="btn btn-dark">Get Directions &rarr;</a>
           </div>
         </div>
-        <div class="location-map reveal">
-          <iframe
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3033.5!2d-80.2290!3d40.5940!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8834f3b1e3c0e1a1%3A0x1!2s1601+Duss+Ave%2C+Ambridge%2C+PA+15003!5e0!3m2!1sen!2sus!4v1"
-            allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
-            title="Annie Lee's Southern Kitchen location map">
-          </iframe>
+        <div class="location-map reveal" id="map-container">
+          <div class="map-inner">
+            <iframe
+              id="location-map-frame"
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3033.5!2d-80.2290!3d40.5940!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8834f3b1e3c0e1a1%3A0x1!2s1601+Duss+Ave%2C+Ambridge%2C+PA+15003!5e0!3m2!1sen!2sus!4v1700000000000"
+              allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+              title="Annie Lee's Southern Kitchen location map">
+            </iframe>
+            <div class="map-overlay" id="map-overlay">
+              <div class="map-pin-card">
+                <div class="map-pin-icon">📍</div>
+                <div class="map-pin-info">
+                  <strong>Annie Lee's Southern Kitchen</strong>
+                  <span>1601 Duss Ave, Ambridge, PA 15003</span>
+                </div>
+              </div>
+              <button class="map-open-btn" onclick="activateMap()">Tap to interact</button>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -945,6 +986,12 @@
       });
     }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
     reveals.forEach(el => observer.observe(el));
+
+    // ── Map activation (prevents accidental scroll-capture on mobile)
+    function activateMap() {
+      const overlay = document.getElementById('map-overlay');
+      if (overlay) overlay.classList.add('hidden');
+    }
 
     // ── Highlight today's hours
     const days = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];

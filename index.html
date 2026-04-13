@@ -3,22 +3,20 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Annie Lee's Southern Kitchen | Soul Food Made Right</title>
+  <title>Annie Lee's Southern Kitchen | Authentic Soul Food in Ambridge, PA</title>
   <meta name="description" content="Annie Lee's Southern Kitchen — hot, fresh soul food in Ambridge, PA. Crispy wings, tender ribs, fried fish, baked mac & cheese. Order by phone or walk in." />
   <!-- Favicon -->
   <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
   <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png" />
   <link rel="apple-touch-icon" sizes="192x192" href="assets/favicon-192.png" />
   <!-- Open Graph -->
-  <meta property="og:title" content="Annie Lee's Southern Kitchen | Soul Food Made Right" />
+  <meta property="og:title" content="Annie Lee's Southern Kitchen | Authentic Soul Food" />
   <meta property="og:description" content="Hot, fresh soul food in Ambridge, PA. Crispy wings, tender ribs, fried fish, baked mac & cheese. Call ahead for faster pickup." />
   <meta property="og:image" content="assets/food-gallery-1.jpg" />
   <meta property="og:url" content="https://mbayingana777-del.github.io/annie-lee-southern-kitchen/" />
   <meta property="og:type" content="restaurant" />
   <meta name="twitter:card" content="summary_large_image" />
-  <!-- Google Analytics (replace G-XXXXXXXXXX with your Measurement ID) -->
-  <!-- <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
-  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-XXXXXXXXXX');</script> -->
+  
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
@@ -237,68 +235,60 @@
       background: #c8321a; color: #fff;
       padding: 16px 22px; border-radius: var(--radius);
       box-shadow: var(--shadow-lg);
+      display: flex; flex-direction: column; gap: 4px;
+      transform: rotate(-3deg);
     }
-    .hero-badge .price { font-family: 'Barlow Condensed', sans-serif; font-size: 2rem; font-weight: 900; line-height: 1; }
-    .hero-badge .label { font-size: .75rem; font-weight: 600; opacity: .85; margin-top: 2px; }
+    .hero-badge .price { font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: 2rem; line-height: 1; }
+    .hero-badge .label { font-size: .8rem; font-weight: 700; text-transform: uppercase; letter-spacing: .05em; color: rgba(255,255,255,.8); }
 
-    /* ─── MARQUEE STRIP ────────────────────────────────────────── */
+    /* ─── MARQUEE ──────────────────────────────────────────────── */
     .marquee-wrap {
-      background: #c8321a;
-      overflow: hidden; padding: 14px 0;
+      background: #c8321a; color: #fff;
+      padding: 14px 0; overflow: hidden;
+      display: flex; white-space: nowrap;
+      border-top: 1px solid #e05040; border-bottom: 1px solid #e05040;
     }
     .marquee-track {
-      display: flex; gap: 0;
-      animation: marquee 28s linear infinite;
-      width: max-content;
+      display: flex; gap: 32px;
+      animation: marquee 25s linear infinite;
     }
-    .marquee-track:hover { animation-play-state: paused; }
     .marquee-item {
-      display: flex; align-items: center; gap: 12px;
-      padding: 0 32px;
-      color: #fff; font-weight: 700; font-size: .9rem;
-      letter-spacing: .04em; text-transform: uppercase;
-      white-space: nowrap;
-    }
-    .marquee-dot { width: 5px; height: 5px; border-radius: 50%; background: rgba(255,255,255,.5); }
-    @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
-
-    /* ─── FEATURED SECTION ─────────────────────────────────────── */
-    .featured-section { background: #0f0f0f; }
-    .section-header { margin-bottom: 56px; }
-    .section-header h2 {
       font-family: 'Barlow Condensed', sans-serif;
-      font-weight: 900; font-size: clamp(2.4rem, 4vw, 3.6rem);
-      letter-spacing: -.02em; text-transform: uppercase;
-      line-height: 1; margin-top: 10px; color: #f0ebe6;
+      font-weight: 800; font-size: 1.2rem; text-transform: uppercase;
+      letter-spacing: .04em; display: flex; align-items: center; gap: 32px;
     }
-    .section-header p { color: #a89890; font-size: 1.05rem; line-height: 1.7; max-width: 52ch; margin-top: 14px; }
-    .section-header-row { display: flex; align-items: flex-end; justify-content: space-between; gap: 24px; flex-wrap: wrap; }
+    .marquee-dot { width: 6px; height: 6px; background: #fff; border-radius: 50%; opacity: .5; }
+    @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
 
+    /* ─── FEATURED ─────────────────────────────────────────────── */
+    .featured-section { background: #0f0f0f; }
+    .section-header-row {
+      display: flex; justify-content: space-between; align-items: flex-end;
+      margin-bottom: 48px; flex-wrap: wrap; gap: 24px;
+    }
+    .section-header h2 {
+      font-family: 'Barlow Condensed', sans-serif; font-weight: 900;
+      font-size: clamp(2.2rem, 4vw, 3.2rem); text-transform: uppercase;
+      letter-spacing: -.02em; line-height: 1; margin: 8px 0 12px; color: #f0ebe6;
+    }
+    .section-header p { color: #a89890; font-size: 1.05rem; max-width: 50ch; line-height: 1.6; }
     .featured-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 20px;
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px;
     }
     .food-card {
-      background: #1a1414;
-      border: 1px solid #2a2020;
-      border-radius: var(--radius);
-      overflow: hidden;
-      box-shadow: var(--shadow-sm);
+      background: #1a1414; border-radius: var(--radius); overflow: hidden;
+      border: 1px solid #2a2020; box-shadow: var(--shadow-sm);
       transition: transform .22s, box-shadow .22s;
+      display: flex; flex-direction: column;
       cursor: pointer;
     }
-    .food-card:hover { transform: translateY(-6px); box-shadow: 0 8px 32px rgba(200,50,26,.25); border-color: rgba(200,50,26,.4); }
+    .food-card:hover { transform: translateY(-6px); box-shadow: 0 12px 40px rgba(200,50,26,.15); border-color: rgba(200,50,26,.3); }
     .food-card-img {
-      aspect-ratio: 4/3;
-      overflow: hidden;
-      position: relative;
-      background: #1a1414;
+      aspect-ratio: 4/3; overflow: hidden; position: relative; background: #1a1414;
     }
     .food-card-img img {
-      width: 100%; height: 100%;
-      object-fit: cover; object-position: center;
-      transition: transform .4s ease;
+      width: 100%; height: 100%; object-fit: cover; object-position: center;
+      transition: transform .4s;
     }
     .food-card:hover .food-card-img img { transform: scale(1.06); }
     .food-card-badge {
@@ -307,196 +297,156 @@
       font-size: .7rem; font-weight: 700; letter-spacing: .06em;
       text-transform: uppercase; padding: 4px 10px; border-radius: 999px;
     }
-    .food-card-body { padding: 18px 20px 20px; }
-    .food-card-body h3 { font-size: 1.05rem; font-weight: 700; margin-bottom: 6px; color: #f0ebe6; }
-    .food-card-body p { font-size: .875rem; color: #a89890; line-height: 1.5; margin-bottom: 14px; }
+    .food-card-body { padding: 20px; flex: 1; display: flex; flex-direction: column; }
+    .food-card-body h3 { font-size: 1.1rem; font-weight: 700; margin-bottom: 6px; color: #f0ebe6; }
+    .food-card-body p { font-size: .85rem; color: #a89890; line-height: 1.5; flex: 1; margin-bottom: 16px; }
     .food-card-footer { display: flex; align-items: center; justify-content: space-between; }
     .food-card-price { font-weight: 800; font-size: 1.1rem; color: #f0ebe6; }
     .food-card-add {
       width: 36px; height: 36px; border-radius: 50%;
       background: var(--green); color: #fff;
       display: flex; align-items: center; justify-content: center;
-      font-size: 1.3rem; font-weight: 300;
-      transition: transform .18s, background .18s;
-      cursor: pointer; border: none;
+      font-size: 1.2rem; font-weight: 300;
+      transition: transform .18s, background .18s; border: none; cursor: pointer;
     }
     .food-card-add:hover { background: var(--green-dark); transform: scale(1.1) rotate(90deg); }
 
-    /* ─── FAMILY DEAL SECTION ──────────────────────────────────── */
-    .family-section { background: var(--dark); overflow: hidden; }
+    /* ─── CATERING / FAMILY DEAL ───────────────────────────────── */
+    .family-section { padding: 40px 0 96px; }
     .family-inner {
+      background: #141010; border-radius: 24px; overflow: hidden;
+      border: 1px solid #2a1a16;
       display: grid; grid-template-columns: 1fr 1fr;
-      align-items: center; gap: 0; min-height: 560px;
+      box-shadow: var(--shadow);
     }
-    .family-copy { padding: 80px 64px 80px 0; }
-    .family-copy .kicker { color: #e05040; }
+    .family-copy { padding: 80px 64px; display: flex; flex-direction: column; justify-content: center; }
     .family-copy h2 {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-weight: 900; font-size: clamp(2.8rem, 4.5vw, 4.2rem);
-      text-transform: uppercase; letter-spacing: -.02em; line-height: .95;
-      color: #fff; margin: 12px 0 20px;
+      font-family: 'Barlow Condensed', sans-serif; font-weight: 900;
+      font-size: clamp(2.5rem, 4vw, 3.5rem); text-transform: uppercase;
+      letter-spacing: -.02em; line-height: .95; margin: 12px 0 20px; color: #f0ebe6;
     }
     .family-copy h2 em { font-style: normal; color: #e05040; }
-    .family-copy p { color: rgba(255,255,255,.6); font-size: 1.05rem; line-height: 1.7; max-width: 44ch; margin-bottom: 32px; }
-    .family-checklist { list-style: none; display: flex; flex-direction: column; gap: 14px; margin-bottom: 36px; }
-    .family-checklist li {
-      display: flex; align-items: flex-start; gap: 14px;
-      color: rgba(255,255,255,.85); font-size: .95rem; line-height: 1.5;
-    }
-    .family-checklist li::before {
-      content: '✓';
-      flex-shrink: 0; width: 24px; height: 24px;
-      background: var(--green); color: #fff;
-      border-radius: 50%; display: flex; align-items: center; justify-content: center;
-      font-size: .75rem; font-weight: 900; margin-top: 1px;
-    }
-    .family-checklist strong { color: #fff; }
+    .family-copy p { color: #a89890; font-size: 1.05rem; line-height: 1.6; margin-bottom: 24px; max-width: 40ch; }
     .family-price-tag {
-      display: inline-flex; align-items: baseline; gap: 6px;
-      margin-bottom: 28px;
+      display: inline-flex; align-items: baseline; gap: 8px;
+      margin-bottom: 24px;
     }
-    .family-price-tag .amount {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-size: 3.5rem; font-weight: 900; color: var(--green); line-height: 1;
-    }
-    .family-price-tag .label { color: rgba(255,255,255,.5); font-size: .9rem; }
-    .family-image {
-      position: relative; height: 100%; min-height: 560px;
-      overflow: hidden;
-    }
-    .family-image img { width: 100%; height: 100%; object-fit: cover; object-position: center; }
-    .family-image::before {
-      content: '';
-      position: absolute; inset: 0; z-index: 1;
-      background: linear-gradient(270deg, transparent 50%, #0a0a0a 100%);
-    }
-
-    /* ─── REVIEWS SECTION ──────────────────────────────────────── */
-    .reviews-section { background: #141010; }
-    .reviews-header { text-align: center; margin-bottom: 56px; }
-    .reviews-header h2 {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-weight: 900; font-size: clamp(2.4rem, 4vw, 3.4rem);
-      text-transform: uppercase; letter-spacing: -.02em; line-height: 1;
-      margin: 10px 0 14px;
-    }
-    .reviews-header p { color: var(--muted); font-size: 1rem; max-width: 48ch; margin-inline: auto; }
-
-    /* Reviewer avatars row */
-    .reviewer-row {
-      display: flex; justify-content: center; gap: 20px;
-      flex-wrap: wrap; margin-bottom: 48px;
-    }
-    .reviewer-card {
-      display: flex; align-items: center; gap: 14px;
-      background: #1a1414; border-radius: var(--radius);
-      padding: 16px 20px;
-      box-shadow: var(--shadow-sm);
-      border: 1px solid #2a2020;
-      transition: transform .2s, box-shadow .2s;
-      cursor: pointer; text-decoration: none; color: #f0ebe6;
-      min-width: 200px;
-    }
-    .reviewer-card:hover { transform: translateY(-4px); box-shadow: var(--shadow); }
-    .reviewer-avatar {
-      position: relative; flex-shrink: 0;
-    }
-    .reviewer-avatar-ring {
-      width: 56px; height: 56px; border-radius: 50%; padding: 3px;
-      background: linear-gradient(135deg, #c8321a, #e05040, #f5c518);
-      box-shadow: 0 4px 14px rgba(200,50,26,.35);
-    }
-    .reviewer-avatar-ring img {
-      width: 100%; height: 100%;
-      border-radius: 50%; object-fit: cover; object-position: top;
-      border: 2px solid #1a1414;
-      display: block;
-    }
-    .reviewer-badge {
-      position: absolute; bottom: -3px; right: -3px;
-      background: var(--green); color: #fff;
-      font-size: .6rem; font-weight: 900;
-      padding: 2px 5px; border-radius: 999px;
-      border: 2px solid #fff; line-height: 1.2;
-    }
-    .reviewer-info strong { display: block; font-size: .95rem; font-weight: 700; }
-    .reviewer-stars { color: #f5c518; font-size: .85rem; letter-spacing: .05em; }
-    .reviewer-source { color: var(--muted-2); font-size: .75rem; margin-top: 2px; }
-
-    /* Review cards grid */
-    .reviews-grid {
-      display: grid; grid-template-columns: repeat(3, 1fr);
-      gap: 20px;
-    }
-    .review-card {
-      background: #1a1414; border-radius: var(--radius);
-      padding: 28px; box-shadow: var(--shadow-sm);
-      border: 1px solid #2a2020;
-      display: flex; flex-direction: column; gap: 14px;
-    }
-    .review-stars { color: #f5c518; font-size: 1rem; letter-spacing: .05em; }
-    .review-text { color: #c8b8b0; font-size: .95rem; line-height: 1.7; flex: 1; }
-    .review-author { display: flex; align-items: center; gap: 10px; padding-top: 14px; border-top: 1px solid #2a2020; }
-    .review-author-avatar {
-      width: 36px; height: 36px; border-radius: 50%;
+    .family-price-tag .amount { font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: 2.5rem; color: #fff; line-height: 1; }
+    .family-price-tag .label { font-size: .85rem; font-weight: 700; text-transform: uppercase; letter-spacing: .05em; color: #e05040; }
+    .family-checklist { list-style: none; margin-bottom: 36px; display: flex; flex-direction: column; gap: 12px; }
+    .family-checklist li { display: flex; align-items: flex-start; gap: 12px; color: rgba(240,235,230,.85); font-size: .95rem; line-height: 1.5; }
+    .family-checklist li::before {
+      content: '✓'; flex-shrink: 0;
+      width: 22px; height: 22px; border-radius: 50%;
       background: rgba(200,50,26,.2); color: #e05040;
       display: flex; align-items: center; justify-content: center;
-      font-weight: 800; font-size: .85rem; flex-shrink: 0;
+      font-size: .75rem; font-weight: 900; margin-top: 2px;
     }
-    .review-author-name { font-weight: 700; font-size: .875rem; color: #f0ebe6; }
-    .review-author-meta { color: var(--muted-2); font-size: .78rem; }
-    .reviews-cta { text-align: center; margin-top: 40px; }
+    .family-image { position: relative; min-height: 100%; background: #0a0a0a; }
+    .family-image img { width: 100%; height: 100%; object-fit: cover; }
+    .family-image::before {
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(90deg, #141010 0%, transparent 40%);
+      z-index: 1;
+    }
 
-    /* ─── LOCATION SECTION ─────────────────────────────────────── */
-    .location-section { background: #0f0f0f; }
+    /* ─── REVIEWS ──────────────────────────────────────────────── */
+    .reviews-section { background: #0a0a0a; border-top: 1px solid #1a1414; border-bottom: 1px solid #1a1414; }
+    .reviews-header { text-align: center; margin-bottom: 56px; }
+    .reviews-header h2 {
+      font-family: 'Barlow Condensed', sans-serif; font-weight: 900;
+      font-size: clamp(2.2rem, 4vw, 3.2rem); text-transform: uppercase;
+      letter-spacing: -.02em; line-height: 1; margin: 8px 0 12px; color: #f0ebe6;
+    }
+    .reviews-header p { color: #a89890; font-size: 1.05rem; max-width: 50ch; margin: 0 auto; }
+    
+    .reviewer-row {
+      display: flex; justify-content: center; gap: 16px; flex-wrap: wrap; margin-bottom: 48px;
+    }
+    .reviewer-card {
+      background: #141010; border: 1px solid #2a2020; border-radius: 999px;
+      padding: 8px 20px 8px 8px; display: flex; align-items: center; gap: 12px;
+      transition: transform .2s, border-color .2s; text-decoration: none;
+    }
+    .reviewer-card:hover { transform: translateY(-3px); border-color: #c8321a; }
+    .reviewer-avatar { position: relative; width: 44px; height: 44px; }
+    .reviewer-avatar-ring {
+      width: 100%; height: 100%; border-radius: 50%; overflow: hidden;
+      border: 2px solid #c8321a; padding: 2px; background: #141010;
+    }
+    .reviewer-avatar-ring img { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; }
+    .reviewer-badge {
+      position: absolute; bottom: -4px; right: -4px;
+      background: #c8321a; color: #fff; font-size: .6rem; font-weight: 800;
+      padding: 2px 6px; border-radius: 999px; border: 2px solid #141010;
+    }
+    .reviewer-info { display: flex; flex-direction: column; gap: 2px; }
+    .reviewer-info strong { font-size: .85rem; color: #f0ebe6; }
+    .reviewer-stars { color: #e05040; font-size: .7rem; letter-spacing: 1px; }
+    .reviewer-source { font-size: .7rem; color: #6e5e58; }
+
+    .reviews-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;
+    }
+    .review-card {
+      background: #141010; border: 1px solid #2a2020; border-radius: var(--radius);
+      padding: 32px; display: flex; flex-direction: column;
+    }
+    .review-stars { color: #e05040; font-size: 1.1rem; letter-spacing: 2px; margin-bottom: 16px; }
+    .review-text { font-size: 1rem; color: #f0ebe6; line-height: 1.6; font-style: italic; flex: 1; margin-bottom: 24px; }
+    .review-author { display: flex; align-items: center; gap: 12px; border-top: 1px solid #2a2020; padding-top: 20px; }
+    .review-author-avatar {
+      width: 40px; height: 40px; border-radius: 50%;
+      background: #2a2020; color: #a89890;
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 700; font-size: 1.1rem; overflow: hidden;
+    }
+    .review-author-avatar img { width: 100%; height: 100%; object-fit: cover; }
+    .review-author-name { font-weight: 700; font-size: .9rem; color: #f0ebe6; }
+    .review-author-meta { font-size: .8rem; color: #6e5e58; }
+    .reviews-cta { text-align: center; margin-top: 48px; }
+
+    /* ─── LOCATION ─────────────────────────────────────────────── */
     .location-inner {
-      display: grid; grid-template-columns: 1fr 1fr;
-      gap: 64px; align-items: center;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center;
     }
-    .location-copy .kicker { margin-bottom: 12px; display: block; }
     .location-copy h2 {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-weight: 900; font-size: clamp(2.4rem, 3.5vw, 3.2rem);
-      text-transform: uppercase; letter-spacing: -.02em; line-height: 1;
-      margin-bottom: 20px; color: #f0ebe6;
+      font-family: 'Barlow Condensed', sans-serif; font-weight: 900;
+      font-size: clamp(2.5rem, 4vw, 3.5rem); text-transform: uppercase;
+      letter-spacing: -.02em; line-height: 1; margin: 8px 0 16px; color: #f0ebe6;
     }
-    .location-copy p { color: #a89890; font-size: 1rem; line-height: 1.7; margin-bottom: 32px; }
-    .hours-table { width: 100%; border-collapse: collapse; margin-bottom: 32px; }
-    .hours-table tr { border-bottom: 1px solid #2a2020; }
-    .hours-table tr:last-child { border-bottom: none; }
-    .hours-table td { padding: 10px 0; font-size: .9rem; }
-    .hours-table td:first-child { font-weight: 600; color: #f0ebe6; }
-    .hours-table td:last-child { text-align: right; color: #a89890; }
+    .location-copy p { color: #a89890; font-size: 1.05rem; line-height: 1.6; margin-bottom: 32px; max-width: 40ch; }
+    .hours-table { width: 100%; max-width: 400px; border-collapse: collapse; margin-bottom: 32px; }
+    .hours-table td { padding: 12px 0; border-bottom: 1px solid #2a2020; color: #f0ebe6; font-size: .95rem; }
+    .hours-table td:last-child { text-align: right; font-weight: 600; }
     .hours-table tr.today td { color: #e05040; font-weight: 700; }
-    .location-actions { display: flex; flex-wrap: wrap; gap: 12px; }
+    .location-actions { display: flex; gap: 12px; flex-wrap: wrap; }
     .location-map {
-      border-radius: var(--radius); overflow: hidden;
-      box-shadow: var(--shadow); aspect-ratio: 4/3;
+      border-radius: 24px; overflow: hidden; border: 1px solid #2a2020;
+      aspect-ratio: 1; box-shadow: var(--shadow);
     }
-    .location-map iframe { width: 100%; height: 100%; border: none; display: block; }
+    .location-map iframe { width: 100%; height: 100%; border: none; }
 
     /* ─── CTA BAND ─────────────────────────────────────────────── */
     .cta-band {
-      background: #c8321a;
-      padding: 80px 0;
-      text-align: center;
+      background: #c8321a; padding: 80px 0; text-align: center;
+      position: relative; overflow: hidden;
     }
+    .cta-band::before {
+      content: ''; position: absolute; inset: 0;
+      background: radial-gradient(circle at center, rgba(255,255,255,.1) 0%, transparent 70%);
+    }
+    .cta-band .container { position: relative; z-index: 1; }
     .cta-band h2 {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-weight: 900; font-size: clamp(2.8rem, 5vw, 4.5rem);
-      text-transform: uppercase; letter-spacing: -.02em; line-height: .95;
-      color: #fff; margin-bottom: 16px;
+      font-family: 'Barlow Condensed', sans-serif; font-weight: 900;
+      font-size: clamp(2.5rem, 4vw, 3.5rem); text-transform: uppercase;
+      letter-spacing: -.02em; color: #fff; margin-bottom: 16px;
     }
-    .cta-band p { color: rgba(255,255,255,.75); font-size: 1.1rem; max-width: 44ch; margin-inline: auto; margin-bottom: 36px; }
-    .cta-band-actions { display: flex; justify-content: center; flex-wrap: wrap; gap: 14px; }
+    .cta-band p { color: rgba(255,255,255,.8); font-size: 1.1rem; margin-bottom: 32px; max-width: 50ch; margin-inline: auto; }
+    .cta-band-actions { display: flex; justify-content: center; gap: 16px; flex-wrap: wrap; }
 
     /* ─── FOOTER ───────────────────────────────────────────────── */
-    footer {
-      background: #0a0a0a;
-      color: rgba(240,235,230,.45);
-      padding: 56px 0 32px;
-      border-top: 1px solid #2a1a16;
-    }
+    footer { background: #0a0a0a; padding: 80px 0 40px; border-top: 1px solid #1a1414; }
     .footer-inner {
       display: grid; grid-template-columns: 2fr 1fr 1fr 1fr;
       gap: 48px; margin-bottom: 48px;
@@ -524,80 +474,6 @@
     }
     .footer-social a:hover { background: var(--green); color: #fff; }
 
-    /* ─── SIGNUP SECTION ─────────────────────────────────────── */
-    .signup-section {
-      background: #141010;
-      padding: 80px 0;
-      border-top: 1px solid #2a1a16;
-      border-bottom: 1px solid #2a1a16;
-    }
-    .signup-inner {
-      display: grid; grid-template-columns: 1fr 1fr;
-      gap: 64px; align-items: center;
-    }
-    .signup-copy .kicker { margin-bottom: 12px; display: block; }
-    .signup-copy h2 {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-weight: 900; font-size: clamp(2.2rem, 3.5vw, 3rem);
-      text-transform: uppercase; letter-spacing: -.02em; line-height: 1;
-      color: #f0ebe6; margin-bottom: 16px;
-    }
-    .signup-copy h2 em { font-style: normal; color: #e05040; }
-    .signup-copy p { color: #a89890; font-size: 1rem; line-height: 1.7; max-width: 44ch; }
-    .signup-perks { list-style: none; margin-top: 20px; display: flex; flex-direction: column; gap: 10px; }
-    .signup-perks li {
-      display: flex; align-items: center; gap: 10px;
-      color: rgba(240,235,230,.8); font-size: .9rem;
-    }
-    .signup-perks li::before {
-      content: '✓'; flex-shrink: 0;
-      width: 20px; height: 20px; border-radius: 50%;
-      background: rgba(200,50,26,.25); color: #e05040;
-      display: flex; align-items: center; justify-content: center;
-      font-size: .7rem; font-weight: 900;
-    }
-    .signup-form-wrap {
-      background: #1a1414; border-radius: var(--radius);
-      border: 1px solid #2a2020;
-      padding: 36px;
-    }
-    .signup-form-wrap h3 {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-weight: 900; font-size: 1.6rem; text-transform: uppercase;
-      color: #f0ebe6; margin-bottom: 6px;
-    }
-    .signup-form-wrap p { color: #a89890; font-size: .875rem; margin-bottom: 24px; }
-    .signup-form { display: flex; flex-direction: column; gap: 14px; }
-    .form-field {
-      display: flex; flex-direction: column; gap: 6px;
-    }
-    .form-field label { font-size: .8rem; font-weight: 700; color: #a89890; letter-spacing: .06em; text-transform: uppercase; }
-    .form-field input {
-      background: #0f0f0f; border: 1.5px solid #3a2a28;
-      border-radius: 10px; padding: 14px 16px;
-      color: #f0ebe6; font-size: .95rem; font-family: inherit;
-      transition: border-color .18s, box-shadow .18s;
-      outline: none;
-    }
-    .form-field input::placeholder { color: #6e5e58; }
-    .form-field input:focus { border-color: #c8321a; box-shadow: 0 0 0 3px rgba(200,50,26,.15); }
-    .form-consent { font-size: .78rem; color: #6e5e58; line-height: 1.5; margin-top: 4px; }
-    .signup-success {
-      display: none; text-align: center; padding: 24px 0;
-    }
-    .signup-success .success-icon {
-      width: 56px; height: 56px; border-radius: 50%;
-      background: rgba(200,50,26,.2); color: #e05040;
-      font-size: 1.6rem;
-      display: flex; align-items: center; justify-content: center;
-      margin: 0 auto 16px;
-    }
-    .signup-success h4 { font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: 1.5rem; text-transform: uppercase; color: #f0ebe6; margin-bottom: 8px; }
-    .signup-success p { color: #a89890; font-size: .9rem; }
-    @media (max-width: 768px) {
-      .signup-inner { grid-template-columns: 1fr; gap: 40px; }
-    }
-
     /* ─── MOBILE BOTTOM BAR ────────────────────────────────────── */
     .mobile-bar {
       display: none;
@@ -624,7 +500,7 @@
       .hero-image { min-height: 300px; }
       .hero-image::after { background: linear-gradient(180deg, var(--dark) 0%, transparent 30%); }
       .family-inner { grid-template-columns: 1fr; }
-      .family-copy { padding: 56px 0 40px; }
+      .family-copy { padding: 56px 24px 40px; }
       .family-image { min-height: 300px; }
       .family-image::before { background: linear-gradient(180deg, var(--dark) 0%, transparent 40%); }
       .location-inner { grid-template-columns: 1fr; }
@@ -661,8 +537,7 @@
       <ul class="nav-links">
         <li><a href="index.html" class="active">Home</a></li>
         <li><a href="menu.html">Menu</a></li>
-        <li><a href="#featured">Favorites</a></li>
-        <li><a href="#family">Family Deal</a></li>
+        <li><a href="catering.html">Catering</a></li>
         <li><a href="#location">Location</a></li>
       </ul>
       <div class="nav-cta">
@@ -684,8 +559,7 @@
     <ul class="mobile-nav-links">
       <li><a href="index.html" onclick="closeMobileNav()">Home</a></li>
       <li><a href="menu.html" onclick="closeMobileNav()">Menu</a></li>
-      <li><a href="#featured" onclick="closeMobileNav()">Favorites</a></li>
-      <li><a href="#family" onclick="closeMobileNav()">Family Deal</a></li>
+      <li><a href="catering.html" onclick="closeMobileNav()">Catering</a></li>
       <li><a href="#location" onclick="closeMobileNav()">Location</a></li>
     </ul>
     <div class="mobile-nav-bottom">
@@ -699,7 +573,7 @@
     <div class="hero-copy">
       <div class="hero-eyebrow">Now Open in Ambridge, PA</div>
       <h1>Soul food made right,<br><em>just like home.</em></h1>
-      <p class="hero-sub">Hot, fresh, and made to order&mdash;crispy whole wings, tender ribs, fried fish, baked mac &amp; cheese, finished with perfectly seasoned greens. Crafted to satisfy.</p>
+      <p class="hero-sub">Hot, fresh, and made to order&mdash;crispy whole wings, tender ribs, fried fish, baked mac &amp; cheese, and collard greens that don't miss. If you're hungry for real food, this is where you go.</p>
       <div class="hero-actions">
         <a href="menu.html" class="btn btn-green btn-lg">Order Now</a>
         <a href="tel:+17243850522" class="btn btn-outline-white btn-lg">Call to Order</a>
@@ -708,7 +582,7 @@
       <p class="hero-trust">Most orders ready in 15&ndash;20 minutes</p>
     </div>
     <div class="hero-image">
-      <img src="assets/food-gallery-1.jpg" alt="Annie Lee's Southern Kitchen food spread" />
+      <img src="assets/food-gallery-1.jpg" alt="Annie Lee's Southern Kitchen food spread" onerror="this.src='https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=1200&q=80'" />
       <div class="hero-badge">
         <div class="price">$18</div>
         <div class="label">6 Wings w/ 2 Sides</div>
@@ -751,9 +625,9 @@
         <a href="menu.html" class="btn btn-dark">Full Menu &rarr;</a>
       </div>
       <div class="featured-grid">
-        <div class="food-card reveal">
+        <div class="food-card reveal" onclick="window.location='menu.html?add=6_wings'">
           <div class="food-card-img">
-            <img src="assets/wings-6-2-sides.png" alt="6 Wings with 2 Sides" loading="lazy" />
+            <img src="assets/wings-6-2-sides.png" alt="6 Wings with 2 Sides" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1527477396000-e27163b481c2?auto=format&fit=crop&w=600&q=80'" />
             <span class="food-card-badge">Best Seller</span>
           </div>
           <div class="food-card-body">
@@ -761,13 +635,13 @@
             <p>Crispy whole wings with two sides&mdash;hot, fresh, and made to satisfy every time.</p>
             <div class="food-card-footer">
               <span class="food-card-price">$18</span>
-              <button class="food-card-add" onclick="window.location='menu.html'" aria-label="Add to order">+</button>
+              <button class="food-card-add" aria-label="Add to order">+</button>
             </div>
           </div>
         </div>
-        <div class="food-card reveal">
+        <div class="food-card reveal" onclick="window.location='menu.html?add=half_slab'">
           <div class="food-card-img">
-            <img src="assets/ribs-half-slab-2-sides.png" alt="Half Slab Ribs with 2 Sides" loading="lazy" />
+            <img src="assets/ribs-half-slab-2-sides.png" alt="Half Slab Ribs with 2 Sides" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=600&q=80'" />
             <span class="food-card-badge">Hearty</span>
           </div>
           <div class="food-card-body">
@@ -775,13 +649,13 @@
             <p>Slow-cooked, tender ribs with two sides&mdash;full of flavor and built to fill you up.</p>
             <div class="food-card-footer">
               <span class="food-card-price">$25</span>
-              <button class="food-card-add" onclick="window.location='menu.html'" aria-label="Add to order">+</button>
+              <button class="food-card-add" aria-label="Add to order">+</button>
             </div>
           </div>
         </div>
-        <div class="food-card reveal">
+        <div class="food-card reveal" onclick="window.location='menu.html?add=fish_dinner'">
           <div class="food-card-img">
-            <img src="assets/fish-dinner.png" alt="Fish Dinner" loading="lazy" />
+            <img src="assets/fish-dinner.png" alt="Fish Dinner" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1580476262798-bddd9f4b7369?auto=format&fit=crop&w=600&q=80'" />
             <span class="food-card-badge">Fan Favorite</span>
           </div>
           <div class="food-card-body">
@@ -789,13 +663,13 @@
             <p>Golden fried fish served hot with classic sides&mdash;simple, fresh, and done right.</p>
             <div class="food-card-footer">
               <span class="food-card-price">$16</span>
-              <button class="food-card-add" onclick="window.location='menu.html'" aria-label="Add to order">+</button>
+              <button class="food-card-add" aria-label="Add to order">+</button>
             </div>
           </div>
         </div>
-        <div class="food-card reveal">
+        <div class="food-card reveal" onclick="window.location='menu.html?add=mac_cheese'">
           <div class="food-card-img">
-            <img src="assets/mac-cheese-lg.png" alt="Large Baked Mac and Cheese" loading="lazy" />
+            <img src="assets/mac-cheese-lg.png" alt="Large Baked Mac and Cheese" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1612871689353-cccf581d667b?auto=format&fit=crop&w=600&q=80'" />
             <span class="food-card-badge">Add-On King</span>
           </div>
           <div class="food-card-body">
@@ -803,7 +677,7 @@
             <p>Rich, creamy, baked mac &amp; cheese&mdash;the side everyone ends up ordering.</p>
             <div class="food-card-footer">
               <span class="food-card-price">Sm $4 &middot; Lg $7</span>
-              <button class="food-card-add" onclick="window.location='menu.html'" aria-label="Add to order">+</button>
+              <button class="food-card-add" aria-label="Add to order">+</button>
             </div>
           </div>
         </div>
@@ -811,30 +685,26 @@
     </div>
   </section>
 
-  <!-- FAMILY DEAL -->
-  <section class="family-section" id="family">
+  <!-- CATERING / FAMILY DEAL -->
+  <section class="family-section" id="catering">
     <div class="container">
       <div class="family-inner">
         <div class="family-copy reveal">
-          <span class="kicker">Family meals</span>
-          <h2>Feed everyone<br>for <em>under $50.</em></h2>
-          <p>Plenty of food for the table&mdash;perfect for family, friends, or when you're really hungry.</p>
-          <div class="family-price-tag">
-            <span class="amount">$49.97</span>
-            <span class="label">family feast deal</span>
-          </div>
+          <span class="kicker">Catering &amp; Events</span>
+          <h2>Bring the soul<br><em>to your next event.</em></h2>
+          <p>From family gatherings to corporate events, we provide authentic, hot, and fresh soul food that will have everyone coming back for seconds.</p>
           <ul class="family-checklist">
-            <li><span><strong>6 Wings w/ 2 Sides</strong> &mdash; crispy whole wings, your choice of 2 small sides</span></li>
-            <li><span><strong>Half Slab w/ 2 Sides</strong> &mdash; smoky tender ribs with 2 small sides</span></li>
-            <li><span><strong>Large Baked Mac &amp; Cheese</strong> &mdash; rich, creamy, baked to perfection</span></li>
+            <li><span><strong>Custom Menus</strong> &mdash; tailored to fit your party size and preferences</span></li>
+            <li><span><strong>Half &amp; Full Pans</strong> &mdash; perfect for feeding large groups</span></li>
+            <li><span><strong>Professional Service</strong> &mdash; reliable, on-time, and ready to serve</span></li>
           </ul>
           <div style="display:flex;flex-wrap:wrap;gap:12px;">
-            <a href="tel:+17243850522" class="btn btn-green btn-lg">Call to Order &rarr;</a>
-            <a href="menu.html" class="btn btn-outline-white">Full Menu</a>
+            <a href="catering.html" class="btn btn-green btn-lg">View Catering Menu &rarr;</a>
+            <a href="tel:+17243850522" class="btn btn-outline-white">Call to Inquire</a>
           </div>
         </div>
         <div class="family-image">
-          <img src="assets/family-feast-wings-ribs-mac.png" alt="Family Feast: wings, ribs, and large mac and cheese" loading="lazy" />
+          <img src="https://images.unsplash.com/photo-1555244162-803834f70033?auto=format&fit=crop&w=1000&q=80" alt="Catering spread of soul food" loading="lazy" />
         </div>
       </div>
     </div>
@@ -853,7 +723,7 @@
         <a href="https://www.yelp.com/biz/annie-lees-southern-kitchen-ambridge" target="_blank" rel="noopener" class="reviewer-card">
           <div class="reviewer-avatar">
             <div class="reviewer-avatar-ring">
-              <img src="assets/reviewer1.jpg" alt="Celeta S." />
+              <img src="https://images.unsplash.com/photo-1531123897727-8f129e1bf98c?auto=format&fit=crop&w=100&q=80" alt="Celeta S." />
             </div>
             <span class="reviewer-badge">★5</span>
           </div>
@@ -866,7 +736,7 @@
         <a href="https://www.yelp.com/biz/annie-lees-southern-kitchen-ambridge" target="_blank" rel="noopener" class="reviewer-card">
           <div class="reviewer-avatar">
             <div class="reviewer-avatar-ring">
-              <img src="assets/reviewer2.jpg" alt="Wascally W." />
+              <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=100&q=80" alt="Wascally W." />
             </div>
             <span class="reviewer-badge">★5</span>
           </div>
@@ -879,7 +749,7 @@
         <a href="https://www.yelp.com/biz/annie-lees-southern-kitchen-ambridge" target="_blank" rel="noopener" class="reviewer-card">
           <div class="reviewer-avatar">
             <div class="reviewer-avatar-ring">
-              <img src="assets/reviewer3.jpg" alt="David B." />
+              <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=100&q=80" alt="David B." />
             </div>
             <span class="reviewer-badge">★5</span>
           </div>
@@ -892,7 +762,7 @@
         <a href="https://www.yelp.com/biz/annie-lees-southern-kitchen-ambridge" target="_blank" rel="noopener" class="reviewer-card">
           <div class="reviewer-avatar">
             <div class="reviewer-avatar-ring">
-              <img src="assets/reviewer4.jpg" alt="Lisa A." />
+              <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=100&q=80" alt="Lisa A." />
             </div>
             <span class="reviewer-badge">★5</span>
           </div>
@@ -909,7 +779,9 @@
           <div class="review-stars">★★★★★</div>
           <p class="review-text">"Exceptional dining experience with outstanding flavors, fresh ingredients and beautiful presentation supported by attentive service and warm atmosphere making the meal memorable and worth returning for often."</p>
           <div class="review-author">
-            <div class="review-author-avatar">N</div>
+            <div class="review-author-avatar">
+              <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=100&q=80" alt="Nurlan I." />
+            </div>
             <div>
               <div class="review-author-name">Nurlan I.</div>
               <div class="review-author-meta">Aliquippa, PA &middot; Feb 2026 &middot; Yelp</div>
@@ -920,7 +792,9 @@
           <div class="review-stars">★★★★★</div>
           <p class="review-text">"They always great food, good ambiance, and friendly service. Anytime you can get it is always worth it."</p>
           <div class="review-author">
-            <div class="review-author-avatar">K</div>
+            <div class="review-author-avatar">
+              <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=100&q=80" alt="Kelsey O." />
+            </div>
             <div>
               <div class="review-author-name">Kelsey O.</div>
               <div class="review-author-meta">Beaver, PA &middot; Aug 2025 &middot; Yelp</div>
@@ -931,7 +805,9 @@
           <div class="review-stars">★★★★★</div>
           <p class="review-text">"First time visiting today, and it was awesome! I ordered the fried catfish with mac &amp; cheese and potato salad. The catfish and mac &amp; cheese ranked as some of the best I've ever eaten. Nice sized portions."</p>
           <div class="review-author">
-            <div class="review-author-avatar">G</div>
+            <div class="review-author-avatar">
+              <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=100&q=80" alt="Gary N." />
+            </div>
             <div>
               <div class="review-author-name">Gary N.</div>
               <div class="review-author-meta">Pittsburgh, PA &middot; Jun 2024 &middot; Yelp</div>
@@ -955,12 +831,12 @@
           <h2>Right here in Ambridge.</h2>
           <p>1601 Duss Ave. Easy to find, easy to order, and always worth the stop.</p>
           <table class="hours-table">
-            <tr><td>Monday</td><td>11:00 AM – 8:00 PM</td></tr>
-            <tr><td>Tuesday</td><td>11:00 AM – 8:00 PM</td></tr>
-            <tr><td>Wednesday</td><td>11:00 AM – 8:00 PM</td></tr>
-            <tr><td>Thursday</td><td>11:00 AM – 8:00 PM</td></tr>
-            <tr><td>Friday</td><td>11:00 AM – 9:00 PM</td></tr>
-            <tr><td>Saturday</td><td>11:00 AM – 9:00 PM</td></tr>
+            <tr><td>Monday</td><td>Closed</td></tr>
+            <tr><td>Tuesday</td><td>Closed</td></tr>
+            <tr><td>Wednesday</td><td>11:00 AM – 7:00 PM</td></tr>
+            <tr><td>Thursday</td><td>11:00 AM – 7:00 PM</td></tr>
+            <tr><td>Friday</td><td>11:00 AM – 7:00 PM</td></tr>
+            <tr><td>Saturday</td><td>12:00 PM – 7:00 PM</td></tr>
             <tr><td>Sunday</td><td>12:00 PM – 7:00 PM</td></tr>
           </table>
           <div class="location-actions">
@@ -987,52 +863,6 @@
       <div class="cta-band-actions">
         <a href="menu.html" class="btn btn-dark btn-lg">Browse the Menu</a>
         <a href="tel:+17243850522" class="btn btn-outline-white btn-lg">Call 724-385-0522</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- SIGNUP SECTION -->
-  <section class="signup-section" id="signup">
-    <div class="container">
-      <div class="signup-inner">
-        <div class="signup-copy reveal">
-          <span class="kicker">Stay connected</span>
-          <h2>Get deals &amp; updates<br><em>straight to you.</em></h2>
-          <p>Join the Annie Lee's list and be the first to know about specials, new menu items, and exclusive deals.</p>
-          <ul class="signup-perks">
-            <li>Early access to weekly specials</li>
-            <li>Exclusive deals for subscribers only</li>
-            <li>New menu item announcements</li>
-            <li>No spam &mdash; ever. Unsubscribe anytime.</li>
-          </ul>
-        </div>
-        <div class="signup-form-wrap reveal">
-          <h3>Join the List</h3>
-          <p>Drop your info below and we'll keep you in the loop.</p>
-          <div id="signup-form-container">
-            <form class="signup-form" id="signup-form" onsubmit="handleSignup(event)">
-              <div class="form-field">
-                <label for="signup-name">Your Name</label>
-                <input type="text" id="signup-name" name="name" placeholder="First name" required autocomplete="given-name" />
-              </div>
-              <div class="form-field">
-                <label for="signup-email">Email Address</label>
-                <input type="email" id="signup-email" name="email" placeholder="you@example.com" required autocomplete="email" />
-              </div>
-              <div class="form-field">
-                <label for="signup-phone">Phone Number <span style="color:#6e5e58;font-weight:400;text-transform:none">(optional)</span></label>
-                <input type="tel" id="signup-phone" name="phone" placeholder="(724) 000-0000" autocomplete="tel" />
-              </div>
-              <button type="submit" class="btn btn-green" style="width:100%;justify-content:center;padding:16px;">Get My Deals 🔥</button>
-              <p class="form-consent">By signing up you agree to receive occasional emails and texts from Annie Lee's Southern Kitchen. We never sell your info.</p>
-            </form>
-            <div class="signup-success" id="signup-success">
-              <div class="success-icon">✓</div>
-              <h4>You're on the list!</h4>
-              <p>Thanks for signing up. Watch your inbox for deals and updates from Annie Lee's Kitchen.</p>
-            </div>
-          </div>
-        </div>
       </div>
     </div>
   </section>
@@ -1132,27 +962,6 @@
         const offset = window.scrollY * 0.15;
         heroImg.style.transform = `scale(1.02) translateY(${offset}px)`;
       }, { passive: true });
-    }
-
-    // ── Email / Phone signup handler
-    function handleSignup(e) {
-      e.preventDefault();
-      const name  = document.getElementById('signup-name').value.trim();
-      const email = document.getElementById('signup-email').value.trim();
-      const phone = document.getElementById('signup-phone').value.trim();
-      // Save to localStorage so you can review submissions
-      const leads = JSON.parse(localStorage.getItem('al_leads') || '[]');
-      leads.push({ name, email, phone, source: 'Homepage', date: new Date().toISOString() });
-      localStorage.setItem('al_leads', JSON.stringify(leads));
-      // Also send to Formspree (replace YOUR_FORM_ID with your free Formspree endpoint)
-      fetch('https://formspree.io/f/YOUR_FORM_ID', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-        body: JSON.stringify({ name, email, phone, source: 'Homepage' })
-      }).catch(() => {}); // silent fail — localStorage backup always works
-      // Show success state
-      document.getElementById('signup-form').style.display = 'none';
-      document.getElementById('signup-success').style.display = 'block';
     }
   </script>
 </body>

@@ -15,9 +15,7 @@
   <meta property="og:image" content="assets/wings-6-2-sides.png" />
   <meta property="og:url" content="https://mbayingana777-del.github.io/annie-lee-southern-kitchen/menu.html" />
   <meta property="og:type" content="restaurant" />
-  <!-- Google Analytics (replace G-XXXXXXXXXX with your Measurement ID) -->
-  <!-- <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
-  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-XXXXXXXXXX');</script> -->
+  
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
@@ -208,157 +206,125 @@
     /* CART SIDEBAR */
     .cart-sidebar {
       position: sticky; top: calc(var(--nav-h) + var(--cat-h) + 24px);
-      background: #1a1414; border-radius: var(--radius); border: 1px solid #2a2020;
-      box-shadow: var(--shadow); overflow: hidden;
-      max-height: calc(100vh - var(--nav-h) - var(--cat-h) - 48px);
-      display: flex; flex-direction: column;
+      background: #141010; border: 1px solid #2a2020; border-radius: var(--radius);
+      display: flex; flex-direction: column; max-height: calc(100vh - var(--nav-h) - var(--cat-h) - 48px);
+      box-shadow: var(--shadow);
     }
     .cart-header {
-      padding: 20px 24px; border-bottom: 1px solid var(--border);
-      display: flex; align-items: center; justify-content: space-between;
-      background: var(--dark);
-    }
-    .cart-header h3 {
-      font-family: 'Barlow Condensed', sans-serif; font-weight: 900;
-      font-size: 1.3rem; text-transform: uppercase; letter-spacing: .04em; color: #fff;
-    }
-    .cart-count {
-      background: var(--green); color: #fff; width: 26px; height: 26px;
-      border-radius: 50%; display: flex; align-items: center; justify-content: center;
-      font-size: .8rem; font-weight: 800;
-    }
-    .cart-items { flex: 1; overflow-y: auto; padding: 16px; scrollbar-width: thin; background: #1a1414; }
-    .cart-empty { text-align: center; padding: 40px 20px; color: #6e5e58; font-size: .9rem; }
-    .cart-empty .icon { font-size: 2.5rem; margin-bottom: 10px; }
-    .cart-item {
-      display: flex; gap: 12px; align-items: flex-start;
-      padding: 12px 0; border-bottom: 1px solid #2a2020;
-    }
-    .cart-item:last-child { border-bottom: none; }
-    .cart-item-img {
-      width: 56px; height: 56px; border-radius: 10px;
-      overflow: hidden; flex-shrink: 0; background: #2a1a16;
-    }
-    .cart-item-img img { width: 100%; height: 100%; object-fit: cover; }
-    .cart-item-info { flex: 1; min-width: 0; }
-    .cart-item-name { font-size: .875rem; font-weight: 700; margin-bottom: 2px; color: #f0ebe6; }
-    .cart-item-price { font-size: .8rem; color: #a89890; }
-    .cart-item-controls { display: flex; align-items: center; gap: 8px; margin-top: 8px; }
-    .qty-btn {
-      width: 26px; height: 26px; border-radius: 50%;
-      border: 1.5px solid #3a2a28; background: #2a1a16; color: #f0ebe6;
-      display: flex; align-items: center; justify-content: center;
-      font-size: .9rem; font-weight: 700; cursor: pointer; transition: border-color .18s;
-    }
-    .qty-btn:hover { border-color: #c8321a; color: #e05040; }
-    .qty-val { font-size: .875rem; font-weight: 700; min-width: 18px; text-align: center; }
-    .cart-item-remove {
-      color: #6e5e58; font-size: .75rem; cursor: pointer;
-      margin-left: auto; padding: 4px; transition: color .18s;
-    }
-    .cart-item-remove:hover { color: #e05040; }
-    .cart-footer { padding: 16px 20px; border-top: 1px solid #2a2020; background: #1a1414; }
-    .cart-subtotal {
+      padding: 20px; border-bottom: 1px solid #2a2020;
       display: flex; justify-content: space-between; align-items: center;
-      margin-bottom: 6px; font-size: .875rem;
     }
-    .cart-subtotal .label { color: #a89890; }
-    .cart-subtotal .amount { font-weight: 800; font-size: 1.1rem; color: #f0ebe6; }
-    .cart-note { color: #6e5e58; font-size: .75rem; margin-bottom: 16px; line-height: 1.5; }
+    .cart-header h3 { font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: 1.4rem; text-transform: uppercase; color: #f0ebe6; }
+    .cart-count {
+      background: var(--green); color: #fff; font-size: .8rem; font-weight: 800;
+      width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center;
+    }
+    .cart-items { flex: 1; overflow-y: auto; padding: 20px; display: flex; flex-direction: column; gap: 16px; }
+    .cart-empty { text-align: center; padding: 40px 20px; color: #6e5e58; }
+    .cart-empty .icon { font-size: 2.5rem; margin-bottom: 12px; opacity: .5; }
+    .cart-empty p { font-size: .9rem; line-height: 1.5; }
+    
+    .cart-item { display: flex; gap: 12px; align-items: center; }
+    .cart-item-img { width: 50px; height: 50px; border-radius: 8px; object-fit: cover; background: #1a1414; }
+    .cart-item-info { flex: 1; }
+    .cart-item-name { font-size: .9rem; font-weight: 600; color: #f0ebe6; margin-bottom: 4px; }
+    .cart-item-price { font-size: .85rem; color: #a89890; }
+    .cart-item-controls { display: flex; align-items: center; gap: 10px; background: #1a1414; border-radius: 999px; padding: 4px 8px; border: 1px solid #2a2020; }
+    .cart-item-btn { color: #a89890; font-size: 1.1rem; width: 20px; height: 20px; display: flex; align-items: center; justify-content: center; transition: color .18s; }
+    .cart-item-btn:hover { color: #fff; }
+    .cart-item-qty { font-size: .85rem; font-weight: 700; width: 16px; text-align: center; }
+
+    .upsell-section { padding: 16px 20px; border-top: 1px solid #2a2020; background: #1a1414; }
+    .upsell-title { font-size: .8rem; font-weight: 700; text-transform: uppercase; letter-spacing: .05em; color: #a89890; margin-bottom: 12px; }
+    .upsell-items { display: flex; gap: 12px; overflow-x: auto; scrollbar-width: none; padding-bottom: 4px; }
+    .upsell-items::-webkit-scrollbar { display: none; }
+    .upsell-item {
+      flex-shrink: 0; width: 140px; background: #141010; border: 1px solid #2a2020;
+      border-radius: 10px; padding: 8px; display: flex; align-items: center; gap: 8px; cursor: pointer;
+      transition: border-color .18s;
+    }
+    .upsell-item:hover { border-color: var(--green); }
+    .upsell-item img { width: 36px; height: 36px; border-radius: 6px; object-fit: cover; }
+    .upsell-item-info { flex: 1; }
+    .upsell-item-name { font-size: .75rem; font-weight: 600; color: #f0ebe6; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .upsell-item-price { font-size: .7rem; color: #a89890; }
+    .upsell-add { color: var(--green); font-weight: 800; font-size: 1.1rem; padding: 0 4px; }
+
+    .cart-footer { padding: 20px; border-top: 1px solid #2a2020; background: #141010; border-radius: 0 0 var(--radius) var(--radius); }
+    .cart-subtotal { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; }
+    .cart-subtotal .label { font-size: 1rem; color: #a89890; }
+    .cart-subtotal .amount { font-size: 1.4rem; font-weight: 800; color: #f0ebe6; }
+    .cart-note { font-size: .75rem; color: #6e5e58; line-height: 1.5; margin-bottom: 16px; text-align: center; }
     .cart-checkout {
       width: 100%; padding: 16px; border-radius: 999px;
       background: var(--green); color: #fff; font-weight: 800; font-size: 1rem;
-      border: none; cursor: pointer; transition: background .18s, transform .18s;
       display: flex; align-items: center; justify-content: center; gap: 8px;
+      transition: background .18s, transform .18s;
     }
-    .cart-checkout:hover { background: var(--green-dark); transform: translateY(-2px); }
-    .cart-checkout:disabled { background: var(--muted-2); cursor: not-allowed; transform: none; }
+    .cart-checkout:hover:not(:disabled) { background: var(--green-dark); transform: translateY(-2px); }
+    .cart-checkout:disabled { background: #2a2020; color: #6e5e58; cursor: not-allowed; transform: none; }
     .cart-call {
-      width: 100%; padding: 12px; border-radius: 999px;
-      background: transparent; color: #f0ebe6; font-weight: 700; font-size: .875rem;
-      border: 2px solid #3a2a28; cursor: pointer; margin-top: 10px;
-      transition: border-color .18s; display: flex; align-items: center; justify-content: center; gap: 6px;
+      width: 100%; padding: 12px; margin-top: 10px; border-radius: 999px;
+      background: transparent; color: #a89890; font-weight: 600; font-size: .85rem;
+      border: 1px solid #2a2020; transition: background .18s, color .18s;
     }
-    .cart-call:hover { border-color: #c8321a; }
+    .cart-call:hover { background: #1a1414; color: #f0ebe6; }
 
-    /* UPSELL */
-    .upsell-section { padding: 16px; border-top: 1px solid #2a2020; background: #141010; }
-    .upsell-title { font-size: .75rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: #6e5e58; margin-bottom: 10px; }
-    .upsell-items { display: flex; flex-direction: column; gap: 8px; }
-    .upsell-item {
-      display: flex; align-items: center; gap: 10px;
-      background: #1a1414; border-radius: 10px; padding: 8px 10px;
-      border: 1px solid #2a2020; cursor: pointer; transition: border-color .18s;
-    }
-    .upsell-item:hover { border-color: #c8321a; }
-    .upsell-item img { width: 40px; height: 40px; border-radius: 8px; object-fit: cover; flex-shrink: 0; }
-    .upsell-item-info { flex: 1; min-width: 0; }
-    .upsell-item-name { font-size: .8rem; font-weight: 700; color: #f0ebe6; }
-    .upsell-item-price { font-size: .75rem; color: #a89890; }
-    .upsell-add {
-      width: 28px; height: 28px; border-radius: 50%;
-      background: rgba(200,50,26,.2); color: #e05040;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 1rem; font-weight: 700; flex-shrink: 0; border: none; cursor: pointer;
-    }
-
-    /* MOBILE CART OVERLAY */
+    /* MOBILE CART OVERLAY & DRAWER */
     .mobile-cart-overlay {
-      display: none; position: fixed; inset: 0; z-index: 150; background: rgba(0,0,0,.5);
+      display: none; position: fixed; inset: 0; background: rgba(0,0,0,.6);
+      z-index: 150; backdrop-filter: blur(4px); opacity: 0; transition: opacity .3s;
     }
-    .mobile-cart-overlay.open { display: block; }
     .mobile-cart-drawer {
-      position: fixed; bottom: 0; left: 0; right: 0; z-index: 160;
-      background: #1a1414; border-radius: 24px 24px 0 0;
-      max-height: 85vh; display: flex; flex-direction: column;
-      transform: translateY(100%); transition: transform .35s cubic-bezier(.4,0,.2,1);
-      box-shadow: 0 -8px 40px rgba(0,0,0,.2);
+      display: none; position: fixed; bottom: 0; left: 0; right: 0;
+      background: #141010; border-radius: 24px 24px 0 0; z-index: 160;
+      flex-direction: column; max-height: 85vh;
+      transform: translateY(100%); transition: transform .3s cubic-bezier(0.32, 0.72, 0, 1);
+      box-shadow: 0 -10px 40px rgba(0,0,0,.5);
     }
     .mobile-cart-drawer.open { transform: translateY(0); }
-    .drawer-handle { width: 40px; height: 4px; background: #3a2a28; border-radius: 2px; margin: 12px auto 0; }
-    .drawer-header {
-      padding: 16px 20px; border-bottom: 1px solid #2a2020;
-      display: flex; align-items: center; justify-content: space-between;
-    }
-    .drawer-header h3 { font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: 1.3rem; text-transform: uppercase; color: #f0ebe6; }
-    .drawer-close { font-size: 1.4rem; cursor: pointer; padding: 4px 8px; color: #a89890; }
-    .drawer-items { flex: 1; overflow-y: auto; padding: 12px 20px; background: #1a1414; }
-    .drawer-footer { padding: 16px 20px; border-top: 1px solid #2a2020; background: #1a1414; }
+    .mobile-cart-overlay.open { opacity: 1; }
+    .drawer-handle { width: 40px; height: 4px; background: #2a2020; border-radius: 2px; margin: 12px auto; }
+    .drawer-header { padding: 0 24px 16px; border-bottom: 1px solid #2a2020; display: flex; justify-content: space-between; align-items: center; }
+    .drawer-header h3 { font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: 1.4rem; text-transform: uppercase; }
+    .drawer-close { color: #a89890; font-size: 1.5rem; padding: 4px; }
+    .drawer-items { flex: 1; overflow-y: auto; padding: 20px 24px; display: flex; flex-direction: column; gap: 16px; }
+    .drawer-footer { padding: 20px 24px 32px; border-top: 1px solid #2a2020; background: #1a1414; }
 
-    /* MOBILE CART BAR */
-    .mobile-cart-bar {
-      display: none; position: fixed; bottom: 0; left: 0; right: 0; z-index: 90;
-      background: #0a0a0a; padding: 12px 20px;
-      border-top: 1px solid #2a1a16;
+    /* MOBILE FLOATING CART BUTTON */
+    .mobile-cart-btn {
+      display: none; position: fixed; bottom: 24px; right: 24px; z-index: 140;
+      background: var(--green); color: #fff; width: 64px; height: 64px; border-radius: 50%;
+      box-shadow: 0 8px 24px rgba(200,50,26,.5); align-items: center; justify-content: center;
+      font-size: 1.5rem; transition: transform .2s;
     }
-    .mobile-cart-bar-inner { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
-    .cart-bar-info { color: #a89890; font-size: .85rem; }
-    .cart-bar-info strong { color: #f0ebe6; font-size: 1rem; display: block; }
-    .cart-bar-btn {
-      background: var(--green); color: #fff; padding: 12px 24px; border-radius: 999px;
-      font-weight: 800; font-size: .9rem; border: none; cursor: pointer;
-      display: flex; align-items: center; gap: 8px;
+    .mobile-cart-btn:active { transform: scale(.95); }
+    .mobile-cart-badge {
+      position: absolute; top: -4px; right: -4px; background: #fff; color: var(--green);
+      font-size: .75rem; font-weight: 800; width: 22px; height: 22px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 4px rgba(0,0,0,.2);
     }
 
     /* RESPONSIVE */
     @media (max-width: 1024px) {
-      .menu-layout { grid-template-columns: 1fr; }
-      .cart-sidebar { display: none; }
-      .mobile-cart-bar { display: block; }
-      body { padding-bottom: 80px; }
-      .items-grid { grid-template-columns: repeat(2, 1fr); }
+      .menu-layout { grid-template-columns: 1fr 320px; gap: 24px; }
     }
     @media (max-width: 768px) {
+      :root { --nav-h: 64px; }
+      .menu-layout { grid-template-columns: 1fr; padding-bottom: 100px; }
+      .cart-sidebar { display: none; }
+      .mobile-cart-btn { display: flex; }
+      .mobile-cart-overlay, .mobile-cart-drawer { display: flex; }
+      .items-grid { grid-template-columns: 1fr; }
       .nav-links, .nav-cta { display: none; }
       .nav-hamburger { display: flex; }
-      .items-grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
 <body>
 
   <!-- NAV -->
-  <nav class="site-nav">
+  <nav class="site-nav" id="site-nav">
     <div class="nav-inner">
       <a href="index.html" class="nav-logo">
         <img src="assets/logo.png" alt="Annie Lee's Southern Kitchen logo" onerror="this.style.display='none'" />
@@ -367,6 +333,7 @@
       <ul class="nav-links">
         <li><a href="index.html">Home</a></li>
         <li><a href="menu.html" class="active">Menu</a></li>
+        <li><a href="catering.html">Catering</a></li>
         <li><a href="index.html#location">Location</a></li>
       </ul>
       <div class="nav-cta">
@@ -385,71 +352,85 @@
       <button class="mobile-nav-close" id="nav-close">✕</button>
     </div>
     <ul class="mobile-nav-links">
-      <li><a href="index.html">Home</a></li>
-      <li><a href="menu.html">Menu</a></li>
-      <li><a href="index.html#location">Location</a></li>
+      <li><a href="index.html" onclick="closeMobileNav()">Home</a></li>
+      <li><a href="menu.html" onclick="closeMobileNav()">Menu</a></li>
+      <li><a href="catering.html" onclick="closeMobileNav()">Catering</a></li>
+      <li><a href="index.html#location" onclick="closeMobileNav()">Location</a></li>
     </ul>
     <div class="mobile-nav-bottom">
-      <a href="tel:+17243850522" class="btn btn-green" style="padding:16px 24px;font-size:1rem;">Call 724-385-0522</a>
+      <a href="tel:+17243850522" class="btn btn-outline-white btn-lg">Call 724-385-0522</a>
     </div>
   </div>
 
   <!-- MENU BANNER -->
   <div class="menu-banner">
     <div class="container menu-banner-inner">
-      <span class="kicker">Annie Lee's Southern Kitchen &mdash; Ambridge, PA</span>
-      <h1>The Full Menu.</h1>
-      <p>Everything we make, made fresh. Call ahead at <a href="tel:+17243850522" style="color:#6fcf67;font-weight:700;">724-385-0522</a> for faster pickup.</p>
+      <span class="kicker">The Menu</span>
+      <h1>Soul Food Made Right</h1>
+      <p>Hot, fresh, and made to order. Pick your plate, add your sides, and call it in.</p>
     </div>
   </div>
 
   <!-- CATEGORY NAV -->
   <div class="cat-nav-wrap">
     <div class="cat-nav" id="cat-nav">
-      <button class="cat-btn active" data-target="wings" onclick="scrollToSection('wings', this)"><span class="icon">🍗</span> Wing Dinners</button>
-      <button class="cat-btn" data-target="ribs" onclick="scrollToSection('ribs', this)"><span class="icon">🥩</span> Rib Plates</button>
-      <button class="cat-btn" data-target="fish" onclick="scrollToSection('fish', this)"><span class="icon">🐟</span> Fish Dinners</button>
-      <button class="cat-btn" data-target="sides" onclick="scrollToSection('sides', this)"><span class="icon">🥘</span> Sides</button>
-      <button class="cat-btn" data-target="drinks" onclick="scrollToSection('drinks', this)"><span class="icon">🥤</span> Drinks</button>
+      <button class="cat-btn active" onclick="scrollToSection('wings')"><span class="icon">🍗</span> Wings</button>
+      <button class="cat-btn" onclick="scrollToSection('ribs')"><span class="icon">🍖</span> Ribs</button>
+      <button class="cat-btn" onclick="scrollToSection('fish')"><span class="icon">🐟</span> Fish</button>
+      <button class="cat-btn" onclick="scrollToSection('sides')"><span class="icon">🥘</span> Sides</button>
+      <button class="cat-btn" onclick="scrollToSection('drinks')"><span class="icon">🥤</span> Drinks</button>
     </div>
   </div>
 
-  <!-- MAIN CONTENT -->
   <div class="container">
     <div class="menu-layout">
+      
+      <!-- MENU CONTENT -->
       <div class="menu-content">
-
+        
         <!-- WINGS -->
         <section class="menu-section" id="wings">
           <div class="menu-section-header">
             <h2>🍗 Wing Dinners</h2>
-            <p>Crispy whole wings served with your choice of sides.</p>
+            <p>Crispy, seasoned whole wings served hot. All dinners include your choice of 2 sides.</p>
           </div>
           <div class="items-grid">
-            <div class="item-card" onclick="addToCart('6 Wings w/ 2 Sides', 18, 'assets/wings-6-2-sides.png', this)">
+            <div class="item-card" onclick="addToCart('3 Wings w/ 2 Sides', 12, 'assets/wings-3-2-sides.png', this)">
               <div class="item-card-img">
-                <img src="assets/wings-6-2-sides.png" alt="6 Wings with 2 Sides" loading="lazy" />
+                <img src="assets/wings-3-2-sides.png" alt="3 Wings with 2 Sides" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1527477396000-e27163b481c2?auto=format&fit=crop&w=600&q=80'" />
+              </div>
+              <div class="item-card-body">
+                <h3>3 Wings w/ 2 Sides</h3>
+                <p>Three crispy whole wings with your choice of two sides.</p>
+                <div class="item-card-footer">
+                  <span class="item-price">$12</span>
+                  <button class="item-add" aria-label="Add to order">+</button>
+                </div>
+              </div>
+            </div>
+            <div class="item-card" id="item-6_wings" onclick="addToCart('6 Wings w/ 2 Sides', 18, 'assets/wings-6-2-sides.png', this)">
+              <div class="item-card-img">
+                <img src="assets/wings-6-2-sides.png" alt="6 Wings with 2 Sides" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1527477396000-e27163b481c2?auto=format&fit=crop&w=600&q=80'" />
                 <span class="item-card-badge">Best Seller</span>
               </div>
               <div class="item-card-body">
                 <h3>6 Wings w/ 2 Sides</h3>
-                <p>Crispy whole wings with two sides&mdash;hot, fresh, and made to satisfy every time.</p>
+                <p>Six crispy whole wings with your choice of two sides.</p>
                 <div class="item-card-footer">
                   <span class="item-price">$18</span>
                   <button class="item-add" aria-label="Add to order">+</button>
                 </div>
               </div>
             </div>
-            <div class="item-card" onclick="addToCart('12 Wings w/ 2 Sides', 28, 'assets/wings-12-piece.png', this)">
+            <div class="item-card" onclick="addToCart('10 Wings w/ 2 Sides', 25, 'assets/wings-10-2-sides.png', this)">
               <div class="item-card-img">
-                <img src="assets/wings-12-piece.png" alt="12 Wings with 2 Sides" loading="lazy" />
-                <span class="item-card-badge">Family Size</span>
+                <img src="assets/wings-10-2-sides.png" alt="10 Wings with 2 Sides" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1527477396000-e27163b481c2?auto=format&fit=crop&w=600&q=80'" />
               </div>
               <div class="item-card-body">
-                <h3>12 Wings w/ 2 Sides</h3>
-                <p>Double the wings, double the satisfaction. Perfect for sharing or a big appetite.</p>
+                <h3>10 Wings w/ 2 Sides</h3>
+                <p>Ten crispy whole wings with your choice of two sides. Perfect for sharing.</p>
                 <div class="item-card-footer">
-                  <span class="item-price">$28</span>
+                  <span class="item-price">$25</span>
                   <button class="item-add" aria-label="Add to order">+</button>
                 </div>
               </div>
@@ -460,40 +441,13 @@
         <!-- RIBS -->
         <section class="menu-section" id="ribs">
           <div class="menu-section-header">
-            <h2>🥩 Rib Plates</h2>
-            <p>Slow-cooked, smoky ribs served with your choice of sides.</p>
+            <h2>🍖 Rib Plates</h2>
+            <p>Slow-smoked, tender ribs that fall off the bone. Served with 2 sides.</p>
           </div>
           <div class="items-grid">
-            <div class="item-card" onclick="addToCart('3 Bones w/ 2 Sides', 16, 'assets/ribs-3-bones-2-sides.png', this)">
+            <div class="item-card" id="item-half_slab" onclick="addToCart('Half Slab w/ 2 Sides', 25, 'assets/ribs-half-slab-2-sides.png', this)">
               <div class="item-card-img">
-                <img src="assets/ribs-3-bones-2-sides.png" alt="3 Rib Bones with 2 Sides" loading="lazy" />
-              </div>
-              <div class="item-card-body">
-                <h3>3 Bones w/ 2 Sides</h3>
-                <p>Three tender rib bones with two classic sides&mdash;a satisfying solo plate.</p>
-                <div class="item-card-footer">
-                  <span class="item-price">$16</span>
-                  <button class="item-add" aria-label="Add to order">+</button>
-                </div>
-              </div>
-            </div>
-            <div class="item-card" onclick="addToCart('4 Bones w/ 2 Sides', 20, 'assets/ribs-4-bones-2-sides.png', this)">
-              <div class="item-card-img">
-                <img src="assets/ribs-4-bones-2-sides.png" alt="4 Rib Bones with 2 Sides" loading="lazy" />
-                <span class="item-card-badge">Popular</span>
-              </div>
-              <div class="item-card-body">
-                <h3>4 Bones w/ 2 Sides</h3>
-                <p>Four smoky rib bones with two sides&mdash;built for a serious appetite.</p>
-                <div class="item-card-footer">
-                  <span class="item-price">$20</span>
-                  <button class="item-add" aria-label="Add to order">+</button>
-                </div>
-              </div>
-            </div>
-            <div class="item-card" onclick="addToCart('Half Slab w/ 2 Sides', 25, 'assets/ribs-half-slab-2-sides.png', this)">
-              <div class="item-card-img">
-                <img src="assets/ribs-half-slab-2-sides.png" alt="Half Slab with 2 Sides" loading="lazy" />
+                <img src="assets/ribs-half-slab-2-sides.png" alt="Half Slab Ribs with 2 Sides" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=600&q=80'" />
                 <span class="item-card-badge">Hearty</span>
               </div>
               <div class="item-card-body">
@@ -515,9 +469,9 @@
             <p>Golden fried fish served hot with your choice of sides.</p>
           </div>
           <div class="items-grid">
-            <div class="item-card" onclick="addToCart('Fish Dinner', 16, 'assets/fish-dinner.png', this)">
+            <div class="item-card" id="item-fish_dinner" onclick="addToCart('Fish Dinner', 16, 'assets/fish-dinner.png', this)">
               <div class="item-card-img">
-                <img src="assets/fish-dinner.png" alt="Fish Dinner" loading="lazy" />
+                <img src="assets/fish-dinner.png" alt="Fish Dinner" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1580476262798-bddd9f4b7369?auto=format&fit=crop&w=600&q=80'" />
                 <span class="item-card-badge">Fan Favorite</span>
               </div>
               <div class="item-card-body">
@@ -531,7 +485,7 @@
             </div>
             <div class="item-card" onclick="addToCart('Fish Sandwich', 10, 'assets/fish-sandwich.png', this)">
               <div class="item-card-img">
-                <img src="assets/fish-sandwich.png" alt="Fish Sandwich" loading="lazy" />
+                <img src="assets/fish-sandwich.png" alt="Fish Sandwich" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1580476262798-bddd9f4b7369?auto=format&fit=crop&w=600&q=80'" />
               </div>
               <div class="item-card-body">
                 <h3>Fish Sandwich</h3>
@@ -552,9 +506,9 @@
             <p>Classic Southern sides. Available in small or large.</p>
           </div>
           <div class="items-grid">
-            <div class="item-card" onclick="addToCart('Baked Mac &amp; Cheese (Sm)', 4, 'assets/mac-cheese-sm.png', this)">
+            <div class="item-card" id="item-mac_cheese" onclick="addToCart('Baked Mac &amp; Cheese (Lg)', 7, 'assets/mac-cheese-lg.png', this)">
               <div class="item-card-img">
-                <img src="assets/mac-cheese-sm.png" alt="Baked Mac and Cheese" loading="lazy" />
+                <img src="assets/mac-cheese-lg.png" alt="Baked Mac and Cheese" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1612871689353-cccf581d667b?auto=format&fit=crop&w=600&q=80'" />
                 <span class="item-card-badge">Add-On King</span>
               </div>
               <div class="item-card-body">
@@ -568,7 +522,7 @@
             </div>
             <div class="item-card" onclick="addToCart('Collard Greens (Sm)', 4, 'assets/collard-greens-sm.png', this)">
               <div class="item-card-img">
-                <img src="assets/collard-greens-sm.png" alt="Collard Greens" loading="lazy" />
+                <img src="assets/collard-greens-sm.png" alt="Collard Greens" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=600&q=80'" />
               </div>
               <div class="item-card-body">
                 <h3>Collard Greens</h3>
@@ -581,7 +535,7 @@
             </div>
             <div class="item-card" onclick="addToCart('Candied Yams (Sm)', 4, 'assets/candied-yams-sm.png', this)">
               <div class="item-card-img">
-                <img src="assets/candied-yams-sm.png" alt="Candied Yams" loading="lazy" />
+                <img src="assets/candied-yams-sm.png" alt="Candied Yams" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1604908176997-125f25cc6f3d?auto=format&fit=crop&w=600&q=80'" />
               </div>
               <div class="item-card-body">
                 <h3>Candied Yams</h3>
@@ -594,7 +548,7 @@
             </div>
             <div class="item-card" onclick="addToCart('Potato Salad (Sm)', 4, 'assets/potato-salad-sm.png', this)">
               <div class="item-card-img">
-                <img src="assets/potato-salad-sm.png" alt="Potato Salad" loading="lazy" />
+                <img src="assets/potato-salad-sm.png" alt="Potato Salad" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1598514982205-f36b96d1e8d4?auto=format&fit=crop&w=600&q=80'" />
               </div>
               <div class="item-card-body">
                 <h3>Potato Salad</h3>
@@ -607,7 +561,7 @@
             </div>
             <div class="item-card" onclick="addToCart('Red Beans &amp; Rice (Sm)', 4, 'assets/red-beans-rice-sm.png', this)">
               <div class="item-card-img">
-                <img src="assets/red-beans-rice-sm.png" alt="Red Beans and Rice" loading="lazy" />
+                <img src="assets/red-beans-rice-sm.png" alt="Red Beans and Rice" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1512058564366-18510be2db19?auto=format&fit=crop&w=600&q=80'" />
               </div>
               <div class="item-card-body">
                 <h3>Red Beans &amp; Rice</h3>
@@ -620,7 +574,7 @@
             </div>
             <div class="item-card" onclick="addToCart('Cornbread', 2, 'assets/cornbread.png', this)">
               <div class="item-card-img">
-                <img src="assets/cornbread.png" alt="Cornbread" loading="lazy" />
+                <img src="assets/cornbread.png" alt="Cornbread" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=600&q=80'" />
               </div>
               <div class="item-card-body">
                 <h3>Cornbread</h3>
@@ -643,7 +597,7 @@
           <div class="items-grid">
             <div class="item-card" onclick="addToCart('Soda Can', 2, 'assets/soda-can.png', this)">
               <div class="item-card-img">
-                <img src="assets/soda-can.png" alt="Soda Can" loading="lazy" />
+                <img src="assets/soda-can.png" alt="Soda Can" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1622483767028-3f66f32aef97?auto=format&fit=crop&w=600&q=80'" />
               </div>
               <div class="item-card-body">
                 <h3>Soda Can</h3>
@@ -656,7 +610,7 @@
             </div>
             <div class="item-card" onclick="addToCart('Bottled Water', 2, 'assets/bottled-water.png', this)">
               <div class="item-card-img">
-                <img src="assets/bottled-water.png" alt="Bottled Water" loading="lazy" />
+                <img src="assets/bottled-water.png" alt="Bottled Water" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1523362628745-0c100150b504?auto=format&fit=crop&w=600&q=80'" />
               </div>
               <div class="item-card-body">
                 <h3>Bottled Water</h3>
@@ -688,7 +642,7 @@
           <div class="upsell-title">Add to your order</div>
           <div class="upsell-items">
             <div class="upsell-item" onclick="addToCart('Cornbread', 2, 'assets/cornbread.png', null)">
-              <img src="assets/cornbread.png" alt="Cornbread" />
+              <img src="assets/cornbread.png" alt="Cornbread" onerror="this.src='https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=100&q=80'" />
               <div class="upsell-item-info">
                 <div class="upsell-item-name">Cornbread</div>
                 <div class="upsell-item-price">$2</div>
@@ -696,7 +650,7 @@
               <button class="upsell-add">+</button>
             </div>
             <div class="upsell-item" onclick="addToCart('Soda Can', 2, 'assets/soda-can.png', null)">
-              <img src="assets/soda-can.png" alt="Soda Can" />
+              <img src="assets/soda-can.png" alt="Soda Can" onerror="this.src='https://images.unsplash.com/photo-1622483767028-3f66f32aef97?auto=format&fit=crop&w=100&q=80'" />
               <div class="upsell-item-info">
                 <div class="upsell-item-name">Soda Can</div>
                 <div class="upsell-item-price">$2</div>
@@ -710,7 +664,7 @@
             <span class="label">Subtotal</span>
             <span class="amount" id="cart-total">$0.00</span>
           </div>
-          <p class="cart-note">Call to confirm your order and arrange pickup at 1601 Duss Ave, Ambridge PA.</p>
+          <p class="cart-note">Online ordering coming soon via Square. For now, please call to place your order.</p>
           <button class="cart-checkout" id="cart-checkout-btn" onclick="callToOrder()" disabled>
             📞 Call to Order
           </button>
@@ -730,234 +684,212 @@
   <div class="mobile-cart-drawer" id="mobile-cart-drawer">
     <div class="drawer-handle"></div>
     <div class="drawer-header">
-      <h3>Your Order (<span id="drawer-count">0</span> items)</h3>
+      <h3>Your Order (<span id="drawer-count">0</span>)</h3>
       <button class="drawer-close" onclick="closeMobileCart()">✕</button>
     </div>
     <div class="drawer-items" id="drawer-items">
-      <div class="cart-empty">
-        <div class="icon">🛒</div>
-        <p>Your order is empty.<br>Add items from the menu.</p>
-      </div>
+      <!-- Cloned from desktop cart -->
     </div>
     <div class="drawer-footer">
-      <div class="cart-subtotal" style="margin-bottom:12px">
+      <div class="cart-subtotal">
         <span class="label">Subtotal</span>
         <span class="amount" id="drawer-total">$0.00</span>
       </div>
-      <button class="cart-checkout" onclick="callToOrder()">📞 Call to Order</button>
+      <button class="cart-checkout" id="drawer-checkout-btn" onclick="callToOrder()" disabled>
+        📞 Call to Order
+      </button>
     </div>
   </div>
 
-  <!-- MOBILE CART BAR -->
-  <div class="mobile-cart-bar" id="mobile-cart-bar" style="display:none">
-    <div class="mobile-cart-bar-inner">
-      <div class="cart-bar-info">
-        <strong id="bar-total">$0.00</strong>
-        <span id="bar-items">0 items</span>
-      </div>
-      <button class="cart-bar-btn" onclick="openMobileCart()">View Order 🛒</button>
-    </div>
-  </div>
+  <!-- MOBILE FLOATING CART BUTTON -->
+  <button class="mobile-cart-btn" id="mobile-cart-btn" onclick="openMobileCart()">
+    🛒
+    <span class="mobile-cart-badge" id="mobile-badge">0</span>
+  </button>
 
   <script>
-    let cart = [];
+    // ── Mobile nav
+    const hamburger = document.getElementById('hamburger');
+    const mobileNav = document.getElementById('mobile-nav');
+    const navClose = document.getElementById('nav-close');
+    hamburger.addEventListener('click', () => mobileNav.classList.add('open'));
+    navClose.addEventListener('click', () => mobileNav.classList.remove('open'));
+    function closeMobileNav() { mobileNav.classList.remove('open'); }
 
-    function addToCart(name, price, img, cardEl) {
-      const existing = cart.find(i => i.name === name);
-      if (existing) { existing.qty++; } else { cart.push({ name, price, img, qty: 1 }); }
-      renderCart();
-      if (cardEl) {
-        const btn = cardEl.querySelector('.item-add');
-        if (btn) {
-          btn.textContent = '✓'; btn.classList.add('added');
-          setTimeout(() => { btn.textContent = '+'; btn.classList.remove('added'); }, 900);
-        }
+    // ── Category Nav Scroll Spy
+    const sections = document.querySelectorAll('.menu-section');
+    const navBtns = document.querySelectorAll('.cat-btn');
+    
+    function scrollToSection(id) {
+      const el = document.getElementById(id);
+      if (el) {
+        const y = el.getBoundingClientRect().top + window.scrollY - 140;
+        window.scrollTo({ top: y, behavior: 'smooth' });
       }
     }
 
-    function changeQty(name, delta) {
+    window.addEventListener('scroll', () => {
+      let current = '';
+      sections.forEach(sec => {
+        const top = sec.offsetTop - 160;
+        if (window.scrollY >= top) { current = sec.getAttribute('id'); }
+      });
+      navBtns.forEach(btn => {
+        btn.classList.remove('active');
+        if (btn.getAttribute('onclick').includes(current)) {
+          btn.classList.add('active');
+          // scroll nav horizontally if needed
+          const nav = document.getElementById('cat-nav');
+          const btnLeft = btn.offsetLeft;
+          if (btnLeft < nav.scrollLeft || btnLeft > nav.scrollLeft + nav.clientWidth - 100) {
+            nav.scrollTo({ left: btnLeft - 20, behavior: 'smooth' });
+          }
+        }
+      });
+    }, { passive: true });
+
+    // ── Cart Logic
+    let cart = [];
+
+    function addToCart(name, price, img, btnEl) {
+      const existing = cart.find(item => item.name === name);
+      if (existing) {
+        existing.qty += 1;
+      } else {
+        cart.push({ name, price, img, qty: 1 });
+      }
+      
+      // Button animation
+      if (btnEl) {
+        const addBtn = btnEl.querySelector('.item-add');
+        if (addBtn) {
+          addBtn.classList.add('added');
+          addBtn.innerHTML = '✓';
+          setTimeout(() => {
+            addBtn.classList.remove('added');
+            addBtn.innerHTML = '+';
+          }, 800);
+        }
+      }
+      
+      updateCartUI();
+    }
+
+    function updateQty(name, delta) {
       const item = cart.find(i => i.name === name);
-      if (!item) return;
-      item.qty += delta;
-      if (item.qty <= 0) cart = cart.filter(i => i.name !== name);
-      renderCart();
+      if (item) {
+        item.qty += delta;
+        if (item.qty <= 0) {
+          cart = cart.filter(i => i.name !== name);
+        }
+        updateCartUI();
+      }
     }
 
-    function removeItem(name) {
-      cart = cart.filter(i => i.name !== name);
-      renderCart();
-    }
+    function updateCartUI() {
+      const itemsContainer = document.getElementById('cart-items');
+      const drawerItems = document.getElementById('drawer-items');
+      const emptyState = document.getElementById('cart-empty');
+      
+      let totalQty = 0;
+      let totalPrice = 0;
+      let html = '';
 
-    function getTotal() { return cart.reduce((s, i) => s + i.price * i.qty, 0); }
-    function getTotalQty() { return cart.reduce((s, i) => s + i.qty, 0); }
-
-    function itemsHTML() {
-      if (cart.length === 0) return '<div class="cart-empty"><div class="icon">🛒</div><p>Your order is empty.<br>Add items from the menu.</p></div>';
-      return cart.map(item => {
-        const safeName = item.name.replace(/'/g, "\\'");
-        return `<div class="cart-item">
-          <div class="cart-item-img"><img src="${item.img}" alt="${item.name}" onerror="this.style.display='none'" /></div>
-          <div class="cart-item-info">
-            <div class="cart-item-name">${item.name}</div>
-            <div class="cart-item-price">$${(item.price * item.qty).toFixed(2)}</div>
+      cart.forEach(item => {
+        totalQty += item.qty;
+        totalPrice += item.price * item.qty;
+        const fallbackImg = item.img.includes('wings') ? 'https://images.unsplash.com/photo-1527477396000-e27163b481c2?auto=format&fit=crop&w=100&q=80' : 'https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=100&q=80';
+        
+        html += `
+          <div class="cart-item">
+            <img src="${item.img}" alt="${item.name}" class="cart-item-img" onerror="this.src='${fallbackImg}'" />
+            <div class="cart-item-info">
+              <div class="cart-item-name">${item.name}</div>
+              <div class="cart-item-price">$${item.price}</div>
+            </div>
             <div class="cart-item-controls">
-              <button class="qty-btn" onclick="event.stopPropagation();changeQty('${safeName}',-1)">−</button>
-              <span class="qty-val">${item.qty}</span>
-              <button class="qty-btn" onclick="event.stopPropagation();changeQty('${safeName}',1)">+</button>
-              <span class="cart-item-remove" onclick="event.stopPropagation();removeItem('${safeName}')">Remove</span>
+              <button class="cart-item-btn" onclick="updateQty('${item.name}', -1)">-</button>
+              <span class="cart-item-qty">${item.qty}</span>
+              <button class="cart-item-btn" onclick="updateQty('${item.name}', 1)">+</button>
             </div>
           </div>
-        </div>`;
-      }).join('');
-    }
+        `;
+      });
 
-    function renderCart() {
-      const total = getTotal(), qty = getTotalQty(), totalStr = '$' + total.toFixed(2);
-      document.getElementById('cart-count').textContent = qty;
-      document.getElementById('cart-total').textContent = totalStr;
-      document.getElementById('drawer-count').textContent = qty;
-      document.getElementById('drawer-total').textContent = totalStr;
-      document.getElementById('bar-total').textContent = totalStr;
-      document.getElementById('bar-items').textContent = qty + ' item' + (qty !== 1 ? 's' : '');
-      const checkoutBtn = document.getElementById('cart-checkout-btn');
-      if (checkoutBtn) checkoutBtn.disabled = qty === 0;
-      const html = itemsHTML();
-      document.getElementById('cart-items').innerHTML = html;
-      document.getElementById('drawer-items').innerHTML = html;
-      const bar = document.getElementById('mobile-cart-bar');
-      if (bar) bar.style.display = qty > 0 ? 'block' : 'none';
+      if (cart.length === 0) {
+        itemsContainer.innerHTML = `
+          <div class="cart-empty" id="cart-empty">
+            <div class="icon">🛒</div>
+            <p>Your order is empty.<br>Add items from the menu.</p>
+          </div>
+        `;
+        drawerItems.innerHTML = itemsContainer.innerHTML;
+      } else {
+        itemsContainer.innerHTML = html;
+        drawerItems.innerHTML = html;
+      }
+
+      // Update counts & totals
+      document.getElementById('cart-count').textContent = totalQty;
+      document.getElementById('drawer-count').textContent = totalQty;
+      document.getElementById('mobile-badge').textContent = totalQty;
+      
+      const formattedTotal = '$' + totalPrice.toFixed(2);
+      document.getElementById('cart-total').textContent = formattedTotal;
+      document.getElementById('drawer-total').textContent = formattedTotal;
+
+      // Toggle checkout buttons
+      const canCheckout = cart.length > 0;
+      document.getElementById('cart-checkout-btn').disabled = !canCheckout;
+      document.getElementById('drawer-checkout-btn').disabled = !canCheckout;
+      
+      // Hide badge if empty
+      document.getElementById('mobile-badge').style.display = totalQty > 0 ? 'flex' : 'none';
     }
 
     function callToOrder() {
       if (cart.length === 0) return;
-      const items = cart.map(i => i.qty + 'x ' + i.name).join(', ');
-      alert('Your order:\n' + items + '\n\nEstimated total: $' + getTotal().toFixed(2) + '\n\nCall 724-385-0522 to place your order!');
-      window.location.href = 'tel:+17243850522';
+      
+      let orderText = "Hi, I'd like to place an order for pickup:\n\n";
+      cart.forEach(item => {
+        orderText += `${item.qty}x ${item.name}\n`;
+      });
+      
+      // In a real Square integration, this would redirect to the Square checkout URL
+      // For now, we prompt the user to call
+      alert("Online ordering via Square is coming soon!\n\nPlease call 724-385-0522 to place this order:\n\n" + orderText);
+      window.location.href = "tel:+17243850522";
     }
 
+    // ── Mobile Cart Drawer
     function openMobileCart() {
       document.getElementById('mobile-cart-overlay').classList.add('open');
       document.getElementById('mobile-cart-drawer').classList.add('open');
-      document.body.style.overflow = 'hidden';
     }
     function closeMobileCart() {
       document.getElementById('mobile-cart-overlay').classList.remove('open');
       document.getElementById('mobile-cart-drawer').classList.remove('open');
-      document.body.style.overflow = '';
     }
 
-    function scrollToSection(id, btn) {
-      document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      const el = document.getElementById(id);
-      if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }
-
-    // Highlight active category on scroll
-    const sections = document.querySelectorAll('.menu-section');
-    const catBtns = document.querySelectorAll('.cat-btn');
-    window.addEventListener('scroll', () => {
-      let current = '';
-      sections.forEach(sec => {
-        if (sec.getBoundingClientRect().top <= 160) current = sec.id;
-      });
-      catBtns.forEach(btn => btn.classList.toggle('active', btn.dataset.target === current));
-    }, { passive: true });
-
-    // Mobile nav
-    document.getElementById('hamburger').addEventListener('click', () => document.getElementById('mobile-nav').classList.add('open'));
-    document.getElementById('nav-close').addEventListener('click', () => document.getElementById('mobile-nav').classList.remove('open'));
-
-    renderCart();
-
-    // ── Slide-in signup popup (appears after 30s or 50% scroll, once per session)
-    function showSignupPopup() {
-      if (sessionStorage.getItem('al_popup_shown')) return;
-      sessionStorage.setItem('al_popup_shown', '1');
-      document.getElementById('signup-popup').classList.add('open');
-    }
-    function closeSignupPopup() {
-      document.getElementById('signup-popup').classList.remove('open');
-      document.getElementById('signup-popup-overlay').classList.remove('open');
-    }
-    // Trigger on 50% scroll
-    window.addEventListener('scroll', function onScrollPopup() {
-      if ((window.scrollY / (document.body.scrollHeight - window.innerHeight)) >= 0.5) {
-        showSignupPopup();
-        document.getElementById('signup-popup-overlay').classList.add('open');
-        window.removeEventListener('scroll', onScrollPopup);
-      }
-    }, { passive: true });
-    // Fallback: trigger after 30 seconds
-    setTimeout(() => {
-      showSignupPopup();
-      document.getElementById('signup-popup-overlay').classList.add('open');
-    }, 30000);
-
-    function handleMenuSignup(e) {
-      e.preventDefault();
-      const name  = document.getElementById('popup-name').value.trim();
-      const email = document.getElementById('popup-email').value.trim();
-      const phone = document.getElementById('popup-phone').value.trim();
-      const leads = JSON.parse(localStorage.getItem('al_leads') || '[]');
-      leads.push({ name, email, phone, source: 'Menu', date: new Date().toISOString() });
-      localStorage.setItem('al_leads', JSON.stringify(leads));
-      fetch('https://formspree.io/f/YOUR_FORM_ID', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-        body: JSON.stringify({ name, email, phone, source: 'Menu' })
-      }).catch(() => {});
-      document.getElementById('popup-form').style.display = 'none';
-      document.getElementById('popup-success').style.display = 'block';
-      setTimeout(closeSignupPopup, 2500);
-    }
-  </script>
-
-  <!-- SIGNUP POPUP OVERLAY -->
-  <div id="signup-popup-overlay" onclick="closeSignupPopup()" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:1100;transition:opacity .3s;"></div>
-  <div id="signup-popup" style="display:none;position:fixed;bottom:24px;right:24px;z-index:1200;width:340px;max-width:calc(100vw - 32px);background:#1a1414;border:1px solid #3a2020;border-radius:16px;padding:28px;box-shadow:0 24px 64px rgba(0,0,0,.7);transform:translateY(20px);opacity:0;transition:transform .35s cubic-bezier(.22,1,.36,1),opacity .35s;">
-    <button onclick="closeSignupPopup()" style="position:absolute;top:12px;right:14px;background:none;border:none;color:#6e5e58;font-size:1.3rem;cursor:pointer;line-height:1;">&times;</button>
-    <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px;">
-      <div style="width:40px;height:40px;border-radius:50%;background:rgba(200,50,26,.2);display:flex;align-items:center;justify-content:center;font-size:1.2rem;flex-shrink:0;">🔥</div>
-      <div>
-        <div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1.1rem;text-transform:uppercase;color:#f0ebe6;">Get Exclusive Deals</div>
-        <div style="font-size:.78rem;color:#a89890;">Join the Annie Lee's list</div>
-      </div>
-    </div>
-    <div id="popup-form">
-      <form onsubmit="handleMenuSignup(event)" style="display:flex;flex-direction:column;gap:10px;">
-        <input id="popup-name" type="text" placeholder="Your name" required
-          style="background:#0f0f0f;border:1.5px solid #3a2a28;border-radius:8px;padding:11px 14px;color:#f0ebe6;font-size:.9rem;font-family:inherit;outline:none;" />
-        <input id="popup-email" type="email" placeholder="Email address" required
-          style="background:#0f0f0f;border:1.5px solid #3a2a28;border-radius:8px;padding:11px 14px;color:#f0ebe6;font-size:.9rem;font-family:inherit;outline:none;" />
-        <input id="popup-phone" type="tel" placeholder="Phone (optional)"
-          style="background:#0f0f0f;border:1.5px solid #3a2a28;border-radius:8px;padding:11px 14px;color:#f0ebe6;font-size:.9rem;font-family:inherit;outline:none;" />
-        <button type="submit" style="background:#c8321a;color:#fff;border:none;border-radius:8px;padding:13px;font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1rem;text-transform:uppercase;letter-spacing:.05em;cursor:pointer;">Count Me In 🔥</button>
-        <p style="font-size:.72rem;color:#6e5e58;line-height:1.5;margin-top:2px;">No spam, ever. Unsubscribe anytime.</p>
-      </form>
-    </div>
-    <div id="popup-success" style="display:none;text-align:center;padding:12px 0;">
-      <div style="font-size:2rem;margin-bottom:10px;">✅</div>
-      <div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1.3rem;text-transform:uppercase;color:#f0ebe6;margin-bottom:6px;">You're on the list!</div>
-      <div style="font-size:.85rem;color:#a89890;">Watch for deals from Annie Lee's Kitchen.</div>
-    </div>
-  </div>
-
-  <script>
-    // Make popup visible once open class is added
-    const popup = document.getElementById('signup-popup');
-    const overlay = document.getElementById('signup-popup-overlay');
-    const popupObserver = new MutationObserver(() => {
-      if (popup.classList.contains('open')) {
-        popup.style.display = 'block'; overlay.style.display = 'block';
-        requestAnimationFrame(() => { popup.style.transform = 'translateY(0)'; popup.style.opacity = '1'; overlay.style.opacity = '1'; });
-      } else {
-        popup.style.transform = 'translateY(20px)'; popup.style.opacity = '0'; overlay.style.opacity = '0';
-        setTimeout(() => { if (!popup.classList.contains('open')) { popup.style.display = 'none'; overlay.style.display = 'none'; } }, 350);
+    // ── Handle URL parameters for "Add to Cart" from homepage
+    window.addEventListener('DOMContentLoaded', () => {
+      const urlParams = new URLSearchParams(window.location.search);
+      const addItem = urlParams.get('add');
+      
+      if (addItem) {
+        setTimeout(() => {
+          const itemEl = document.getElementById('item-' + addItem);
+          if (itemEl) {
+            itemEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            // Simulate click to add to cart
+            itemEl.click();
+            
+            // Clean up URL without reloading
+            window.history.replaceState({}, document.title, window.location.pathname);
+          }
+        }, 500);
       }
     });
-    popupObserver.observe(popup, { attributes: true, attributeFilter: ['class'] });
-    popupObserver.observe(overlay, { attributes: true, attributeFilter: ['class'] });
   </script>
 </body>
 </html>

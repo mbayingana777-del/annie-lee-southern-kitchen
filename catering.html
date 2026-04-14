@@ -419,22 +419,34 @@
             </div>
           </div>
 
-          <form id="catering-form" onsubmit="handleCateringSubmit(event)">
+          <!-- 
+            FORMSPREE SETUP: Replace YOUR_FORM_ID below with the ID from formspree.io
+            See setup instructions at the bottom of this file.
+          -->
+          <form id="catering-form" onsubmit="handleCateringSubmitGHL(event)">
+            <!-- Hidden fields so Formspree email is readable -->
+            <input type="hidden" name="_subject" value="New Catering Inquiry — Annie Lee's Southern Kitchen" />
+            <input type="hidden" name="_replyto" id="_replyto" value="" />
+
             <div class="form-field">
-              <label for="name">Name</label>
-              <input type="text" id="name" required placeholder="Your name" />
+              <label for="name">Your Name</label>
+              <input type="text" id="name" name="name" required placeholder="Your name" />
+            </div>
+            <div class="form-field">
+              <label for="email">Email Address</label>
+              <input type="email" id="email" name="email" required placeholder="you@example.com" oninput="document.getElementById('_replyto').value=this.value" />
             </div>
             <div class="form-field">
               <label for="phone">Phone Number</label>
-              <input type="tel" id="phone" required placeholder="(724) 000-0000" />
+              <input type="tel" id="phone" name="phone" required placeholder="(724) 000-0000" />
             </div>
             <div class="form-field">
               <label for="date">Event Date</label>
-              <input type="date" id="date" required />
+              <input type="date" id="date" name="event_date" required />
             </div>
             <div class="form-field">
               <label for="guests">Estimated Guests</label>
-              <select id="guests" required>
+              <select id="guests" name="guest_count" required>
                 <option value="" disabled selected>Select party size</option>
                 <option value="10-20">10 - 20 people</option>
                 <option value="20-50">20 - 50 people</option>
@@ -444,9 +456,9 @@
             </div>
             <div class="form-field">
               <label for="details">Event Details &amp; Menu Ideas</label>
-              <textarea id="details" placeholder="Tell us a bit about your event and what you'd like to order..."></textarea>
+              <textarea id="details" name="details" placeholder="Tell us a bit about your event and what you'd like to order..."></textarea>
             </div>
-            <button type="submit" class="btn btn-green" style="width:100%; padding:16px; margin-top:8px;">Request Quote</button>
+            <button type="submit" class="btn btn-green" style="width:100%; padding:16px; margin-top:8px;">Send Catering Request</button>
           </form>
           
           <div id="form-success" style="display:none; text-align:center; padding:32px 0;">
@@ -506,6 +518,8 @@
     </div>
   </footer>
 
+  <!-- Lead Capture & CRM Integration -->
+  <script src="lead-capture.js"></script>
   <script>
     // ── Mobile nav
     const hamburger = document.getElementById('hamburger');
@@ -515,25 +529,9 @@
     navClose.addEventListener('click', () => mobileNav.classList.remove('open'));
     function closeMobileNav() { mobileNav.classList.remove('open'); }
 
-    // ── Form Handling
-    function handleCateringSubmit(e) {
-      e.preventDefault();
-      
-      // In a real implementation, this would send data to a backend or Formspree
-      // For now, we'll just show the success state
-      
+    function showSuccess() {
       document.getElementById('catering-form').style.display = 'none';
       document.getElementById('form-success').style.display = 'block';
-      
-      // Optional: Save to localStorage for demo purposes
-      const name = document.getElementById('name').value;
-      const phone = document.getElementById('phone').value;
-      const date = document.getElementById('date').value;
-      const guests = document.getElementById('guests').value;
-      
-      const inquiries = JSON.parse(localStorage.getItem('al_catering') || '[]');
-      inquiries.push({ name, phone, date, guests, submittedAt: new Date().toISOString() });
-      localStorage.setItem('al_catering', JSON.stringify(inquiries));
     }
   </script>
 </body>

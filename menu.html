@@ -904,7 +904,29 @@
     <span class="mobile-cart-btn-label" id="mobile-cart-label">View Order</span>
     <span class="mobile-cart-badge" id="mobile-badge" style="display:none;">0</span>
   </button>
+<!-- SIZE SELECT MODAL -->
+<div class="size-modal-overlay" id="size-modal">
+    <div class="size-modal">
+        <h3 id="size-modal-title">Choose Size</h3>
+        <p>Select your portion size</p>
 
+        <div class="size-options">
+            <button class="size-option-btn" id="small-option">
+                <span>Small</span>
+                <span>$4</span>
+            </button>
+
+            <button class="size-option-btn" id="large-option">
+                <span>Large</span>
+                <span>$7</span>
+            </button>
+        </div>
+
+        <button class="size-close" onclick="closeSizeModal()">
+            Cancel
+        </button>
+    </div>
+</div>
   <script>
     // ── Mobile nav
     const hamburger = document.getElementById('hamburger');

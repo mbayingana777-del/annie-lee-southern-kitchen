@@ -405,6 +405,92 @@
       .item-card-body h3 { font-size: 1.05rem; }
       .cart-item-btn { width: 28px; height: 28px; font-size: 1.2rem; }
     }
+    /* SIZE MODAL */
+.size-modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.7);
+    backdrop-filter: blur(6px);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+}
+
+.size-modal-overlay.open {
+    display: flex;
+}
+
+.size-modal {
+    background: #141010;
+    border: 1px solid #2a2020;
+    border-radius: 20px;
+    padding: 28px;
+    width: 90%;
+    max-width: 380px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.6);
+    animation: modalPop .25s ease;
+}
+
+@keyframes modalPop {
+    from {
+        transform: scale(.9);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.size-modal h3 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1.8rem;
+    margin-bottom: 10px;
+    color: #f0ebe6;
+}
+
+.size-modal p {
+    color: #a89890;
+    margin-bottom: 24px;
+}
+
+.size-options {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.size-option-btn {
+    background: #1a1414;
+    border: 1px solid #2a2020;
+    border-radius: 14px;
+    padding: 16px;
+    color: #f0ebe6;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: all .2s ease;
+    cursor: pointer;
+    font-weight: 700;
+}
+
+.size-option-btn:hover {
+    border-color: var(--green);
+    background: rgba(200,50,26,.1);
+    transform: translateY(-2px);
+}
+
+.size-close {
+    margin-top: 18px;
+    width: 100%;
+    padding: 12px;
+    border-radius: 999px;
+    background: #1a1414;
+    color: #a89890;
+    border: 1px solid #2a2020;
+    cursor: pointer;
+}
   </style>
 </head>
 <body>

@@ -967,7 +967,35 @@
         }
       });
     }, { passive: true });
+let currentSideItem = null;
+let currentSideImg = null;
 
+function openSizeModal(name, img) {
+    currentSideItem = name;
+    currentSideImg = img;
+
+    document.getElementById('size-modal-title').textContent = name;
+
+    document.getElementById('size-modal').classList.add('open');
+}
+
+function closeSizeModal() {
+    document.getElementById('size-modal').classList.remove('open');
+}
+
+window.addEventListener('DOMContentLoaded', () => {
+
+    document.getElementById('small-option').addEventListener('click', () => {
+        addToCart(currentSideItem + ' (Sm)', 4, currentSideImg, null);
+        closeSizeModal();
+    });
+
+    document.getElementById('large-option').addEventListener('click', () => {
+        addToCart(currentSideItem + ' (Lg)', 7, currentSideImg, null);
+        closeSizeModal();
+    });
+
+});
     // ── Cart Logic
     let cart = [];
 

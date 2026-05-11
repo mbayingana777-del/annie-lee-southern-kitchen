@@ -1,0 +1,810 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hub | Annie Lee's Southern Kitchen</title>
+  <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Inter', sans-serif; background: #0a0a0a; color: #f0ebe6; min-height: 100vh; }
+    button { font: inherit; cursor: pointer; border: none; }
+
+    :root {
+      --red: #c8321a; --red-dark: #a02514; --red-glow: rgba(200,50,26,.18);
+      --card: #1a1414; --card-2: #141010;
+      --border: #2a2020; --text: #f0ebe6; --muted: #a89890; --muted-2: #6e5e58;
+      --radius: 12px;
+    }
+
+    /* ── LOGIN ── */
+    #login-gate {
+      display: flex; align-items: center; justify-content: center;
+      min-height: 100vh; padding: 24px;
+      background: radial-gradient(ellipse at 50% 40%, rgba(200,50,26,.12) 0%, transparent 70%), #0a0a0a;
+    }
+    .login-card {
+      background: var(--card); border: 1px solid #3a2020; border-radius: 20px;
+      padding: 48px 40px; width: 100%; max-width: 420px;
+      box-shadow: 0 32px 80px rgba(0,0,0,.7); text-align: center;
+    }
+    .login-logo {
+      width: 72px; height: 72px; border-radius: 50%;
+      background: rgba(200,50,26,.15); border: 2px solid rgba(200,50,26,.3);
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 24px; font-size: 2rem;
+    }
+    .login-card h1 {
+      font-family: 'Barlow Condensed', sans-serif; font-weight: 900;
+      font-size: 1.8rem; text-transform: uppercase; color: #f0ebe6; margin-bottom: 6px;
+    }
+    .login-card > p { color: #a89890; font-size: .875rem; margin-bottom: 32px; }
+    .login-field { display: flex; flex-direction: column; gap: 6px; text-align: left; margin-bottom: 16px; }
+    .login-field label { font-size: .75rem; font-weight: 700; color: #a89890; letter-spacing: .06em; text-transform: uppercase; }
+    .login-field input {
+      background: #0f0f0f; border: 1.5px solid #3a2a28; border-radius: 10px;
+      padding: 14px 16px; color: #f0ebe6; font-size: .95rem; font-family: inherit;
+      outline: none; transition: border-color .18s, box-shadow .18s;
+    }
+    .login-field input:focus { border-color: var(--red); box-shadow: 0 0 0 3px var(--red-glow); }
+    .login-btn {
+      width: 100%; padding: 15px; background: var(--red); color: #fff;
+      border-radius: 10px; font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 900; font-size: 1.1rem; text-transform: uppercase;
+      letter-spacing: .05em; margin-top: 8px; transition: background .18s;
+    }
+    .login-btn:hover { background: var(--red-dark); }
+    .login-error {
+      display: none; background: rgba(200,50,26,.15); border: 1px solid rgba(200,50,26,.3);
+      border-radius: 8px; padding: 10px 14px; color: #e05040;
+      font-size: .85rem; margin-top: 14px; text-align: center;
+    }
+
+    /* ── DASHBOARD ── */
+    #dashboard { display: none; min-height: 100vh; }
+
+    .hub-nav {
+      background: #111010; border-bottom: 1px solid #2a1a16;
+      padding: 0 24px; height: 64px;
+      display: flex; align-items: center; justify-content: space-between;
+      position: sticky; top: 0; z-index: 100;
+    }
+    .hub-nav-brand { display: flex; align-items: center; gap: 12px; }
+    .hub-nav-brand img { width: 36px; height: 36px; border-radius: 8px; object-fit: cover; }
+    .hub-nav-brand span {
+      font-family: 'Barlow Condensed', sans-serif; font-weight: 900;
+      font-size: 1.1rem; text-transform: uppercase; color: #f0ebe6;
+    }
+    .hub-nav-brand small { color: #a89890; font-size: .7rem; display: block; }
+    .hub-nav-right { display: flex; align-items: center; gap: 12px; }
+    .badge-hub {
+      background: rgba(59,130,246,.18); color: #60a5fa; border: 1px solid rgba(59,130,246,.3);
+      border-radius: 20px; padding: 4px 12px; font-size: .72rem; font-weight: 700;
+      text-transform: uppercase; letter-spacing: .06em;
+    }
+    .btn-logout {
+      background: #2a1a16; color: #a89890; border: 1px solid #3a2020;
+      border-radius: 8px; padding: 8px 14px; font-size: .8rem; font-weight: 600;
+      transition: background .18s, color .18s;
+    }
+    .btn-logout:hover { background: var(--red); color: #fff; border-color: var(--red); }
+
+    .hub-main { padding: 28px 24px 80px; max-width: 1100px; margin: 0 auto; }
+
+    /* ── TABS ── */
+    .tab-nav {
+      display: flex; gap: 6px; margin-bottom: 28px;
+      background: #141010; border: 1px solid #2a2020;
+      border-radius: 14px; padding: 6px; width: fit-content;
+    }
+    .tab-btn {
+      padding: 10px 24px; border-radius: 10px; font-size: .9rem; font-weight: 700;
+      color: #6e5e58; background: none; transition: all .18s;
+    }
+    .tab-btn.active { background: var(--red); color: #fff; }
+    .tab-btn:not(.active):hover { color: #a89890; background: rgba(200,50,26,.1); }
+
+    /* ── MENU TAB ── */
+    .menu-toolbar {
+      display: flex; align-items: center; gap: 10px; margin-bottom: 24px; flex-wrap: wrap;
+    }
+    .cat-pills { display: flex; gap: 8px; flex: 1; flex-wrap: wrap; }
+    .cat-pill {
+      padding: 7px 16px; border-radius: 999px; font-size: .8rem; font-weight: 700;
+      background: #1a1414; border: 1.5px solid #2a2020; color: #a89890;
+      cursor: pointer; transition: all .18s; white-space: nowrap;
+    }
+    .cat-pill.active { background: rgba(200,50,26,.2); border-color: #c8321a; color: #e05040; }
+    .cat-pill:hover:not(.active) { border-color: #3a2a28; color: #f0ebe6; }
+    .menu-actions { display: flex; gap: 8px; flex-wrap: wrap; }
+
+    .btn-primary {
+      background: var(--red); color: #fff; border-radius: 10px;
+      padding: 9px 18px; font-size: .875rem; font-weight: 700; transition: background .18s;
+    }
+    .btn-primary:hover { background: var(--red-dark); }
+    .btn-secondary {
+      background: #1a1414; color: #a89890; border: 1px solid #2a2020;
+      border-radius: 10px; padding: 9px 16px; font-size: .8rem; font-weight: 600;
+      transition: all .18s;
+    }
+    .btn-secondary:hover { background: #2a1a16; color: #f0ebe6; border-color: #3a2020; }
+    .btn-green {
+      background: rgba(34,197,94,.12); color: #22c55e; border: 1px solid rgba(34,197,94,.3);
+      border-radius: 10px; padding: 9px 16px; font-size: .8rem; font-weight: 700;
+      transition: background .18s;
+    }
+    .btn-green:hover { background: rgba(34,197,94,.22); }
+
+    /* ── ITEM CARDS ── */
+    .items-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px;
+    }
+    .hub-item-card {
+      background: var(--card); border: 1px solid var(--border); border-radius: var(--radius);
+      overflow: hidden; transition: border-color .2s;
+    }
+    .hub-item-card:hover { border-color: rgba(200,50,26,.4); }
+    .hub-item-img {
+      aspect-ratio: 16/9; overflow: hidden; background: #141010; position: relative;
+    }
+    .hub-item-img img { width: 100%; height: 100%; object-fit: cover; }
+    .hub-item-badge {
+      position: absolute; top: 8px; left: 8px;
+      background: var(--red); color: #fff;
+      font-size: .65rem; font-weight: 700; letter-spacing: .06em;
+      text-transform: uppercase; padding: 3px 8px; border-radius: 999px;
+    }
+    .hub-item-body { padding: 14px 16px 16px; }
+    .hub-item-cat { font-size: .68rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: #6e5e58; margin-bottom: 4px; }
+    .hub-item-name { font-size: .95rem; font-weight: 700; color: #f0ebe6; margin-bottom: 4px; }
+    .hub-item-price { font-size: .875rem; font-weight: 800; color: #e05040; margin-bottom: 8px; }
+    .hub-item-desc { font-size: .78rem; color: #a89890; line-height: 1.5; margin-bottom: 12px; }
+    .hub-item-actions { display: flex; gap: 8px; }
+    .btn-edit-item {
+      flex: 1; background: #141010; color: #a89890; border: 1px solid #2a2020;
+      border-radius: 8px; padding: 8px; font-size: .8rem; font-weight: 600;
+      transition: all .15s; text-align: center;
+    }
+    .btn-edit-item:hover { background: rgba(200,50,26,.15); color: #e05040; border-color: rgba(200,50,26,.3); }
+    .btn-del-item {
+      background: #141010; color: #6e5e58; border: 1px solid #2a2020;
+      border-radius: 8px; padding: 8px 12px; font-size: .85rem; transition: all .15s;
+    }
+    .btn-del-item:hover { background: rgba(200,50,26,.15); color: #e05040; border-color: rgba(200,50,26,.3); }
+    .no-items { text-align: center; padding: 48px; color: #6e5e58; grid-column: 1/-1; }
+    .no-items .icon { font-size: 2.5rem; margin-bottom: 12px; opacity: .4; }
+
+    /* ── HOURS TAB ── */
+    .hours-table-wrap {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: var(--radius); overflow: hidden; margin-bottom: 20px;
+    }
+    .hours-table { width: 100%; border-collapse: collapse; }
+    .hours-table th {
+      padding: 12px 20px; text-align: left; font-size: .72rem; font-weight: 700;
+      color: var(--muted); text-transform: uppercase; letter-spacing: .07em;
+      background: #141010; border-bottom: 1px solid var(--border);
+    }
+    .hours-table td {
+      padding: 14px 20px; border-bottom: 1px solid rgba(42,32,32,.5); vertical-align: middle;
+    }
+    .hours-table tr:last-child td { border-bottom: none; }
+    .hours-table tr.is-closed td:not(:first-child):not(:nth-child(2)) { opacity: .3; }
+    .day-name { font-weight: 600; font-size: .95rem; }
+    .toggle-wrap { display: flex; align-items: center; gap: 10px; }
+    .toggle {
+      position: relative; width: 44px; height: 24px; background: #2a2020;
+      border-radius: 999px; cursor: pointer; transition: background .2s; flex-shrink: 0;
+    }
+    .toggle.on { background: #22c55e; }
+    .toggle::after {
+      content: ''; position: absolute; top: 3px; left: 3px;
+      width: 18px; height: 18px; border-radius: 50%;
+      background: #fff; transition: transform .2s;
+    }
+    .toggle.on::after { transform: translateX(20px); }
+    .toggle-lbl { font-size: .82rem; font-weight: 700; color: #6e5e58; min-width: 46px; }
+    .toggle.on ~ .toggle-lbl { color: #22c55e; }
+    .time-input {
+      background: #0f0f0f; border: 1.5px solid #2a2020; border-radius: 8px;
+      padding: 8px 12px; color: #f0ebe6; font-size: .875rem; font-family: inherit;
+      outline: none; width: 120px; transition: border-color .18s;
+    }
+    .time-input:focus { border-color: var(--red); }
+    .time-input:disabled { opacity: .3; cursor: not-allowed; }
+    .hours-actions { display: flex; gap: 10px; flex-wrap: wrap; }
+
+    /* ── MODAL ── */
+    .modal-overlay {
+      display: none; position: fixed; inset: 0;
+      background: rgba(0,0,0,.72); backdrop-filter: blur(4px);
+      z-index: 200; align-items: center; justify-content: center; padding: 24px;
+    }
+    .modal-overlay.open { display: flex; }
+    .modal-card {
+      background: #1a1414; border: 1px solid #3a2020; border-radius: 16px;
+      padding: 32px; width: 100%; max-width: 520px;
+      box-shadow: 0 32px 80px rgba(0,0,0,.7);
+      max-height: 90vh; overflow-y: auto;
+    }
+    .modal-card h2 {
+      font-family: 'Barlow Condensed', sans-serif; font-weight: 900;
+      font-size: 1.6rem; text-transform: uppercase; color: #f0ebe6; margin-bottom: 24px;
+    }
+    .form-2col { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    .form-field { display: flex; flex-direction: column; gap: 6px; margin-bottom: 14px; }
+    .form-field label {
+      font-size: .75rem; font-weight: 700; color: var(--muted);
+      text-transform: uppercase; letter-spacing: .06em;
+    }
+    .form-field label .opt { font-weight: 400; text-transform: none; letter-spacing: 0; color: #4e3e38; }
+    .form-field input, .form-field select, .form-field textarea {
+      background: #0f0f0f; border: 1.5px solid #3a2a28; border-radius: 8px;
+      padding: 11px 14px; color: var(--text); font-size: .9rem;
+      font-family: inherit; outline: none; transition: border-color .18s;
+    }
+    .form-field input:focus, .form-field select:focus, .form-field textarea:focus { border-color: var(--red); }
+    .form-field input::placeholder { color: #4e3e38; }
+    .form-field textarea { resize: vertical; min-height: 80px; }
+    .sizes-row {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 14px;
+      padding: 16px; background: rgba(200,50,26,.06);
+      border: 1px solid rgba(200,50,26,.15); border-radius: 10px; margin-bottom: 14px;
+    }
+    .sizes-row .form-field { margin-bottom: 0; }
+    .check-field {
+      display: flex; align-items: center; gap: 10px; margin-bottom: 14px; cursor: pointer;
+    }
+    .check-field input[type=checkbox] { width: 18px; height: 18px; accent-color: var(--red); }
+    .check-field span { font-size: .875rem; color: #a89890; }
+    .modal-actions { display: flex; gap: 10px; margin-top: 8px; }
+    .btn-modal-save {
+      flex: 1; background: var(--red); color: #fff; border-radius: 8px;
+      padding: 13px; font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 900; font-size: 1rem; text-transform: uppercase;
+      letter-spacing: .04em; transition: background .18s;
+    }
+    .btn-modal-save:hover { background: var(--red-dark); }
+    .btn-modal-cancel {
+      background: #2a1a16; color: var(--muted); border: 1px solid var(--border);
+      border-radius: 8px; padding: 13px 20px; font-size: .875rem; font-weight: 600;
+      transition: background .18s;
+    }
+    .btn-modal-cancel:hover { background: #3a2020; }
+
+    /* ── EXPORT MODAL ── */
+    .export-ta {
+      width: 100%; background: #0a0a0a; border: 1px solid #2a2020;
+      border-radius: 8px; padding: 14px; color: #a89890;
+      font-family: 'Courier New', monospace; font-size: .75rem;
+      line-height: 1.6; resize: vertical; min-height: 260px; outline: none;
+      margin-bottom: 14px;
+    }
+    .export-note {
+      background: rgba(59,130,246,.08); border: 1px solid rgba(59,130,246,.2);
+      border-radius: 8px; padding: 12px 16px; color: #93c5fd;
+      font-size: .8rem; line-height: 1.6; margin-bottom: 16px;
+    }
+
+    /* ── TOAST ── */
+    #toast {
+      position: fixed; bottom: 28px; left: 50%;
+      transform: translateX(-50%) translateY(80px);
+      background: #1a1414; border: 1px solid #3a2020; color: #f0ebe6;
+      padding: 12px 24px; border-radius: 999px; font-size: .875rem; font-weight: 600;
+      box-shadow: 0 8px 32px rgba(0,0,0,.5); z-index: 9999;
+      transition: transform .3s cubic-bezier(0.32, 0.72, 0, 1), opacity .3s;
+      opacity: 0; white-space: nowrap; pointer-events: none;
+    }
+    #toast.show { transform: translateX(-50%) translateY(0); opacity: 1; }
+    #toast.ok { border-color: rgba(34,197,94,.4); color: #22c55e; }
+
+    @media (max-width: 640px) {
+      .hub-main { padding: 20px 16px 60px; }
+      .items-grid { grid-template-columns: 1fr; }
+      .form-2col { grid-template-columns: 1fr; }
+      .hours-table th:nth-child(3), .hours-table td:nth-child(3) { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── LOGIN ── -->
+<div id="login-gate">
+  <div class="login-card">
+    <div class="login-logo">⚙️</div>
+    <h1>Site Hub</h1>
+    <p>Annie Lee's Southern Kitchen — edit the menu and schedule.</p>
+    <form onsubmit="handleLogin(event)">
+      <div class="login-field">
+        <label for="login-pass">Password</label>
+        <input type="password" id="login-pass" placeholder="Enter owner password" autocomplete="current-password" required />
+      </div>
+      <button type="submit" class="login-btn">Open Hub 🔓</button>
+      <div class="login-error" id="login-error">Incorrect password. Please try again.</div>
+    </form>
+  </div>
+</div>
+
+<!-- ── DASHBOARD ── -->
+<div id="dashboard">
+  <nav class="hub-nav">
+    <div class="hub-nav-brand">
+      <img src="assets/logo.png" alt="Logo" onerror="this.style.display='none'" />
+      <div>
+        <span>Annie Lee's Kitchen</span>
+        <small>Site Hub</small>
+      </div>
+    </div>
+    <div class="hub-nav-right">
+      <span class="badge-hub">⚙️ Hub</span>
+      <button class="btn-logout" onclick="logout()">Log Out</button>
+    </div>
+  </nav>
+
+  <main class="hub-main">
+    <div class="tab-nav">
+      <button class="tab-btn active" id="tab-btn-menu"  onclick="showTab('menu')">📋 Menu</button>
+      <button class="tab-btn"        id="tab-btn-hours" onclick="showTab('hours')">🕐 Hours</button>
+    </div>
+
+    <!-- MENU TAB -->
+    <div id="tab-menu">
+      <div class="menu-toolbar">
+        <div class="cat-pills">
+          <button class="cat-pill active" data-cat="" onclick="filterCat(this)">All</button>
+          <button class="cat-pill" data-cat="wings"  onclick="filterCat(this)">🍗 Wings</button>
+          <button class="cat-pill" data-cat="ribs"   onclick="filterCat(this)">🍖 Ribs</button>
+          <button class="cat-pill" data-cat="fish"   onclick="filterCat(this)">🐟 Fish</button>
+          <button class="cat-pill" data-cat="sides"  onclick="filterCat(this)">🥘 Sides</button>
+          <button class="cat-pill" data-cat="drinks" onclick="filterCat(this)">🥤 Drinks</button>
+        </div>
+        <div class="menu-actions">
+          <button class="btn-primary"   onclick="openItemModal(null)">+ Add Item</button>
+          <button class="btn-green"     onclick="showExport('menu')">Export HTML</button>
+          <button class="btn-secondary" onclick="resetMenu()">Reset Defaults</button>
+        </div>
+      </div>
+      <div class="items-grid" id="items-grid"></div>
+    </div>
+
+    <!-- HOURS TAB -->
+    <div id="tab-hours" style="display:none;">
+      <div class="hours-table-wrap">
+        <table class="hours-table">
+          <thead>
+            <tr>
+              <th>Day</th>
+              <th>Status</th>
+              <th>Opens At</th>
+              <th>Closes At</th>
+            </tr>
+          </thead>
+          <tbody id="hours-tbody"></tbody>
+        </table>
+      </div>
+      <div class="hours-actions">
+        <button class="btn-primary"   onclick="saveHours()">💾 Save Hours</button>
+        <button class="btn-green"     onclick="showExport('hours')">Export HTML</button>
+        <button class="btn-secondary" onclick="resetHours()">Reset Defaults</button>
+      </div>
+    </div>
+  </main>
+</div>
+
+<!-- ── ITEM MODAL ── -->
+<div class="modal-overlay" id="item-modal">
+  <div class="modal-card">
+    <h2 id="modal-title">Add Item</h2>
+    <form id="item-form" onsubmit="saveItem(event)">
+      <input type="hidden" id="item-id" />
+      <div class="form-2col">
+        <div class="form-field">
+          <label>Item Name</label>
+          <input type="text" id="item-name" placeholder="e.g. 6 Wings w/ 2 Sides" required />
+        </div>
+        <div class="form-field">
+          <label>Category</label>
+          <select id="item-cat">
+            <option value="wings">Wings</option>
+            <option value="ribs">Ribs</option>
+            <option value="fish">Fish</option>
+            <option value="sides">Sides</option>
+            <option value="drinks">Drinks</option>
+          </select>
+        </div>
+      </div>
+
+      <label class="check-field">
+        <input type="checkbox" id="item-sized" onchange="toggleSized()" />
+        <span>This item has Small / Large sizes (like the sides)</span>
+      </label>
+
+      <div class="form-field" id="single-price">
+        <label>Price ($)</label>
+        <input type="number" id="item-price" min="0" step="0.01" placeholder="e.g. 18" />
+      </div>
+
+      <div class="sizes-row" id="size-prices" style="display:none;">
+        <div class="form-field">
+          <label>Small Price ($)</label>
+          <input type="number" id="item-price-sm" min="0" step="0.01" placeholder="4" />
+        </div>
+        <div class="form-field">
+          <label>Large Price ($)</label>
+          <input type="number" id="item-price-lg" min="0" step="0.01" placeholder="7" />
+        </div>
+      </div>
+
+      <div class="form-field">
+        <label>Description</label>
+        <textarea id="item-desc" placeholder="Short description shown on the menu card…"></textarea>
+      </div>
+
+      <div class="form-2col">
+        <div class="form-field">
+          <label>Badge <span class="opt">(optional)</span></label>
+          <input type="text" id="item-badge" placeholder="e.g. Best Seller" />
+        </div>
+        <div class="form-field">
+          <label>Image Path <span class="opt">(optional)</span></label>
+          <input type="text" id="item-img" placeholder="assets/filename.png" />
+        </div>
+      </div>
+
+      <div class="modal-actions">
+        <button type="button" class="btn-modal-cancel" onclick="closeItemModal()">Cancel</button>
+        <button type="submit" class="btn-modal-save">Save Item</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- ── EXPORT MODAL ── -->
+<div class="modal-overlay" id="export-modal">
+  <div class="modal-card" style="max-width:660px;">
+    <h2 id="export-title">Export HTML</h2>
+    <div class="export-note" id="export-note"></div>
+    <textarea class="export-ta" id="export-ta" readonly></textarea>
+    <div class="modal-actions">
+      <button type="button" class="btn-modal-cancel" onclick="closeExport()">Close</button>
+      <button type="button" class="btn-modal-save"   onclick="copyExport()">Copy to Clipboard</button>
+    </div>
+  </div>
+</div>
+
+<!-- ── TOAST ── -->
+<div id="toast"></div>
+
+<script>
+  // ── CONFIG ────────────────────────────────────────────────────────
+  const PASSWORD  = 'AnnieLee2026!';   // change this to keep it private
+  const MENU_KEY  = 'al_menu';
+  const HOURS_KEY = 'al_hours';
+
+  // ── DEFAULT DATA ──────────────────────────────────────────────────
+  const DEFAULT_MENU = [
+    { id:'w1', category:'wings',  name:'3 Wings w/ 2 Sides',   hasSizes:false, price:12,  priceSmall:null, priceLarge:null, description:'Three crispy whole wings with your choice of two sides.',                             badge:'',            img:'assets/wings-12-piece.png' },
+    { id:'w2', category:'wings',  name:'6 Wings w/ 2 Sides',   hasSizes:false, price:18,  priceSmall:null, priceLarge:null, description:'Six crispy whole wings with your choice of two sides.',                               badge:'Best Seller',  img:'assets/wings-6-2-sides.png' },
+    { id:'w3', category:'wings',  name:'10 Wings w/ 2 Sides',  hasSizes:false, price:25,  priceSmall:null, priceLarge:null, description:'Ten crispy whole wings with your choice of two sides. Perfect for sharing.',          badge:'',            img:'assets/wings-6-2-sides.png' },
+    { id:'r1', category:'ribs',   name:'Half Slab w/ 2 Sides', hasSizes:false, price:25,  priceSmall:null, priceLarge:null, description:'Slow-cooked, tender ribs with two sides—full of flavor and built to fill you up.', badge:'Hearty',      img:'assets/ribs-half-slab-2-sides.png' },
+    { id:'f1', category:'fish',   name:'Fish Dinner',          hasSizes:false, price:16,  priceSmall:null, priceLarge:null, description:'Golden fried fish served hot with classic sides—simple, fresh, and done right.',  badge:'Fan Favorite', img:'assets/fish-dinner.png' },
+    { id:'f2', category:'fish',   name:'Fish Sandwich',        hasSizes:false, price:10,  priceSmall:null, priceLarge:null, description:'Crispy fried fish on a soft bun—a quick, satisfying bite.',                      badge:'',            img:'assets/fish-sandwich.png' },
+    { id:'s1', category:'sides',  name:'Baked Mac & Cheese',   hasSizes:true,  price:null, priceSmall:4,   priceLarge:7,    description:'Rich, creamy, baked mac & cheese—the side everyone ends up ordering.',            badge:'Add-On King',  img:'assets/mac-cheese-lg.png' },
+    { id:'s2', category:'sides',  name:'Collard Greens',       hasSizes:true,  price:null, priceSmall:4,   priceLarge:7,    description:'Slow-cooked, seasoned collard greens—tender, savory, and soul-satisfying.',       badge:'',            img:'assets/collard-greens-sm.png' },
+    { id:'s3', category:'sides',  name:'Candied Yams',         hasSizes:true,  price:null, priceSmall:4,   priceLarge:7,    description:'Sweet, buttery candied yams—a Southern classic done the right way.',              badge:'',            img:'assets/candied-yams-sm.png' },
+    { id:'s4', category:'sides',  name:'Potato Salad',         hasSizes:true,  price:null, priceSmall:4,   priceLarge:7,    description:'Creamy, homestyle potato salad—the perfect cool side to any hot plate.',          badge:'',            img:'assets/potato-salad-sm.png' },
+    { id:'s5', category:'sides',  name:'Red Beans & Rice',     hasSizes:true,  price:null, priceSmall:4,   priceLarge:7,    description:'Hearty red beans and rice—seasoned right and full of Southern flavor.',           badge:'',            img:'assets/red-beans-rice-sm.png' },
+    { id:'s6', category:'sides',  name:'Cornbread',            hasSizes:false, price:2,   priceSmall:null, priceLarge:null, description:'Golden, moist cornbread—the perfect complement to any plate.',                   badge:'',            img:'assets/cornbread.png' },
+    { id:'d1', category:'drinks', name:'Soda Can',             hasSizes:false, price:2,   priceSmall:null, priceLarge:null, description:'Ice-cold canned soda—the perfect refresher alongside your meal.',                badge:'',            img:'assets/soda-can.png' },
+    { id:'d2', category:'drinks', name:'Bottled Water',        hasSizes:false, price:2,   priceSmall:null, priceLarge:null, description:'Cold bottled water to keep you refreshed.',                                          badge:'',            img:'assets/bottled-water.png' },
+  ];
+
+  const DEFAULT_HOURS = [
+    { day:'Monday',    closed:true,  open:'',      close:''      },
+    { day:'Tuesday',   closed:true,  open:'',      close:''      },
+    { day:'Wednesday', closed:false, open:'11:00', close:'19:00' },
+    { day:'Thursday',  closed:false, open:'11:00', close:'19:00' },
+    { day:'Friday',    closed:false, open:'11:00', close:'19:00' },
+    { day:'Saturday',  closed:false, open:'12:00', close:'19:00' },
+    { day:'Sunday',    closed:false, open:'12:00', close:'19:00' },
+  ];
+
+  // ── STORAGE ───────────────────────────────────────────────────────
+  const getMenu  = () => { try { return JSON.parse(localStorage.getItem(MENU_KEY)  || 'null') || DEFAULT_MENU.map(i=>({...i})); } catch { return DEFAULT_MENU.map(i=>({...i})); } };
+  const getHours = () => { try { return JSON.parse(localStorage.getItem(HOURS_KEY) || 'null') || DEFAULT_HOURS.map(h=>({...h})); } catch { return DEFAULT_HOURS.map(h=>({...h})); } };
+  const storeMenu  = m => localStorage.setItem(MENU_KEY,  JSON.stringify(m));
+  const storeHours = h => localStorage.setItem(HOURS_KEY, JSON.stringify(h));
+
+  // ── AUTH ──────────────────────────────────────────────────────────
+  function handleLogin(e) {
+    e.preventDefault();
+    if (document.getElementById('login-pass').value === PASSWORD) {
+      sessionStorage.setItem('hub_auth', '1');
+      document.getElementById('login-gate').style.display = 'none';
+      document.getElementById('dashboard').style.display  = 'block';
+      init();
+    } else {
+      document.getElementById('login-error').style.display = 'block';
+      document.getElementById('login-pass').value = '';
+      document.getElementById('login-pass').focus();
+    }
+  }
+  function logout() {
+    sessionStorage.removeItem('hub_auth');
+    document.getElementById('dashboard').style.display  = 'none';
+    document.getElementById('login-gate').style.display = 'flex';
+    document.getElementById('login-pass').value = '';
+  }
+  if (sessionStorage.getItem('hub_auth') === '1') {
+    document.getElementById('login-gate').style.display = 'none';
+    document.getElementById('dashboard').style.display  = 'block';
+  }
+
+  // ── TABS ──────────────────────────────────────────────────────────
+  function showTab(name) {
+    ['menu','hours'].forEach(t => {
+      document.getElementById('tab-' + t).style.display = t === name ? 'block' : 'none';
+      document.getElementById('tab-btn-' + t).classList.toggle('active', t === name);
+    });
+  }
+
+  // ── CATEGORY FILTER ───────────────────────────────────────────────
+  let activeCat = '';
+  function filterCat(btn) {
+    document.querySelectorAll('.cat-pill').forEach(p => p.classList.remove('active'));
+    btn.classList.add('active');
+    activeCat = btn.dataset.cat;
+    renderItems();
+  }
+
+  // ── PRICE DISPLAY ─────────────────────────────────────────────────
+  function fmtPrice(item) {
+    return item.hasSizes
+      ? `Sm $${item.priceSmall} · Lg $${item.priceLarge}`
+      : `$${item.price}`;
+  }
+
+  // ── RENDER ITEMS ──────────────────────────────────────────────────
+  function renderItems() {
+    const items = activeCat ? getMenu().filter(i => i.category === activeCat) : getMenu();
+    const grid  = document.getElementById('items-grid');
+    if (!items.length) {
+      grid.innerHTML = `<div class="no-items"><div class="icon">🍽️</div><p>No items here yet.</p></div>`;
+      return;
+    }
+    grid.innerHTML = items.map(item => `
+      <div class="hub-item-card">
+        <div class="hub-item-img">
+          <img src="${esc(item.img)}" alt="${esc(item.name)}" onerror="this.style.display='none'" loading="lazy" />
+          ${item.badge ? `<span class="hub-item-badge">${esc(item.badge)}</span>` : ''}
+        </div>
+        <div class="hub-item-body">
+          <div class="hub-item-cat">${item.category}</div>
+          <div class="hub-item-name">${esc(item.name)}</div>
+          <div class="hub-item-price">${fmtPrice(item)}</div>
+          <div class="hub-item-desc">${esc(item.description)}</div>
+          <div class="hub-item-actions">
+            <button class="btn-edit-item" onclick="openItemModal('${esc(item.id)}')">✏️ Edit</button>
+            <button class="btn-del-item"  onclick="deleteItem('${esc(item.id)}')">🗑</button>
+          </div>
+        </div>
+      </div>`).join('');
+  }
+
+  // ── ADD / EDIT MODAL ──────────────────────────────────────────────
+  let editingId = null;
+
+  function openItemModal(id) {
+    editingId = id || null;
+    const item = id ? getMenu().find(i => i.id === id) : null;
+    document.getElementById('modal-title').textContent = item ? 'Edit Item' : 'Add Item';
+    document.getElementById('item-id').value       = item?.id ?? '';
+    document.getElementById('item-name').value     = item?.name ?? '';
+    document.getElementById('item-cat').value      = item?.category ?? 'wings';
+    document.getElementById('item-sized').checked  = item?.hasSizes ?? false;
+    document.getElementById('item-price').value    = item?.price ?? '';
+    document.getElementById('item-price-sm').value = item?.priceSmall ?? '';
+    document.getElementById('item-price-lg').value = item?.priceLarge ?? '';
+    document.getElementById('item-desc').value     = item?.description ?? '';
+    document.getElementById('item-badge').value    = item?.badge ?? '';
+    document.getElementById('item-img').value      = item?.img ?? '';
+    toggleSized();
+    document.getElementById('item-modal').classList.add('open');
+  }
+  function closeItemModal() {
+    document.getElementById('item-modal').classList.remove('open');
+    document.getElementById('item-form').reset();
+    editingId = null;
+  }
+  function toggleSized() {
+    const on = document.getElementById('item-sized').checked;
+    document.getElementById('single-price').style.display = on ? 'none'  : 'flex';
+    document.getElementById('size-prices').style.display  = on ? 'grid' : 'none';
+  }
+  function saveItem(e) {
+    e.preventDefault();
+    const sized = document.getElementById('item-sized').checked;
+    const item = {
+      id:          editingId || ('item_' + Date.now()),
+      category:    document.getElementById('item-cat').value,
+      name:        document.getElementById('item-name').value.trim(),
+      hasSizes:    sized,
+      price:       sized ? null : parseFloat(document.getElementById('item-price').value) || 0,
+      priceSmall:  sized ? parseFloat(document.getElementById('item-price-sm').value) || 0 : null,
+      priceLarge:  sized ? parseFloat(document.getElementById('item-price-lg').value) || 0 : null,
+      description: document.getElementById('item-desc').value.trim(),
+      badge:       document.getElementById('item-badge').value.trim(),
+      img:         document.getElementById('item-img').value.trim(),
+    };
+    const menu = getMenu();
+    if (editingId) {
+      const idx = menu.findIndex(i => i.id === editingId);
+      if (idx !== -1) menu[idx] = item; else menu.push(item);
+    } else {
+      menu.push(item);
+    }
+    storeMenu(menu);
+    closeItemModal();
+    renderItems();
+    toast('Item saved!', true);
+  }
+  function deleteItem(id) {
+    if (!confirm('Remove this item from the menu?')) return;
+    storeMenu(getMenu().filter(i => i.id !== id));
+    renderItems();
+    toast('Item removed');
+  }
+  function resetMenu() {
+    if (!confirm('Reset to original menu? All edits will be lost.')) return;
+    storeMenu(DEFAULT_MENU.map(i => ({...i})));
+    renderItems();
+    toast('Menu reset to defaults');
+  }
+
+  // ── HOURS ─────────────────────────────────────────────────────────
+  function renderHours() {
+    document.getElementById('hours-tbody').innerHTML = getHours().map((row, i) => `
+      <tr id="hrow-${i}" class="${row.closed ? 'is-closed' : ''}">
+        <td class="day-name">${row.day}</td>
+        <td>
+          <div class="toggle-wrap">
+            <div class="toggle ${row.closed ? '' : 'on'}" id="tog-${i}" onclick="toggleDay(${i})"></div>
+            <span class="toggle-lbl" id="togl-${i}">${row.closed ? 'Closed' : 'Open'}</span>
+          </div>
+        </td>
+        <td><input type="time" class="time-input" id="open-${i}"  value="${row.open}"  ${row.closed ? 'disabled' : ''} /></td>
+        <td><input type="time" class="time-input" id="close-${i}" value="${row.close}" ${row.closed ? 'disabled' : ''} /></td>
+      </tr>`).join('');
+  }
+  function toggleDay(i) {
+    const tog  = document.getElementById('tog-' + i);
+    const lbl  = document.getElementById('togl-' + i);
+    const row  = document.getElementById('hrow-' + i);
+    const nowOpen = tog.classList.toggle('on');
+    lbl.textContent = nowOpen ? 'Open' : 'Closed';
+    row.classList.toggle('is-closed', !nowOpen);
+    document.getElementById('open-'  + i).disabled = !nowOpen;
+    document.getElementById('close-' + i).disabled = !nowOpen;
+  }
+  function saveHours() {
+    const hours = getHours();
+    hours.forEach((row, i) => {
+      row.closed = !document.getElementById('tog-' + i).classList.contains('on');
+      row.open   = document.getElementById('open-'  + i).value;
+      row.close  = document.getElementById('close-' + i).value;
+    });
+    storeHours(hours);
+    toast('Hours saved!', true);
+  }
+  function resetHours() {
+    if (!confirm('Reset hours to original defaults?')) return;
+    storeHours(DEFAULT_HOURS.map(h => ({...h})));
+    renderHours();
+    toast('Hours reset to defaults');
+  }
+
+  // ── EXPORT HTML ───────────────────────────────────────────────────
+  function fmt12(t) {
+    if (!t) return '';
+    const [h, m] = t.split(':').map(Number);
+    return `${h % 12 || 12}:${String(m).padStart(2,'0')} ${h >= 12 ? 'PM' : 'AM'}`;
+  }
+
+  function buildMenuHTML() {
+    const cats = {
+      wings:  { emoji:'🍗', title:'Wing Dinners',  desc:'Crispy, seasoned whole wings served hot. All dinners include your choice of 2 sides.' },
+      ribs:   { emoji:'🍖', title:'Rib Plates',    desc:'Slow-smoked, tender ribs that fall off the bone. Served with 2 sides.' },
+      fish:   { emoji:'🐟', title:'Fish Dinners',  desc:'Golden fried fish served hot with your choice of sides.' },
+      sides:  { emoji:'🥘', title:'Sides',         desc:'Classic Southern sides. Available in small or large.' },
+      drinks: { emoji:'🥤', title:'Drinks',        desc:'Cold drinks to go with your meal.' },
+    };
+    return Object.entries(cats).map(([cat, meta]) => {
+      const items = getMenu().filter(i => i.category === cat);
+      if (!items.length) return '';
+      const cards = items.map(item => {
+        const safeName = item.name.replace(/\\/g,'\\\\').replace(/'/g,"\\'");
+        const onclick  = item.hasSizes
+          ? `onclick="openSizeModal('${safeName}', '${item.img}')"`
+          : `onclick="addToCart('${safeName}', ${item.price}, '${item.img}', this)"`;
+        const priceHtml = item.hasSizes
+          ? `Sm $${item.priceSmall} &middot; Lg $${item.priceLarge}`
+          : `$${item.price}`;
+        const badgeHtml = item.badge
+          ? `\n                <span class="item-card-badge">${item.badge}</span>` : '';
+        return `
+            <div class="item-card" ${onclick}>
+              <div class="item-card-img">
+                <img src="${item.img}" alt="${item.name}" loading="lazy" />${badgeHtml}
+              </div>
+              <div class="item-card-body">
+                <h3>${item.name}</h3>
+                <p>${item.description}</p>
+                <div class="item-card-footer">
+                  <span class="item-price">${priceHtml}</span>
+                  <button class="item-add" aria-label="Add to order">+</button>
+                </div>
+              </div>
+            </div>`;
+      }).join('');
+      return `<section class="menu-section" id="${cat}">
+          <div class="menu-section-header">
+            <h2>${meta.emoji} ${meta.title}</h2>
+            <p>${meta.desc}</p>
+          </div>
+          <div class="items-grid">${cards}
+          </div>
+        </section>`;
+    }).filter(Boolean).join('\n\n');
+  }
+
+  function buildHoursHTML() {
+    return getHours().map(row => {
+      const val = row.closed ? 'Closed' : `${fmt12(row.open)} &ndash; ${fmt12(row.close)}`;
+      return `<tr><td>${row.day}</td><td>${val}</td></tr>`;
+    }).join('\n');
+  }
+
+  function showExport(type) {
+    const isMenu = type === 'menu';
+    document.getElementById('export-title').textContent = isMenu ? 'Export Menu HTML' : 'Export Hours HTML';
+    document.getElementById('export-note').textContent  = isMenu
+      ? 'Copy this and paste it into menu.html, replacing the existing <section> blocks inside the .menu-content div.'
+      : 'Copy these rows and paste them into index.html, replacing the <tr> rows inside the .hours-table.';
+    document.getElementById('export-ta').value = isMenu ? buildMenuHTML() : buildHoursHTML();
+    document.getElementById('export-modal').classList.add('open');
+  }
+  function closeExport() { document.getElementById('export-modal').classList.remove('open'); }
+  function copyExport() {
+    const ta = document.getElementById('export-ta');
+    navigator.clipboard?.writeText(ta.value)
+      .then(() => toast('Copied to clipboard!', true))
+      .catch(() => { ta.select(); document.execCommand('copy'); toast('Copied!', true); });
+  }
+
+  // ── TOAST ─────────────────────────────────────────────────────────
+  let _tt;
+  function toast(msg, ok) {
+    const el = document.getElementById('toast');
+    el.textContent = msg;
+    el.className   = ok ? 'show ok' : 'show';
+    clearTimeout(_tt);
+    _tt = setTimeout(() => { el.className = ''; }, 2600);
+  }
+
+  // ── UTILS ─────────────────────────────────────────────────────────
+  function esc(s) {
+    return String(s ?? '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+  }
+
+  // ── INIT ──────────────────────────────────────────────────────────
+  function init() { renderItems(); renderHours(); }
+  if (sessionStorage.getItem('hub_auth') === '1') init();
+
+  document.getElementById('item-modal').addEventListener('click',   e => { if (e.target === document.getElementById('item-modal'))   closeItemModal(); });
+  document.getElementById('export-modal').addEventListener('click', e => { if (e.target === document.getElementById('export-modal')) closeExport(); });
+</script>
+</body>
+</html>

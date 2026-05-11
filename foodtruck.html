@@ -1,0 +1,1603 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Annie Lee's Food Truck | Southern Soul Food on Wheels</title>
+  <meta name="description" content="Find Annie Lee's Food Truck near you. Soul food on wheels serving fresh plates, wings, ribs, fish, mac & cheese, and catering for events." />
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png" />
+  <link rel="apple-touch-icon" sizes="192x192" href="assets/favicon-192.png" />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; font-size: 16px; }
+
+    body {
+      font-family: 'Inter', ui-sans-serif, system-ui, sans-serif;
+      background: #0f0f0f;
+      color: #f0ebe6;
+      overflow-x: hidden;
+    }
+
+    img { max-width: 100%; display: block; }
+    a { text-decoration: none; color: inherit; }
+    button { font: inherit; cursor: pointer; border: none; background: none; }
+
+    :root {
+      --green: #c8321a;
+      --green-dark: #a02514;
+      --red: #c8321a;
+      --cream: #0f0f0f;
+      --cream-2: #1a1414;
+      --dark: #0a0a0a;
+      --dark-2: #141414;
+      --text: #f0ebe6;
+      --muted: #a89890;
+      --muted-2: #6e5e58;
+      --border: #2a2020;
+      --white: #f5f0ec;
+      --shadow-sm: 0 2px 8px rgba(0,0,0,.4);
+      --shadow: 0 8px 32px rgba(0,0,0,.5);
+      --shadow-lg: 0 24px 64px rgba(0,0,0,.6);
+      --radius: 16px;
+      --max: 1280px;
+      --nav-h: 72px;
+    }
+
+    .display,
+    .headline {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 900;
+      letter-spacing: -.02em;
+      line-height: .95;
+      text-transform: uppercase;
+    }
+
+    .kicker {
+      font-size: .72rem;
+      font-weight: 700;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: #e05040;
+    }
+
+    .container {
+      width: min(var(--max), calc(100% - 40px));
+      margin-inline: auto;
+    }
+
+    .section { padding: 96px 0; }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 14px 28px;
+      border-radius: 999px;
+      font-weight: 700;
+      font-size: .95rem;
+      transition: transform .18s, box-shadow .18s, background .18s, border-color .18s;
+      white-space: nowrap;
+    }
+
+    .btn:hover { transform: translateY(-2px); }
+
+    .btn-green {
+      background: var(--green);
+      color: #fff;
+      box-shadow: 0 4px 16px rgba(200,50,26,.4);
+    }
+
+    .btn-green:hover {
+      background: var(--green-dark);
+      box-shadow: 0 8px 24px rgba(200,50,26,.55);
+    }
+
+    .btn-dark {
+      background: #1e1e1e;
+      color: #f0ebe6;
+      box-shadow: 0 4px 16px rgba(0,0,0,.4);
+      border: 1px solid #2e2e2e;
+    }
+
+    .btn-dark:hover {
+      background: #2a2a2a;
+      box-shadow: 0 8px 24px rgba(0,0,0,.5);
+    }
+
+    .btn-outline-white {
+      background: transparent;
+      color: #fff;
+      border: 2px solid rgba(255,255,255,.5);
+    }
+
+    .btn-outline-white:hover {
+      background: rgba(255,255,255,.12);
+      border-color: #fff;
+    }
+
+    .btn-lg {
+      padding: 18px 36px;
+      font-size: 1.05rem;
+    }
+
+    /* ANNOUNCEMENT BAR */
+    .announce-bar {
+      background: #c8321a;
+      color: #fff;
+      text-align: center;
+      padding: 10px 20px;
+      font-size: .85rem;
+      font-weight: 600;
+      letter-spacing: .02em;
+    }
+
+    .announce-bar a {
+      color: #fff;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+
+    /* NAV */
+    .site-nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: #0a0a0a;
+      height: var(--nav-h);
+      display: flex;
+      align-items: center;
+      transition: box-shadow .3s;
+    }
+
+    .site-nav.scrolled {
+      box-shadow: 0 4px 20px rgba(0,0,0,.7);
+      border-bottom: 1px solid #2a1a16;
+    }
+
+    .nav-inner {
+      width: min(var(--max), calc(100% - 40px));
+      margin-inline: auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 32px;
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-shrink: 0;
+    }
+
+    .nav-logo img {
+      height: 42px;
+      width: auto;
+    }
+
+    .nav-logo-text {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 900;
+      font-size: 1.3rem;
+      letter-spacing: .04em;
+      text-transform: uppercase;
+      color: #fff;
+      line-height: 1.1;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: rgba(240,235,230,.65);
+      font-size: .9rem;
+      font-weight: 600;
+      padding: 8px 14px;
+      border-radius: 8px;
+      transition: color .18s, background .18s;
+      letter-spacing: .02em;
+    }
+
+    .nav-links a:hover {
+      color: #f0ebe6;
+      background: rgba(200,50,26,.15);
+    }
+
+    .nav-links a.active { color: #e05040; }
+
+    .nav-cta {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-shrink: 0;
+    }
+
+    .nav-phone {
+      color: rgba(255,255,255,.7);
+      font-size: .85rem;
+      font-weight: 600;
+    }
+
+    .nav-phone:hover { color: #fff; }
+
+    .nav-hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      padding: 8px;
+    }
+
+    .nav-hamburger span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: #fff;
+      border-radius: 2px;
+      transition: .3s;
+    }
+
+    .mobile-nav {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 200;
+      background: #0a0a0a;
+      flex-direction: column;
+      padding: 24px;
+    }
+
+    .mobile-nav.open { display: flex; }
+
+    .mobile-nav-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 40px;
+    }
+
+    .mobile-nav-close {
+      color: #fff;
+      font-size: 1.5rem;
+      cursor: pointer;
+      padding: 8px;
+    }
+
+    .mobile-nav-links {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .mobile-nav-links a {
+      display: block;
+      color: #fff;
+      font-size: 1.6rem;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: .04em;
+      padding: 12px 0;
+      border-bottom: 1px solid rgba(255,255,255,.08);
+    }
+
+    .mobile-nav-bottom {
+      margin-top: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    /* HERO */
+    .truck-hero {
+      background: #0a0a0a;
+      min-height: calc(100vh - var(--nav-h) - 40px);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .truck-hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 30% 50%, rgba(200,50,26,.2), transparent 62%);
+      pointer-events: none;
+    }
+
+    .hero-copy {
+      padding: 80px 64px 80px 80px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(200,50,26,.18);
+      border: 1px solid rgba(200,50,26,.4);
+      color: #e05040;
+      font-size: .8rem;
+      font-weight: 700;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      padding: 6px 14px;
+      border-radius: 999px;
+      margin-bottom: 28px;
+    }
+
+    .hero-eyebrow::before {
+      content: '';
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #e05040;
+      box-shadow: 0 0 18px rgba(224,80,64,.9);
+    }
+
+    .truck-hero h1 {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 900;
+      font-size: clamp(3.2rem, 6vw, 5.8rem);
+      line-height: .92;
+      letter-spacing: -.02em;
+      text-transform: uppercase;
+      color: #fff;
+      margin-bottom: 24px;
+    }
+
+    .truck-hero h1 em {
+      font-style: normal;
+      color: #e05040;
+    }
+
+    .hero-sub {
+      color: rgba(255,255,255,.65);
+      font-size: 1.05rem;
+      line-height: 1.7;
+      max-width: 44ch;
+      margin-bottom: 36px;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 18px;
+    }
+
+    .hero-trust {
+      color: rgba(255,255,255,.42);
+      font-size: .85rem;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin-top: 8px;
+    }
+
+    .hero-trust::before {
+      content: '📍';
+      font-size: .9rem;
+    }
+
+    .hero-image {
+      position: relative;
+      height: 100%;
+      min-height: 600px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .hero-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      transform: scale(1.02);
+      transition: transform 8s ease;
+    }
+
+    .hero-image::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(90deg, #0a0a0a 0%, transparent 34%);
+    }
+
+    .hero-badge {
+      position: absolute;
+      bottom: 40px;
+      right: 40px;
+      z-index: 3;
+      background: #c8321a;
+      color: #fff;
+      padding: 16px 22px;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-lg);
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      transform: rotate(-3deg);
+    }
+
+    .hero-badge .price {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 900;
+      font-size: 2rem;
+      line-height: 1;
+      text-transform: uppercase;
+    }
+
+    .hero-badge .label {
+      font-size: .8rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .05em;
+      color: rgba(255,255,255,.82);
+    }
+
+    /* MARQUEE */
+    .marquee-wrap {
+      background: #c8321a;
+      color: #fff;
+      padding: 14px 0;
+      overflow: hidden;
+      display: flex;
+      white-space: nowrap;
+      border-top: 1px solid #e05040;
+      border-bottom: 1px solid #e05040;
+    }
+
+    .marquee-track {
+      display: flex;
+      gap: 32px;
+      animation: marquee 25s linear infinite;
+    }
+
+    .marquee-item {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 800;
+      font-size: 1.2rem;
+      text-transform: uppercase;
+      letter-spacing: .04em;
+      display: flex;
+      align-items: center;
+      gap: 32px;
+    }
+
+    .marquee-dot {
+      width: 6px;
+      height: 6px;
+      background: #fff;
+      border-radius: 50%;
+      opacity: .5;
+    }
+
+    @keyframes marquee {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    /* SECTION HEADERS */
+    .section-header-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: 48px;
+      flex-wrap: wrap;
+      gap: 24px;
+    }
+
+    .section-header h2 {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 900;
+      font-size: clamp(2.2rem, 4vw, 3.2rem);
+      text-transform: uppercase;
+      letter-spacing: -.02em;
+      line-height: 1;
+      margin: 8px 0 12px;
+      color: #f0ebe6;
+    }
+
+    .section-header p {
+      color: #a89890;
+      font-size: 1.05rem;
+      max-width: 52ch;
+      line-height: 1.6;
+    }
+
+    /* LOCATION CARDS */
+    .schedule-section {
+      background: #0f0f0f;
+    }
+
+    .schedule-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .stop-card {
+      background: #1a1414;
+      border: 1px solid #2a2020;
+      border-radius: var(--radius);
+      padding: 28px;
+      box-shadow: var(--shadow-sm);
+      transition: transform .22s, box-shadow .22s, border-color .22s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .stop-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at top right, rgba(200,50,26,.16), transparent 45%);
+      opacity: 0;
+      transition: opacity .22s;
+    }
+
+    .stop-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 12px 40px rgba(200,50,26,.15);
+      border-color: rgba(200,50,26,.3);
+    }
+
+    .stop-card:hover::before { opacity: 1; }
+
+    .stop-content {
+      position: relative;
+      z-index: 2;
+    }
+
+    .stop-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 18px;
+    }
+
+    .stop-day {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 1.65rem;
+      font-weight: 900;
+      text-transform: uppercase;
+      color: #fff;
+    }
+
+    .status-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      border-radius: 999px;
+      padding: 5px 10px;
+      font-size: .68rem;
+      font-weight: 800;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      background: rgba(200,50,26,.18);
+      color: #e05040;
+      border: 1px solid rgba(200,50,26,.35);
+    }
+
+    .status-badge::before {
+      content: '';
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #e05040;
+    }
+
+    .status-badge.closed {
+      color: #a89890;
+      border-color: #2a2020;
+      background: #141010;
+    }
+
+    .status-badge.closed::before {
+      background: #6e5e58;
+    }
+
+    .stop-location {
+      font-size: 1rem;
+      color: #f0ebe6;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .stop-hours {
+      color: #a89890;
+      font-size: .95rem;
+      margin-bottom: 22px;
+      line-height: 1.5;
+    }
+
+    .stop-note {
+      color: #6e5e58;
+      font-size: .85rem;
+      line-height: 1.5;
+      margin-bottom: 24px;
+    }
+
+    /* MENU CARDS */
+    .menu-section {
+      background: #0a0a0a;
+      border-top: 1px solid #1a1414;
+      border-bottom: 1px solid #1a1414;
+    }
+
+    .truck-menu-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+    }
+
+    .food-card {
+      background: #1a1414;
+      border-radius: var(--radius);
+      overflow: hidden;
+      border: 1px solid #2a2020;
+      box-shadow: var(--shadow-sm);
+      transition: transform .22s, box-shadow .22s;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .food-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 12px 40px rgba(200,50,26,.15);
+      border-color: rgba(200,50,26,.3);
+    }
+
+    .food-card-img {
+      aspect-ratio: 4/3;
+      overflow: hidden;
+      position: relative;
+      background: #1a1414;
+    }
+
+    .food-card-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      transition: transform .4s;
+    }
+
+    .food-card:hover .food-card-img img {
+      transform: scale(1.06);
+    }
+
+    .food-card-badge {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      background: var(--green);
+      color: #fff;
+      font-size: .7rem;
+      font-weight: 700;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      padding: 4px 10px;
+      border-radius: 999px;
+    }
+
+    .food-card-body {
+      padding: 20px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .food-card-body h3 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin-bottom: 6px;
+      color: #f0ebe6;
+    }
+
+    .food-card-body p {
+      font-size: .85rem;
+      color: #a89890;
+      line-height: 1.5;
+      flex: 1;
+      margin-bottom: 16px;
+    }
+
+    .food-card-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .food-card-price {
+      font-weight: 800;
+      font-size: 1.1rem;
+      color: #f0ebe6;
+    }
+
+    /* SPECIAL SECTION */
+    .special-section {
+      padding: 40px 0 96px;
+      background: #0f0f0f;
+    }
+
+    .special-inner {
+      background: #141010;
+      border-radius: 24px;
+      overflow: hidden;
+      border: 1px solid #2a1a16;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      box-shadow: var(--shadow);
+    }
+
+    .special-copy {
+      padding: 80px 64px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .special-copy h2 {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 900;
+      font-size: clamp(2.5rem, 4vw, 3.5rem);
+      text-transform: uppercase;
+      letter-spacing: -.02em;
+      line-height: .95;
+      margin: 12px 0 20px;
+      color: #f0ebe6;
+    }
+
+    .special-copy h2 em {
+      font-style: normal;
+      color: #e05040;
+    }
+
+    .special-copy p {
+      color: #a89890;
+      font-size: 1.05rem;
+      line-height: 1.6;
+      margin-bottom: 24px;
+      max-width: 42ch;
+    }
+
+    .special-price-tag {
+      display: inline-flex;
+      align-items: baseline;
+      gap: 8px;
+      margin-bottom: 28px;
+    }
+
+    .special-price-tag .amount {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 900;
+      font-size: 2.7rem;
+      color: #fff;
+      line-height: 1;
+    }
+
+    .special-price-tag .label {
+      font-size: .85rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .05em;
+      color: #e05040;
+    }
+
+    .special-image {
+      position: relative;
+      min-height: 100%;
+      background: #0a0a0a;
+    }
+
+    .special-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .special-image::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(90deg, #141010 0%, transparent 40%);
+      z-index: 1;
+    }
+
+    /* EXPERIENCE */
+    .experience-grid {
+      display: grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap: 32px;
+      align-items: stretch;
+    }
+
+    .experience-card {
+      background: #141010;
+      border: 1px solid #2a2020;
+      border-radius: 24px;
+      overflow: hidden;
+      min-height: 420px;
+      box-shadow: var(--shadow);
+      position: relative;
+    }
+
+    .experience-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      min-height: 420px;
+    }
+
+    .experience-card::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, transparent 30%, rgba(10,10,10,.85) 100%);
+    }
+
+    .experience-caption {
+      position: absolute;
+      left: 28px;
+      right: 28px;
+      bottom: 28px;
+      z-index: 2;
+    }
+
+    .experience-caption h3 {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 2rem;
+      text-transform: uppercase;
+      color: #fff;
+      margin-bottom: 8px;
+    }
+
+    .experience-caption p {
+      color: rgba(255,255,255,.72);
+      line-height: 1.6;
+      max-width: 46ch;
+    }
+
+    .mini-gallery {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+    }
+
+    .mini-gallery img {
+      border-radius: 18px;
+      height: 201px;
+      width: 100%;
+      object-fit: cover;
+      border: 1px solid #2a2020;
+    }
+
+    /* CTA BAND */
+    .cta-band {
+      background: #c8321a;
+      padding: 80px 0;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cta-band::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at center, rgba(255,255,255,.1) 0%, transparent 70%);
+    }
+
+    .cta-band .container {
+      position: relative;
+      z-index: 1;
+    }
+
+    .cta-band h2 {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 900;
+      font-size: clamp(2.5rem, 4vw, 3.5rem);
+      text-transform: uppercase;
+      letter-spacing: -.02em;
+      color: #fff;
+      margin-bottom: 16px;
+    }
+
+    .cta-band p {
+      color: rgba(255,255,255,.82);
+      font-size: 1.1rem;
+      margin-bottom: 32px;
+      max-width: 50ch;
+      margin-inline: auto;
+      line-height: 1.6;
+    }
+
+    .cta-band-actions {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    /* FOOTER */
+    footer {
+      background: #0a0a0a;
+      padding: 80px 0 40px;
+      border-top: 1px solid #1a1414;
+    }
+
+    .footer-inner {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 48px;
+      margin-bottom: 48px;
+    }
+
+    .footer-brand .nav-logo-text {
+      color: #fff;
+      font-size: 1.4rem;
+      margin-bottom: 14px;
+      display: block;
+    }
+
+    .footer-brand p {
+      font-size: .875rem;
+      line-height: 1.7;
+      color: #a89890;
+      max-width: 30ch;
+    }
+
+    .footer-col h4 {
+      color: #fff;
+      font-size: .8rem;
+      font-weight: 700;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+
+    .footer-col ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .footer-col ul a {
+      font-size: .875rem;
+      color: #a89890;
+      transition: color .18s;
+    }
+
+    .footer-col ul a:hover { color: #fff; }
+
+    .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,.08);
+      padding-top: 28px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .footer-bottom p {
+      font-size: .8rem;
+      color: #a89890;
+    }
+
+    .footer-social {
+      display: flex;
+      gap: 12px;
+    }
+
+    .footer-social a {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: rgba(255,255,255,.08);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: rgba(255,255,255,.6);
+      font-size: .85rem;
+      transition: background .18s, color .18s;
+    }
+
+    .footer-social a:hover {
+      background: var(--green);
+      color: #fff;
+    }
+
+    /* MOBILE BOTTOM BAR */
+    .mobile-bar {
+      display: none;
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      z-index: 90;
+      background: #0a0a0a;
+      border-top: 1px solid #2a1a16;
+      padding: 12px 20px;
+      gap: 10px;
+    }
+
+    .mobile-bar .btn {
+      flex: 1;
+      padding: 14px 16px;
+      font-size: .9rem;
+    }
+
+    /* REVEAL */
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity .6s ease, transform .6s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: none;
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 1024px) {
+      .schedule-grid { grid-template-columns: repeat(2, 1fr); }
+      .truck-menu-grid { grid-template-columns: repeat(2, 1fr); }
+      .footer-inner { grid-template-columns: 1fr 1fr; }
+      .experience-grid { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 768px) {
+      :root { --nav-h: 64px; }
+
+      .truck-hero {
+        grid-template-columns: 1fr;
+        min-height: auto;
+      }
+
+      .hero-copy {
+        padding: 56px 24px 40px;
+      }
+
+      .truck-hero h1 {
+        font-size: 3rem;
+      }
+
+      .hero-image {
+        min-height: 320px;
+      }
+
+      .hero-image::after {
+        background: linear-gradient(180deg, #0a0a0a 0%, transparent 30%);
+      }
+
+      .hero-badge {
+        right: 20px;
+        bottom: 20px;
+      }
+
+      .nav-links,
+      .nav-cta {
+        display: none;
+      }
+
+      .nav-hamburger {
+        display: flex;
+      }
+
+      .mobile-bar {
+        display: flex;
+      }
+
+      body {
+        padding-bottom: 72px;
+      }
+
+      .section {
+        padding: 64px 0;
+      }
+
+      .section-header-row {
+        align-items: flex-start;
+      }
+
+      .schedule-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .truck-menu-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 14px;
+      }
+
+      .special-inner {
+        grid-template-columns: 1fr;
+      }
+
+      .special-copy {
+        padding: 56px 24px 40px;
+      }
+
+      .special-image {
+        min-height: 300px;
+      }
+
+      .special-image::before {
+        background: linear-gradient(180deg, #141010 0%, transparent 40%);
+      }
+
+      .footer-inner {
+        grid-template-columns: 1fr;
+        gap: 32px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .truck-menu-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .truck-hero h1 {
+        font-size: 2.6rem;
+      }
+
+      .mini-gallery {
+        grid-template-columns: 1fr;
+      }
+
+      .mini-gallery img {
+        height: 220px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ANNOUNCEMENT BAR -->
+  <div class="announce-bar">
+    🚚 Food truck schedule coming soon &mdash; Call for today’s location:
+    <a href="tel:+17243850522">724-385-0522</a>
+  </div>
+
+  <!-- NAV -->
+  <nav class="site-nav" id="site-nav">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">
+        <img src="assets/logo.png" alt="Annie Lee's Southern Kitchen logo" onerror="this.style.display='none'" />
+        <span class="nav-logo-text">Annie Lee's<br>Southern Kitchen</span>
+      </a>
+
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="menu.html">Menu</a></li>
+        <li><a href="foodtruck.html" class="active">Food Truck</a></li>
+        <li><a href="catering.html">Catering</a></li>
+        <li><a href="#schedule">Schedule</a></li>
+      </ul>
+
+      <div class="nav-cta">
+        <a href="tel:+17243850522" class="nav-phone">📞 724-385-0522</a>
+        <a href="#schedule" class="btn btn-green" style="padding:10px 20px;font-size:.875rem;">Find Truck</a>
+      </div>
+
+      <button class="nav-hamburger" id="hamburger" aria-label="Open menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- MOBILE NAV -->
+  <div class="mobile-nav" id="mobile-nav">
+    <div class="mobile-nav-header">
+      <span class="nav-logo-text" style="color:#fff">Annie Lee's Southern Kitchen</span>
+      <button class="mobile-nav-close" id="nav-close">✕</button>
+    </div>
+
+    <ul class="mobile-nav-links">
+      <li><a href="index.html" onclick="closeMobileNav()">Home</a></li>
+      <li><a href="menu.html" onclick="closeMobileNav()">Menu</a></li>
+      <li><a href="foodtruck.html" onclick="closeMobileNav()">Food Truck</a></li>
+      <li><a href="catering.html" onclick="closeMobileNav()">Catering</a></li>
+      <li><a href="#schedule" onclick="closeMobileNav()">Schedule</a></li>
+    </ul>
+
+    <div class="mobile-nav-bottom">
+      <a href="#schedule" class="btn btn-green btn-lg" onclick="closeMobileNav()">Find The Truck</a>
+      <a href="tel:+17243850522" class="btn btn-outline-white btn-lg">Call 724-385-0522</a>
+    </div>
+  </div>
+
+  <!-- HERO -->
+  <section class="truck-hero" id="home">
+    <div class="hero-copy">
+      <div class="hero-eyebrow">Southern comfort on wheels</div>
+
+      <h1>Annie Lee’s<br><em>Food Truck.</em></h1>
+
+      <p class="hero-sub">
+        Fresh soul food, hot plates, and real flavor rolling through the community.
+        Find the truck, check the weekly stops, and book us for your next event.
+      </p>
+
+      <div class="hero-actions">
+        <a href="#schedule" class="btn btn-green btn-lg">Find The Truck</a>
+        <a href="#truck-menu" class="btn btn-outline-white btn-lg">View Truck Menu</a>
+        <a href="#book" class="btn btn-outline-white btn-lg">Book The Truck</a>
+      </div>
+
+      <p class="hero-trust">Weekly stops, local events, private bookings, and catering available</p>
+    </div>
+
+    <div class="hero-image">
+      <img
+        src="assets/food-truck-hero.jpg"
+        alt="Annie Lee's Southern Kitchen food truck"
+        onerror="this.src='https://images.unsplash.com/photo-1565123409695-7b5ef63a2efb?auto=format&fit=crop&w=1200&q=80'"
+      />
+
+      <div class="hero-badge">
+        <div class="price">Now Rolling</div>
+        <div class="label">Find us this week</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MARQUEE -->
+  <div class="marquee-wrap">
+    <div class="marquee-track">
+      <span class="marquee-item">Soul Food On Wheels <span class="marquee-dot"></span></span>
+      <span class="marquee-item">Fresh Wings <span class="marquee-dot"></span></span>
+      <span class="marquee-item">Fried Fish <span class="marquee-dot"></span></span>
+      <span class="marquee-item">Loaded Mac Bowls <span class="marquee-dot"></span></span>
+      <span class="marquee-item">Private Events <span class="marquee-dot"></span></span>
+      <span class="marquee-item">Book The Truck <span class="marquee-dot"></span></span>
+
+      <span class="marquee-item">Soul Food On Wheels <span class="marquee-dot"></span></span>
+      <span class="marquee-item">Fresh Wings <span class="marquee-dot"></span></span>
+      <span class="marquee-item">Fried Fish <span class="marquee-dot"></span></span>
+      <span class="marquee-item">Loaded Mac Bowls <span class="marquee-dot"></span></span>
+      <span class="marquee-item">Private Events <span class="marquee-dot"></span></span>
+      <span class="marquee-item">Book The Truck <span class="marquee-dot"></span></span>
+    </div>
+  </div>
+
+  <!-- SCHEDULE -->
+  <section class="section schedule-section" id="schedule">
+    <div class="container">
+      <div class="section-header-row section-header reveal">
+        <div>
+          <span class="kicker">Find the truck</span>
+          <h2>Catch us around town.</h2>
+          <p>Check this week’s stops and pull up while the food is hot. Schedule can change for weather, events, and sell-outs.</p>
+        </div>
+        <a href="tel:+17243850522" class="btn btn-dark">Call For Today’s Stop</a>
+      </div>
+
+      <div class="schedule-grid">
+        <div class="stop-card reveal">
+          <div class="stop-content">
+            <div class="stop-top">
+              <div class="stop-day">Wednesday</div>
+              <span class="status-badge">Open</span>
+            </div>
+            <div class="stop-location">Downtown Beaver</div>
+            <div class="stop-hours">11:00 AM – 7:00 PM</div>
+            <p class="stop-note">Lunch and dinner service. Pull up early for the best selection.</p>
+            <a href="https://maps.google.com/?q=Downtown+Beaver+PA" target="_blank" rel="noopener" class="btn btn-green">Get Directions</a>
+          </div>
+        </div>
+
+        <div class="stop-card reveal">
+          <div class="stop-content">
+            <div class="stop-top">
+              <div class="stop-day">Friday</div>
+              <span class="status-badge">Event</span>
+            </div>
+            <div class="stop-location">Beaver County Event Stop</div>
+            <div class="stop-hours">2:00 PM – 9:00 PM</div>
+            <p class="stop-note">Special event menu with truck favorites and quick combos.</p>
+            <a href="tel:+17243850522" class="btn btn-green">Call For Details</a>
+          </div>
+        </div>
+
+        <div class="stop-card reveal">
+          <div class="stop-content">
+            <div class="stop-top">
+              <div class="stop-day">Sunday</div>
+              <span class="status-badge closed">TBA</span>
+            </div>
+            <div class="stop-location">Location Coming Soon</div>
+            <div class="stop-hours">Hours TBA</div>
+            <p class="stop-note">Follow us or call ahead to confirm the next Sunday stop.</p>
+            <a href="tel:+17243850522" class="btn btn-dark">Call To Confirm</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TRUCK MENU -->
+  <section class="section menu-section" id="truck-menu">
+    <div class="container">
+      <div class="section-header-row section-header reveal">
+        <div>
+          <span class="kicker">Truck menu</span>
+          <h2>Fast plates. Big flavor.</h2>
+          <p>Food truck favorites made for quick service without losing that Annie Lee’s soul food comfort.</p>
+        </div>
+        <a href="menu.html" class="btn btn-dark">Full Restaurant Menu →</a>
+      </div>
+
+      <div class="truck-menu-grid">
+        <div class="food-card reveal">
+          <div class="food-card-img">
+            <img src="assets/wings-6-2-sides.png" alt="Wing Basket" loading="lazy" />
+            <span class="food-card-badge">Truck Favorite</span>
+          </div>
+          <div class="food-card-body">
+            <h3>Wing Basket</h3>
+            <p>Crispy whole wings served hot with a side and sauce.</p>
+            <div class="food-card-footer">
+              <span class="food-card-price">$14+</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="food-card reveal">
+          <div class="food-card-img">
+            <img src="assets/fish-dinner.png" alt="Catfish Combo" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1580476262798-bddd9f4b7369?auto=format&fit=crop&w=600&q=80'" />
+            <span class="food-card-badge">Fresh</span>
+          </div>
+          <div class="food-card-body">
+            <h3>Catfish Combo</h3>
+            <p>Golden fried fish with a classic side. Simple, crispy, and satisfying.</p>
+            <div class="food-card-footer">
+              <span class="food-card-price">$16+</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="food-card reveal">
+          <div class="food-card-img">
+            <img src="assets/mac-cheese-lg.png" alt="Loaded Mac Bowl" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1612871689353-cccf581d667b?auto=format&fit=crop&w=600&q=80'" />
+            <span class="food-card-badge">Limited</span>
+          </div>
+          <div class="food-card-body">
+            <h3>Loaded Mac Bowl</h3>
+            <p>Baked mac & cheese loaded with your choice of meat and flavor.</p>
+            <div class="food-card-footer">
+              <span class="food-card-price">$12+</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="food-card reveal">
+          <div class="food-card-img">
+            <img src="assets/ribs-half-slab-2-sides.png" alt="Rib Plate" loading="lazy" />
+            <span class="food-card-badge">Hearty</span>
+          </div>
+          <div class="food-card-body">
+            <h3>Rib Plate</h3>
+            <p>Tender ribs with a side. Built for real hunger.</p>
+            <div class="food-card-footer">
+              <span class="food-card-price">$18+</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DAILY SPECIAL -->
+  <section class="special-section">
+    <div class="container">
+      <div class="special-inner">
+        <div class="special-copy reveal">
+          <span class="kicker">Today’s special</span>
+          <h2>Smoked rib plate<br><em>with peach tea.</em></h2>
+          <p>
+            A rotating truck special built for the day. Specials may change depending on the stop,
+            the crowd, and what sells out first.
+          </p>
+
+          <div class="special-price-tag">
+            <span class="amount">$18</span>
+            <span class="label">Limited availability</span>
+          </div>
+
+          <div style="display:flex;flex-wrap:wrap;gap:12px;">
+            <a href="tel:+17243850522" class="btn btn-green btn-lg">Call To Confirm</a>
+            <a href="#schedule" class="btn btn-outline-white">Find Today’s Stop</a>
+          </div>
+        </div>
+
+        <div class="special-image">
+          <img src="assets/ribs-half-slab-2-sides.png" alt="Food truck daily special" loading="lazy" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header-row section-header reveal">
+        <div>
+          <span class="kicker">The experience</span>
+          <h2>More than food. It’s a pull-up moment.</h2>
+          <p>From local events to private parties, the truck brings the flavor, the energy, and the comfort food people remember.</p>
+        </div>
+      </div>
+
+      <div class="experience-grid">
+        <div class="experience-card reveal">
+          <img src="assets/food-gallery-1.jpg" alt="Annie Lee's Southern Kitchen food spread" loading="lazy" />
+          <div class="experience-caption">
+            <h3>Hot plates. Real comfort.</h3>
+            <p>Every stop should feel like people found something worth coming back for.</p>
+          </div>
+        </div>
+
+        <div class="mini-gallery reveal">
+          <img src="assets/wings-6-2-sides.png" alt="Wings" loading="lazy" />
+          <img src="assets/mac-cheese-lg.png" alt="Mac and cheese" loading="lazy" />
+          <img src="assets/fish-dinner.png" alt="Fish dinner" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1580476262798-bddd9f4b7369?auto=format&fit=crop&w=600&q=80'" />
+          <img src="assets/ribs-half-slab-2-sides.png" alt="Ribs" loading="lazy" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BOOK THE TRUCK -->
+  <section class="cta-band" id="book">
+    <div class="container">
+      <h2>Want the truck at your event?</h2>
+      <p>
+        Book Annie Lee’s Food Truck for festivals, graduations, company lunches,
+        weddings, private parties, and community events.
+      </p>
+
+      <div class="cta-band-actions">
+        <a href="tel:+17243850522" class="btn btn-dark btn-lg">Call 724-385-0522</a>
+        <a href="catering.html" class="btn btn-outline-white btn-lg">View Catering</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <div class="footer-inner">
+        <div class="footer-brand">
+          <span class="nav-logo-text">Annie Lee's Southern Kitchen</span>
+          <p>Soul food made right, just like home. Serving Ambridge, PA and bringing comfort food on wheels.</p>
+        </div>
+
+        <div class="footer-col">
+          <h4>Menu</h4>
+          <ul>
+            <li><a href="menu.html">Wing Dinners</a></li>
+            <li><a href="menu.html">Rib Plates</a></li>
+            <li><a href="menu.html">Fish Dinners</a></li>
+            <li><a href="menu.html">Sides</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Food Truck</h4>
+          <ul>
+            <li><a href="#schedule">Schedule</a></li>
+            <li><a href="#truck-menu">Truck Menu</a></li>
+            <li><a href="#book">Book The Truck</a></li>
+            <li><a href="tel:+17243850522">Call Us</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Connect</h4>
+          <ul>
+            <li><a href="https://www.yelp.com/biz/annie-lees-southern-kitchen-ambridge" target="_blank" rel="noopener">Yelp</a></li>
+            <li><a href="https://www.facebook.com/AnnieLeesSouthernKitchen" target="_blank" rel="noopener">Facebook</a></li>
+            <li><a href="https://www.instagram.com/annie_lees_kitchen/" target="_blank" rel="noopener">Instagram</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2026 Annie Lee's Southern Kitchen. All rights reserved.</p>
+
+        <div class="footer-social">
+          <a href="https://www.yelp.com/biz/annie-lees-southern-kitchen-ambridge" target="_blank" rel="noopener" aria-label="Yelp">Y</a>
+          <a href="https://www.facebook.com/AnnieLeesSouthernKitchen" target="_blank" rel="noopener" aria-label="Facebook">f</a>
+          <a href="https://www.instagram.com/annie_lees_kitchen/" target="_blank" rel="noopener" aria-label="Instagram">in</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- MOBILE BOTTOM BAR -->
+  <div class="mobile-bar">
+    <a href="#schedule" class="btn btn-green">Find Truck</a>
+    <a href="tel:+17243850522" class="btn btn-dark">Call Us</a>
+  </div>
+
+  <script>
+    // Sticky nav shadow on scroll
+    const nav = document.getElementById('site-nav');
+
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 20);
+    }, { passive: true });
+
+    // Mobile nav
+    const hamburger = document.getElementById('hamburger');
+    const mobileNav = document.getElementById('mobile-nav');
+    const navClose = document.getElementById('nav-close');
+
+    hamburger.addEventListener('click', () => mobileNav.classList.add('open'));
+    navClose.addEventListener('click', () => mobileNav.classList.remove('open'));
+
+    function closeMobileNav() {
+      mobileNav.classList.remove('open');
+    }
+
+    // Scroll reveal
+    const reveals = document.querySelectorAll('.reveal');
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+          observer.unobserve(e.target);
+        }
+      });
+    }, {
+      threshold: 0.12,
+      rootMargin: '0px 0px -40px 0px'
+    });
+
+    reveals.forEach(el => observer.observe(el));
+
+    // Hero image parallax
+    const heroImg = document.querySelector('.hero-image img');
+
+    if (heroImg) {
+      window.addEventListener('scroll', () => {
+        const offset = window.scrollY * 0.15;
+        heroImg.style.transform = `scale(1.02) translateY(${offset}px)`;
+      }, { passive: true });
+    }
+  </script>
+
+  <!-- Lead Capture & CRM Integration -->
+  <script src="lead-capture.js"></script>
+</body>
+</html>

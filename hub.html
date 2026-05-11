@@ -1,0 +1,736 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Annie Lee's Admin Hub</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #0f0f0f;
+      color: #f0ebe6;
+      overflow-x: hidden;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    :root {
+      --red: #c8321a;
+      --red-dark: #a02514;
+      --dark: #0a0a0a;
+      --dark-2: #141414;
+      --panel: #1a1414;
+      --border: #2a2020;
+      --text: #f0ebe6;
+      --muted: #a89890;
+      --radius: 18px;
+      --shadow: 0 8px 32px rgba(0,0,0,.45);
+      --max: 1280px;
+    }
+
+    .container {
+      width: min(var(--max), calc(100% - 40px));
+      margin-inline: auto;
+    }
+
+    .headline {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: -.02em;
+      line-height: .95;
+    }
+
+    .kicker {
+      font-size: .72rem;
+      font-weight: 700;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: #e05040;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 14px 24px;
+      border-radius: 999px;
+      font-weight: 700;
+      border: none;
+      cursor: pointer;
+      transition: .2s;
+      font-size: .95rem;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+    }
+
+    .btn-red {
+      background: var(--red);
+      color: #fff;
+      box-shadow: 0 4px 16px rgba(200,50,26,.35);
+    }
+
+    .btn-red:hover {
+      background: var(--red-dark);
+    }
+
+    .btn-dark {
+      background: #1d1d1d;
+      color: #fff;
+      border: 1px solid #2e2e2e;
+    }
+
+    .btn-dark:hover {
+      background: #262626;
+    }
+
+    /* NAV */
+    .site-nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: #0a0a0a;
+      border-bottom: 1px solid #1f1f1f;
+    }
+
+    .nav-inner {
+      width: min(var(--max), calc(100% - 40px));
+      margin-inline: auto;
+      height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .nav-logo img {
+      height: 42px;
+    }
+
+    .nav-logo-text {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 1.3rem;
+      font-weight: 900;
+      line-height: 1;
+      text-transform: uppercase;
+      color: #fff;
+    }
+
+    .nav-actions {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+    }
+
+    /* HERO */
+    .hero {
+      padding: 90px 0 70px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 20% 30%, rgba(200,50,26,.18), transparent 40%);
+      pointer-events: none;
+    }
+
+    .hero-inner {
+      position: relative;
+      z-index: 2;
+      display: grid;
+      grid-template-columns: 1fr 420px;
+      gap: 40px;
+      align-items: center;
+    }
+
+    .hero h1 {
+      font-size: clamp(3rem, 7vw, 5.8rem);
+      margin: 14px 0 24px;
+      color: #fff;
+    }
+
+    .hero h1 em {
+      font-style: normal;
+      color: #e05040;
+    }
+
+    .hero p {
+      color: var(--muted);
+      max-width: 50ch;
+      line-height: 1.7;
+      font-size: 1.05rem;
+      margin-bottom: 36px;
+    }
+
+    .hero-panel {
+      background: linear-gradient(145deg, #1a1414, #120f0f);
+      border: 1px solid #2a2020;
+      border-radius: 24px;
+      padding: 32px;
+      box-shadow: var(--shadow);
+    }
+
+    .hero-panel h3 {
+      font-size: 1.2rem;
+      margin-bottom: 18px;
+      color: #fff;
+    }
+
+    .live-status {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: rgba(200,50,26,.12);
+      border: 1px solid rgba(200,50,26,.3);
+      padding: 14px 16px;
+      border-radius: 14px;
+      margin-bottom: 16px;
+    }
+
+    .live-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: #e05040;
+      box-shadow: 0 0 18px rgba(224,80,64,.9);
+    }
+
+    .live-status strong {
+      color: #fff;
+      display: block;
+      margin-bottom: 2px;
+    }
+
+    .live-status span {
+      color: var(--muted);
+      font-size: .9rem;
+    }
+
+    /* GRID */
+    .dashboard-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 28px;
+      padding-bottom: 100px;
+    }
+
+    .panel {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 32px;
+      box-shadow: var(--shadow);
+    }
+
+    .panel h2 {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 2rem;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+      color: #fff;
+    }
+
+    .panel p {
+      color: var(--muted);
+      line-height: 1.6;
+      margin-bottom: 28px;
+      font-size: .95rem;
+    }
+
+    /* FORM */
+    .form-group {
+      margin-bottom: 18px;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: .82rem;
+      font-weight: 700;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+      color: #f0ebe6;
+    }
+
+    input,
+    textarea,
+    select {
+      width: 100%;
+      background: #121212;
+      border: 1px solid #2a2020;
+      color: #f0ebe6;
+      border-radius: 14px;
+      padding: 14px 16px;
+      font-size: .95rem;
+      outline: none;
+      transition: .2s;
+    }
+
+    input:focus,
+    textarea:focus,
+    select:focus {
+      border-color: rgba(200,50,26,.6);
+      box-shadow: 0 0 0 4px rgba(200,50,26,.12);
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 120px;
+    }
+
+    .day-row {
+      display: grid;
+      grid-template-columns: 120px 1fr 140px;
+      gap: 12px;
+      margin-bottom: 14px;
+    }
+
+    .toggle-row {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .toggle-card {
+      flex: 1;
+      min-width: 120px;
+      background: #121212;
+      border: 1px solid #2a2020;
+      border-radius: 16px;
+      padding: 18px;
+      text-align: center;
+      cursor: pointer;
+      transition: .2s;
+    }
+
+    .toggle-card:hover {
+      border-color: rgba(200,50,26,.45);
+      transform: translateY(-2px);
+    }
+
+    .toggle-card.active {
+      border-color: rgba(200,50,26,.7);
+      background: rgba(200,50,26,.1);
+    }
+
+    .toggle-card h4 {
+      color: #fff;
+      margin-bottom: 6px;
+    }
+
+    .toggle-card span {
+      color: var(--muted);
+      font-size: .85rem;
+    }
+
+    /* QUICK ACTIONS */
+    .quick-actions {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px;
+    }
+
+    .action-card {
+      background: #121212;
+      border: 1px solid #2a2020;
+      border-radius: 18px;
+      padding: 24px;
+      transition: .2s;
+      cursor: pointer;
+    }
+
+    .action-card:hover {
+      border-color: rgba(200,50,26,.4);
+      transform: translateY(-3px);
+    }
+
+    .action-card h4 {
+      color: #fff;
+      margin-bottom: 8px;
+    }
+
+    .action-card p {
+      margin: 0;
+      font-size: .88rem;
+    }
+
+    /* FOOTER */
+    footer {
+      border-top: 1px solid #1f1f1f;
+      padding: 30px 0;
+      text-align: center;
+      color: var(--muted);
+      font-size: .85rem;
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 1024px) {
+      .hero-inner {
+        grid-template-columns: 1fr;
+      }
+
+      .dashboard-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .hero {
+        padding: 70px 0 50px;
+      }
+
+      .hero h1 {
+        font-size: 3.4rem;
+      }
+
+      .day-row {
+        grid-template-columns: 1fr;
+      }
+
+      .quick-actions {
+        grid-template-columns: 1fr;
+      }
+
+      .nav-actions {
+        display: none;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- NAV -->
+  <nav class="site-nav">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">
+        <img src="assets/logo.png" alt="Logo" onerror="this.style.display='none'" />
+        <span class="nav-logo-text">
+          Annie Lee's<br />
+          Admin Hub
+        </span>
+      </a>
+
+      <div class="nav-actions">
+        <a href="index.html" class="btn btn-dark">Main Website</a>
+        <a href="foodtruck.html" class="btn btn-red">Food Truck Page</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="container hero-inner">
+
+      <div>
+        <span class="kicker">Business control center</span>
+
+        <h1 class="headline">
+          Manage the <em>food truck</em><br />
+          from one place.
+        </h1>
+
+        <p>
+          Update truck schedules, daily specials, catering announcements,
+          sold out items, and live status updates without touching code.
+        </p>
+
+        <div style="display:flex;gap:14px;flex-wrap:wrap;">
+          <button class="btn btn-red">Save Changes</button>
+          <button class="btn btn-dark">Preview Website</button>
+        </div>
+      </div>
+
+      <div class="hero-panel">
+        <h3>Truck Status</h3>
+
+        <div class="live-status">
+          <div class="live-dot"></div>
+
+          <div>
+            <strong>NOW SERVING</strong>
+            <span>Downtown Beaver • Until 7PM</span>
+          </div>
+        </div>
+
+        <div class="live-status">
+          <div class="live-dot"></div>
+
+          <div>
+            <strong>TODAY’S SPECIAL</strong>
+            <span>Smoked Rib Plate + Peach Tea</span>
+          </div>
+        </div>
+
+        <div class="live-status">
+          <div class="live-dot"></div>
+
+          <div>
+            <strong>NEXT EVENT</strong>
+            <span>Beaver County Fair • Friday</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- DASHBOARD -->
+  <section>
+    <div class="container dashboard-grid">
+
+      <!-- SCHEDULE -->
+      <div class="panel">
+
+        <h2>Truck Schedule</h2>
+
+        <p>
+          Update weekly locations and hours for the food truck page.
+        </p>
+
+        <div class="day-row">
+          <input type="text" value="Wednesday" />
+          <input type="text" value="Downtown Beaver" />
+          <input type="text" value="11AM–7PM" />
+        </div>
+
+        <div class="day-row">
+          <input type="text" value="Friday" />
+          <input type="text" value="Beaver County Event" />
+          <input type="text" value="2PM–9PM" />
+        </div>
+
+        <div class="day-row">
+          <input type="text" value="Sunday" />
+          <input type="text" value="Location Coming Soon" />
+          <input type="text" value="TBA" />
+        </div>
+
+        <button class="btn btn-red" style="margin-top:20px;">
+          Save Schedule
+        </button>
+
+      </div>
+
+      <!-- DAILY SPECIAL -->
+      <div class="panel">
+
+        <h2>Daily Special</h2>
+
+        <p>
+          Highlight a featured meal directly on the homepage and truck page.
+        </p>
+
+        <div class="form-group">
+          <label>Special Title</label>
+          <input type="text" value="Smoked Rib Plate + Peach Tea" />
+        </div>
+
+        <div class="form-group">
+          <label>Price</label>
+          <input type="text" value="$18" />
+        </div>
+
+        <div class="form-group">
+          <label>Description</label>
+          <textarea>Slow smoked ribs served hot with fresh peach tea. Limited availability.</textarea>
+        </div>
+
+        <button class="btn btn-red">
+          Update Special
+        </button>
+
+      </div>
+
+      <!-- STATUS -->
+      <div class="panel">
+
+        <h2>Truck Status</h2>
+
+        <p>
+          Toggle the current truck status live across the website.
+        </p>
+
+        <div class="toggle-row">
+
+          <div class="toggle-card active">
+            <h4>OPEN</h4>
+            <span>Currently serving</span>
+          </div>
+
+          <div class="toggle-card">
+            <h4>CLOSED</h4>
+            <span>Truck offline</span>
+          </div>
+
+          <div class="toggle-card">
+            <h4>SOLD OUT</h4>
+            <span>No more food</span>
+          </div>
+
+          <div class="toggle-card">
+            <h4>DELAYED</h4>
+            <span>Running behind</span>
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- ANNOUNCEMENTS -->
+      <div class="panel">
+
+        <h2>Live Announcements</h2>
+
+        <p>
+          Update the scrolling banner and real-time messages.
+        </p>
+
+        <div class="form-group">
+          <label>Announcement Banner</label>
+
+          <textarea>NOW SERVING • Downtown Beaver • Fresh Catfish • Pull Up Before Sell Out</textarea>
+        </div>
+
+        <button class="btn btn-red">
+          Publish Announcement
+        </button>
+
+      </div>
+
+      <!-- MENU AVAILABILITY -->
+      <div class="panel">
+
+        <h2>Menu Availability</h2>
+
+        <p>
+          Quickly toggle available truck items.
+        </p>
+
+        <div class="toggle-row">
+
+          <div class="toggle-card active">
+            <h4>WINGS</h4>
+            <span>Available</span>
+          </div>
+
+          <div class="toggle-card active">
+            <h4>RIBS</h4>
+            <span>Available</span>
+          </div>
+
+          <div class="toggle-card active">
+            <h4>CATFISH</h4>
+            <span>Available</span>
+          </div>
+
+          <div class="toggle-card">
+            <h4>PEACH COBBLER</h4>
+            <span>Sold Out</span>
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- QUICK ACTIONS -->
+      <div class="panel">
+
+        <h2>Quick Actions</h2>
+
+        <p>
+          Fast access to the most important business tools.
+        </p>
+
+        <div class="quick-actions">
+
+          <div class="action-card">
+            <h4>View Main Website</h4>
+            <p>Open the public homepage.</p>
+          </div>
+
+          <div class="action-card">
+            <h4>Open Food Truck Page</h4>
+            <p>Preview the truck website live.</p>
+          </div>
+
+          <div class="action-card">
+            <h4>Update Catering</h4>
+            <p>Edit catering information and event details.</p>
+          </div>
+
+          <div class="action-card">
+            <h4>Upload New Photos</h4>
+            <p>Add fresh truck and food images.</p>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    Annie Lee's Southern Kitchen • Admin Hub • 2026
+  </footer>
+
+  <script>
+
+    // STATUS TOGGLES
+    document.querySelectorAll('.toggle-card').forEach(card => {
+
+      card.addEventListener('click', () => {
+
+        const parent = card.parentElement;
+
+        parent.querySelectorAll('.toggle-card').forEach(c => {
+          c.classList.remove('active');
+        });
+
+        card.classList.add('active');
+
+      });
+
+    });
+
+  </script>
+
+</body>
+</html>

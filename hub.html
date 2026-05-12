@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Annie Lee's Admin Hub | Food Truck Scheduler</title>
-  <meta name="description" content="Admin dashboard for managing Annie Lee's Food Truck schedule, locations, and bookings." />
+  <title>Annie Lee's Admin Hub | Food Truck Scheduler & Location Manager</title>
+  <meta name="description" content="Admin dashboard for managing Annie Lee's Food Truck schedule, locations, bookings, and store information." />
   
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -252,6 +252,11 @@
       box-shadow: 0 0 0 3px rgba(224,80,64,.1);
     }
 
+    .form-group textarea {
+      resize: vertical;
+      min-height: 80px;
+    }
+
     .form-row {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -262,77 +267,94 @@
       grid-template-columns: 1fr 1fr 1fr;
     }
 
+    .form-row.full {
+      grid-template-columns: 1fr;
+    }
+
     .form-row .form-group {
       margin-bottom: 0;
     }
 
-    /* CARDS */
-    .schedule-card {
+    /* HOURS TABLE */
+    .hours-editor {
       background: #1a1414;
       border: 1px solid #2a2020;
       border-radius: var(--radius);
       padding: 24px;
-      margin-bottom: 16px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 16px;
-      transition: all .22s;
+      margin-bottom: 24px;
     }
 
-    .schedule-card:hover {
-      border-color: rgba(200,50,26,.3);
-      box-shadow: 0 4px 16px rgba(200,50,26,.1);
-    }
-
-    .schedule-card-content {
-      flex: 1;
-    }
-
-    .schedule-card-day {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-weight: 900;
-      font-size: 1.3rem;
-      text-transform: uppercase;
+    .hours-editor h3 {
       color: #fff;
-      margin-bottom: 4px;
-    }
-
-    .schedule-card-info {
-      color: #a89890;
-      font-size: .9rem;
-      line-height: 1.5;
-    }
-
-    .schedule-card-actions {
-      display: flex;
-      gap: 8px;
-    }
-
-    .schedule-card-status {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      background: rgba(200,50,26,.18);
-      border: 1px solid rgba(200,50,26,.35);
-      color: #e05040;
-      padding: 6px 12px;
-      border-radius: 999px;
-      font-size: .75rem;
       font-weight: 700;
-      text-transform: uppercase;
+      margin-bottom: 16px;
+      font-size: 1.1rem;
     }
 
-    .schedule-card-status.closed {
+    .hours-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+    }
+
+    .hour-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .hour-row label {
+      min-width: 80px;
+      color: #f0ebe6;
+      font-weight: 600;
+      font-size: .9rem;
+    }
+
+    .hour-row input {
+      flex: 1;
       background: #141010;
-      border-color: #2a2020;
+      border: 1px solid #2a2020;
+      color: #f0ebe6;
+      padding: 10px 12px;
+      border-radius: 6px;
+      font-size: .9rem;
+    }
+
+    .hour-row input:focus {
+      outline: none;
+      border-color: #e05040;
+      box-shadow: 0 0 0 3px rgba(224,80,64,.1);
+    }
+
+    /* LOCATION CARD */
+    .location-card {
+      background: #1a1414;
+      border: 1px solid #2a2020;
+      border-radius: var(--radius);
+      padding: 24px;
+      margin-bottom: 24px;
+    }
+
+    .location-card h3 {
+      color: #fff;
+      font-weight: 700;
+      margin-bottom: 16px;
+      font-size: 1.1rem;
+    }
+
+    .location-preview {
+      background: #141010;
+      border: 1px solid #2a2020;
+      border-radius: 8px;
+      padding: 16px;
+      margin-top: 16px;
+      font-size: .9rem;
+      line-height: 1.6;
       color: #a89890;
     }
 
-    .schedule-card-status.event {
-      background: rgba(100,180,255,.15);
-      color: #64b4ff;
-      border-color: rgba(100,180,255,.35);
+    .location-preview strong {
+      color: #f0ebe6;
     }
 
     /* MODAL */
@@ -356,7 +378,7 @@
       border: 1px solid #2a2020;
       border-radius: var(--radius);
       padding: 40px;
-      max-width: 600px;
+      max-width: 700px;
       width: 100%;
       max-height: 90vh;
       overflow-y: auto;
@@ -406,97 +428,7 @@
       justify-content: center;
     }
 
-    /* TABLE */
-    .bookings-table {
-      width: 100%;
-      border-collapse: collapse;
-      background: #1a1414;
-      border: 1px solid #2a2020;
-      border-radius: var(--radius);
-      overflow: hidden;
-    }
-
-    .bookings-table thead {
-      background: #141010;
-      border-bottom: 1px solid #2a2020;
-    }
-
-    .bookings-table th {
-      padding: 16px;
-      text-align: left;
-      color: #fff;
-      font-weight: 700;
-      font-size: .9rem;
-      text-transform: uppercase;
-      letter-spacing: .05em;
-    }
-
-    .bookings-table td {
-      padding: 16px;
-      border-bottom: 1px solid #2a2020;
-      color: #a89890;
-      font-size: .9rem;
-    }
-
-    .bookings-table tr:hover {
-      background: rgba(200,50,26,.05);
-    }
-
-    .bookings-table tr:last-child td {
-      border-bottom: none;
-    }
-
-    .booking-name {
-      color: #f0ebe6;
-      font-weight: 600;
-    }
-
-    .booking-status {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      background: rgba(100,180,255,.15);
-      color: #64b4ff;
-      padding: 4px 8px;
-      border-radius: 4px;
-      font-size: .8rem;
-      font-weight: 700;
-      text-transform: uppercase;
-    }
-
-    /* STATS */
-    .stats-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 16px;
-      margin-bottom: 32px;
-    }
-
-    .stat-card {
-      background: #1a1414;
-      border: 1px solid #2a2020;
-      border-radius: var(--radius);
-      padding: 24px;
-      text-align: center;
-    }
-
-    .stat-number {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-weight: 900;
-      font-size: 2.4rem;
-      color: #e05040;
-      margin-bottom: 8px;
-    }
-
-    .stat-label {
-      color: #a89890;
-      font-size: .9rem;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: .05em;
-    }
-
-    /* ALERTS */
+    /* ALERT */
     .alert {
       padding: 16px 20px;
       border-radius: 8px;
@@ -512,18 +444,6 @@
       color: #4caf50;
     }
 
-    .alert-error {
-      background: rgba(244, 67, 54, .15);
-      border: 1px solid rgba(244, 67, 54, .3);
-      color: #f44336;
-    }
-
-    .alert-info {
-      background: rgba(33, 150, 243, .15);
-      border: 1px solid rgba(33, 150, 243, .3);
-      color: #2196f3;
-    }
-
     /* RESPONSIVE */
     @media (max-width: 1024px) {
       .admin-layout {
@@ -534,8 +454,8 @@
         display: none;
       }
 
-      .stats-grid {
-        grid-template-columns: repeat(2, 1fr);
+      .hours-grid {
+        grid-template-columns: 1fr;
       }
     }
 
@@ -552,25 +472,8 @@
         grid-template-columns: 1fr;
       }
 
-      .schedule-card {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-
-      .schedule-card-actions {
-        width: 100%;
-      }
-
-      .schedule-card-actions button {
-        flex: 1;
-      }
-
       .modal-content {
         padding: 24px;
-      }
-
-      .stats-grid {
-        grid-template-columns: 1fr;
       }
     }
   </style>
@@ -584,8 +487,7 @@
       <div class="header-inner">
         <div class="header-title">🔧 Admin Hub</div>
         <div class="header-actions">
-          <button class="btn btn-dark" onclick="exportScheduleHTML()">📥 Export HTML</button>
-          <a href="foodtruck.html" class="btn btn-green">View Public Site</a>
+          <a href="index.html" class="btn btn-green">View Public Site</a>
         </div>
       </div>
     </div>
@@ -597,6 +499,7 @@
     <aside class="admin-sidebar">
       <ul class="sidebar-nav">
         <li><a href="#" class="nav-link active" data-tab="dashboard">Dashboard</a></li>
+        <li><a href="#" class="nav-link" data-tab="location">📍 Location & Store</a></li>
         <li><a href="#" class="nav-link" data-tab="scheduler">Schedule Manager</a></li>
         <li><a href="#" class="nav-link" data-tab="bookings">Bookings</a></li>
         <li><a href="#" class="nav-link" data-tab="settings">Settings</a></li>
@@ -611,140 +514,188 @@
         <div id="dashboard" class="tab-content active">
           <div class="admin-section">
             <h1 class="section-title">Dashboard</h1>
-            <p class="section-subtitle">Overview of your food truck operations</p>
+            <p class="section-subtitle">Quick access to all management tools</p>
 
-            <div class="stats-grid">
-              <div class="stat-card">
-                <div class="stat-number" id="stat-stops">4</div>
-                <div class="stat-label">Weekly Stops</div>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px;">
+              <div style="background: #1a1414; border: 1px solid #2a2020; border-radius: var(--radius); padding: 24px; text-align: center; cursor: pointer;" onclick="switchTab('location')">
+                <div style="font-size: 2.5rem; margin-bottom: 8px;">📍</div>
+                <div style="color: #fff; font-weight: 700; margin-bottom: 4px;">Location & Store</div>
+                <div style="color: #a89890; font-size: .85rem;">Edit hours, address, info</div>
               </div>
-              <div class="stat-card">
-                <div class="stat-number" id="stat-bookings">3</div>
-                <div class="stat-label">Pending Bookings</div>
+              <div style="background: #1a1414; border: 1px solid #2a2020; border-radius: var(--radius); padding: 24px; text-align: center; cursor: pointer;" onclick="switchTab('scheduler')">
+                <div style="font-size: 2.5rem; margin-bottom: 8px;">🚚</div>
+                <div style="color: #fff; font-weight: 700; margin-bottom: 4px;">Food Truck Schedule</div>
+                <div style="color: #a89890; font-size: .85rem;">Manage weekly stops</div>
               </div>
-              <div class="stat-card">
-                <div class="stat-number" id="stat-revenue">$2,450</div>
-                <div class="stat-label">Pending Revenue</div>
+              <div style="background: #1a1414; border: 1px solid #2a2020; border-radius: var(--radius); padding: 24px; text-align: center; cursor: pointer;" onclick="switchTab('bookings')">
+                <div style="font-size: 2.5rem; margin-bottom: 8px;">📅</div>
+                <div style="color: #fff; font-weight: 700; margin-bottom: 4px;">Event Bookings</div>
+                <div style="color: #a89890; font-size: .85rem;">View inquiries</div>
               </div>
-              <div class="stat-card">
-                <div class="stat-number" id="stat-events">2</div>
-                <div class="stat-label">Upcoming Events</div>
+              <div style="background: #1a1414; border: 1px solid #2a2020; border-radius: var(--radius); padding: 24px; text-align: center; cursor: pointer;" onclick="switchTab('settings')">
+                <div style="font-size: 2.5rem; margin-bottom: 8px;">⚙️</div>
+                <div style="color: #fff; font-weight: 700; margin-bottom: 4px;">Settings</div>
+                <div style="color: #a89890; font-size: .85rem;">Configure business info</div>
               </div>
             </div>
           </div>
+        </div>
 
+        <!-- LOCATION & STORE TAB -->
+        <div id="location" class="tab-content">
           <div class="admin-section">
-            <h2 class="section-title">Recent Bookings</h2>
-            <table class="bookings-table">
-              <thead>
-                <tr>
-                  <th>Name</th>
-                  <th>Event Type</th>
-                  <th>Date</th>
-                  <th>Guests</th>
-                  <th>Status</th>
-                  <th>Actions</th>
-                </tr>
-              </thead>
-              <tbody id="recent-bookings">
-                <!-- Populated by JavaScript -->
-              </tbody>
-            </table>
+            <h1 class="section-title">📍 Location & Store Info</h1>
+            <p class="section-subtitle">Edit your store location, hours, and contact information</p>
+
+            <div id="location-alert"></div>
+
+            <!-- STORE INFORMATION -->
+            <div class="location-card">
+              <h3>Store Information</h3>
+              
+              <div class="form-group">
+                <label for="loc-heading">Location Heading *</label>
+                <input type="text" id="loc-heading" placeholder="e.g., Right here in Ambridge." required />
+              </div>
+
+              <div class="form-group">
+                <label for="loc-description">Location Description *</label>
+                <textarea id="loc-description" placeholder="e.g., 1601 Duss Ave. Easy to find, easy to order, and always worth the stop." required></textarea>
+              </div>
+
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="loc-address">Store Address *</label>
+                  <input type="text" id="loc-address" placeholder="e.g., 1601 Duss Ave, Ambridge, PA 15003" required />
+                </div>
+                <div class="form-group">
+                  <label for="loc-phone">Phone Number *</label>
+                  <input type="tel" id="loc-phone" placeholder="e.g., 724-385-0522" required />
+                </div>
+              </div>
+            </div>
+
+            <!-- HOURS -->
+            <div class="hours-editor">
+              <h3>Business Hours</h3>
+              <div class="hours-grid">
+                <div class="hour-row">
+                  <label>Monday</label>
+                  <input type="text" id="hour-monday" placeholder="e.g., Closed" />
+                </div>
+                <div class="hour-row">
+                  <label>Tuesday</label>
+                  <input type="text" id="hour-tuesday" placeholder="e.g., 1:00 PM – 2:00 PM" />
+                </div>
+                <div class="hour-row">
+                  <label>Wednesday</label>
+                  <input type="text" id="hour-wednesday" placeholder="e.g., 11:00 AM – 7:00 PM" />
+                </div>
+                <div class="hour-row">
+                  <label>Thursday</label>
+                  <input type="text" id="hour-thursday" placeholder="e.g., 11:00 AM – 7:00 PM" />
+                </div>
+                <div class="hour-row">
+                  <label>Friday</label>
+                  <input type="text" id="hour-friday" placeholder="e.g., 11:00 AM – 7:00 PM" />
+                </div>
+                <div class="hour-row">
+                  <label>Saturday</label>
+                  <input type="text" id="hour-saturday" placeholder="e.g., 12:00 PM – 7:00 PM" />
+                </div>
+                <div class="hour-row">
+                  <label>Sunday</label>
+                  <input type="text" id="hour-sunday" placeholder="e.g., 12:00 PM – 7:00 PM" />
+                </div>
+              </div>
+            </div>
+
+            <!-- MAP & CTA -->
+            <div class="location-card">
+              <h3>Google Maps & Buttons</h3>
+              
+              <div class="form-group">
+                <label for="loc-map-url">Google Maps Embed URL *</label>
+                <textarea id="loc-map-url" placeholder="Paste the full Google Maps embed src URL here..." style="min-height: 60px;"></textarea>
+                <div style="color: #6e5e58; font-size: .85rem; margin-top: 6px;">Get this from: Google Maps → Share → Embed a map → Copy the src URL</div>
+              </div>
+
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="loc-cta-text">CTA Button Text *</label>
+                  <input type="text" id="loc-cta-text" placeholder="e.g., Call 724-385-0522" required />
+                </div>
+                <div class="form-group">
+                  <label for="loc-cta-phone">CTA Phone Number *</label>
+                  <input type="tel" id="loc-cta-phone" placeholder="e.g., +17243850522" required />
+                </div>
+              </div>
+
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="loc-directions-text">Directions Button Text *</label>
+                  <input type="text" id="loc-directions-text" placeholder="e.g., Get Directions →" required />
+                </div>
+                <div class="form-group">
+                  <label for="loc-directions-url">Directions Link *</label>
+                  <input type="text" id="loc-directions-url" placeholder="e.g., https://maps.google.com/?q=1601+Duss+Ave,+Ambridge,+PA+15003" required />
+                </div>
+              </div>
+            </div>
+
+            <!-- PREVIEW -->
+            <div class="location-card">
+              <h3>Preview</h3>
+              <div class="location-preview">
+                <strong>Heading:</strong> <span id="preview-heading">Right here in Ambridge.</span><br>
+                <strong>Description:</strong> <span id="preview-description">1601 Duss Ave. Easy to find, easy to order, and always worth the stop.</span><br>
+                <strong>Address:</strong> <span id="preview-address">1601 Duss Ave, Ambridge, PA 15003</span><br>
+                <strong>Phone:</strong> <span id="preview-phone">724-385-0522</span><br>
+                <strong>Hours:</strong> See table below<br><br>
+                <strong>Buttons:</strong> Call & Get Directions
+              </div>
+            </div>
+
+            <!-- ACTIONS -->
+            <div style="display: flex; gap: 12px; margin-top: 24px;">
+              <button class="btn btn-green" onclick="saveLocation()">💾 Save Location Info</button>
+              <button class="btn btn-dark" onclick="exportLocationHTML()">📥 Export Location HTML</button>
+            </div>
           </div>
         </div>
 
-        <!-- SCHEDULER TAB -->
+        <!-- SCHEDULER TAB (PLACEHOLDER) -->
         <div id="scheduler" class="tab-content">
           <div class="admin-section">
-            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px;">
-              <h1 class="section-title">Food Truck Schedule</h1>
-              <button class="btn btn-green" onclick="openAddStopModal()">+ Add Stop</button>
-            </div>
-
-            <div id="schedule-list">
-              <!-- Schedule cards populated by JavaScript -->
+            <h1 class="section-title">Food Truck Schedule</h1>
+            <p class="section-subtitle">Manage your weekly food truck stops</p>
+            <div style="background: #1a1414; border: 1px solid #2a2020; border-radius: var(--radius); padding: 40px; text-align: center;">
+              <p style="color: #a89890; margin-bottom: 16px;">Food truck scheduler functionality would go here</p>
+              <p style="color: #6e5e58; font-size: .9rem;">This is a placeholder for the food truck schedule management</p>
             </div>
           </div>
         </div>
 
-        <!-- BOOKINGS TAB -->
+        <!-- BOOKINGS TAB (PLACEHOLDER) -->
         <div id="bookings" class="tab-content">
           <div class="admin-section">
             <h1 class="section-title">Event Bookings</h1>
-            <p class="section-subtitle">Manage incoming event inquiries and bookings</p>
-
-            <table class="bookings-table">
-              <thead>
-                <tr>
-                  <th>Name</th>
-                  <th>Phone</th>
-                  <th>Event Type</th>
-                  <th>Date</th>
-                  <th>Guests</th>
-                  <th>Status</th>
-                  <th>Actions</th>
-                </tr>
-              </thead>
-              <tbody id="all-bookings">
-                <!-- Populated by JavaScript -->
-              </tbody>
-            </table>
+            <p class="section-subtitle">Manage incoming event inquiries</p>
+            <div style="background: #1a1414; border: 1px solid #2a2020; border-radius: var(--radius); padding: 40px; text-align: center;">
+              <p style="color: #a89890; margin-bottom: 16px;">Event bookings would display here</p>
+              <p style="color: #6e5e58; font-size: .9rem;">This is a placeholder for event booking management</p>
+            </div>
           </div>
         </div>
 
-        <!-- SETTINGS TAB -->
+        <!-- SETTINGS TAB (PLACEHOLDER) -->
         <div id="settings" class="tab-content">
           <div class="admin-section">
             <h1 class="section-title">Settings</h1>
-
-            <div style="background: #1a1414; border: 1px solid #2a2020; border-radius: var(--radius); padding: 24px; margin-bottom: 24px;">
-              <h3 style="color: #fff; font-weight: 700; margin-bottom: 16px;">Truck Information</h3>
-              
-              <div class="form-row">
-                <div class="form-group">
-                  <label>Truck Name</label>
-                  <input type="text" id="truck-name" value="Annie Lee's Southern Kitchen" />
-                </div>
-                <div class="form-group">
-                  <label>Phone Number</label>
-                  <input type="tel" id="truck-phone" value="724-385-0522" />
-                </div>
-              </div>
-
-              <div class="form-group">
-                <label>Email Address</label>
-                <input type="email" id="truck-email" value="info@annieleesouthern.com" />
-              </div>
-
-              <div class="form-group">
-                <label>Description</label>
-                <textarea id="truck-description" placeholder="Describe your food truck...">Fresh, hot soul food on wheels. Serving the community with authentic Southern flavor.</textarea>
-              </div>
-
-              <button class="btn btn-green" onclick="saveSettings()">Save Settings</button>
-            </div>
-
-            <div style="background: #1a1414; border: 1px solid #2a2020; border-radius: var(--radius); padding: 24px;">
-              <h3 style="color: #fff; font-weight: 700; margin-bottom: 16px;">Payment Methods</h3>
-              
-              <div class="form-group">
-                <label>
-                  <input type="checkbox" id="stripe-enabled" checked /> Enable Stripe Payments
-                </label>
-              </div>
-
-              <div class="form-group">
-                <label>
-                  <input type="checkbox" id="square-enabled" checked /> Enable Square Payments
-                </label>
-              </div>
-
-              <div class="form-group">
-                <label>Deposit Amount (%)</label>
-                <input type="number" id="deposit-percent" value="25" min="0" max="100" />
-              </div>
-
-              <button class="btn btn-green" onclick="savePaymentSettings()">Save Payment Settings</button>
+            <p class="section-subtitle">Configure business information and preferences</p>
+            <div style="background: #1a1414; border: 1px solid #2a2020; border-radius: var(--radius); padding: 40px; text-align: center;">
+              <p style="color: #a89890; margin-bottom: 16px;">Additional settings would go here</p>
+              <p style="color: #6e5e58; font-size: .9rem;">This is a placeholder for business settings</p>
             </div>
           </div>
         </div>
@@ -753,244 +704,220 @@
     </main>
   </div>
 
-  <!-- ADD/EDIT STOP MODAL -->
-  <div id="stop-modal" class="modal">
+  <!-- EXPORT MODAL -->
+  <div id="export-modal" class="modal">
     <div class="modal-content">
       <div class="modal-header">
-        <h2 class="modal-title">Add Stop</h2>
-        <button class="modal-close" onclick="closeModal('stop-modal')">✕</button>
+        <h2 class="modal-title">Export Location HTML</h2>
+        <button class="modal-close" onclick="closeModal('export-modal')">✕</button>
       </div>
 
-      <form id="stop-form">
-        <div class="form-group">
-          <label for="stop-day">Day of Week *</label>
-          <select id="stop-day" required>
-            <option value="">Select day</option>
-            <option value="Monday">Monday</option>
-            <option value="Tuesday">Tuesday</option>
-            <option value="Wednesday">Wednesday</option>
-            <option value="Thursday">Thursday</option>
-            <option value="Friday">Friday</option>
-            <option value="Saturday">Saturday</option>
-            <option value="Sunday">Sunday</option>
-          </select>
-        </div>
+      <div style="margin-bottom: 20px;">
+        <p style="color: #a89890; margin-bottom: 12px;">Copy this HTML code and paste it into your index.html file, replacing the existing location section:</p>
+        <textarea id="export-code" style="width: 100%; background: #141010; border: 1px solid #2a2020; color: #64b4ff; padding: 16px; border-radius: 8px; font-family: monospace; font-size: .85rem; min-height: 300px; resize: vertical;" readonly></textarea>
+      </div>
 
-        <div class="form-group">
-          <label for="stop-location">Location Name *</label>
-          <input type="text" id="stop-location" placeholder="e.g., Downtown Beaver" required />
-        </div>
-
-        <div class="form-group">
-          <label for="stop-address">Address *</label>
-          <input type="text" id="stop-address" placeholder="Full address" required />
-        </div>
-
-        <div class="form-row">
-          <div class="form-group">
-            <label for="stop-open">Open Time *</label>
-            <input type="time" id="stop-open" required />
-          </div>
-          <div class="form-group">
-            <label for="stop-close">Close Time *</label>
-            <input type="time" id="stop-close" required />
-          </div>
-        </div>
-
-        <div class="form-group">
-          <label for="stop-status">Status *</label>
-          <select id="stop-status" required>
-            <option value="open">Open</option>
-            <option value="event">Event</option>
-            <option value="closed">Closed</option>
-            <option value="tba">TBA</option>
-          </select>
-        </div>
-
-        <div class="form-group">
-          <label for="stop-note">Notes</label>
-          <textarea id="stop-note" placeholder="Additional notes for this stop..."></textarea>
-        </div>
-
-        <div class="modal-actions">
-          <button type="button" class="btn btn-dark" onclick="closeModal('stop-modal')">Cancel</button>
-          <button type="submit" class="btn btn-green">Save Stop</button>
-        </div>
-      </form>
+      <div class="modal-actions">
+        <button class="btn btn-dark" onclick="copyExportCode()">📋 Copy to Clipboard</button>
+        <button class="btn btn-green" onclick="downloadExportCode()">📥 Download as File</button>
+        <button class="btn btn-dark" onclick="closeModal('export-modal')">Close</button>
+      </div>
     </div>
   </div>
 
   <script>
-    // ─── DATA MANAGEMENT ───
-    let scheduleData = [
-      {
-        id: 1,
-        day: 'Wednesday',
-        location: 'Downtown Beaver',
-        address: 'Beaver Ave & Main St, Beaver, PA',
-        open: '11:00',
-        close: '19:00',
-        status: 'open',
-        note: 'Lunch and dinner service.'
-      },
-      {
-        id: 2,
-        day: 'Thursday',
-        location: 'Ambridge Station',
-        address: 'Bridge St Plaza, Ambridge, PA',
-        open: '12:00',
-        close: '20:00',
-        status: 'open',
-        note: 'Extended hours.'
-      },
-      {
-        id: 3,
-        day: 'Friday',
-        location: 'Riverside Park',
-        address: 'Park Rd, Ambridge, PA',
-        open: '17:00',
-        close: '22:00',
-        status: 'event',
-        note: 'Live music event.'
-      },
-      {
-        id: 4,
-        day: 'Saturday',
-        location: 'Farmers Market',
-        address: 'Market Square, Ambridge, PA',
-        open: '09:00',
-        close: '17:00',
-        status: 'open',
-        note: 'Weekend market.'
+    // ─── LOCATION DATA ───
+    let locationData = {
+      heading: 'Right here in Ambridge.',
+      description: '1601 Duss Ave. Easy to find, easy to order, and always worth the stop.',
+      address: '1601 Duss Ave, Ambridge, PA 15003',
+      phone: '724-385-0522',
+      mapUrl: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3033.5!2d-80.2290!3d40.5940!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8834f3b1e3c0e1a1%3A0x1!2s1601+Duss+Ave%2C+Ambridge%2C+PA+15003!5e0!3m2!1sen!2sus!4v1700000000000',
+      ctaText: 'Call 724-385-0522',
+      ctaPhone: '+17243850522',
+      directionsText: 'Get Directions →',
+      directionsUrl: 'https://maps.google.com/?q=1601+Duss+Ave,+Ambridge,+PA+15003',
+      hours: {
+        monday: 'Closed',
+        tuesday: '1:00 PM – 2:00 PM',
+        wednesday: '11:00 AM – 7:00 PM',
+        thursday: '11:00 AM – 7:00 PM',
+        friday: '11:00 AM – 7:00 PM',
+        saturday: '12:00 PM – 7:00 PM',
+        sunday: '12:00 PM – 7:00 PM'
       }
-    ];
+    };
 
-    let bookingsData = [
-      {
-        id: 1,
-        name: 'John Smith',
-        phone: '412-555-0123',
-        email: 'john@example.com',
-        type: 'wedding',
-        date: '2024-06-15',
-        time: '18:00',
-        guests: 150,
-        location: 'Smith Residence',
-        notes: 'Outdoor garden wedding',
-        status: 'pending'
-      },
-      {
-        id: 2,
-        name: 'Sarah Johnson',
-        phone: '412-555-0456',
-        email: 'sarah@example.com',
-        type: 'corporate',
-        date: '2024-06-20',
-        time: '12:00',
-        guests: 75,
-        location: 'Tech Corp Office',
-        notes: 'Lunch event for employees',
-        status: 'confirmed'
-      },
-      {
-        id: 3,
-        name: 'Mike Davis',
-        phone: '412-555-0789',
-        email: 'mike@example.com',
-        type: 'birthday',
-        date: '2024-07-04',
-        time: '17:00',
-        guests: 50,
-        location: 'Davis Park',
-        notes: '40th birthday celebration',
-        status: 'pending'
+    // ─── LOAD DATA ───
+    function loadLocationData() {
+      const saved = localStorage.getItem('locationData');
+      if (saved) {
+        locationData = JSON.parse(saved);
       }
-    ];
-
-    // ─── LOAD DATA FROM LOCALSTORAGE ───
-    function loadData() {
-      const saved = localStorage.getItem('scheduleData');
-      if (saved) scheduleData = JSON.parse(saved);
-      
-      const savedBookings = localStorage.getItem('bookingsData');
-      if (savedBookings) bookingsData = JSON.parse(savedBookings);
+      populateLocationForm();
     }
 
-    function saveData() {
-      localStorage.setItem('scheduleData', JSON.stringify(scheduleData));
-      localStorage.setItem('bookingsData', JSON.stringify(bookingsData));
+    // ─── POPULATE FORM ───
+    function populateLocationForm() {
+      document.getElementById('loc-heading').value = locationData.heading;
+      document.getElementById('loc-description').value = locationData.description;
+      document.getElementById('loc-address').value = locationData.address;
+      document.getElementById('loc-phone').value = locationData.phone;
+      document.getElementById('loc-map-url').value = locationData.mapUrl;
+      document.getElementById('loc-cta-text').value = locationData.ctaText;
+      document.getElementById('loc-cta-phone').value = locationData.ctaPhone;
+      document.getElementById('loc-directions-text').value = locationData.directionsText;
+      document.getElementById('loc-directions-url').value = locationData.directionsUrl;
+
+      document.getElementById('hour-monday').value = locationData.hours.monday;
+      document.getElementById('hour-tuesday').value = locationData.hours.tuesday;
+      document.getElementById('hour-wednesday').value = locationData.hours.wednesday;
+      document.getElementById('hour-thursday').value = locationData.hours.thursday;
+      document.getElementById('hour-friday').value = locationData.hours.friday;
+      document.getElementById('hour-saturday').value = locationData.hours.saturday;
+      document.getElementById('hour-sunday').value = locationData.hours.sunday;
+
+      updatePreview();
+    }
+
+    // ─── UPDATE PREVIEW ───
+    function updatePreview() {
+      document.getElementById('preview-heading').textContent = document.getElementById('loc-heading').value || 'Right here in Ambridge.';
+      document.getElementById('preview-description').textContent = document.getElementById('loc-description').value || '1601 Duss Ave. Easy to find, easy to order, and always worth the stop.';
+      document.getElementById('preview-address').textContent = document.getElementById('loc-address').value || '1601 Duss Ave, Ambridge, PA 15003';
+      document.getElementById('preview-phone').textContent = document.getElementById('loc-phone').value || '724-385-0522';
+    }
+
+    // ─── SAVE LOCATION ───
+    function saveLocation() {
+      locationData = {
+        heading: document.getElementById('loc-heading').value,
+        description: document.getElementById('loc-description').value,
+        address: document.getElementById('loc-address').value,
+        phone: document.getElementById('loc-phone').value,
+        mapUrl: document.getElementById('loc-map-url').value,
+        ctaText: document.getElementById('loc-cta-text').value,
+        ctaPhone: document.getElementById('loc-cta-phone').value,
+        directionsText: document.getElementById('loc-directions-text').value,
+        directionsUrl: document.getElementById('loc-directions-url').value,
+        hours: {
+          monday: document.getElementById('hour-monday').value,
+          tuesday: document.getElementById('hour-tuesday').value,
+          wednesday: document.getElementById('hour-wednesday').value,
+          thursday: document.getElementById('hour-thursday').value,
+          friday: document.getElementById('hour-friday').value,
+          saturday: document.getElementById('hour-saturday').value,
+          sunday: document.getElementById('hour-sunday').value
+        }
+      };
+
+      localStorage.setItem('locationData', JSON.stringify(locationData));
+      
+      const alert = document.getElementById('location-alert');
+      alert.innerHTML = '<div class="alert alert-success">✅ Location information saved successfully!</div>';
+      setTimeout(() => {
+        alert.innerHTML = '';
+      }, 3000);
+    }
+
+    // ─── EXPORT LOCATION HTML ───
+    function exportLocationHTML() {
+      const hoursTableHTML = `<table class="hours-table">
+  <tr><td>Monday</td><td>${locationData.hours.monday}</td></tr>
+  <tr><td>Tuesday</td><td>${locationData.hours.tuesday}</td></tr>
+  <tr><td>Wednesday</td><td>${locationData.hours.wednesday}</td></tr>
+  <tr><td>Thursday</td><td>${locationData.hours.thursday}</td></tr>
+  <tr><td>Friday</td><td>${locationData.hours.friday}</td></tr>
+  <tr><td>Saturday</td><td>${locationData.hours.saturday}</td></tr>
+  <tr><td>Sunday</td><td>${locationData.hours.sunday}</td></tr>
+</table>`;
+
+      const locationHTML = `<!-- LOCATION SECTION - Generated ${new Date().toLocaleString()} -->
+<!-- Replace the entire location section in your index.html with this code -->
+
+<section class="section location-section" id="location">
+  <div class="container">
+    <div class="location-inner">
+      <div class="location-copy reveal">
+        <span class="kicker">Find us</span>
+        <h2>${locationData.heading}</h2>
+        <p>${locationData.description}</p>
+        ${hoursTableHTML}
+        <div class="location-actions">
+          <a href="tel:${locationData.ctaPhone}" class="btn btn-green">${locationData.ctaText}</a>
+          <a href="${locationData.directionsUrl}" target="_blank" rel="noopener" class="btn btn-dark">${locationData.directionsText}</a>
+        </div>
+      </div>
+      <div class="location-map reveal" id="map-container">
+        <div class="map-inner">
+          <iframe
+            id="location-map-frame"
+            src="${locationData.mapUrl}"
+            allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+            title="Annie Lee's Southern Kitchen location map">
+          </iframe>
+          <div class="map-overlay" id="map-overlay">
+            <div class="map-pin-card">
+              <div class="map-pin-icon">📍</div>
+              <div class="map-pin-info">
+                <strong>Annie Lee's Southern Kitchen</strong>
+                <span>${locationData.address}</span>
+              </div>
+            </div>
+            <button class="map-open-btn" onclick="activateMap()">Tap to interact</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>`;
+
+      document.getElementById('export-code').value = locationHTML;
+      openModal('export-modal');
+    }
+
+    // ─── COPY EXPORT CODE ───
+    function copyExportCode() {
+      const code = document.getElementById('export-code');
+      code.select();
+      document.execCommand('copy');
+      alert('✅ Code copied to clipboard! Paste it into your index.html file.');
+    }
+
+    // ─── DOWNLOAD EXPORT CODE ───
+    function downloadExportCode() {
+      const code = document.getElementById('export-code').value;
+      const blob = new Blob([code], { type: 'text/html' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'location-section-export.html';
+      a.click();
+      URL.revokeObjectURL(url);
     }
 
     // ─── TAB NAVIGATION ───
+    function switchTab(tabName) {
+      document.querySelectorAll('.nav-link').forEach(link => {
+        if (link.dataset.tab === tabName) {
+          link.classList.add('active');
+        } else {
+          link.classList.remove('active');
+        }
+      });
+
+      document.querySelectorAll('.tab-content').forEach(tab => {
+        tab.classList.remove('active');
+      });
+      document.getElementById(tabName).classList.add('active');
+    }
+
     document.querySelectorAll('.nav-link').forEach(link => {
       link.addEventListener('click', (e) => {
         e.preventDefault();
-        const tab = link.dataset.tab;
-        
-        document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
-        link.classList.add('active');
-        
-        document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
-        document.getElementById(tab).classList.add('active');
+        switchTab(link.dataset.tab);
       });
     });
-
-    // ─── RENDER SCHEDULE ───
-    function renderSchedule() {
-      const list = document.getElementById('schedule-list');
-      list.innerHTML = scheduleData.map(stop => `
-        <div class="schedule-card">
-          <div class="schedule-card-content">
-            <div class="schedule-card-day">${stop.day}</div>
-            <div class="schedule-card-info">
-              <strong>${stop.location}</strong><br>
-              ${stop.address}<br>
-              ${stop.open} – ${stop.close}
-              ${stop.note ? `<br><em>${stop.note}</em>` : ''}
-            </div>
-          </div>
-          <div class="schedule-card-status ${stop.status}">
-            ${stop.status === 'open' ? 'Open' : stop.status === 'event' ? 'Event' : stop.status === 'closed' ? 'Closed' : 'TBA'}
-          </div>
-          <div class="schedule-card-actions">
-            <button class="btn btn-dark btn-sm" onclick="editStop(${stop.id})">Edit</button>
-            <button class="btn btn-danger btn-sm" onclick="deleteStop(${stop.id})">Delete</button>
-          </div>
-        </div>
-      `).join('');
-    }
-
-    // ─── RENDER BOOKINGS ───
-    function renderBookings() {
-      const table = document.getElementById('all-bookings');
-      table.innerHTML = bookingsData.map(booking => `
-        <tr>
-          <td class="booking-name">${booking.name}</td>
-          <td>${booking.phone}</td>
-          <td>${booking.type}</td>
-          <td>${booking.date}</td>
-          <td>${booking.guests}</td>
-          <td><span class="booking-status">${booking.status}</span></td>
-          <td>
-            <button class="btn btn-dark btn-sm" onclick="viewBooking(${booking.id})">View</button>
-          </td>
-        </tr>
-      `).join('');
-
-      const recent = document.getElementById('recent-bookings');
-      recent.innerHTML = bookingsData.slice(0, 3).map(booking => `
-        <tr>
-          <td class="booking-name">${booking.name}</td>
-          <td>${booking.type}</td>
-          <td>${booking.date}</td>
-          <td>${booking.guests}</td>
-          <td><span class="booking-status">${booking.status}</span></td>
-          <td>
-            <button class="btn btn-dark btn-sm" onclick="viewBooking(${booking.id})">View</button>
-          </td>
-        </tr>
-      `).join('');
-    }
 
     // ─── MODAL FUNCTIONS ───
     function openModal(id) {
@@ -1001,156 +928,14 @@
       document.getElementById(id).classList.remove('active');
     }
 
-    function openAddStopModal() {
-      document.getElementById('stop-form').reset();
-      document.querySelector('.modal-title').textContent = 'Add Stop';
-      openModal('stop-modal');
-    }
-
-    function editStop(id) {
-      const stop = scheduleData.find(s => s.id === id);
-      if (!stop) return;
-
-      document.getElementById('stop-day').value = stop.day;
-      document.getElementById('stop-location').value = stop.location;
-      document.getElementById('stop-address').value = stop.address;
-      document.getElementById('stop-open').value = stop.open;
-      document.getElementById('stop-close').value = stop.close;
-      document.getElementById('stop-status').value = stop.status;
-      document.getElementById('stop-note').value = stop.note;
-
-      document.querySelector('.modal-title').textContent = 'Edit Stop';
-      document.getElementById('stop-form').dataset.id = id;
-      openModal('stop-modal');
-    }
-
-    function deleteStop(id) {
-      if (confirm('Are you sure you want to delete this stop?')) {
-        scheduleData = scheduleData.filter(s => s.id !== id);
-        saveData();
-        renderSchedule();
-      }
-    }
-
-    // ─── FORM SUBMISSION ───
-    document.getElementById('stop-form').addEventListener('submit', (e) => {
-      e.preventDefault();
-
-      const id = parseInt(e.target.dataset.id) || Math.max(...scheduleData.map(s => s.id), 0) + 1;
-      const stop = {
-        id,
-        day: document.getElementById('stop-day').value,
-        location: document.getElementById('stop-location').value,
-        address: document.getElementById('stop-address').value,
-        open: document.getElementById('stop-open').value,
-        close: document.getElementById('stop-close').value,
-        status: document.getElementById('stop-status').value,
-        note: document.getElementById('stop-note').value
-      };
-
-      const index = scheduleData.findIndex(s => s.id === id);
-      if (index >= 0) {
-        scheduleData[index] = stop;
-      } else {
-        scheduleData.push(stop);
-      }
-
-      saveData();
-      renderSchedule();
-      closeModal('stop-modal');
-      delete e.target.dataset.id;
-    });
-
-    function viewBooking(id) {
-      const booking = bookingsData.find(b => b.id === id);
-      if (!booking) return;
-      alert(`Booking Details:\n\nName: ${booking.name}\nPhone: ${booking.phone}\nEmail: ${booking.email}\nEvent: ${booking.type}\nDate: ${booking.date}\nGuests: ${booking.guests}\nLocation: ${booking.location}\nNotes: ${booking.notes}`);
-    }
-
-    // ─── SETTINGS ───
-    function saveSettings() {
-      const settings = {
-        truckName: document.getElementById('truck-name').value,
-        truckPhone: document.getElementById('truck-phone').value,
-        truckEmail: document.getElementById('truck-email').value,
-        truckDescription: document.getElementById('truck-description').value
-      };
-      localStorage.setItem('truckSettings', JSON.stringify(settings));
-      alert('Settings saved!');
-    }
-
-    function savePaymentSettings() {
-      const settings = {
-        stripeEnabled: document.getElementById('stripe-enabled').checked,
-        squareEnabled: document.getElementById('square-enabled').checked,
-        depositPercent: document.getElementById('deposit-percent').value
-      };
-      localStorage.setItem('paymentSettings', JSON.stringify(settings));
-      alert('Payment settings saved!');
-    }
-
-    // ─── EXPORT HTML ───
-    function exportScheduleHTML() {
-      const scheduleHTML = scheduleData.map(stop => `
-        <div class="stop-card reveal">
-          <div class="stop-content">
-            <div class="stop-top">
-              <div class="stop-day">${stop.day}</div>
-              <span class="status-badge ${stop.status}">${stop.status === 'open' ? 'Open' : stop.status === 'event' ? 'Event' : 'Closed'}</span>
-            </div>
-            <div class="stop-location">${stop.location}</div>
-            <div class="stop-hours">${stop.open} – ${stop.close}</div>
-            <p class="stop-note">${stop.note}</p>
-            <div class="stop-actions">
-              <a href="https://maps.google.com/?q=${encodeURIComponent(stop.address)}" target="_blank">Get Directions</a>
-              <a href="#book">Book Truck</a>
-            </div>
-          </div>
-        </div>
-      `).join('');
-
-      const exportCode = `<!-- SCHEDULE CARDS - Generated ${new Date().toLocaleString()} -->
-<!-- Copy this into your foodtruck.html schedule-grid section -->
-${scheduleHTML}`;
-
-      const blob = new Blob([exportCode], { type: 'text/html' });
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement('a');
-      a.href = url;
-      a.download = 'schedule-cards-export.html';
-      a.click();
-      URL.revokeObjectURL(url);
-
-      alert('Schedule HTML exported! Copy the generated code into your foodtruck.html file.');
-    }
+    // ─── LIVE PREVIEW UPDATE ───
+    document.getElementById('loc-heading')?.addEventListener('input', updatePreview);
+    document.getElementById('loc-description')?.addEventListener('input', updatePreview);
+    document.getElementById('loc-address')?.addEventListener('input', updatePreview);
+    document.getElementById('loc-phone')?.addEventListener('input', updatePreview);
 
     // ─── INIT ───
-    loadData();
-    renderSchedule();
-    renderBookings();
-
-    // Check for new bookings from localStorage
-    const bookingInquiry = localStorage.getItem('bookingInquiry');
-    if (bookingInquiry) {
-      const inquiry = JSON.parse(bookingInquiry);
-      const newBooking = {
-        id: Math.max(...bookingsData.map(b => b.id), 0) + 1,
-        name: inquiry.name,
-        phone: inquiry.phone,
-        email: inquiry.email,
-        type: inquiry.type,
-        date: inquiry.date,
-        time: inquiry.time,
-        guests: inquiry.guests,
-        location: inquiry.location,
-        notes: inquiry.notes,
-        status: 'pending'
-      };
-      bookingsData.push(newBooking);
-      saveData();
-      localStorage.removeItem('bookingInquiry');
-      renderBookings();
-    }
+    loadLocationData();
   </script>
 </body>
 </html>

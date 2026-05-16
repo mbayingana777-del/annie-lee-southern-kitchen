@@ -435,6 +435,48 @@
       localStorage.setItem(LEADS_KEY, JSON.stringify(leads));
     }
 
+    // ─── SUPABASE LEADS READER ────────────────────────────────────────
+    async function loadSupabaseLeads() {
+      if (!window.supabaseClient) return [];
+
+      const { data, error } = await window.supabaseClient
+        .from('catering_leads')
+        .select('name, phone, email, event_date, message, source');
+
+      if (error) {
+        console.error('SUPABASE CRM LOAD ERROR:', error);
+        return [];
+      }
+
+      const supabaseLeads = (data || []).map(lead => ({
+        name: lead.name || '',
+        email: lead.email || '',
+        phone: lead.phone || '',
+        source: lead.source || 'Supabase',
+        notes: lead.message || '',
+        date: lead.event_date || new Date().toISOString()
+      }));
+
+      if (supabaseLeads.length) {
+        const localLeads = getLeads();
+        const merged = [...supabaseLeads, ...localLeads];
+        const seen = new Set();
+        const unique = merged.filter(lead => {
+          const key = `${lead.date}|${lead.email}|${lead.phone}|${lead.name}`;
+          if (seen.has(key)) return false;
+          seen.add(key);
+          return true;
+        });
+
+        saveLeads(unique);
+        renderTable();
+      }
+
+      return supabaseLeads;
+    }
+
+    window.loadSupabaseLeads = loadSupabaseLeads;
+
     // ─── SORT STATE ────────────────────────────────────────────────
     let sortField = 'date', sortDir = -1;
 
@@ -593,6 +635,7 @@
         ]);
       }
       renderTable();
+      window.addEventListener('load', () => loadSupabaseLeads(), { once: true });
     }
 
     // Auto-init if already logged in
@@ -604,7 +647,6 @@
     });
   </script>
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-
-<script src="lead-capture.js"></script>
+  <script src="lead-capture.js"></script>
 </body>
 </html>

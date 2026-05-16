@@ -1648,7 +1648,7 @@
     }
 
     // ─── BOOKING FORM ───
-    document.getElementById('booking-form')?.addEventListener('submit', function(e) {
+    document.getElementById('booking-form')?.addEventListener('submit', async function(e) {
       e.preventDefault();
       
       const formData = {
@@ -1663,14 +1663,13 @@
         notes: document.getElementById('event-notes').value
       };
 
-      // Save to localStorage
-      saveLeadToSupabase({
-  name: formData.name,
-  phone: formData.phone,
-  email: formData.email,
-  event_date: formData.date,
-
-  message: `
+      // Save to Supabase
+      const success = await saveLeadToSupabase({
+        name: formData.name,
+        phone: formData.phone,
+        email: formData.email,
+        event_date: formData.date,
+        message: `
 Food Truck Booking Request
 
 Event Type: ${formData.type}
@@ -1680,10 +1679,12 @@ Location: ${formData.location}
 
 Notes:
 ${formData.notes}
-  `,
+        `,
+        source: 'Food Truck Page'
+      });
 
-  source: 'Food Truck Page'
-});
+      if (!success) return;
+
       // Show confirmation
       alert(`Thank you, ${formData.name}! We've received your inquiry. We'll contact you at ${formData.phone} within 24 hours to confirm availability and pricing.`);
       

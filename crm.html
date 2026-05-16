@@ -635,7 +635,11 @@
         ]);
       }
       renderTable();
-      window.addEventListener('load', () => loadSupabaseLeads(), { once: true });
+setTimeout(() => {
+  if (window.loadSupabaseLeads) {
+    window.loadSupabaseLeads();
+  }
+}, 500);
     }
 
     // Auto-init if already logged in

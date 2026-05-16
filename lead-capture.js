@@ -61,7 +61,11 @@ async function handleLeadSubmit(event) {
     phone: formData.get('phone') || '',
     email: formData.get('email') || '',
     event_date: formData.get('event_date') || '',
-    message: formData.get('message') || '',
+    message:
+  formData.get('message') ||
+  formData.get('details') ||
+  formData.get('notes') ||
+  '',
     source: formData.get('source') || 'Website'
   };
 
